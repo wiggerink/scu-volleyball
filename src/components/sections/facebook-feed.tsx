@@ -47,7 +47,9 @@ export async function FacebookFeed() {
               <>
                 Direkt aus der{" "}
                 <span className="relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-3 after:bg-scu-yellow after:-z-10">
-                  <span className="relative">Vechtetalhalle</span>
+                  <span className="relative bg-none text-scu-black [-webkit-text-fill-color:theme(colors.scu-black)]">
+                    Vechtetalhalle
+                  </span>
                 </span>
               </>
             }
@@ -77,7 +79,7 @@ export async function FacebookFeed() {
                 <div className="p-[2px] rounded-full bg-white">
                   <div className="relative size-20 rounded-full overflow-hidden bg-scu-black">
                     <Image
-                      src="/scu-logo.png"
+                      src="/logos/scu-logo.png"
                       alt="SCU Emlichheim Volleyball"
                       fill
                       sizes="80px"
@@ -138,7 +140,7 @@ function PostCard({ post, priority }: { post: FacebookPost; priority?: boolean }
           <div className="p-[1.5px] rounded-full bg-white">
             <div className="relative size-9 rounded-full overflow-hidden bg-scu-black">
               <Image
-                src="/scu-logo.png"
+                src="/logos/scu-logo.png"
                 alt=""
                 fill
                 sizes="36px"
