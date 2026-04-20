@@ -52,8 +52,10 @@ const nav: readonly NavEntry[] = [
           ],
         },
         {
-          title: "Jugend",
+          title: "Hobby & Jugend",
           items: [
+            { label: "Hobbyliga", href: "/teams/hobbyliga", note: "Hobbyliga Grafschaft" },
+            { label: "Hobby", href: "/teams/hobby", note: "Freizeit-Volleyball" },
             { label: "U14", href: "/teams/u14", note: "Jugendliga" },
             { label: "U13", href: "/teams/u13", note: "Jugendkreisliga" },
             { label: "Minis", href: "/teams/minis", note: "Mini-Volleyball" },
