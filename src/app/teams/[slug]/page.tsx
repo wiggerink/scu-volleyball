@@ -52,7 +52,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
           <div className="absolute -top-32 right-0 size-[420px] rounded-full bg-scu-yellow/15 blur-[120px]" />
         </div>
 
-        <Container className="relative pt-16 lg:pt-20 pb-14 lg:pb-20">
+        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-20 lg:pb-28">
           <Button asChild variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 mb-6 -ml-3">
             <Link href="/teams"><ArrowLeft className="size-4" /> Alle Mannschaften</Link>
           </Button>

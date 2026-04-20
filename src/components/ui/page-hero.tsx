@@ -29,7 +29,7 @@ export function PageHero({ eyebrow, title, description, imageUrl, className, chi
       <div aria-hidden className="absolute inset-0 bg-grid opacity-20" />
       <div aria-hidden className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-scu-yellow/25 blur-3xl" />
 
-      <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-14 lg:pb-20">
+      <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-20 lg:pb-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

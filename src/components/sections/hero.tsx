@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/container";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-scu-black text-white clip-hero pb-24 lg:pb-32">
+    <section className="relative overflow-hidden bg-scu-black text-white clip-hero pb-32 lg:pb-44">
       <Image
         src="/hero/hero-main.jpg"
         alt="SCU Emlichheim Volleyball Damen 2. Bundesliga Pro – Saison-Shooting 2025/26"

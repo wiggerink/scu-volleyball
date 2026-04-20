@@ -42,7 +42,7 @@ export default function FirstTeamPage() {
           <Image src="/team/team-group.jpg" alt="" fill sizes="100vw" className="object-cover object-top opacity-40" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-scu-black/70 via-scu-black/50 to-scu-black" />
         </div>
-        <Container className="relative pt-16 lg:pt-20 pb-14 lg:pb-20">
+        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-20 lg:pb-28">
           <div className="flex flex-col gap-5 max-w-3xl">
             <Badge variant="yellow">2. Bundesliga Pro · Damen</Badge>
             <h1 className="font-display text-5xl lg:text-7xl font-black leading-[1]">
