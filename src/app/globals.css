@@ -4,6 +4,7 @@
   --color-scu-yellow: #FFF001;
   --color-scu-yellow-dark: #d6ca00;
   --color-scu-yellow-light: #fff84d;
+  --color-scu-yellow-ink: #7a6e00;
   --color-scu-black: #0a0a0a;
   --color-scu-gray-950: #0f1113;
   --color-scu-gray-900: #16181c;
@@ -127,6 +128,26 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background-color: var(--color-scu-yellow);
   color: #0a0a0a;
+}
+
+/* Auto-darken yellow text on light surfaces for readability (brand-safe olive gold).
+   Scoped to <section> so body/layout bg-white does not leak into dark hero sections. */
+section.bg-white .text-scu-yellow,
+section.bg-scu-gray-100 .text-scu-yellow,
+section.bg-scu-gray-200 .text-scu-yellow,
+section[class*="from-white"] .text-scu-yellow {
+  color: var(--color-scu-yellow-ink);
+}
+
+/* Keep bright yellow on dark cards/panels nested inside a light section. */
+section.bg-white .bg-scu-black .text-scu-yellow,
+section.bg-white .bg-scu-gray-900 .text-scu-yellow,
+section.bg-white .bg-gradient-to-br .text-scu-yellow,
+section.bg-scu-gray-100 .bg-scu-black .text-scu-yellow,
+section.bg-scu-gray-100 .bg-scu-gray-900 .text-scu-yellow,
+section.bg-scu-gray-100 .bg-gradient-to-br .text-scu-yellow,
+section[class*="from-white"] .bg-scu-black .text-scu-yellow {
+  color: var(--color-scu-yellow);
 }
 
 /* Focus ring */

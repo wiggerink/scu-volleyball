@@ -318,49 +318,55 @@ type MegaData = NonNullable<NavEntry["mega"]>;
 
 function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null }) {
   return (
-    <div className="w-[880px] xl:w-[960px] rounded-3xl border border-white/10 bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden">
-      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,240,1,0.1),transparent_55%)] pointer-events-none" />
+    <div className="relative w-[880px] xl:w-[960px] rounded-[28px] bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
+      <div aria-hidden className="absolute -top-24 -left-24 size-64 rounded-full bg-scu-yellow/10 blur-3xl pointer-events-none" />
+      <div aria-hidden className="absolute -bottom-32 -right-20 size-72 rounded-full bg-scu-yellow/5 blur-3xl pointer-events-none" />
 
-      <div className="relative grid grid-cols-12 gap-0">
+      <div className="relative grid grid-cols-12">
         {/* Columns */}
-        <div className="col-span-8 grid grid-cols-2 gap-0 p-6">
+        <div className="col-span-8 grid grid-cols-2 gap-x-6 p-8">
           {mega.columns.map((col) => (
-            <div key={col.title} className="px-3 border-r border-white/5 last:border-r-0">
-              <div className="text-[10px] font-black tracking-[0.22em] uppercase text-scu-yellow mb-3 flex items-center gap-2">
-                <span className="h-px w-5 bg-scu-yellow/50" />
+            <div key={col.title}>
+              <div className="text-[10px] font-black tracking-[0.28em] uppercase text-scu-yellow/90 mb-4 px-3 flex items-center gap-2">
+                <span className="size-1 rounded-full bg-scu-yellow" />
                 {col.title}
               </div>
-              <ul className="flex flex-col gap-0.5">
+              <ul className="flex flex-col">
                 {col.items.map((it) => {
                   const active = isActive(pathname, it.href);
                   return (
                     <li key={it.href}>
                       <Link
                         href={it.href}
-                        className={cn(
-                          "group/sub flex flex-col rounded-xl px-3 py-2.5 transition",
-                          active
-                            ? "bg-scu-yellow/15 border border-scu-yellow/30"
-                            : "hover:bg-white/5 border border-transparent",
-                        )}
+                        className="group/sub relative flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all hover:bg-white/[0.04]"
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className={cn(
-                            "font-semibold text-sm transition",
-                            active ? "text-scu-yellow" : "text-white/90 group-hover/sub:text-scu-yellow",
+                        <span
+                          className={cn(
+                            "absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-r-full bg-scu-yellow transition-all",
+                            active ? "h-7 opacity-100" : "h-0 opacity-0 group-hover/sub:h-5 group-hover/sub:opacity-70",
+                          )}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className={cn(
+                            "font-semibold text-sm transition-colors leading-tight",
+                            active ? "text-scu-yellow" : "text-white group-hover/sub:text-scu-yellow",
                           )}>
                             {it.label}
-                          </span>
-                          <ArrowUpRight className={cn(
-                            "size-3.5 transition-all shrink-0",
+                          </div>
+                          {it.note && (
+                            <div className="text-[11px] text-white/45 mt-0.5 leading-snug group-hover/sub:text-white/65 transition-colors">
+                              {it.note}
+                            </div>
+                          )}
+                        </div>
+                        <ArrowUpRight
+                          className={cn(
+                            "size-3.5 shrink-0 transition-all",
                             active
                               ? "text-scu-yellow"
-                              : "text-white/30 opacity-0 group-hover/sub:opacity-100 group-hover/sub:text-scu-yellow group-hover/sub:translate-x-0.5 group-hover/sub:-translate-y-0.5",
-                          )} />
-                        </div>
-                        {it.note && (
-                          <span className="text-[11px] text-white/50 mt-0.5 leading-snug">{it.note}</span>
-                        )}
+                              : "text-white/25 -translate-x-1 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0 group-hover/sub:text-scu-yellow",
+                          )}
+                        />
                       </Link>
                     </li>
                   );
@@ -371,9 +377,11 @@ function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null 
         </div>
 
         {/* Feature */}
-        <div className="col-span-4 bg-gradient-to-br from-scu-yellow/10 via-scu-yellow/5 to-transparent border-l border-white/10 p-6 flex flex-col justify-between gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-scu-yellow text-scu-black px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.22em] mb-4">
+        <div className="col-span-4 relative bg-gradient-to-br from-scu-yellow/15 via-scu-yellow/5 to-transparent p-7 flex flex-col justify-between gap-6">
+          <div aria-hidden className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent" />
+          <div aria-hidden className="absolute top-0 right-0 size-32 rounded-full bg-scu-yellow/20 blur-2xl pointer-events-none" />
+          <div className="relative">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-scu-yellow text-scu-black px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.22em] mb-4 shadow-[0_8px_24px_-8px_rgba(255,240,1,0.6)]">
               <span className="size-1.5 rounded-full bg-scu-black animate-pulse" />
               13 Teams
             </div>
@@ -386,7 +394,7 @@ function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null 
           </div>
           <Link
             href={mega.feature.cta.href}
-            className="inline-flex items-center justify-between rounded-full bg-scu-yellow text-scu-black px-4 py-2.5 text-sm font-bold hover:bg-scu-yellow-dark transition group/feat"
+            className="relative inline-flex items-center justify-between rounded-full bg-scu-yellow text-scu-black px-4 py-2.5 text-sm font-bold hover:bg-white transition-all group/feat shadow-[0_12px_28px_-10px_rgba(255,240,1,0.5)]"
           >
             {mega.feature.cta.label}
             <ArrowUpRight className="size-4 group-hover/feat:translate-x-0.5 group-hover/feat:-translate-y-0.5 transition-transform" />

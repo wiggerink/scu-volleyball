@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Trophy, Sparkles, Crown, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Trophy, Sparkles, Crown, TrendingUp, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { roster2, staff2 } from "@/lib/roster-2";
+
+const positionOrder2 = ["Libera", "Zuspiel", "Angriff", "Mittelblock", "Diagonalangriff", "Universal"];
+
+function getInitials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter((p) => p && p[0].toUpperCase() === p[0])
+    .map((p) => p[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
 
 export const metadata: Metadata = {
   title: "2. Damen – 2. Bundesliga · Saison 2026/27",
@@ -48,6 +61,10 @@ const milestones = [
 ];
 
 export default function SecondTeamPage() {
+  const sortedRoster = [...roster2].sort(
+    (a, b) => positionOrder2.indexOf(a.position) - positionOrder2.indexOf(b.position) || a.name.localeCompare(b.name, "de"),
+  );
+
   return (
     <>
       {/* Hero */}
@@ -80,10 +97,13 @@ export default function SecondTeamPage() {
 
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
-                <Link href="#aufstieg"><Sparkles className="size-4" /> Die Aufstiegs-Story</Link>
+                <Link href="#kader"><Users className="size-4" /> Zum Kader</Link>
               </Button>
               <Button asChild variant="outlineLight" size="lg">
-                <Link href="#abschluss"><CalendarDays className="size-4" /> Letztes Saisonspiel</Link>
+                <Link href="#aufstieg"><Sparkles className="size-4" /> Aufstiegs-Story</Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg" className="text-white hover:bg-white/10 hover:text-white">
+                <Link href="#abschluss"><CalendarDays className="size-4" /> Letztes Spiel</Link>
               </Button>
             </div>
           </div>
@@ -124,6 +144,85 @@ export default function SecondTeamPage() {
                 <div className="text-xs uppercase tracking-[0.2em] text-scu-yellow-dark font-bold">{m.year}</div>
                 <h3 className="font-display text-xl font-black text-scu-black mt-2 leading-tight">{m.title}</h3>
                 <p className="text-sm text-scu-gray-500 leading-relaxed mt-3">{m.text}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Kader */}
+      <section id="kader" className="py-20 lg:py-28 bg-scu-gray-100">
+        <Container className="flex flex-col gap-12">
+          <SectionHeading
+            eyebrow="Kader"
+            title={<>Unsere Spielerinnen <span className="text-scu-yellow">2025/26</span></>}
+            description="Der Meisterkader der 3. Liga Nord – durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend."
+          />
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-5">
+            {sortedRoster.map((p) => (
+              <article
+                key={p.name}
+                className="group relative rounded-2xl overflow-hidden bg-white border border-transparent hover:border-scu-yellow transition-all hover:shadow-[0_24px_50px_-20px_rgba(255,240,1,0.35)]"
+              >
+                <div className="relative aspect-[3/4] bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center overflow-hidden">
+                  {p.image ? (
+                    <Image
+                      src={p.image}
+                      alt={p.name}
+                      fill
+                      sizes="(min-width:1024px) 20vw, 50vw"
+                      className="object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                    />
+                  ) : (
+                    <>
+                      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,240,1,0.15),transparent_60%)]" />
+                      <span className="relative font-display text-5xl lg:text-6xl font-black text-white/90 group-hover:text-scu-yellow transition-colors">
+                        {getInitials(p.name)}
+                      </span>
+                    </>
+                  )}
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black to-transparent text-white">
+                    <div className="font-display text-sm lg:text-base font-black leading-tight">{p.name}</div>
+                    <div className="text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">
+                      {p.position}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5">
+            <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Fotos folgen</div>
+            <p className="text-sm text-scu-black leading-relaxed">
+              Professionelle Team- und Einzelshoots für die Saison 2026/27 (2. Bundesliga) folgen nach der Sommerpause.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Trainerin */}
+      <section className="py-20 lg:py-24 bg-white">
+        <Container className="flex flex-col gap-10">
+          <SectionHeading eyebrow="Team hinter dem Team" title={<>Trainerin & <span className="text-scu-yellow">Staff</span></>} />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
+            {staff2.map((s) => (
+              <article key={s.name} className="rounded-2xl overflow-hidden bg-scu-gray-100 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
+                <div className="relative aspect-square bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center">
+                  {s.image ? (
+                    <Image src={s.image} alt={s.name} fill sizes="200px" className="object-cover object-top" />
+                  ) : (
+                    <>
+                      <Users aria-hidden className="absolute size-10 text-white/15" />
+                      <span className="relative font-display text-3xl font-black text-white/90">{getInitials(s.name)}</span>
+                    </>
+                  )}
+                </div>
+                <div className="p-4">
+                  <div className="font-display text-base font-black leading-tight">{s.name}</div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow-dark font-bold mt-1">{s.role}</div>
+                </div>
               </article>
             ))}
           </div>
@@ -217,8 +316,8 @@ export default function SecondTeamPage() {
             <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5 mt-2">
               <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Hinweis</div>
               <p className="text-sm text-scu-black leading-relaxed">
-                Detaillierter Kader, Trainerteam und Spielplan für die Saison 2026/27 folgen nach Saisonabschluss
-                und Sommerpause. Fragen zu Probetraining oder Mitgliedschaft? <Link href="/kontakt" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-dark">Direkt melden</Link>.
+                Detaillierter Spielplan 2026/27 folgt nach Saisonabschluss und Sommerpause. Fragen zu Probetraining
+                oder Mitgliedschaft? <Link href="/kontakt" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-dark">Direkt melden</Link>.
               </p>
             </div>
           </div>
