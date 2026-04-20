@@ -32,21 +32,6 @@ export function Hero() {
 
       <Container className="relative pt-32 lg:pt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-7 flex flex-col gap-7">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur px-4 py-1.5"
-          >
-            <span className="relative flex size-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-scu-yellow opacity-75" />
-              <span className="relative inline-flex size-2.5 rounded-full bg-scu-yellow" />
-            </span>
-            <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
-              Saison 2025/26 · 2. Bundesliga Pro · Damen
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

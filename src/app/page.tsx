@@ -3,6 +3,8 @@ import { Hero } from "@/components/sections/hero";
 import { FederationPartners } from "@/components/sections/federation-partners";
 import { HighlightStory } from "@/components/sections/highlight-story";
 import { NewsGrid } from "@/components/sections/news-grid";
+import { InstagramFeed } from "@/components/sections/instagram-feed";
+import { BundesligaAktionBanner } from "@/components/sections/bundesliga-aktion-banner";
 import { TeamsOverview } from "@/components/sections/teams-overview";
 import { YouthSection } from "@/components/sections/youth-section";
 import { SponsorsSection } from "@/components/sections/sponsors-section";
@@ -24,7 +26,9 @@ export default function Home() {
       <Hero />
       <FederationPartners />
       <HighlightStory />
+      <BundesligaAktionBanner />
       <NewsGrid />
+      <InstagramFeed />
       <TeamsOverview />
       <YouthSection />
       <SponsorsSection />

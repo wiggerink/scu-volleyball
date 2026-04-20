@@ -38,11 +38,14 @@ export function Header() {
           )}
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-scu-yellow text-scu-black px-2.5 py-0.5 font-semibold uppercase tracking-widest">
-                2. Bundesliga Pro · Damen
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur px-3 py-1">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-scu-yellow opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-scu-yellow" />
               </span>
-              <span className="text-white/60">Saison {site.season}</span>
+              <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-white/90">
+                Saison {site.season} · 2. Bundesliga Pro · Damen
+              </span>
             </div>
             <div className="flex items-center gap-4">
               <Link href={site.social.facebook} target="_blank" aria-label="Facebook" className="hover:text-scu-yellow transition"><FacebookIcon className="size-3.5" /></Link>
