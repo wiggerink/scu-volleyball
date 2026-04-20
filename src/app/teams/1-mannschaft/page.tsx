@@ -130,7 +130,7 @@ export default function FirstTeamPage() {
             {staff.map((s) => (
               <article key={s.name} className="rounded-2xl overflow-hidden bg-white shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
                 <div className="relative aspect-square">
-                  <Image src={s.image} alt={s.name} fill sizes="200px" className="object-cover" />
+                  <Image src={s.image} alt={s.name} fill sizes="200px" className="object-cover object-top" />
                 </div>
                 <div className="p-4">
                   <div className="font-display text-base font-black leading-tight">{s.name}</div>
