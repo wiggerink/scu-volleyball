@@ -10,19 +10,20 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Alle Mannschaften",
   description:
-    "13 Mannschaften beim SCU Emlichheim: von der 2. Bundesliga Pro Damen über Oberliga & Bezirksliga bis Mini-Volleyball. Deine Mannschaft wartet auf dich.",
+    "15 Mannschaften beim SCU Emlichheim: von der 2. Bundesliga Pro Damen über Oberliga & Bezirksliga bis Mini-Volleyball. Deine Mannschaft wartet auf dich.",
   alternates: { canonical: "/teams" },
 };
 
 export default function TeamsPage() {
   const senior = teams.filter((t) => t.gender === "Damen");
+  const hobby  = teams.filter((t) => t.gender === "Mixed");
   const youth  = teams.filter((t) => t.gender === "Jugend");
 
   return (
     <>
       <PageHero
         eyebrow="Mannschaften"
-        title={<>13 Teams · ein Verein.</>}
+        title={<>{teams.length} Teams · ein Verein.</>}
         description="Bundesliga-Volleyball und Breitensport auf höchstem Niveau in der Grafschaft Bentheim."
         imageUrl="/team/team-group.jpg"
       />
@@ -69,6 +70,42 @@ export default function TeamsPage() {
               ))}
             </div>
           </div>
+
+          {hobby.length > 0 && (
+            <div>
+              <h2 className="font-display text-3xl lg:text-4xl font-black mb-2">Hobby & Freizeit</h2>
+              <p className="text-scu-gray-500 mb-8">Gemischte Teams für alle, die Volleyball mit Spaß und ohne Ligadruck spielen wollen.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {hobby.map((t) => (
+                  <Link
+                    key={t.slug}
+                    href={`/teams/${t.slug}`}
+                    className="group relative block rounded-2xl overflow-hidden border border-scu-gray-200 hover:border-scu-black hover:-translate-y-0.5 transition-all bg-white"
+                  >
+                    {t.image && (
+                      <div className="relative aspect-[16/10] overflow-hidden bg-scu-gray-100">
+                        <Image
+                          src={t.image}
+                          alt={`${t.name} – Mannschaftsfoto`}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <div className="text-[11px] uppercase tracking-[0.22em] font-bold opacity-80">{t.league}</div>
+                      <div className="font-display text-2xl font-black mt-1.5">{t.name}</div>
+                      <p className="text-sm mt-3 leading-relaxed text-scu-gray-500 line-clamp-3">{t.description}</p>
+                      <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] group-hover:gap-3 transition-all">
+                        Ansehen <ArrowUpRight className="size-3.5" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div>
             <h2 className="font-display text-3xl lg:text-4xl font-black mb-2">Jugend</h2>

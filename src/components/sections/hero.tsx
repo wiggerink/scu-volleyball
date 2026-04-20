@@ -86,7 +86,7 @@ export function Hero() {
           >
             {[
               { k: "30+", v: "Jahre Bundesliga", icon: Trophy },
-              { k: "13", v: "Mannschaften", icon: CalendarDays },
+              { k: "15", v: "Mannschaften", icon: CalendarDays },
               { k: "120+", v: "Kinder & Jugend", icon: Trophy },
             ].map(({ k, v, icon: Icon }) => (
               <div key={v} className="flex items-start gap-3 pt-6">

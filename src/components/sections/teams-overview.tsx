@@ -35,7 +35,7 @@ export function TeamsOverview() {
           <SectionHeading
             tone="light"
             eyebrow="Unsere Mannschaften"
-            title={<>13 Teams · ein <span className="text-scu-yellow">SCU</span></>}
+            title={<>{teams.length} Teams · ein <span className="text-scu-yellow">SCU</span></>}
             description="Vom Mini-Volleyball bis zur 2. Bundesliga Pro: Bei uns findet jede Spielerin und jeder Spieler den passenden Platz."
           />
           <Button asChild variant="outlineLight" className="w-fit">

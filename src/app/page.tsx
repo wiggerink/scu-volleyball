@@ -14,7 +14,7 @@ import { OrganizationJsonLd, SportsTeamJsonLd } from "@/components/seo/json-ld";
 export const metadata: Metadata = {
   title: "SCU Emlichheim Volleyball – 2. Bundesliga Pro Damen 2025/26",
   description:
-    "SC Union Emlichheim – Dorfverein mit Bundesliga-Herz. 13 Mannschaften, 120+ Kinder in der Jugend, 2. Bundesliga Pro Damen in der Vechtetalhalle. Tickets, Spielplan, Livestream.",
+    "SC Union Emlichheim – Dorfverein mit Bundesliga-Herz. 15 Mannschaften, 120+ Kinder in der Jugend, 2. Bundesliga Pro Damen in der Vechtetalhalle. Tickets, Spielplan, Livestream.",
   alternates: { canonical: "/" },
 };
 

@@ -20,7 +20,7 @@ export default function NewsPage() {
       <PageHero
         eyebrow="News & Stories"
         title="Aktuelles aus Emlichheim"
-        description="Spielberichte, Interviews und Geschichten rund um unsere 13 Teams."
+        description="Spielberichte, Interviews und Geschichten rund um unsere 15 Teams."
         imageUrl="/hero/hero-main.jpg"
       />
 

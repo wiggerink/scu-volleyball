@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const stats = [
   { v: "2.500+", k: "Zuschauer pro Heimspiel" },
-  { v: "13",    k: "Mannschaften quer durchs Land" },
+  { v: "15",    k: "Mannschaften quer durchs Land" },
   { v: "30+",   k: "Jahre Bundesliga-Geschichte" },
   { v: "120+",  k: "Kinder & Jugendliche im Training" },
 ];

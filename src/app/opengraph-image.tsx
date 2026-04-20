@@ -52,7 +52,7 @@ export default async function Image() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div style={{ fontSize: 26, opacity: 0.8 }}>scuvolleyball.de</div>
           <div style={{ display: "flex", gap: 28, fontSize: 22, opacity: 0.8 }}>
-            <span>13 Mannschaften</span>
+            <span>15 Mannschaften</span>
             <span>·</span>
             <span>120+ Jugend</span>
             <span>·</span>
