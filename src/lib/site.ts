@@ -41,14 +41,7 @@ const nav: readonly NavEntry[] = [
     mega: {
       columns: [
         {
-          title: "Bundesliga",
-          items: [
-            { label: "1. Damen", href: "/teams/1-mannschaft", note: "2. Bundesliga Pro · 25/26" },
-            { label: "2. Damen", href: "/teams/2-mannschaft", note: "Aufsteiger 2. Bundesliga · 26/27" },
-          ],
-        },
-        {
-          title: "Weitere Damenteams",
+          title: "Damenteams",
           items: [
             { label: "3. Damen", href: "/teams/3-mannschaft", note: "Oberliga" },
             { label: "4. Damen", href: "/teams/4-mannschaft", note: "Bezirksliga" },

@@ -323,7 +323,7 @@ function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null 
 
       <div className="relative grid grid-cols-12 gap-0">
         {/* Columns */}
-        <div className="col-span-8 grid grid-cols-3 gap-0 p-6">
+        <div className="col-span-8 grid grid-cols-2 gap-0 p-6">
           {mega.columns.map((col) => (
             <div key={col.title} className="px-3 border-r border-white/5 last:border-r-0">
               <div className="text-[10px] font-black tracking-[0.22em] uppercase text-scu-yellow mb-3 flex items-center gap-2">
