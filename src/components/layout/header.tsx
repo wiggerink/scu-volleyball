@@ -14,6 +14,7 @@ export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const pathname = usePathname();
+  const activeHref = React.useMemo(() => getActiveHref(pathname, site.nav), [pathname]);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -83,7 +84,7 @@ export function Header() {
 
           <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center">
             {site.nav.map((item) => (
-              <NavItem key={item.href} item={item} pathname={pathname} />
+              <NavItem key={item.href} item={item} pathname={pathname} activeHref={activeHref} />
             ))}
           </nav>
 
@@ -147,7 +148,7 @@ export function Header() {
 
               <nav className="flex flex-col gap-1.5">
                 {site.nav.map((item) => {
-                  const active = isActive(pathname, item.href);
+                  const active = activeHref === item.href;
                   return (
                     <Link
                       key={item.href}
@@ -225,17 +226,32 @@ export function Header() {
   );
 }
 
-function isActive(pathname: string | null, href: string) {
-  if (!pathname) return false;
+function matchesHref(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(href + "/");
 }
 
-function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }) {
+function getActiveHref(pathname: string | null, nav: readonly NavEntry[]) {
+  if (!pathname) return null;
+  let best: string | null = null;
+  for (const item of nav) {
+    if (matchesHref(pathname, item.href)) {
+      if (best === null || item.href.length > best.length) best = item.href;
+    }
+  }
+  return best;
+}
+
+function isActive(pathname: string | null, href: string) {
+  if (!pathname) return false;
+  return matchesHref(pathname, href);
+}
+
+function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: string | null; activeHref: string | null }) {
   const hasChildren = !!item.children;
   const hasMega = !!item.mega;
   const [open, setOpen] = React.useState(false);
-  const active = isActive(pathname, item.href);
+  const active = activeHref === item.href;
   const badge = item.badge;
 
   return (
@@ -247,7 +263,7 @@ function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }
       <Link
         href={item.href}
         className={cn(
-          "relative inline-flex items-center gap-1 rounded-full px-2.5 xl:px-3 py-2 text-[12.5px] xl:text-[13px] font-semibold whitespace-nowrap transition group",
+          "relative inline-flex items-center gap-1 px-2.5 xl:px-3 py-2 text-[12.5px] xl:text-[13px] font-semibold whitespace-nowrap transition group",
           active
             ? "text-scu-yellow"
             : "text-white/85 hover:text-scu-yellow",
@@ -264,12 +280,12 @@ function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }
         )}
         {(hasChildren || hasMega) && <ChevronDown className="size-3 opacity-60 group-hover:rotate-180 transition-transform" />}
 
-        {/* Active indicator */}
+        {/* Active indicator: animated underline */}
         {active && (
           <motion.span
             layoutId="nav-active"
-            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-            className="absolute inset-0 rounded-full bg-scu-yellow/10 border border-scu-yellow/30 -z-10"
+            transition={{ type: "spring", stiffness: 380, damping: 32 }}
+            className="absolute left-2.5 right-2.5 xl:left-3 xl:right-3 bottom-0.5 h-[2px] rounded-full bg-scu-yellow shadow-[0_0_12px_rgba(255,240,1,0.5)]"
           />
         )}
       </Link>
