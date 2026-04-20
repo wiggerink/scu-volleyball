@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
+import { LegalLayout, LegalSection } from "@/components/ui/legal-layout";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutz",
-  description: "Datenschutzerklärung des SC Union Emlichheim – Abteilung Volleyball.",
+  description: "Datenschutzerklärung der SC Union Emlichheim Marketing GmbH – Betreiberin von scuvolleyball.de.",
   alternates: { canonical: "/datenschutz" },
   robots: { index: false, follow: true },
 };
@@ -12,33 +13,76 @@ export const metadata: Metadata = {
 export default function DatenschutzPage() {
   return (
     <>
-      <PageHero eyebrow="Rechtliches" title="Datenschutz" />
-      <section className="py-16 lg:py-20 bg-white">
-        <Container className="max-w-3xl prose prose-neutral">
+      <PageHero
+        eyebrow="Rechtliches"
+        title="Datenschutz"
+        description="Datenschutz ist uns wichtig. Hier erklären wir transparent, welche Daten wir verarbeiten und warum."
+      />
+
+      <LegalLayout
+        intro={
+          <>
+            Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich
+            auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TTDSG, BDSG).
+          </>
+        }
+      >
+        <LegalSection title="1. Verantwortliche Stelle">
           <p>
-            Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TTDSG, BDSG).
+            <strong>SC Union Emlichheim Marketing GmbH</strong><br />
+            {site.address.street}<br />
+            {site.address.postalCode} {site.address.city}<br />
+            E-Mail: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
           </p>
-          <h2>1. Verantwortliche Stelle</h2>
+        </LegalSection>
+
+        <LegalSection title="2. Erfassung allgemeiner Informationen">
           <p>
-            SC Union Emlichheim e. V., Lägen Diek 12, 49824 Emlichheim<br />
-            E-Mail: news@scuvolleyball.de
+            Wenn Sie auf unsere Website zugreifen, werden automatisch Informationen allgemeiner Natur erfasst. Diese Server-Logfiles beinhalten Angaben zum Typ des Webbrowsers, zum Betriebssystem, zum Domainnamen Ihres Internet-Service-Providers, Ihre anonymisierte IP-Adresse und ähnliche Daten. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
           </p>
-          <h2>2. Erfassung allgemeiner Informationen</h2>
+        </LegalSection>
+
+        <LegalSection title="3. Cookies">
           <p>
-            Wenn Sie auf unsere Website zugreifen, werden automatisch Informationen allgemeiner Natur erfasst. Diese Informationen (Server-Logfiles) beinhalten Angaben zum Typ des Webbrowsers, zum Betriebssystem, zum Domainnamen und ähnliche Daten.
+            Wir setzen auf unserer Website nur technisch notwendige Cookies ein, die für den reibungslosen Betrieb erforderlich sind. Analyse- oder Marketing-Cookies werden ausschließlich mit Ihrer ausdrücklichen Einwilligung verwendet.
           </p>
-          <h2>3. Cookies</h2>
+        </LegalSection>
+
+        <LegalSection title="4. Hosting">
           <p>
-            Wir setzen auf unserer Website nur technisch notwendige Cookies ein. Analyse- oder Marketing-Cookies werden ausschließlich mit Ihrer ausdrücklichen Einwilligung verwendet.
+            Diese Website wird bei <strong>Vercel Inc.</strong> gehostet (USA/EU-Region). Mit dem Anbieter besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO.
           </p>
-          <h2>4. Hosting</h2>
-          <p>Diese Website wird bei Vercel Inc. (USA/EU) gehostet. Es wird ein Auftragsverarbeitungsvertrag abgeschlossen.</p>
-          <h2>5. Ihre Rechte</h2>
+        </LegalSection>
+
+        <LegalSection title="5. Instagram-Integration">
           <p>
-            Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Zudem steht Ihnen ein Beschwerderecht bei einer Aufsichtsbehörde zu.
+            Auf unserer Startseite zeigen wir aktuelle Beiträge unseres Instagram-Kanals an. Die Daten werden ausschließlich serverseitig über die offizielle Instagram Graph API (Meta Platforms Ireland Ltd.) abgerufen. Es werden keine Cookies von Meta auf Ihrem Gerät gesetzt, solange Sie nicht auf einen Beitrag klicken.
           </p>
-        </Container>
-      </section>
+        </LegalSection>
+
+        <LegalSection title="6. Ihre Rechte">
+          <p>
+            Sie haben jederzeit das Recht auf:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Auskunft über Ihre gespeicherten Daten</li>
+            <li>Berichtigung unrichtiger Daten</li>
+            <li>Löschung Ihrer Daten</li>
+            <li>Einschränkung der Verarbeitung</li>
+            <li>Datenübertragbarkeit</li>
+            <li>Widerspruch gegen die Verarbeitung</li>
+          </ul>
+          <p>
+            Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="7. Kontakt zum Datenschutz">
+          <p>
+            Für Fragen zum Datenschutz wenden Sie sich bitte an: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          </p>
+        </LegalSection>
+      </LegalLayout>
     </>
   );
 }

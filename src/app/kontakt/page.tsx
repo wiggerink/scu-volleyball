@@ -39,7 +39,8 @@ export default function KontaktPage() {
               <Building2 className="size-8 text-scu-yellow" />
               <div>
                 <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-scu-yellow">Geschäftsstelle</div>
-                <h2 className="font-display text-2xl font-black mt-1">SC Union Emlichheim e. V.</h2>
+                <h2 className="font-display text-2xl font-black mt-1">SC Union Emlichheim Marketing GmbH</h2>
+                <div className="text-xs text-scu-gray-500 mt-1">Sportlicher Spielbetrieb: SC Union Emlichheim e. V.</div>
               </div>
               <div className="text-scu-gray-500 space-y-1.5">
                 <div className="flex items-start gap-3">

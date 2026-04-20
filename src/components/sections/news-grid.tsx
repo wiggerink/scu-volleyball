@@ -35,10 +35,10 @@ export function NewsGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 relative rounded-3xl overflow-hidden group bg-scu-black"
+            className="lg:col-span-7 relative rounded-2xl lg:rounded-3xl overflow-hidden group bg-scu-black"
           >
             <Link href={`/news/${featured.slug}`} className="block">
-              <div className="relative aspect-[16/11] lg:aspect-auto lg:h-full min-h-[440px]">
+              <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-auto lg:h-full lg:min-h-[440px]">
                 <Image
                   src={featured.image}
                   alt={featured.title}
@@ -46,8 +46,8 @@ export function NewsGrid() {
                   sizes="(min-width: 1024px) 55vw, 100vw"
                   className="object-cover group-hover:scale-[1.03] transition duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-scu-black via-scu-black/50 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-10 gap-4 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-scu-black via-scu-black/60 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 lg:p-10 gap-3 lg:gap-4 text-white">
                   <div className="flex items-center gap-2 flex-wrap">
                     {featured.badge && <Badge variant="yellow">{featured.badge}</Badge>}
                     <Badge variant="light">{featured.category}</Badge>
@@ -56,11 +56,11 @@ export function NewsGrid() {
                       {formatDate(featured.date)}
                     </span>
                   </div>
-                  <h3 className="font-display text-3xl lg:text-5xl font-black leading-tight max-w-2xl">
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-5xl font-black leading-tight max-w-2xl">
                     {featured.title}
                   </h3>
-                  <p className="max-w-2xl text-white/75 leading-relaxed">{featured.excerpt}</p>
-                  <div className="inline-flex items-center gap-2 font-semibold text-scu-yellow group-hover:gap-3 transition-all">
+                  <p className="max-w-2xl text-sm sm:text-base text-white/75 leading-relaxed line-clamp-3 sm:line-clamp-none">{featured.excerpt}</p>
+                  <div className="inline-flex items-center gap-2 font-semibold text-scu-yellow group-hover:gap-3 transition-all text-sm sm:text-base">
                     Weiterlesen <ArrowRight className="size-4" />
                   </div>
                 </div>
@@ -68,7 +68,7 @@ export function NewsGrid() {
             </Link>
           </motion.article>
 
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
+          <div className="lg:col-span-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-5">
             {grid.map((item, idx) => (
               <motion.article
                 key={item.slug}
@@ -78,24 +78,24 @@ export function NewsGrid() {
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
                 className="group relative rounded-2xl overflow-hidden bg-scu-gray-100 hover:bg-white border border-transparent hover:border-scu-gray-200 transition"
               >
-                <Link href={`/news/${item.slug}`} className="flex gap-4 h-full p-3">
-                  <div className="relative w-28 sm:w-32 shrink-0 aspect-square rounded-xl overflow-hidden">
+                <Link href={`/news/${item.slug}`} className="flex gap-3 sm:gap-4 h-full p-3">
+                  <div className="relative w-24 sm:w-28 lg:w-32 shrink-0 aspect-square rounded-xl overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      sizes="128px"
+                      sizes="(min-width: 1024px) 128px, 112px"
                       className="object-cover group-hover:scale-105 transition duration-500"
                     />
                   </div>
-                  <div className="flex-1 flex flex-col justify-between py-1">
+                  <div className="flex-1 min-w-0 flex flex-col justify-between gap-2 py-0.5">
                     <div className="flex items-center gap-2 flex-wrap">
                       {item.badge && <Badge variant="yellow" size="sm">{item.badge}</Badge>}
                       <span className="text-[10px] uppercase tracking-[0.18em] text-scu-gray-500 font-semibold">
                         {formatDate(item.date)}
                       </span>
                     </div>
-                    <h4 className="font-display text-base font-black leading-tight text-scu-black group-hover:text-scu-yellow-dark transition line-clamp-3">
+                    <h4 className="font-display text-sm sm:text-base font-black leading-tight text-scu-black group-hover:text-scu-yellow-dark transition line-clamp-3">
                       {item.title}
                     </h4>
                     <div className="inline-flex items-center gap-1 text-xs font-semibold text-scu-black">

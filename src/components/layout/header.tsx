@@ -60,13 +60,13 @@ export function Header() {
         <motion.header>
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 sm:px-6 lg:px-8 py-3">
             <Link href="/" aria-label="SCU Emlichheim Volleyball - Startseite" className="group">
-              <div className="relative size-14 lg:size-16 shrink-0 rounded-2xl bg-scu-black/80 backdrop-blur border border-white/10 p-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.6)] group-hover:border-scu-yellow/50 transition-colors">
+              <div className="relative size-20 lg:size-24 shrink-0 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
                 <Image
                   src="/logos/scu-logo.png"
                   alt="SCU Emlichheim Logo"
                   fill
-                  sizes="64px"
-                  className="object-contain p-1.5 group-hover:scale-105 transition-transform"
+                  sizes="96px"
+                  className="object-contain group-hover:scale-105 transition-transform"
                   priority
                 />
               </div>

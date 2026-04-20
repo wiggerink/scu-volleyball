@@ -38,7 +38,6 @@ const linkGroups = [
     links: [
       { label: "Impressum", href: "/impressum" },
       { label: "Datenschutz", href: "/datenschutz" },
-      { label: "Cookies", href: "/cookie-richtlinie" },
     ],
   },
 ];
@@ -117,7 +116,7 @@ export function Footer() {
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-xs text-white/50">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span>© {new Date().getFullYear()} SC Union Emlichheim e. V. – Abteilung Volleyball.</span>
+            <span>© {new Date().getFullYear()} SC Union Emlichheim Marketing GmbH.</span>
             <span className="hidden md:inline text-white/20">·</span>
             <Link
               href="https://web-n-search.de"
@@ -128,7 +127,7 @@ export function Footer() {
               <span>Gebaut mit</span>
               <Heart className="size-3.5 text-scu-yellow fill-scu-yellow group-hover:scale-125 transition-transform" />
               <span>in Emlichheim von</span>
-              <span className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-2 group-hover:text-scu-yellow">web-n-search.de</span>
+              <span className="font-semibold underline decoration-scu-yellow/50 decoration-1 underline-offset-4 group-hover:decoration-scu-yellow">Web &amp; Search</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">
