@@ -33,21 +33,21 @@ export function Header() {
         {/* Top bar */}
         <div
           className={cn(
-            "hidden md:block text-white/80 text-xs transition-all duration-300 overflow-hidden",
-            scrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100 border-b border-white/10",
+            "text-white/80 text-xs transition-all duration-300 overflow-hidden",
+            scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100 border-b border-white/10",
           )}
         >
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 sm:px-6 lg:px-8">
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur px-3 py-1">
-              <span className="relative flex size-2">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-8">
+            <div className="inline-flex items-center gap-2 sm:gap-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur px-2.5 sm:px-3 py-1 min-w-0">
+              <span className="relative flex size-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-scu-yellow opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-scu-yellow" />
               </span>
-              <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-white/90">
+              <span className="text-[9px] sm:text-[10.5px] font-semibold tracking-[0.18em] sm:tracking-[0.22em] uppercase text-white/90 truncate">
                 Saison {site.season} · 2. Bundesliga Pro · Damen
               </span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-4 shrink-0">
               <Link href={site.social.facebook} target="_blank" aria-label="Facebook" className="hover:text-scu-yellow transition"><FacebookIcon className="size-3.5" /></Link>
               <Link href={site.social.instagram} target="_blank" aria-label="Instagram" className="hover:text-scu-yellow transition"><InstagramIcon className="size-3.5" /></Link>
               <Link href={site.social.youtube} target="_blank" aria-label="YouTube" className="hover:text-scu-yellow transition"><YoutubeIcon className="size-3.5" /></Link>
