@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ChevronDown, Ticket, Radio, ArrowUpRight, Mail } from "lucide-react";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/social-icons";
 import { cn } from "@/lib/utils";
-import { site } from "@/lib/site";
+import { site, type NavEntry } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
@@ -163,7 +163,7 @@ export function Header() {
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2 min-w-0">
                           <span className="text-base font-display font-black tracking-tight">{item.label}</span>
-                          {"badge" in item && item.badge && (
+                          {item.badge && (
                             <span
                               className={cn(
                                 "inline-flex items-center rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]",
@@ -181,7 +181,7 @@ export function Header() {
                           )}
                         />
                       </div>
-                      {"description" in item && item.description && (
+                      {item.description && (
                         <div className={cn(
                           "text-[11px] mt-0.5 leading-snug",
                           active ? "text-scu-black/70" : "text-white/55",
@@ -231,13 +231,12 @@ function isActive(pathname: string | null, href: string) {
   return pathname === href || pathname.startsWith(href + "/");
 }
 
-type NavEntry = (typeof site.nav)[number];
-
 function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }) {
-  const hasChildren = "children" in item && item.children;
+  const hasChildren = !!item.children;
+  const hasMega = !!item.mega;
   const [open, setOpen] = React.useState(false);
   const active = isActive(pathname, item.href);
-  const badge = "badge" in item ? item.badge : undefined;
+  const badge = item.badge;
 
   return (
     <div
@@ -263,7 +262,7 @@ function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }
             {badge}
           </span>
         )}
-        {hasChildren && <ChevronDown className="size-3 opacity-60 group-hover:rotate-180 transition-transform" />}
+        {(hasChildren || hasMega) && <ChevronDown className="size-3 opacity-60 group-hover:rotate-180 transition-transform" />}
 
         {/* Active indicator */}
         {active && (
@@ -276,7 +275,19 @@ function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }
       </Link>
 
       <AnimatePresence>
-        {hasChildren && open && (
+        {hasMega && open && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
+          >
+            <MegaMenu mega={item.mega!} pathname={pathname} />
+          </motion.div>
+        )}
+
+        {hasChildren && !hasMega && open && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -299,6 +310,89 @@ function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  );
+}
+
+type MegaData = NonNullable<NavEntry["mega"]>;
+
+function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null }) {
+  return (
+    <div className="w-[880px] xl:w-[960px] rounded-3xl border border-white/10 bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden">
+      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,240,1,0.1),transparent_55%)] pointer-events-none" />
+
+      <div className="relative grid grid-cols-12 gap-0">
+        {/* Columns */}
+        <div className="col-span-8 grid grid-cols-3 gap-0 p-6">
+          {mega.columns.map((col) => (
+            <div key={col.title} className="px-3 border-r border-white/5 last:border-r-0">
+              <div className="text-[10px] font-black tracking-[0.22em] uppercase text-scu-yellow mb-3 flex items-center gap-2">
+                <span className="h-px w-5 bg-scu-yellow/50" />
+                {col.title}
+              </div>
+              <ul className="flex flex-col gap-0.5">
+                {col.items.map((it) => {
+                  const active = isActive(pathname, it.href);
+                  return (
+                    <li key={it.href}>
+                      <Link
+                        href={it.href}
+                        className={cn(
+                          "group/sub flex flex-col rounded-xl px-3 py-2.5 transition",
+                          active
+                            ? "bg-scu-yellow/15 border border-scu-yellow/30"
+                            : "hover:bg-white/5 border border-transparent",
+                        )}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className={cn(
+                            "font-semibold text-sm transition",
+                            active ? "text-scu-yellow" : "text-white/90 group-hover/sub:text-scu-yellow",
+                          )}>
+                            {it.label}
+                          </span>
+                          <ArrowUpRight className={cn(
+                            "size-3.5 transition-all shrink-0",
+                            active
+                              ? "text-scu-yellow"
+                              : "text-white/30 opacity-0 group-hover/sub:opacity-100 group-hover/sub:text-scu-yellow group-hover/sub:translate-x-0.5 group-hover/sub:-translate-y-0.5",
+                          )} />
+                        </div>
+                        {it.note && (
+                          <span className="text-[11px] text-white/50 mt-0.5 leading-snug">{it.note}</span>
+                        )}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Feature */}
+        <div className="col-span-4 bg-gradient-to-br from-scu-yellow/10 via-scu-yellow/5 to-transparent border-l border-white/10 p-6 flex flex-col justify-between gap-6">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-scu-yellow text-scu-black px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.22em] mb-4">
+              <span className="size-1.5 rounded-full bg-scu-black animate-pulse" />
+              13 Teams
+            </div>
+            <h3 className="font-display text-xl font-black leading-tight text-white">
+              {mega.feature.title}
+            </h3>
+            <p className="text-sm text-white/60 leading-relaxed mt-2">
+              {mega.feature.text}
+            </p>
+          </div>
+          <Link
+            href={mega.feature.cta.href}
+            className="inline-flex items-center justify-between rounded-full bg-scu-yellow text-scu-black px-4 py-2.5 text-sm font-bold hover:bg-scu-yellow-dark transition group/feat"
+          >
+            {mega.feature.cta.label}
+            <ArrowUpRight className="size-4 group-hover/feat:translate-x-0.5 group-hover/feat:-translate-y-0.5 transition-transform" />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
