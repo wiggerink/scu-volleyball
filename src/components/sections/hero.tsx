@@ -30,7 +30,7 @@ export function Hero() {
         className="absolute -top-40 -right-40 h-[640px] w-[640px] rounded-full bg-scu-yellow/20 blur-[140px]"
       />
 
-      <Container className="relative pt-32 lg:pt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <Container className="relative pt-44 sm:pt-48 lg:pt-56 xl:pt-64 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-7 flex flex-col gap-7">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

@@ -2,8 +2,9 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, ChevronDown, Ticket, Radio } from "lucide-react";
+import { Menu, X, ChevronDown, Ticket, Radio, ArrowUpRight, Mail } from "lucide-react";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/social-icons";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
@@ -12,6 +13,7 @@ import { Button } from "@/components/ui/button";
 export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const pathname = usePathname();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -20,6 +22,10 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  React.useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <>
       <div
@@ -27,7 +33,7 @@ export function Header() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
             ? "bg-scu-black/95 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_-16px_rgba(0,0,0,0.4)]"
-            : "bg-gradient-to-b from-scu-black/70 via-scu-black/40 to-transparent",
+            : "bg-gradient-to-b from-scu-black/75 via-scu-black/45 to-transparent",
         )}
       >
         {/* Top bar */}
@@ -52,7 +58,8 @@ export function Header() {
               <Link href={site.social.instagram} target="_blank" aria-label="Instagram" className="hover:text-scu-yellow transition"><InstagramIcon className="size-3.5" /></Link>
               <Link href={site.social.youtube} target="_blank" aria-label="YouTube" className="hover:text-scu-yellow transition"><YoutubeIcon className="size-3.5" /></Link>
               <span className="h-3 w-px bg-white/20" />
-              <Link href={`mailto:${site.contact.email}`} className="hover:text-scu-yellow transition">
+              <Link href={`mailto:${site.contact.email}`} className="hover:text-scu-yellow transition inline-flex items-center gap-1.5">
+                <Mail className="size-3" />
                 {site.contact.email}
               </Link>
             </div>
@@ -60,51 +67,49 @@ export function Header() {
         </div>
 
         {/* Main header */}
-        <motion.header>
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 sm:px-6 lg:px-8 py-3">
-            <Link href="/" aria-label="SCU Emlichheim Volleyball - Startseite" className="group">
-              <div className="relative size-20 lg:size-24 shrink-0 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
-                <Image
-                  src="/logos/scu-logo.png"
-                  alt="SCU Emlichheim Logo"
-                  fill
-                  sizes="96px"
-                  className="object-contain group-hover:scale-105 transition-transform"
-                  priority
-                />
-              </div>
-            </Link>
-
-            <nav className="hidden lg:flex items-center gap-1">
-              {site.nav.map((item) => (
-                <NavItem key={item.href} item={item} />
-              ))}
-            </nav>
-
-            <div className="hidden lg:flex items-center gap-2">
-              <Button asChild variant="outlineLight" size="sm">
-                <Link href="/teams/1-mannschaft#tickets">
-                  <Ticket className="size-3.5" />
-                  Tickets
-                </Link>
-              </Button>
-              <Button asChild variant="primary" size="sm">
-                <Link href="/teams/1-mannschaft#live">
-                  <Radio className="size-3.5" />
-                  Livestream
-                </Link>
-              </Button>
+        <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3">
+          <Link href="/" aria-label="SCU Emlichheim Volleyball - Startseite" className="group shrink-0">
+            <div className="relative size-16 sm:size-20 lg:size-24 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+              <Image
+                src="/logos/scu-logo.png"
+                alt="SCU Emlichheim Logo"
+                fill
+                sizes="96px"
+                className="object-contain group-hover:scale-105 transition-transform"
+                priority
+              />
             </div>
+          </Link>
 
-            <button
-              className="lg:hidden inline-flex items-center justify-center rounded-full border border-white/20 bg-scu-black/40 backdrop-blur text-white size-11 shadow-sm"
-              aria-label="Menü öffnen"
-              onClick={() => setMobileOpen(true)}
-            >
-              <Menu className="size-5" />
-            </button>
+          <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center">
+            {site.nav.map((item) => (
+              <NavItem key={item.href} item={item} pathname={pathname} />
+            ))}
+          </nav>
+
+          <div className="hidden xl:flex items-center gap-2 shrink-0">
+            <Button asChild variant="outlineLight" size="sm">
+              <Link href="/teams/1-mannschaft#tickets">
+                <Ticket className="size-3.5" />
+                Tickets
+              </Link>
+            </Button>
+            <Button asChild variant="primary" size="sm">
+              <Link href="/teams/1-mannschaft#live">
+                <Radio className="size-3.5" />
+                Live
+              </Link>
+            </Button>
           </div>
-        </motion.header>
+
+          <button
+            className="lg:hidden inline-flex items-center justify-center rounded-full border border-white/20 bg-scu-black/40 backdrop-blur text-white size-11 shadow-sm hover:bg-scu-yellow hover:text-scu-black hover:border-scu-yellow transition"
+            aria-label="Menü öffnen"
+            onClick={() => setMobileOpen(true)}
+          >
+            <Menu className="size-5" />
+          </button>
+        </header>
       </div>
 
       <AnimatePresence>
@@ -114,7 +119,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -122,42 +127,94 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed inset-y-0 right-0 z-[70] w-full max-w-sm bg-scu-black text-white p-6 flex flex-col"
+              className="fixed inset-y-0 right-0 z-[70] w-full max-w-sm bg-scu-black text-white p-6 flex flex-col overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-8">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                  <div className="relative size-10 rounded-xl bg-scu-black border border-white/10 p-1.5">
-                    <Image src="/logos/scu-logo.png" alt="SCU" fill className="object-contain p-1" />
+                  <div className="relative size-10">
+                    <Image src="/logos/scu-logo.png" alt="SCU" fill className="object-contain" />
                   </div>
                   <span className="font-display font-black">SCU Volleyball</span>
                 </Link>
-                <button onClick={() => setMobileOpen(false)} aria-label="Menü schließen" className="rounded-full size-11 inline-flex items-center justify-center border border-white/15">
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Menü schließen"
+                  className="rounded-full size-11 inline-flex items-center justify-center border border-white/15 hover:bg-white/10 transition"
+                >
                   <X className="size-5" />
                 </button>
               </div>
-              <nav className="flex flex-col gap-1">
-                {site.nav.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="py-3 px-4 rounded-xl text-lg font-semibold hover:bg-white/5 transition flex items-center justify-between"
-                  >
-                    {item.label}
-                    <ChevronDown className="size-4 -rotate-90 opacity-40" />
-                  </Link>
-                ))}
+
+              <nav className="flex flex-col gap-1.5">
+                {site.nav.map((item) => {
+                  const active = isActive(pathname, item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "group relative rounded-2xl px-4 py-3 transition border",
+                        active
+                          ? "bg-scu-yellow text-scu-black border-scu-yellow"
+                          : "bg-white/[0.03] border-white/10 hover:bg-white/[0.07] hover:border-white/20",
+                      )}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="text-base font-display font-black tracking-tight">{item.label}</span>
+                          {"badge" in item && item.badge && (
+                            <span
+                              className={cn(
+                                "inline-flex items-center rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]",
+                                active ? "bg-scu-black text-scu-yellow" : "bg-scu-yellow text-scu-black",
+                              )}
+                            >
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        <ArrowUpRight
+                          className={cn(
+                            "size-4 transition-transform shrink-0",
+                            active ? "text-scu-black" : "text-white/40 group-hover:text-scu-yellow group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
+                          )}
+                        />
+                      </div>
+                      {"description" in item && item.description && (
+                        <div className={cn(
+                          "text-[11px] mt-0.5 leading-snug",
+                          active ? "text-scu-black/70" : "text-white/55",
+                        )}>
+                          {item.description}
+                        </div>
+                      )}
+                    </Link>
+                  );
+                })}
               </nav>
-              <div className="mt-auto flex flex-col gap-3">
+
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-3">
                 <Button asChild variant="primary" size="lg">
                   <Link href="/teams/1-mannschaft#tickets" onClick={() => setMobileOpen(false)}>
                     <Ticket className="size-4" /> Tickets sichern
                   </Link>
                 </Button>
-                <div className="flex items-center gap-4 pt-4 text-white/60 justify-center">
-                  <Link href={site.social.facebook} target="_blank" aria-label="Facebook"><FacebookIcon className="size-5" /></Link>
-                  <Link href={site.social.instagram} target="_blank" aria-label="Instagram"><InstagramIcon className="size-5" /></Link>
-                  <Link href={site.social.youtube} target="_blank" aria-label="YouTube"><YoutubeIcon className="size-5" /></Link>
+                <Button asChild variant="outlineLight" size="lg">
+                  <Link href="/teams/1-mannschaft#live" onClick={() => setMobileOpen(false)}>
+                    <Radio className="size-4" /> Livestream
+                  </Link>
+                </Button>
+                <Link
+                  href={`mailto:${site.contact.email}`}
+                  className="text-center text-sm text-white/60 hover:text-scu-yellow transition mt-2"
+                >
+                  {site.contact.email}
+                </Link>
+                <div className="flex items-center gap-4 pt-2 text-white/60 justify-center">
+                  <Link href={site.social.facebook} target="_blank" aria-label="Facebook" className="hover:text-scu-yellow transition"><FacebookIcon className="size-5" /></Link>
+                  <Link href={site.social.instagram} target="_blank" aria-label="Instagram" className="hover:text-scu-yellow transition"><InstagramIcon className="size-5" /></Link>
+                  <Link href={site.social.youtube} target="_blank" aria-label="YouTube" className="hover:text-scu-yellow transition"><YoutubeIcon className="size-5" /></Link>
                 </div>
               </div>
             </motion.div>
@@ -168,9 +225,20 @@ export function Header() {
   );
 }
 
-function NavItem({ item }: { item: (typeof site.nav)[number] }) {
+function isActive(pathname: string | null, href: string) {
+  if (!pathname) return false;
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
+type NavEntry = (typeof site.nav)[number];
+
+function NavItem({ item, pathname }: { item: NavEntry; pathname: string | null }) {
   const hasChildren = "children" in item && item.children;
   const [open, setOpen] = React.useState(false);
+  const active = isActive(pathname, item.href);
+  const badge = "badge" in item ? item.badge : undefined;
+
   return (
     <div
       className="relative"
@@ -179,28 +247,52 @@ function NavItem({ item }: { item: (typeof site.nav)[number] }) {
     >
       <Link
         href={item.href}
-        className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-[13px] font-semibold text-white/85 hover:text-scu-yellow transition"
+        className={cn(
+          "relative inline-flex items-center gap-1 rounded-full px-2.5 xl:px-3 py-2 text-[12.5px] xl:text-[13px] font-semibold whitespace-nowrap transition group",
+          active
+            ? "text-scu-yellow"
+            : "text-white/85 hover:text-scu-yellow",
+        )}
       >
-        {item.label}
-        {hasChildren && <ChevronDown className="size-3.5 opacity-60" />}
+        <span>{item.label}</span>
+        {badge && (
+          <span className={cn(
+            "inline-flex items-center rounded-full px-1.5 py-px text-[8.5px] font-black uppercase tracking-[0.15em] leading-none",
+            active ? "bg-scu-yellow/30 text-scu-yellow border border-scu-yellow/40" : "bg-scu-yellow text-scu-black",
+          )}>
+            {badge}
+          </span>
+        )}
+        {hasChildren && <ChevronDown className="size-3 opacity-60 group-hover:rotate-180 transition-transform" />}
+
+        {/* Active indicator */}
+        {active && (
+          <motion.span
+            layoutId="nav-active"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            className="absolute inset-0 rounded-full bg-scu-yellow/10 border border-scu-yellow/30 -z-10"
+          />
+        )}
       </Link>
+
       <AnimatePresence>
         {hasChildren && open && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-0 top-full pt-3"
+            transition={{ duration: 0.18 }}
+            className="absolute left-1/2 -translate-x-1/2 top-full pt-3"
           >
-            <div className="min-w-56 rounded-2xl border border-white/10 bg-scu-black/95 backdrop-blur-xl p-2 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+            <div className="min-w-64 rounded-2xl border border-white/10 bg-scu-black/95 backdrop-blur-xl p-2 shadow-[0_30px_70px_-25px_rgba(0,0,0,0.7)]">
               {item.children!.map((c) => (
                 <Link
                   key={c.href}
                   href={c.href}
-                  className="block rounded-xl px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/5 hover:text-scu-yellow"
+                  className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-white/80 hover:bg-scu-yellow/10 hover:text-scu-yellow transition group/sub"
                 >
                   {c.label}
+                  <ArrowUpRight className="size-3.5 opacity-0 group-hover/sub:opacity-100 transition-opacity" />
                 </Link>
               ))}
             </div>

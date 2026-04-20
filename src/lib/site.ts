@@ -30,10 +30,12 @@ export const site = {
     youtube: "https://www.youtube.com/channel/UChNRe-7g8dTibAkk4f1AcKw",
   },
   nav: [
-    { label: "Start", href: "/" },
+    { label: "Home", href: "/", description: "Aktuelles, Highlights & Stories aus Emlichheim" },
     {
       label: "1. Mannschaft",
       href: "/teams/1-mannschaft",
+      description: "2. Bundesliga Pro · Saison 2025/26",
+      badge: "Pro",
       children: [
         { label: "Team & Kader", href: "/teams/1-mannschaft" },
         { label: "Spielplan", href: "/teams/1-mannschaft#spielplan" },
@@ -41,11 +43,16 @@ export const site = {
         { label: "Live-Übertragung", href: "/teams/1-mannschaft#live" },
       ],
     },
-    { label: "Mannschaften", href: "/teams" },
-    { label: "Jugend", href: "/jugend" },
-    { label: "News", href: "/news" },
-    { label: "Verein", href: "/verein" },
-    { label: "Sponsoren", href: "/sponsoren" },
-    { label: "Kontakt", href: "/kontakt" },
+    {
+      label: "2. Mannschaft",
+      href: "/teams/2-mannschaft",
+      description: "Aufsteiger 2. Bundesliga · Saison 2026/27",
+      badge: "Neu",
+    },
+    { label: "Mannschaften", href: "/teams", description: "Alle 13 Teams – Damen & Jugend" },
+    { label: "Jugend", href: "/jugend", description: "120+ Kinder im Training" },
+    { label: "News", href: "/news", description: "Spielberichte & Vereinsnews" },
+    { label: "Verein", href: "/verein", description: "Geschichte, Vorstand, Halle" },
+    { label: "Sponsoren", href: "/sponsoren", description: "Unsere Partner & Förderer" },
   ],
 } as const;
