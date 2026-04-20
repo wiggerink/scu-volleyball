@@ -50,7 +50,8 @@ export function SectionHeading({
         transition={{ duration: 0.6, delay: 0.05 }}
         className={cn(
           "font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05]",
-          tone === "dark" ? "text-scu-black" : "text-white",
+          "heading-gradient",
+          tone === "light" && "heading-gradient--light",
         )}
       >
         {title}
