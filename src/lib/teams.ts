@@ -36,7 +36,7 @@ export const teams: TeamEntry[] = [
     description:
       "Aufsteiger 2026/27 – nach der Meisterschaft in der 3. Liga Nord 2025/26 erstmals in der 2. Bundesliga.",
     accent: "black",
-    image: "/team/team-group.jpg",
+    image: "/team/groups/2-mannschaft.jpg",
   },
   {
     slug: "3-mannschaft",
@@ -47,6 +47,7 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Erfahrung trifft Nachwuchs – Oberliga-Volleyball auf hohem Niveau und enges Bindeglied zur 2. Mannschaft.",
     accent: "gold",
+    image: "/team/groups/3-mannschaft.jpg",
     trainingTimes: ["Dienstag 20:00 – 22:00 Uhr", "Donnerstag 20:00 – 22:00 Uhr"],
     highlights: ["Aufstiegsambitionen Richtung 3. Liga", "Mehrfache Bezirksmeisterschaften", "Wichtiger Unterbau für die Bundesliga-Teams"],
   },
@@ -59,6 +60,7 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Ambitionierter Volleyball mit Spaß am Wettkampf – Bezirksliga-Niveau mit jungem Kader.",
     accent: "black",
+    image: "/team/groups/4-mannschaft.jpg",
     trainingTimes: ["Montag 19:30 – 21:30 Uhr", "Mittwoch 20:00 – 22:00 Uhr"],
     highlights: ["Junge, hungrige Mannschaft", "Regelmäßige Auf- und Abstiegskämpfe", "Brücke zur Oberliga"],
   },
@@ -71,6 +73,7 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Volleyball für alle Leistungsstufen – von Einsteigerinnen bis Erfahrenen, mit großer Trainingsbeteiligung.",
     accent: "black",
+    image: "/team/groups/5-mannschaft.jpg",
     trainingTimes: ["Dienstag 19:30 – 21:30 Uhr"],
     highlights: ["Breite Altersmischung", "Hohe soziale Komponente", "Offen für Quereinsteigerinnen"],
   },
@@ -83,6 +86,7 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Teamgeist und Spaß am Sport stehen im Vordergrund – Kreisliga mit familiärer Atmosphäre.",
     accent: "black",
+    image: "/team/groups/6-mannschaft.jpg",
     trainingTimes: ["Mittwoch 19:00 – 21:00 Uhr"],
   },
   {
@@ -94,6 +98,7 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Breitensport-Team mit großer Leidenschaft – ideal für ambitionierte Hobbyspielerinnen.",
     accent: "black",
+    image: "/team/groups/7-8-mannschaft.jpg",
     trainingTimes: ["Donnerstag 19:00 – 21:00 Uhr"],
   },
   {
@@ -105,6 +110,7 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Für neue Spielerinnen – Einstieg in unseren Verein und in den Spielbetrieb.",
     accent: "black",
+    image: "/team/groups/7-8-mannschaft.jpg",
     trainingTimes: ["Montag 18:30 – 20:00 Uhr"],
   },
 
@@ -117,6 +123,7 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Unser Bundesliga-Unterbau von morgen – strukturierte Talentförderung mit professionellem Trainerteam.",
     accent: "red",
+    image: "/team/groups/u14.jpg",
     trainingTimes: ["Dienstag 17:30 – 19:30 Uhr", "Freitag 17:00 – 19:00 Uhr"],
     highlights: ["Talente aus dem gesamten Grafschafter Raum", "Übergang in den Aktivenbereich vorbereitet", "Regelmäßige Teilnahme an Jugend-Turnieren"],
   },
@@ -129,6 +136,7 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Talente auf ihrem Weg in die großen Mannschaften – mit Spielfreude und ersten Wettkampferfahrungen.",
     accent: "red",
+    image: "/team/groups/u13.jpg",
     trainingTimes: ["Montag 17:00 – 18:30 Uhr", "Donnerstag 17:00 – 18:30 Uhr"],
   },
   {
@@ -140,6 +148,7 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Erste Ballkontakte, erste Erfolge, erster Vereinssport – spielerischer Einstieg ins Volleyball.",
     accent: "gold",
+    image: "/team/groups/minis.jpg",
     trainingTimes: ["Mittwoch 16:30 – 17:45 Uhr"],
   },
   {
@@ -151,6 +160,7 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Koordination & Spielfreude für unsere Jüngsten – die ersten Schritte mit dem Ball.",
     accent: "gold",
+    image: "/team/groups/minis.jpg",
     trainingTimes: ["Freitag 16:00 – 17:00 Uhr"],
   },
 ];
