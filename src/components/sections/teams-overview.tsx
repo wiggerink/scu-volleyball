@@ -14,6 +14,16 @@ const accentClasses: Record<string, string> = {
   gold: "bg-scu-gold text-scu-black",
 };
 
+function circleLabel(short: string) {
+  const base = short.replace(/^SCU\s*/, "");
+  if (base !== short) return base;
+  if (/^U\d+/.test(base)) return base;
+  return base
+    .split(/[-\s]+/)
+    .map((p) => p.charAt(0).toUpperCase())
+    .join("");
+}
+
 export function TeamsOverview() {
   return (
     <section id="teams" className="relative py-20 lg:py-28 bg-scu-black text-white overflow-hidden">
@@ -58,7 +68,7 @@ export function TeamsOverview() {
                       "inline-flex items-center justify-center h-10 w-10 rounded-xl font-display font-black text-sm",
                       isFirst ? "bg-scu-black text-scu-yellow" : accentClasses[team.accent],
                     )}>
-                      {team.short.replace("SCU ", "").replace("SCU", "")}
+                      {circleLabel(team.short)}
                     </div>
                     {isFirst && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-scu-black px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] font-bold text-scu-yellow">

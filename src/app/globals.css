@@ -140,17 +140,17 @@ section[class*="from-white"] .text-scu-yellow {
 }
 
 /* Gradient headings: deep brand color flowing into SCU-yellow.
-   Inner .text-scu-yellow spans inherit via -webkit-text-fill-color: transparent. */
+   Dark tone (on light surfaces) ends in yellow-ink so it stays readable on white.
+   Light tone (on dark surfaces) ends in bright SCU-yellow. */
 .heading-gradient {
-  background-image: linear-gradient(135deg, var(--grad-from, var(--color-scu-black)) 0%, var(--color-scu-black) 35%, var(--color-scu-yellow) 100%);
+  background-image: linear-gradient(135deg, var(--color-scu-black) 0%, var(--color-scu-black) 40%, var(--color-scu-yellow-ink) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 .heading-gradient--light {
-  --grad-from: #ffffff;
-  background-image: linear-gradient(135deg, #ffffff 0%, #ffffff 35%, var(--color-scu-yellow) 100%);
+  background-image: linear-gradient(135deg, #ffffff 0%, #ffffff 40%, var(--color-scu-yellow) 100%);
 }
 
 /* Keep bright yellow on dark cards/panels nested inside a light section. */
