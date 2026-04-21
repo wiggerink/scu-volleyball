@@ -105,19 +105,21 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9, rotate: -4 }}
             animate={{ opacity: 1, scale: 1, rotate: -3 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="relative ml-auto w-[420px] aspect-[3/4] rounded-3xl overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] border border-white/10"
+            className="relative ml-auto w-[420px] aspect-[3/4] rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-white p-3.5"
           >
-            <Image
-              src="/team/team-group.jpg"
-              alt="SCU Damen Bundesliga Team 2025/26"
-              fill
-              sizes="420px"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-scu-black/70 to-transparent" />
-            <div className="absolute left-5 bottom-5 right-5">
-              <div className="text-xs font-semibold tracking-[0.22em] uppercase text-scu-yellow">Team 2025/26</div>
-              <div className="font-display text-xl font-black mt-1">Das neue Bundesliga-Pro-Team</div>
+            <div className="relative h-full w-full rounded-2xl overflow-hidden">
+              <Image
+                src="/hero/hero-meister.png"
+                alt="SCU 2. Mannschaft – Meister 3. Liga Nord 2025/26"
+                fill
+                sizes="420px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-scu-black/70 to-transparent" />
+              <div className="absolute left-5 bottom-5 right-5">
+                <div className="text-xs font-semibold tracking-[0.22em] uppercase text-scu-yellow">Meister 2025/26</div>
+                <div className="font-display text-xl font-black mt-1">2. Mannschaft steigt auf in die 2. Bundesliga</div>
+              </div>
             </div>
           </motion.div>
           <motion.div
