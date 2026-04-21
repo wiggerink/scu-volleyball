@@ -105,7 +105,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9, rotate: -4 }}
             animate={{ opacity: 1, scale: 1, rotate: -3 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="relative ml-auto w-[420px] aspect-[3/4] rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-white p-3.5"
+            className="relative ml-auto w-[420px] aspect-[3/4] rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-white p-1.5"
           >
             <div className="relative h-full w-full rounded-2xl overflow-hidden">
               <Image
