@@ -28,8 +28,8 @@ export function YouthSection() {
             className="relative aspect-[4/5] rounded-3xl overflow-hidden"
           >
             <Image
-              src="/team/Pia-Schweitzer.jpg"
-              alt="Jugendvolleyball beim SCU Emlichheim"
+              src="/team/groups/u13.jpg"
+              alt="SCU U13 – Jugendvolleyball beim SCU Emlichheim"
               fill
               sizes="(min-width:1024px) 40vw, 100vw"
               className="object-cover"
