@@ -25,7 +25,6 @@ import {
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
 
 const CONTACT_EMAIL = "info@web-n-search.de";
 const CONTACT_SUBJECT = "Sponsoren-Portraitseite auf scuvolleyball.de";
@@ -48,23 +47,27 @@ const benefits = [
     icon: Link2,
     title: "Dofollow-Backlink mit echtem SEO-Wert",
     text: "scuvolleyball.de ist eine Bundesliga-Domain mit regionaler Relevanz und stetig wachsendem Traffic. Ein dofollow-Link von hier wirkt auf Ihre eigene Website – messbar, dauerhaft, nicht austauschbar.",
+    tint: "yellow", // scu-yellow accent
   },
   {
     icon: FileText,
     title: "Ihre Geschichte – professionell erzählt",
     text: "Statt eines Logos in der Sponsorenleiste bekommen Sie eine eigene Unterseite mit Fließtext, Fakten, Referenzen und Ihrer Haltung. Von einem Menschen recherchiert und geschrieben – nicht von einer Vorlage.",
+    tint: "gold", // scu-gold accent
   },
   {
     icon: Target,
     title: "Regionale Sichtbarkeit mit Reichweite",
     text: "Die SCU-Seite wird von Partnern, Fans und Entscheider:innen aus der Grafschaft Bentheim und dem Emsland regelmäßig besucht. Ihre Portraitseite ist dabei – nicht versteckt, sondern verlinkt.",
+    tint: "yellow",
   },
   {
     icon: Users,
     title: "Recruiting-Kanal inklusive",
     text: "Lokale Unternehmen kämpfen um Fachkräfte. Eine Portraitseite auf einer Vereins-Website, die junge Menschen aus der Region lesen, ist ein unterschätztes Recruiting-Instrument.",
+    tint: "gold",
   },
-];
+] as const;
 
 const deliverables = [
   {
@@ -139,7 +142,7 @@ const processSteps = [
 const faqs = [
   {
     q: "Ist das ein Angebot des SC Union Emlichheim?",
-    a: "Nein. Die Portraitseiten sind ein Angebot von web-n-search.de – dem Entwickler, der die neue SCU-Website ehrenamtlich umsetzt. Der Verein ist einverstanden und freut sich, dass seine Partner auf der Seite zusätzlich sichtbar sein können. Die Rechnung stellt web-n-search.de, nicht der SCU.",
+    a: "Nein. Die Portraitseiten sind ein Angebot von Web & Search – dem Dienstleister, der die neue SCU-Website ehrenamtlich umsetzt. Der Verein ist einverstanden und freut sich, dass seine Partner auf der Seite zusätzlich sichtbar sein können. Die Rechnung stellt Web & Search, nicht der SCU.",
   },
   {
     q: "Was genau ist ein „dofollow-Backlink“ und warum ist das wichtig?",
@@ -163,7 +166,7 @@ const faqs = [
   },
   {
     q: "Wer schreibt den Text?",
-    a: "Der Entwickler persönlich – basierend auf dem Briefing-Gespräch, Ihrer Website und einer kurzen Recherche. Kein Textbaukasten, keine KI-Platzhalter. Wenn Sie selbst einen Text liefern möchten, ist das natürlich auch möglich.",
+    a: "Web & Search persönlich – basierend auf dem Briefing-Gespräch, Ihrer Website und einer kurzen Recherche. Kein Textbaukasten, keine KI-Platzhalter. Wenn Sie selbst einen Text liefern möchten, ist das natürlich auch möglich.",
   },
   {
     q: "Was passiert, wenn die SCU-Website mal neu gestaltet wird?",
@@ -299,30 +302,72 @@ export default function AngebotPage() {
       </section>
 
       {/* === Warum === */}
-      <section className="py-20 lg:py-28 bg-white">
-        <Container className="flex flex-col gap-14">
-          <SectionHeading
-            eyebrow="Warum eine Portraitseite"
-            title={
-              <>
-                Mehr als ein Logo in der{" "}
-                <span className="text-scu-yellow">Sponsorenleiste.</span>
-              </>
-            }
-            description="Sponsoring auf reiner Logo-Ebene hat seine Grenzen. Eine eigene Portraitseite macht aus Sichtbarkeit echte Wirkung – für Ihr Marketing, Ihre SEO, Ihr Recruiting."
-          />
+      <section className="relative py-20 lg:py-28 bg-gradient-to-b from-white via-scu-yellow/[0.04] to-white overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-scu-yellow/20 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="absolute bottom-10 -left-20 h-72 w-72 rounded-full bg-scu-gold/15 blur-3xl"
+        />
+        <Container className="relative flex flex-col gap-14">
+          <div className="flex flex-col gap-4 max-w-3xl">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+              <span className="h-px w-8 bg-current" />
+              Warum eine Portraitseite
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
+              Mehr als ein Logo in der{" "}
+              <span className="relative inline-block text-scu-black">
+                <span className="relative z-10">Sponsorenleiste.</span>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+                />
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-scu-gray-500">
+              Sponsoring auf reiner Logo-Ebene hat seine Grenzen. Eine eigene
+              Portraitseite macht aus Sichtbarkeit echte Wirkung – für Ihr
+              Marketing, Ihre SEO, Ihr Recruiting.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
             {benefits.map((b) => {
               const Icon = b.icon;
+              const isYellow = b.tint === "yellow";
               return (
                 <article
                   key={b.title}
-                  className="group relative rounded-3xl bg-scu-gray-100 border border-scu-gray-200 p-8 flex flex-col gap-4 hover:border-scu-yellow hover:bg-white hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all"
+                  className={`group relative overflow-hidden rounded-3xl bg-white border border-scu-gray-200 p-8 flex flex-col gap-5 hover:-translate-y-1 transition-all shadow-[0_10px_30px_-20px_rgba(0,0,0,0.15)] hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] ${
+                    isYellow ? "hover:border-scu-yellow" : "hover:border-scu-gold"
+                  }`}
                 >
-                  <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow group-hover:bg-scu-yellow group-hover:text-scu-black transition">
+                  {/* Colored accent bar at top */}
+                  <span
+                    aria-hidden
+                    className={`absolute inset-x-0 top-0 h-1.5 ${
+                      isYellow ? "bg-scu-yellow" : "bg-scu-gold"
+                    }`}
+                  />
+                  {/* Soft bg blob */}
+                  <span
+                    aria-hidden
+                    className={`absolute -top-16 -right-16 size-48 rounded-full blur-3xl opacity-60 group-hover:opacity-100 transition ${
+                      isYellow ? "bg-scu-yellow/20" : "bg-scu-gold/20"
+                    }`}
+                  />
+                  <div
+                    className={`relative inline-flex size-14 items-center justify-center rounded-2xl shadow-[0_10px_24px_-8px_rgba(255,240,1,0.55)] ${
+                      isYellow
+                        ? "bg-scu-yellow text-scu-black"
+                        : "bg-scu-gold text-scu-black"
+                    }`}
+                  >
                     <Icon className="size-6" />
                   </div>
-                  <div>
+                  <div className="relative">
                     <h3 className="font-display text-xl lg:text-2xl font-black text-scu-black leading-tight">
                       {b.title}
                     </h3>
@@ -338,27 +383,54 @@ export default function AngebotPage() {
       </section>
 
       {/* === Deliverables === */}
-      <section className="py-20 lg:py-28 bg-scu-gray-100">
-        <Container className="flex flex-col gap-14">
-          <SectionHeading
-            eyebrow="Leistungsumfang"
-            title={
-              <>
-                Was Sie für <span className="text-scu-yellow">790 €</span>{" "}
-                bekommen.
-              </>
-            }
-            description="Ein komplett umgesetztes, sofort sichtbares Ergebnis. Kein Bastelkasten, kein Template-Selbstbau. Fertig übergeben – inklusive aller SEO-Grundlagen."
-          />
+      <section className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <Container className="relative flex flex-col gap-14">
+          <div className="flex flex-col gap-4 max-w-3xl">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+              <span className="h-px w-8 bg-current" />
+              Leistungsumfang
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
+              Was Sie für{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-scu-black">790 €</span>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+                />
+              </span>{" "}
+              bekommen.
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-scu-gray-500">
+              Ein komplett umgesetztes, sofort sichtbares Ergebnis. Kein
+              Bastelkasten, kein Template-Selbstbau. Fertig übergeben –
+              inklusive aller SEO-Grundlagen.
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {deliverables.map((d) => {
+            {deliverables.map((d, i) => {
               const Icon = d.icon;
+              // Alternate yellow / gold / soft-yellow / soft-gold for visual variety
+              const palette = [
+                {
+                  tile: "bg-scu-yellow text-scu-black",
+                  border: "hover:border-scu-yellow",
+                  shadow: "hover:shadow-[0_18px_40px_-20px_rgba(255,240,1,0.5)]",
+                },
+                {
+                  tile: "bg-scu-gold text-scu-black",
+                  border: "hover:border-scu-gold",
+                  shadow: "hover:shadow-[0_18px_40px_-20px_rgba(212,175,55,0.5)]",
+                },
+              ][i % 2];
               return (
                 <div
                   key={d.label}
-                  className="rounded-2xl bg-white border border-scu-gray-200 p-6 flex flex-col gap-3 hover:border-scu-yellow transition"
+                  className={`group relative rounded-2xl bg-white border border-scu-gray-200 p-6 flex flex-col gap-4 transition-all hover:-translate-y-1 ${palette.border} ${palette.shadow}`}
                 >
-                  <div className="inline-flex size-10 items-center justify-center rounded-xl bg-scu-yellow/20 text-scu-black">
+                  <div
+                    className={`inline-flex size-11 items-center justify-center rounded-xl ${palette.tile} shadow-[0_8px_20px_-8px_rgba(0,0,0,0.25)]`}
+                  >
                     <Icon className="size-5" />
                   </div>
                   <div>
@@ -442,30 +514,57 @@ export default function AngebotPage() {
       </section>
 
       {/* === Marktvergleich === */}
-      <section className="py-20 lg:py-28 bg-scu-black text-white relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 bg-grid opacity-[0.2]" />
+      <section className="relative py-20 lg:py-28 bg-white overflow-hidden">
         <div
           aria-hidden
-          className="absolute -top-24 right-0 h-[420px] w-[420px] rounded-full bg-scu-yellow/15 blur-3xl"
+          className="absolute inset-0 bg-gradient-to-br from-scu-yellow/[0.08] via-white to-scu-gold/[0.06]"
+        />
+        <div
+          aria-hidden
+          className="absolute -top-32 right-10 h-[420px] w-[420px] rounded-full bg-scu-yellow/20 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="absolute bottom-0 -left-20 h-80 w-80 rounded-full bg-scu-gold/15 blur-3xl"
         />
         <Container className="relative">
-          <SectionHeading
-            tone="light"
-            align="center"
-            eyebrow="Marktvergleich"
-            title={
-              <>
-                790 € klingt <span className="text-scu-yellow">günstig</span>?
-                <br />
-                Ist es auch.
-              </>
-            }
-            description="Hier ein nüchterner Blick darauf, was die einzelnen Bestandteile bei Agenturen typischerweise kosten – und warum das Gesamtpaket so bewusst unter der Wahrnehmungsschwelle für Marketingbudgets bleibt."
-          />
-          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="rounded-3xl bg-white/[0.04] border border-white/10 p-8 lg:p-10 backdrop-blur">
-              <div className="text-[11px] uppercase tracking-[0.24em] font-bold text-white/50 mb-5">
-                Einzeln bei einer Agentur
+          <div className="flex flex-col gap-4 items-center text-center max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+              <span className="h-px w-8 bg-current" />
+              Marktvergleich
+              <span className="h-px w-8 bg-current" />
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
+              790 € klingt{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-scu-black">günstig</span>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+                />
+              </span>
+              ?
+              <br />
+              Ist es auch.
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-scu-gray-500">
+              Ein nüchterner Blick darauf, was die einzelnen Bestandteile bei
+              Agenturen typischerweise kosten – und warum das Gesamtpaket so
+              bewusst unter der Wahrnehmungsschwelle für Marketingbudgets
+              bleibt.
+            </p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            {/* Agency card - kept dark for contrast, but smaller presence */}
+            <div className="relative rounded-3xl bg-white border-2 border-scu-gray-200 p-8 lg:p-10 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.18)]">
+              <div className="flex items-center gap-2 mb-5">
+                <span className="inline-flex size-8 items-center justify-center rounded-full bg-scu-gray-100 text-scu-gray-500">
+                  <Briefcase className="size-4" />
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.24em] font-bold text-scu-gray-500">
+                  Einzeln bei einer Agentur
+                </span>
               </div>
               <ul className="flex flex-col gap-3">
                 {[
@@ -477,31 +576,45 @@ export default function AngebotPage() {
                 ].map((row) => (
                   <li
                     key={row.label}
-                    className="flex items-center justify-between gap-4 py-2 border-b border-white/10 last:border-b-0"
+                    className="flex items-center justify-between gap-4 py-2.5 border-b border-scu-gray-200 last:border-b-0"
                   >
-                    <span className="text-sm text-white/80">{row.label}</span>
-                    <span className="text-sm font-bold text-white whitespace-nowrap">
+                    <span className="text-sm text-scu-black/75">{row.label}</span>
+                    <span className="text-sm font-bold text-scu-black whitespace-nowrap">
                       {row.price}
                     </span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 pt-6 border-t border-white/20 flex items-center justify-between">
-                <span className="text-sm font-semibold text-white/60 uppercase tracking-wider">
+              <div className="mt-6 pt-6 border-t-2 border-scu-gray-200 flex items-center justify-between">
+                <span className="text-sm font-semibold text-scu-gray-500 uppercase tracking-wider">
                   Listenpreis
                 </span>
-                <span className="font-display text-2xl font-black text-white">
+                <span className="font-display text-3xl font-black text-scu-black">
                   ~ 4.500 €+
                 </span>
               </div>
             </div>
 
-            <div className="relative rounded-3xl bg-scu-yellow text-scu-black p-8 lg:p-10 shadow-[0_30px_80px_-20px_rgba(255,240,1,0.4)]">
-              <div className="text-[11px] uppercase tracking-[0.24em] font-black mb-5">
-                Komplettpaket scuvolleyball.de
+            {/* Winner card - bright yellow, glowing, clearly the hero */}
+            <div className="relative rounded-3xl bg-gradient-to-br from-scu-yellow via-scu-yellow to-scu-gold text-scu-black p-8 lg:p-10 shadow-[0_40px_100px_-30px_rgba(255,240,1,0.75)] border-2 border-scu-yellow/0 overflow-hidden">
+              <div
+                aria-hidden
+                className="absolute -top-20 -right-16 size-56 rounded-full bg-white/20 blur-3xl"
+              />
+              <div
+                aria-hidden
+                className="absolute -bottom-16 -left-12 size-40 rounded-full bg-white/10 blur-2xl"
+              />
+              <div className="relative flex items-center gap-2 mb-5">
+                <span className="inline-flex size-8 items-center justify-center rounded-full bg-scu-black text-scu-yellow">
+                  <Sparkles className="size-4" />
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.24em] font-black">
+                  Komplettpaket scuvolleyball.de
+                </span>
               </div>
-              <div className="flex items-baseline gap-3">
-                <span className="font-display text-7xl font-black leading-none">
+              <div className="relative flex items-baseline gap-3">
+                <span className="font-display text-7xl lg:text-8xl font-black leading-none">
                   790
                 </span>
                 <span className="font-display text-3xl font-black">€</span>
@@ -509,23 +622,23 @@ export default function AngebotPage() {
                   einmalig
                 </span>
               </div>
-              <p className="mt-5 text-scu-black/85 leading-relaxed">
+              <p className="relative mt-5 text-scu-black/85 leading-relaxed">
                 Alles aus einer Hand: Briefing, Text, Design, SEO, Hosting. Kein
                 laufendes Abo, keine Zusatzkosten, kein Agentur-Aufschlag. Wer
-                möchte, bucht die Contentpflege für <strong>99 € / Jahr</strong>{" "}
-                dazu.
+                möchte, bucht die Contentpflege für{" "}
+                <strong>99 € / Jahr</strong> dazu.
               </p>
-              <div className="mt-8 pt-6 border-t border-scu-black/20 flex items-center justify-between">
+              <div className="relative mt-8 pt-6 border-t-2 border-scu-black/15 flex items-center justify-between">
                 <span className="text-sm font-bold uppercase tracking-wider">
                   Ihre Ersparnis
                 </span>
-                <span className="font-display text-2xl font-black">
+                <span className="font-display text-3xl font-black">
                   ~ 3.700 €+
                 </span>
               </div>
             </div>
           </div>
-          <p className="text-center text-sm text-white/50 mt-10 max-w-2xl mx-auto">
+          <p className="relative text-center text-sm text-scu-gray-500 mt-10 max-w-2xl mx-auto">
             Hinweis: Vergleichswerte sind Marktdurchschnitte 2025 für deutsche
             Mittelstands-Agenturen. Einzelne Positionen können je nach Anbieter
             abweichen – am Gesamtverhältnis ändert das wenig.
@@ -534,35 +647,74 @@ export default function AngebotPage() {
       </section>
 
       {/* === Ablauf === */}
-      <section className="py-20 lg:py-28 bg-white">
-        <Container className="flex flex-col gap-14">
-          <SectionHeading
-            eyebrow="So läuft's ab"
-            title={
-              <>
-                Vier Schritte bis zum{" "}
-                <span className="text-scu-yellow">Go-Live.</span>
-              </>
-            }
-            description="Typischerweise sind Sie in 2 Wochen online. Ohne Aufwand auf Ihrer Seite – abgesehen von einem Briefing-Gespräch und einer Feedback-Runde."
-          />
+      <section className="relative py-20 lg:py-28 bg-white overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute top-10 -left-20 h-72 w-72 rounded-full bg-scu-gold/10 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="absolute bottom-10 -right-20 h-80 w-80 rounded-full bg-scu-yellow/15 blur-3xl"
+        />
+        <Container className="relative flex flex-col gap-14">
+          <div className="flex flex-col gap-4 max-w-3xl">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+              <span className="h-px w-8 bg-current" />
+              So läuft&apos;s ab
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
+              Vier Schritte bis zum{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-scu-black">Go-Live.</span>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+                />
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-scu-gray-500">
+              Typischerweise sind Sie in 2 Wochen online. Ohne Aufwand auf
+              Ihrer Seite – abgesehen von einem Briefing-Gespräch und einer
+              Feedback-Runde.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {processSteps.map((step) => {
+            {processSteps.map((step, i) => {
               const Icon = step.icon;
+              // Alternate accent color per step — yellow/gold/yellow/gold
+              const isYellow = i % 2 === 0;
               return (
                 <article
                   key={step.k}
-                  className="relative rounded-3xl bg-scu-gray-100 border border-scu-gray-200 p-7 lg:p-8 flex flex-col gap-4 hover:border-scu-yellow hover:-translate-y-1 transition"
+                  className={`group relative overflow-hidden rounded-3xl bg-white border-2 border-scu-gray-200 p-7 lg:p-8 flex flex-col gap-5 transition hover:-translate-y-1 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.12)] hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] ${
+                    isYellow ? "hover:border-scu-yellow" : "hover:border-scu-gold"
+                  }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="font-display text-4xl font-black text-scu-gray-200 leading-none">
+                  <span
+                    aria-hidden
+                    className={`absolute -top-16 -right-16 size-44 rounded-full blur-3xl opacity-50 group-hover:opacity-90 transition ${
+                      isYellow ? "bg-scu-yellow/25" : "bg-scu-gold/25"
+                    }`}
+                  />
+                  <div className="relative flex items-center justify-between">
+                    <span
+                      className={`font-display text-5xl font-black leading-none ${
+                        isYellow ? "text-scu-yellow" : "text-scu-gold"
+                      }`}
+                    >
                       {step.k}
                     </span>
-                    <div className="inline-flex size-11 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow">
+                    <div
+                      className={`inline-flex size-12 items-center justify-center rounded-2xl shadow-[0_10px_24px_-8px_rgba(255,240,1,0.55)] ${
+                        isYellow
+                          ? "bg-scu-yellow text-scu-black"
+                          : "bg-scu-gold text-scu-black"
+                      }`}
+                    >
                       <Icon className="size-5" />
                     </div>
                   </div>
-                  <div>
+                  <div className="relative">
                     <h3 className="font-display text-xl font-black text-scu-black leading-tight">
                       {step.title}
                     </h3>
@@ -578,18 +730,31 @@ export default function AngebotPage() {
       </section>
 
       {/* === FAQ === */}
-      <section className="py-20 lg:py-28 bg-scu-gray-100">
-        <Container className="max-w-4xl">
-          <SectionHeading
-            align="center"
-            eyebrow="Häufige Fragen"
-            title={
-              <>
-                Alles, was Sie vorher noch{" "}
-                <span className="text-scu-yellow">wissen wollen.</span>
-              </>
-            }
-          />
+      <section className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.05] via-white to-white overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute top-20 right-0 h-64 w-64 rounded-full bg-scu-gold/10 blur-3xl"
+        />
+        <Container className="relative max-w-4xl">
+          <div className="flex flex-col gap-4 items-center text-center max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+              <span className="h-px w-8 bg-current" />
+              Häufige Fragen
+              <span className="h-px w-8 bg-current" />
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
+              Alles, was Sie vorher noch{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-scu-black">
+                  wissen wollen.
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+                />
+              </span>
+            </h2>
+          </div>
           <div className="mt-12 flex flex-col gap-3">
             {faqs.map((f) => (
               <details
@@ -622,21 +787,42 @@ export default function AngebotPage() {
       </section>
 
       {/* === Kontakt === */}
-      <section id="kontakt" className="py-20 lg:py-28 bg-white">
-        <Container>
-          <div className="rounded-3xl bg-white border border-scu-gray-200 overflow-hidden shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)]">
+      <section
+        id="kontakt"
+        className="relative py-20 lg:py-28 bg-gradient-to-br from-white via-scu-yellow/[0.05] to-scu-gold/[0.06] overflow-hidden"
+      >
+        <div
+          aria-hidden
+          className="absolute -top-20 left-1/4 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl"
+        />
+        <Container className="relative">
+          <div className="rounded-3xl bg-white border border-scu-gray-200 overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)]">
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col gap-6">
-                <SectionHeading
-                  eyebrow="Kontakt aufnehmen"
-                  title={
-                    <>
-                      Gespräch{" "}
-                      <span className="text-scu-yellow">vereinbaren</span>.
-                    </>
-                  }
-                  description="Der einfachste Weg ist eine kurze E-Mail. Schreiben Sie mir, welches Unternehmen Sie vertreten – ich melde mich mit einem Terminvorschlag für den Briefing-Call."
-                />
+                <div className="flex flex-col gap-4 max-w-2xl">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+                    <span className="h-px w-8 bg-current" />
+                    Kontakt aufnehmen
+                  </span>
+                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
+                    Gespräch{" "}
+                    <span className="relative inline-block">
+                      <span className="relative z-10 text-scu-black">
+                        vereinbaren
+                      </span>
+                      <span
+                        aria-hidden
+                        className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+                      />
+                    </span>
+                    .
+                  </h2>
+                  <p className="text-base sm:text-lg leading-relaxed text-scu-gray-500">
+                    Der einfachste Weg ist eine kurze E-Mail. Schreiben Sie
+                    mir, welches Unternehmen Sie vertreten – ich melde mich mit
+                    einem Terminvorschlag für den Briefing-Call.
+                  </p>
+                </div>
                 <div className="grid sm:grid-cols-2 gap-3 mt-4">
                   <a
                     href={mailtoHref}
@@ -655,7 +841,7 @@ export default function AngebotPage() {
                   >
                     <Globe className="size-4 text-scu-yellow shrink-0 mt-0.5" />
                     <span className="text-sm text-scu-black leading-relaxed font-semibold">
-                      web-n-search.de
+                      Web &amp; Search · web-n-search.de
                     </span>
                   </a>
                   <div className="flex items-start gap-3 rounded-xl bg-scu-gray-100 px-4 py-3 sm:col-span-2">
@@ -689,12 +875,12 @@ export default function AngebotPage() {
                     Transparenz-Hinweis
                   </div>
                   <h3 className="font-display text-2xl lg:text-3xl font-black leading-tight">
-                    Ein Angebot von web-n-search.de.
+                    Ein Angebot von Web &amp; Search.
                   </h3>
                   <p className="text-white/70 leading-relaxed mt-4">
-                    Die SCU-Website wird von web-n-search.de ehrenamtlich
+                    Die SCU-Website wird von Web &amp; Search ehrenamtlich
                     umgesetzt. Die Portraitseiten sind ein separates, bezahltes
-                    Angebot des Entwicklers an interessierte Sponsoren. Der
+                    Angebot des Dienstleisters an interessierte Sponsoren. Der
                     Verein ist einverstanden und profitiert von der
                     zusätzlichen Qualität seines Partner-Bereichs.
                   </p>
