@@ -1,0 +1,714 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  BadgeCheck,
+  Briefcase,
+  Calendar,
+  CheckCircle2,
+  ExternalLink,
+  FileText,
+  Gauge,
+  Globe,
+  Image as ImageIcon,
+  Link2,
+  Mail,
+  MessageSquare,
+  Phone,
+  Rocket,
+  Search,
+  Sparkles,
+  Target,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import { Container } from "@/components/ui/container";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/ui/section-heading";
+
+const CONTACT_EMAIL = "info@web-n-search.de";
+const CONTACT_SUBJECT = "Sponsoren-Portraitseite auf scuvolleyball.de";
+const EXAMPLE_HREF = "/sponsoren/gopus";
+
+const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+  CONTACT_SUBJECT,
+)}`;
+
+export const metadata: Metadata = {
+  title: "Sponsoren-Portrait auf scuvolleyball.de – Angebot für SCU-Partner",
+  description:
+    "Eigene Portraitseite auf scuvolleyball.de für SCU-Sponsoren. Professionell getextet, SEO-optimiert, mit dofollow-Backlink. Einmalig 790 €, Contentpflege 99 €/Jahr.",
+  robots: { index: false, follow: false },
+  alternates: { canonical: "/sponsoren/angebot" },
+};
+
+const benefits = [
+  {
+    icon: Link2,
+    title: "Dofollow-Backlink mit echtem SEO-Wert",
+    text: "scuvolleyball.de ist eine Bundesliga-Domain mit regionaler Relevanz und stetig wachsendem Traffic. Ein dofollow-Link von hier wirkt auf Ihre eigene Website – messbar, dauerhaft, nicht austauschbar.",
+  },
+  {
+    icon: FileText,
+    title: "Ihre Geschichte – professionell erzählt",
+    text: "Statt eines Logos in der Sponsorenleiste bekommen Sie eine eigene Unterseite mit Fließtext, Fakten, Referenzen und Ihrer Haltung. Von einem Menschen recherchiert und geschrieben – nicht von einer Vorlage.",
+  },
+  {
+    icon: Target,
+    title: "Regionale Sichtbarkeit mit Reichweite",
+    text: "Die SCU-Seite wird von Partnern, Fans und Entscheider:innen aus der Grafschaft Bentheim und dem Emsland regelmäßig besucht. Ihre Portraitseite ist dabei – nicht versteckt, sondern verlinkt.",
+  },
+  {
+    icon: Users,
+    title: "Recruiting-Kanal inklusive",
+    text: "Lokale Unternehmen kämpfen um Fachkräfte. Eine Portraitseite auf einer Vereins-Website, die junge Menschen aus der Region lesen, ist ein unterschätztes Recruiting-Instrument.",
+  },
+];
+
+const deliverables = [
+  {
+    icon: Globe,
+    label: "Eigene Unterseite",
+    text: "/sponsoren/ihr-firmenname – sprechende URL, sauber eingebunden",
+  },
+  {
+    icon: Link2,
+    label: "Dofollow-Backlink",
+    text: "Kein nofollow, kein sponsored-Tag – voller SEO-Wert",
+  },
+  {
+    icon: FileText,
+    label: "Redaktioneller Text",
+    text: "Ca. 400–600 Wörter, auf Basis eines kurzen Briefing-Calls",
+  },
+  {
+    icon: ImageIcon,
+    label: "Bildintegration",
+    text: "Logo, Teamfoto, Produktbilder – nach Wunsch und Verfügbarkeit",
+  },
+  {
+    icon: Search,
+    label: "SEO-Setup",
+    text: "Meta-Tags, Open Graph, JSON-LD Organization-Schema",
+  },
+  {
+    icon: Gauge,
+    label: "Responsives Design",
+    text: "Mobile, Tablet, Desktop – im Look der Hauptseite",
+  },
+  {
+    icon: Calendar,
+    label: "1 Jahr Hosting",
+    text: "Inklusive – die Seite läuft dauerhaft auf scuvolleyball.de",
+  },
+  {
+    icon: BadgeCheck,
+    label: "Portrait-Kennzeichnung",
+    text: "Gelbes Portrait-Label in der Sponsorenübersicht",
+  },
+];
+
+const processSteps = [
+  {
+    k: "01",
+    icon: MessageSquare,
+    title: "Briefing-Gespräch",
+    text: "30–45 Minuten telefonisch oder vor Ort. Wir klären, was Sie erzählen möchten, welche Bilder Sie haben und welche Keywords für Ihre SEO-Ziele wichtig sind.",
+  },
+  {
+    k: "02",
+    icon: FileText,
+    title: "Entwurf & Recherche",
+    text: "Innerhalb von 5 Arbeitstagen bekommen Sie einen vollständigen Seitenentwurf als Vorschau-Link. Inklusive Text, Layout und Bildintegration.",
+  },
+  {
+    k: "03",
+    icon: Sparkles,
+    title: "Feedback-Runde",
+    text: "Sie geben Rückmeldung – wir setzen Änderungen um. Eine Feedback-Runde ist im Preis enthalten und reicht in der Regel völlig aus.",
+  },
+  {
+    k: "04",
+    icon: Rocket,
+    title: "Go-Live",
+    text: "Ihre Portraitseite geht online. Parallel wird sie in die Sponsorenübersicht eingebunden und mit einem „Portrait“-Label hervorgehoben.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Ist das ein Angebot des SC Union Emlichheim?",
+    a: "Nein. Die Portraitseiten sind ein Angebot von web-n-search.de – dem Entwickler, der die neue SCU-Website ehrenamtlich umsetzt. Der Verein ist einverstanden und freut sich, dass seine Partner auf der Seite zusätzlich sichtbar sein können. Die Rechnung stellt web-n-search.de, nicht der SCU.",
+  },
+  {
+    q: "Was genau ist ein „dofollow-Backlink“ und warum ist das wichtig?",
+    a: "Suchmaschinen bewerten Websites unter anderem danach, wie viele andere Seiten auf sie verlinken. Ein dofollow-Link gibt dabei volle SEO-Kraft weiter. Links von Agenturen oder Linkbörsen sind oft „nofollow“ und damit SEO-wertlos. Unsere Links sind bewusst dofollow – das ist der harte Kern des Angebots.",
+  },
+  {
+    q: "Was kostet die Contentpflege konkret?",
+    a: "99 € pro Jahr. Darin enthalten sind kleine inhaltliche Anpassungen (Texte aktualisieren, Logo tauschen, neue Referenzen ergänzen), Link-Monitoring und der laufende Betrieb. Größere Neugestaltungen werden separat kalkuliert.",
+  },
+  {
+    q: "Muss ich die Pflege zwingend buchen?",
+    a: "Nein. Die Seite bleibt auch ohne Pflegevertrag 12 Monate online. Danach entscheiden Sie, ob Sie verlängern möchten oder nicht. Ohne Verlängerung wird die Seite deaktiviert – der Backlink geht dann verloren.",
+  },
+  {
+    q: "Wie lange dauert es bis zum Go-Live?",
+    a: "Vom Briefing-Call bis zum Livegang typischerweise 2 Wochen. Wenn Sie Ihre Texte und Bilder zügig liefern, auch schneller.",
+  },
+  {
+    q: "Kann ich später noch Änderungen machen?",
+    a: "Ja – kleine Anpassungen sind in der Jahrespflege enthalten. Unabhängig davon dürfen Sie jederzeit Änderungswünsche melden; kleinere Dinge gehen meist schnell, größere werden offen kalkuliert.",
+  },
+  {
+    q: "Wer schreibt den Text?",
+    a: "Der Entwickler persönlich – basierend auf dem Briefing-Gespräch, Ihrer Website und einer kurzen Recherche. Kein Textbaukasten, keine KI-Platzhalter. Wenn Sie selbst einen Text liefern möchten, ist das natürlich auch möglich.",
+  },
+  {
+    q: "Was passiert, wenn die SCU-Website mal neu gestaltet wird?",
+    a: "Die Portraitseiten sind fester Bestandteil der Website-Struktur. Bei zukünftigen Relaunches werden sie nicht gelöscht, sondern mitübernommen. Der Backlink bleibt bestehen.",
+  },
+];
+
+export default function AngebotPage() {
+  return (
+    <>
+      {/* === Hero === */}
+      <section className="relative bg-scu-black text-white overflow-hidden">
+        <div aria-hidden className="absolute inset-0 bg-grid opacity-20" />
+        <div
+          aria-hidden
+          className="absolute -top-32 -left-20 h-96 w-96 rounded-full bg-scu-yellow/25 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="absolute top-20 right-0 h-80 w-80 rounded-full bg-scu-gold/20 blur-3xl"
+        />
+
+        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-16 lg:pb-24">
+          <nav className="mb-8 text-xs text-white/50 tracking-[0.18em] uppercase font-semibold flex items-center gap-2">
+            <Link href="/sponsoren" className="hover:text-scu-yellow transition">
+              Sponsoren
+            </Link>
+            <span aria-hidden>/</span>
+            <span className="text-white">Portrait-Angebot</span>
+          </nav>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7 flex flex-col gap-6">
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="yellow">Exklusiv für SCU-Partner</Badge>
+                <Badge variant="light">SEO-optimiert</Badge>
+                <Badge variant="light">Dofollow-Backlink</Badge>
+              </div>
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight">
+                Ihr Unternehmen
+                <br />
+                <span className="text-scu-yellow">im Portrait.</span>
+              </h1>
+              <p className="text-lg text-white/80 max-w-2xl leading-relaxed">
+                Als Partner des SCU Volleyball sind Sie bereits auf{" "}
+                <strong className="text-white">scuvolleyball.de</strong> mit Logo
+                sichtbar. Mit einer eigenen Portraitseite bekommen Sie mehr: Ihre
+                Geschichte, Ihre Leistungen, Ihre Haltung – und einen{" "}
+                <strong className="text-white">dofollow-Backlink</strong>, der
+                Ihrer eigenen Website dauerhaft Reichweite zuspielt.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Button asChild size="lg" variant="primary">
+                  <a href={mailtoHref}>
+                    Jetzt anfragen <ArrowUpRight className="size-4" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outlineLight">
+                  <Link href={EXAMPLE_HREF}>
+                    Beispiel: GOpus <ExternalLink className="size-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Pricing sticker */}
+            <div className="lg:col-span-5">
+              <div className="relative mx-auto lg:ml-auto w-full max-w-md">
+                <div className="relative rounded-3xl bg-white p-8 lg:p-10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] border border-white/10">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.24em] font-bold text-scu-gray-500">
+                    <Sparkles className="size-3 text-scu-yellow" />
+                    Komplettpaket
+                  </div>
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="font-display text-6xl lg:text-7xl font-black text-scu-black leading-none">
+                      790
+                    </span>
+                    <span className="font-display text-3xl font-black text-scu-black">
+                      €
+                    </span>
+                  </div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-scu-gray-500 mt-2">
+                    einmalig · zzgl. MwSt.
+                  </div>
+
+                  <div className="my-6 h-px bg-scu-gray-200" />
+
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl font-black text-scu-black leading-none">
+                      99
+                    </span>
+                    <span className="font-display text-lg font-black text-scu-black">
+                      €
+                    </span>
+                    <span className="text-sm font-semibold text-scu-gray-500">
+                      / Jahr
+                    </span>
+                  </div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-scu-gray-500 mt-2">
+                    Contentpflege · optional
+                  </div>
+
+                  <ul className="mt-6 flex flex-col gap-2.5">
+                    {[
+                      "Eigene Unterseite inkl. Domain-Integration",
+                      "Dofollow-Backlink auf Ihre Website",
+                      "Redaktioneller Text (ca. 400–600 Wörter)",
+                      "1 Feedback-Runde inklusive",
+                      "12 Monate Hosting inklusive",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-sm text-scu-black/85"
+                      >
+                        <CheckCircle2 className="size-4 text-scu-yellow shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div
+                  aria-hidden
+                  className="absolute -top-4 -right-4 size-20 rounded-2xl bg-scu-yellow rotate-[8deg] -z-10"
+                />
+                <div
+                  aria-hidden
+                  className="absolute -bottom-6 -left-6 size-24 rounded-2xl bg-scu-gold -rotate-[6deg] -z-10"
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* === Warum === */}
+      <section className="py-20 lg:py-28 bg-white">
+        <Container className="flex flex-col gap-14">
+          <SectionHeading
+            eyebrow="Warum eine Portraitseite"
+            title={
+              <>
+                Mehr als ein Logo in der{" "}
+                <span className="text-scu-yellow">Sponsorenleiste.</span>
+              </>
+            }
+            description="Sponsoring auf reiner Logo-Ebene hat seine Grenzen. Eine eigene Portraitseite macht aus Sichtbarkeit echte Wirkung – für Ihr Marketing, Ihre SEO, Ihr Recruiting."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+            {benefits.map((b) => {
+              const Icon = b.icon;
+              return (
+                <article
+                  key={b.title}
+                  className="group relative rounded-3xl bg-scu-gray-100 border border-scu-gray-200 p-8 flex flex-col gap-4 hover:border-scu-yellow hover:bg-white hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all"
+                >
+                  <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow group-hover:bg-scu-yellow group-hover:text-scu-black transition">
+                    <Icon className="size-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl lg:text-2xl font-black text-scu-black leading-tight">
+                      {b.title}
+                    </h3>
+                    <p className="text-scu-gray-500 mt-3 leading-relaxed">
+                      {b.text}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* === Deliverables === */}
+      <section className="py-20 lg:py-28 bg-scu-gray-100">
+        <Container className="flex flex-col gap-14">
+          <SectionHeading
+            eyebrow="Leistungsumfang"
+            title={
+              <>
+                Was Sie für <span className="text-scu-yellow">790 €</span>{" "}
+                bekommen.
+              </>
+            }
+            description="Ein komplett umgesetztes, sofort sichtbares Ergebnis. Kein Bastelkasten, kein Template-Selbstbau. Fertig übergeben – inklusive aller SEO-Grundlagen."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+            {deliverables.map((d) => {
+              const Icon = d.icon;
+              return (
+                <div
+                  key={d.label}
+                  className="rounded-2xl bg-white border border-scu-gray-200 p-6 flex flex-col gap-3 hover:border-scu-yellow transition"
+                >
+                  <div className="inline-flex size-10 items-center justify-center rounded-xl bg-scu-yellow/20 text-scu-black">
+                    <Icon className="size-5" />
+                  </div>
+                  <div>
+                    <div className="font-display font-black text-scu-black">
+                      {d.label}
+                    </div>
+                    <div className="text-sm text-scu-gray-500 leading-relaxed mt-1">
+                      {d.text}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* === Live-Beispiel === */}
+      <section className="py-20 lg:py-28 bg-white">
+        <Container>
+          <div className="rounded-3xl bg-gradient-to-br from-scu-yellow/15 via-white to-scu-gold/10 border border-scu-gray-200 p-8 lg:p-14 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.2)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-7 flex flex-col gap-6">
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="black">Live-Beispiel</Badge>
+                  <Badge variant="outline">Gold-Partner GOpus</Badge>
+                </div>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-scu-black leading-[1.05]">
+                  So sieht Ihr{" "}
+                  <span className="text-scu-yellow">Portrait</span> aus.
+                </h2>
+                <p className="text-base sm:text-lg text-scu-gray-500 leading-relaxed max-w-2xl">
+                  Die GOpus GmbH aus Emlichheim war der erste Partner mit einer
+                  vollständigen Portraitseite. Vom Hero über eigene Produkte bis
+                  zum Karriere-Call-to-Action – ein vollständiger Markenauftritt
+                  auf einer Seite. In genau diesem Format entsteht auch Ihre.
+                </p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <Button asChild size="lg" variant="dark">
+                    <Link href={EXAMPLE_HREF}>
+                      Beispiel öffnen <ArrowUpRight className="size-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <a href={mailtoHref}>
+                      So eine Seite möchte ich auch{" "}
+                      <Mail className="size-4" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+              <div className="lg:col-span-5">
+                <ul className="flex flex-col gap-3">
+                  {[
+                    { icon: TrendingUp, label: "Hero mit Markenclaim" },
+                    { icon: Briefcase, label: "Leistungsübersicht" },
+                    { icon: Target, label: "Referenzen & Kunden" },
+                    { icon: Users, label: "Karriere-Sektion" },
+                    { icon: Link2, label: "Kontaktbereich mit Backlink" },
+                  ].map((row) => {
+                    const Icon = row.icon;
+                    return (
+                      <li
+                        key={row.label}
+                        className="flex items-center gap-3 rounded-2xl bg-white border border-scu-gray-200 px-5 py-4"
+                      >
+                        <div className="inline-flex size-9 items-center justify-center rounded-full bg-scu-yellow text-scu-black">
+                          <Icon className="size-4" />
+                        </div>
+                        <span className="font-semibold text-scu-black">
+                          {row.label}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* === Marktvergleich === */}
+      <section className="py-20 lg:py-28 bg-scu-black text-white relative overflow-hidden">
+        <div aria-hidden className="absolute inset-0 bg-grid opacity-[0.2]" />
+        <div
+          aria-hidden
+          className="absolute -top-24 right-0 h-[420px] w-[420px] rounded-full bg-scu-yellow/15 blur-3xl"
+        />
+        <Container className="relative">
+          <SectionHeading
+            tone="light"
+            align="center"
+            eyebrow="Marktvergleich"
+            title={
+              <>
+                790 € klingt <span className="text-scu-yellow">günstig</span>?
+                <br />
+                Ist es auch.
+              </>
+            }
+            description="Hier ein nüchterner Blick darauf, was die einzelnen Bestandteile bei Agenturen typischerweise kosten – und warum das Gesamtpaket so bewusst unter der Wahrnehmungsschwelle für Marketingbudgets bleibt."
+          />
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="rounded-3xl bg-white/[0.04] border border-white/10 p-8 lg:p-10 backdrop-blur">
+              <div className="text-[11px] uppercase tracking-[0.24em] font-bold text-white/50 mb-5">
+                Einzeln bei einer Agentur
+              </div>
+              <ul className="flex flex-col gap-3">
+                {[
+                  { label: "Dofollow-Backlink (monatliche Miete)", price: "300–800 € / Monat" },
+                  { label: "Redaktioneller Text (400–600 Wörter)", price: "400–800 €" },
+                  { label: "Landing-Page-Design & Umsetzung", price: "1.200–2.500 €" },
+                  { label: "SEO-Grundsetup inkl. JSON-LD", price: "300–500 €" },
+                  { label: "Hosting & Betrieb (12 Monate)", price: "150–300 €" },
+                ].map((row) => (
+                  <li
+                    key={row.label}
+                    className="flex items-center justify-between gap-4 py-2 border-b border-white/10 last:border-b-0"
+                  >
+                    <span className="text-sm text-white/80">{row.label}</span>
+                    <span className="text-sm font-bold text-white whitespace-nowrap">
+                      {row.price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-6 border-t border-white/20 flex items-center justify-between">
+                <span className="text-sm font-semibold text-white/60 uppercase tracking-wider">
+                  Listenpreis
+                </span>
+                <span className="font-display text-2xl font-black text-white">
+                  ~ 4.500 €+
+                </span>
+              </div>
+            </div>
+
+            <div className="relative rounded-3xl bg-scu-yellow text-scu-black p-8 lg:p-10 shadow-[0_30px_80px_-20px_rgba(255,240,1,0.4)]">
+              <div className="text-[11px] uppercase tracking-[0.24em] font-black mb-5">
+                Komplettpaket scuvolleyball.de
+              </div>
+              <div className="flex items-baseline gap-3">
+                <span className="font-display text-7xl font-black leading-none">
+                  790
+                </span>
+                <span className="font-display text-3xl font-black">€</span>
+                <span className="text-sm font-bold uppercase tracking-wider">
+                  einmalig
+                </span>
+              </div>
+              <p className="mt-5 text-scu-black/85 leading-relaxed">
+                Alles aus einer Hand: Briefing, Text, Design, SEO, Hosting. Kein
+                laufendes Abo, keine Zusatzkosten, kein Agentur-Aufschlag. Wer
+                möchte, bucht die Contentpflege für <strong>99 € / Jahr</strong>{" "}
+                dazu.
+              </p>
+              <div className="mt-8 pt-6 border-t border-scu-black/20 flex items-center justify-between">
+                <span className="text-sm font-bold uppercase tracking-wider">
+                  Ihre Ersparnis
+                </span>
+                <span className="font-display text-2xl font-black">
+                  ~ 3.700 €+
+                </span>
+              </div>
+            </div>
+          </div>
+          <p className="text-center text-sm text-white/50 mt-10 max-w-2xl mx-auto">
+            Hinweis: Vergleichswerte sind Marktdurchschnitte 2025 für deutsche
+            Mittelstands-Agenturen. Einzelne Positionen können je nach Anbieter
+            abweichen – am Gesamtverhältnis ändert das wenig.
+          </p>
+        </Container>
+      </section>
+
+      {/* === Ablauf === */}
+      <section className="py-20 lg:py-28 bg-white">
+        <Container className="flex flex-col gap-14">
+          <SectionHeading
+            eyebrow="So läuft's ab"
+            title={
+              <>
+                Vier Schritte bis zum{" "}
+                <span className="text-scu-yellow">Go-Live.</span>
+              </>
+            }
+            description="Typischerweise sind Sie in 2 Wochen online. Ohne Aufwand auf Ihrer Seite – abgesehen von einem Briefing-Gespräch und einer Feedback-Runde."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+            {processSteps.map((step) => {
+              const Icon = step.icon;
+              return (
+                <article
+                  key={step.k}
+                  className="relative rounded-3xl bg-scu-gray-100 border border-scu-gray-200 p-7 lg:p-8 flex flex-col gap-4 hover:border-scu-yellow hover:-translate-y-1 transition"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-display text-4xl font-black text-scu-gray-200 leading-none">
+                      {step.k}
+                    </span>
+                    <div className="inline-flex size-11 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow">
+                      <Icon className="size-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl font-black text-scu-black leading-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-scu-gray-500 mt-2 leading-relaxed text-sm">
+                      {step.text}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* === FAQ === */}
+      <section className="py-20 lg:py-28 bg-scu-gray-100">
+        <Container className="max-w-4xl">
+          <SectionHeading
+            align="center"
+            eyebrow="Häufige Fragen"
+            title={
+              <>
+                Alles, was Sie vorher noch{" "}
+                <span className="text-scu-yellow">wissen wollen.</span>
+              </>
+            }
+          />
+          <div className="mt-12 flex flex-col gap-3">
+            {faqs.map((f) => (
+              <details
+                key={f.q}
+                className="group rounded-2xl bg-white border border-scu-gray-200 open:border-scu-yellow open:shadow-[0_12px_30px_-14px_rgba(0,0,0,0.12)] transition-all"
+              >
+                <summary className="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 font-display font-black text-scu-black text-base lg:text-lg">
+                  <span>{f.q}</span>
+                  <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-scu-gray-100 text-scu-black group-open:bg-scu-yellow group-open:rotate-45 transition-all">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      className="size-4"
+                      aria-hidden
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 -mt-1 text-scu-gray-500 leading-relaxed">
+                  {f.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* === Kontakt === */}
+      <section id="kontakt" className="py-20 lg:py-28 bg-white">
+        <Container>
+          <div className="rounded-3xl bg-white border border-scu-gray-200 overflow-hidden shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col gap-6">
+                <SectionHeading
+                  eyebrow="Kontakt aufnehmen"
+                  title={
+                    <>
+                      Gespräch{" "}
+                      <span className="text-scu-yellow">vereinbaren</span>.
+                    </>
+                  }
+                  description="Der einfachste Weg ist eine kurze E-Mail. Schreiben Sie mir, welches Unternehmen Sie vertreten – ich melde mich mit einem Terminvorschlag für den Briefing-Call."
+                />
+                <div className="grid sm:grid-cols-2 gap-3 mt-4">
+                  <a
+                    href={mailtoHref}
+                    className="flex items-start gap-3 rounded-xl bg-scu-gray-100 hover:bg-scu-yellow/20 transition px-4 py-3"
+                  >
+                    <Mail className="size-4 text-scu-yellow shrink-0 mt-0.5" />
+                    <span className="text-sm text-scu-black leading-relaxed font-semibold">
+                      {CONTACT_EMAIL}
+                    </span>
+                  </a>
+                  <a
+                    href="https://web-n-search.de"
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-start gap-3 rounded-xl bg-scu-gray-100 hover:bg-scu-yellow/20 transition px-4 py-3"
+                  >
+                    <Globe className="size-4 text-scu-yellow shrink-0 mt-0.5" />
+                    <span className="text-sm text-scu-black leading-relaxed font-semibold">
+                      web-n-search.de
+                    </span>
+                  </a>
+                  <div className="flex items-start gap-3 rounded-xl bg-scu-gray-100 px-4 py-3 sm:col-span-2">
+                    <Phone className="size-4 text-scu-yellow shrink-0 mt-0.5" />
+                    <span className="text-sm text-scu-black leading-relaxed">
+                      Telefonisch auf Anfrage per E-Mail – ich rufe gerne
+                      zurück.
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <Button asChild size="lg" variant="primary">
+                    <a href={mailtoHref}>
+                      E-Mail schreiben <ArrowUpRight className="size-4" />
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <Link href={EXAMPLE_HREF}>
+                      Beispiel ansehen <ExternalLink className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+              <aside className="lg:col-span-5 bg-scu-black text-white p-8 lg:p-12 flex flex-col justify-center gap-5 relative overflow-hidden">
+                <div
+                  aria-hidden
+                  className="absolute -top-16 -right-16 size-60 rounded-full bg-scu-yellow/20 blur-3xl"
+                />
+                <div className="relative">
+                  <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-scu-yellow mb-3">
+                    Transparenz-Hinweis
+                  </div>
+                  <h3 className="font-display text-2xl lg:text-3xl font-black leading-tight">
+                    Ein Angebot von web-n-search.de.
+                  </h3>
+                  <p className="text-white/70 leading-relaxed mt-4">
+                    Die SCU-Website wird von web-n-search.de ehrenamtlich
+                    umgesetzt. Die Portraitseiten sind ein separates, bezahltes
+                    Angebot des Entwicklers an interessierte Sponsoren. Der
+                    Verein ist einverstanden und profitiert von der
+                    zusätzlichen Qualität seines Partner-Bereichs.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    <Badge variant="yellow">Für SCU-Partner</Badge>
+                    <Badge variant="light">Transparent</Badge>
+                    <Badge variant="light">Einmalig 790 €</Badge>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </>
+  );
+}

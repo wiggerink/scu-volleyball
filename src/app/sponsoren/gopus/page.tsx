@@ -132,7 +132,6 @@ export default function GopusSponsorPage() {
       {/* JSON-LD for SEO: Sponsorship + Organization */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -311,7 +310,7 @@ export default function GopusSponsorPage() {
               <blockquote className="text-base lg:text-lg font-normal italic text-scu-black/75 leading-relaxed mt-4">
                 „GOpus steht für innovative Lösungen und herausragenden Kundenservice –
                 getrieben von unserer Leidenschaft für technologische Exzellenz und
-                nachhaltigen Erfolg."
+                nachhaltigen Erfolg.“
               </blockquote>
               <figcaption className="mt-6 pt-6 border-t border-scu-gray-200 flex items-center gap-4">
                 <div className="inline-flex size-10 items-center justify-center rounded-full bg-scu-black text-scu-yellow font-display font-black text-sm">
