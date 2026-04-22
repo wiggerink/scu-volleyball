@@ -53,7 +53,7 @@ export default function FirstTeamPage() {
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
-                <Link href="#tickets"><Ticket className="size-4" /> Tickets</Link>
+                <Link href={site.ticketsUrl} target="_blank" rel="noopener"><Ticket className="size-4" /> Tickets</Link>
               </Button>
               <Button asChild variant="outlineLight" size="lg">
                 <Link href="#spielplan"><CalendarDays className="size-4" /> Spielplan</Link>
@@ -216,7 +216,7 @@ export default function FirstTeamPage() {
               <li className="flex gap-2"><Trophy className="size-4 text-scu-yellow shrink-0 mt-0.5" /> Familien-Ticket & Dauerkarten verfügbar</li>
             </ul>
             <Button asChild size="lg" variant="primary" className="w-fit">
-              <Link href="/kontakt">Tickets anfragen</Link>
+              <Link href={site.ticketsUrl} target="_blank" rel="noopener">Tickets online kaufen</Link>
             </Button>
           </div>
           <div className="rounded-3xl bg-gradient-to-br from-scu-yellow via-scu-yellow-dark to-scu-black p-8 lg:p-10 flex flex-col gap-5 relative overflow-hidden">

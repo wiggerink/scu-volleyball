@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Play, Ticket, Trophy, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { site } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -62,7 +63,7 @@ export function Hero() {
             className="flex flex-wrap gap-3"
           >
             <Button asChild size="lg" variant="primary">
-              <Link href="/teams/1-mannschaft#tickets">
+              <Link href={site.ticketsUrl} target="_blank" rel="noopener">
                 <Ticket className="size-4" /> Heimspiel-Tickets
               </Link>
             </Button>

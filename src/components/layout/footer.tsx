@@ -27,7 +27,7 @@ const linkGroups = [
   {
     title: "Service",
     links: [
-      { label: "Tickets", href: "/teams/1-mannschaft#tickets" },
+      { label: "Tickets", href: site.ticketsUrl, external: true },
       { label: "Livestream", href: "/teams/1-mannschaft#live" },
       { label: "Spielplan", href: "/teams/1-mannschaft#spielplan" },
       { label: "Kontakt", href: "/kontakt" },
@@ -101,13 +101,21 @@ export function Footer() {
                   {group.title}
                 </h3>
                 <ul className="flex flex-col gap-2.5 text-sm text-white/70">
-                  {group.links.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="hover:text-white transition">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {group.links.map((link) => {
+                    const external = "external" in link && link.external;
+                    return (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          target={external ? "_blank" : undefined}
+                          rel={external ? "noopener" : undefined}
+                          className="hover:text-white transition"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

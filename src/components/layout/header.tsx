@@ -90,7 +90,7 @@ export function Header() {
 
           <div className="hidden xl:flex items-center gap-2 shrink-0">
             <Button asChild variant="outlineLight" size="sm">
-              <Link href="/teams/1-mannschaft#tickets">
+              <Link href={site.ticketsUrl} target="_blank" rel="noopener">
                 <Ticket className="size-3.5" />
                 Tickets
               </Link>
@@ -197,7 +197,12 @@ export function Header() {
 
               <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-3">
                 <Button asChild variant="primary" size="lg">
-                  <Link href="/teams/1-mannschaft#tickets" onClick={() => setMobileOpen(false)}>
+                  <Link
+                    href={site.ticketsUrl}
+                    target="_blank"
+                    rel="noopener"
+                    onClick={() => setMobileOpen(false)}
+                  >
                     <Ticket className="size-4" /> Tickets sichern
                   </Link>
                 </Button>
@@ -316,6 +321,8 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
                 <Link
                   key={c.href}
                   href={c.href}
+                  target={c.external ? "_blank" : undefined}
+                  rel={c.external ? "noopener" : undefined}
                   className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-white/80 hover:bg-scu-yellow/10 hover:text-scu-yellow transition group/sub"
                 >
                   {c.label}

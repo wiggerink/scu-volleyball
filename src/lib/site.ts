@@ -1,4 +1,4 @@
-type NavChild = { label: string; href: string };
+type NavChild = { label: string; href: string; external?: boolean };
 
 type MegaItem = { label: string; href: string; note?: string };
 type MegaColumn = { title: string; items: readonly MegaItem[] };
@@ -25,7 +25,7 @@ const nav: readonly NavEntry[] = [
     children: [
       { label: "Team & Kader", href: "/teams/1-mannschaft" },
       { label: "Spielplan", href: "/teams/1-mannschaft#spielplan" },
-      { label: "Tickets", href: "/teams/1-mannschaft#tickets" },
+      { label: "Tickets", href: "https://scu-tickets.reservix.de/events", external: true },
       { label: "Live-Übertragung", href: "/teams/1-mannschaft#live" },
     ],
   },
@@ -76,11 +76,14 @@ const nav: readonly NavEntry[] = [
   { label: "Sponsoren", href: "/sponsoren", description: "Unsere Partner & Förderer" },
 ];
 
+export const ticketsUrl = "https://scu-tickets.reservix.de/events";
+
 export const site = {
   name: "SCU Emlichheim Volleyball",
   shortName: "SCU Volleyball",
   tagline: "Nachhaltig erfolgreiche Jugendarbeit und Bundesliga-Spitzen-Volleyball",
   claim: "Volleyball. Heimat. Leidenschaft.",
+  ticketsUrl,
   description:
     "Der SC Union Emlichheim ist einer der traditionsreichsten Volleyballvereine Deutschlands. Unsere 1. Damenmannschaft spielt in der 2. Bundesliga Pro – getragen von einer der stärksten Jugendabteilungen der Region.",
   url: "https://scuvolleyball.de",

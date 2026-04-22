@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Ticket, Heart, Megaphone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { site } from "@/lib/site";
 
 const ctas = [
   {
@@ -11,7 +12,8 @@ const ctas = [
     label: "Tickets",
     title: "Heimspiele erleben",
     text: "Bundesliga-Volleyball zum Anfassen in der Vechtetalhalle. Familienfreundliche Preise, legendäre Atmosphäre.",
-    href: "/teams/1-mannschaft#tickets",
+    href: site.ticketsUrl,
+    external: true,
     cta: "Jetzt Tickets sichern",
     color: "bg-scu-yellow",
   },
@@ -64,7 +66,13 @@ export function CtaSection() {
                   </div>
                   <p className="text-scu-gray-500 leading-relaxed flex-1">{item.text}</p>
                   <Button asChild variant="dark" size="md" className="w-fit">
-                    <Link href={item.href}>{item.cta}</Link>
+                    <Link
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener" : undefined}
+                    >
+                      {item.cta}
+                    </Link>
                   </Button>
                 </div>
               </motion.div>
