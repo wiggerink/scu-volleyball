@@ -308,7 +308,7 @@ export default function GopusSponsorPage() {
           <aside className="lg:col-span-5">
             <figure className="relative rounded-3xl bg-gradient-to-br from-scu-yellow/15 via-white to-scu-gold/10 border border-scu-gray-200 p-8 lg:p-10 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.2)]">
               <Quote className="size-10 text-scu-yellow" />
-              <blockquote className="font-display text-xl lg:text-2xl font-black text-scu-black leading-tight mt-4">
+              <blockquote className="text-base lg:text-lg font-normal italic text-scu-black/75 leading-relaxed mt-4">
                 „GOpus steht für innovative Lösungen und herausragenden Kundenservice –
                 getrieben von unserer Leidenschaft für technologische Exzellenz und
                 nachhaltigen Erfolg."
