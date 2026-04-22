@@ -6,16 +6,16 @@ export type Sponsor = {
 };
 
 export const sponsors: Sponsor[] = [
-  { name: "Harbour Energy",       tier: "premium", logo: "/sponsors/harbour-energy.png",       href: "https://www.harbourenergy.com/" },
-  { name: "Peters Gruppe",        tier: "premium", logo: "/sponsors/peters-gruppe.png",        href: "https://peters-gruppe.com/" },
-  { name: "gopus",                tier: "premium", logo: "/sponsors/gopus.png",                href: "https://www.gopus.de" },
+  { name: "bekuplast",            tier: "premium", logo: "/sponsors/bekuplast.png",            href: "https://www.bekuplast.com/" },
+  { name: "Emsland Group",        tier: "premium", logo: "/sponsors/emsland-group.jpg",        href: "https://www.emsland-group.de/" },
+  { name: "Stahl Baumeisterhaus", tier: "premium", logo: "/sponsors/stahl-baumeisterhaus.jpg", href: "https://www.stahl-baumeisterhaus.de/" },
 
-  { name: "Emsland Group",        tier: "gold",    logo: "/sponsors/emsland-group.jpg",        href: "https://www.emsland-group.de/" },
+  { name: "Harbour Energy",       tier: "gold",    logo: "/sponsors/harbour-energy.png",       href: "https://www.harbourenergy.com/" },
+  { name: "Peters Gruppe",        tier: "gold",    logo: "/sponsors/peters-gruppe.png",        href: "https://peters-gruppe.com/" },
+  { name: "gopus",                tier: "gold",    logo: "/sponsors/gopus.png",                href: "https://www.gopus.de" },
   { name: "Sparkasse Nordhorn",   tier: "gold",    logo: "/sponsors/sparkasse-nordhorn.png",   href: "https://www.sparkasse-nordhorn.de/" },
   { name: "Grafschafter Volksbank",tier: "gold",   logo: "/sponsors/grafschafter-volksbank.png",href: "https://www.grafschafter-volksbank.de/" },
   { name: "Intersport Kamps",     tier: "gold",    logo: "/sponsors/intersport-kamps.png",     href: "https://www.intersport.de/haendlersuche/sportgeschaefte-niedersachsen/48455-bad-bentheim-sport-und-freizeit-kamps/" },
-  { name: "Stahl Baumeisterhaus", tier: "gold",    logo: "/sponsors/stahl-baumeisterhaus.jpg", href: "https://www.stahl-baumeisterhaus.de/" },
-  { name: "bekuplast",            tier: "gold",    logo: "/sponsors/bekuplast.png",            href: "https://www.bekuplast.com/" },
 
   { name: "evb Kanzlei",          tier: "silber",  logo: "/sponsors/evb-kanzlei.png",          href: "https://www.evb-kanzlei.de" },
   { name: "Reisebüro Berndt",     tier: "silber",  logo: "/sponsors/reisebuero-berndt.jpg",    href: "https://www.reisebuero-berndt.de/" },
