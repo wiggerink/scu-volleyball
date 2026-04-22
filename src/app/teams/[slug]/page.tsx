@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, Clock, Trophy, Users, Sparkles } from "lucide-re
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { teams } from "@/lib/teams";
 
 const DEDICATED = ["1-mannschaft", "2-mannschaft"];
@@ -109,7 +109,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
           <div className="lg:col-span-5 flex flex-col gap-6">
             <SectionHeading
               eyebrow="Über das Team"
-              title={<>Was {team.short} <span className="text-scu-yellow">ausmacht</span></>}
+              title={<>Was {team.short} <HighlightWord>ausmacht</HighlightWord></>}
             />
             <p className="text-scu-gray-500 leading-relaxed">{team.description}</p>
 
@@ -128,8 +128,9 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
       </section>
 
       {/* Training & Kontakt */}
-      <section className="bg-scu-gray-100 py-16 lg:py-20">
-        <Container className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="relative py-16 lg:py-20 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -top-16 -right-10 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="rounded-3xl bg-white border border-scu-gray-200 p-7 lg:p-8 flex flex-col gap-4">
             <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
               <Clock className="size-6" />
@@ -185,7 +186,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
         <Container className="flex flex-col gap-8">
           <SectionHeading
             eyebrow="Weitere Mannschaften"
-            title={<>Alle <span className="text-scu-yellow">SCU-Teams</span> im Überblick</>}
+            title={<>Alle <HighlightWord>SCU-Teams</HighlightWord> im Überblick</>}
           />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {teams

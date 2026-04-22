@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Crown, Medal, Star, Handshake, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { sponsors } from "@/lib/sponsors";
 import { cn } from "@/lib/utils";
@@ -52,7 +52,7 @@ export function SponsorsSection() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <SectionHeading
             eyebrow="Unsere Partner"
-            title={<>Gemeinsam an der <span className="text-scu-yellow">Spitze</span></>}
+            title={<>Gemeinsam an der <HighlightWord>Spitze</HighlightWord></>}
             description="Ohne das Engagement starker Unternehmen aus der Grafschaft Bentheim und dem Emsland wäre Bundesliga-Volleyball in Emlichheim nicht möglich. Ein herzliches Dankeschön an alle Partner und Förderer."
           />
           <Button asChild variant="outline" className="w-fit">

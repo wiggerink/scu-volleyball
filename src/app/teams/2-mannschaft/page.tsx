@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Trophy, Sparkles, Crown, T
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { roster2, staff2 } from "@/lib/roster-2";
 
 const positionOrder2 = ["Libera", "Zuspiel", "Angriff", "Mittelblock", "Diagonalangriff", "Universal"];
@@ -115,7 +115,7 @@ export default function SecondTeamPage() {
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow="Saison 2025/26"
-            title={<>Meister & <span className="text-scu-yellow">Aufsteiger</span></>}
+            title={<>Meister & <HighlightWord>Aufsteiger</HighlightWord></>}
             description="Sechs Spieltage vor Schluss stand die Meisterschaft fest. Eine Saison, in der das Team die 3. Liga Nord dominiert hat."
           />
 
@@ -151,11 +151,12 @@ export default function SecondTeamPage() {
       </section>
 
       {/* Kader */}
-      <section id="kader" className="py-20 lg:py-28 bg-scu-gray-100">
-        <Container className="flex flex-col gap-12">
+      <section id="kader" className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -top-24 -right-10 h-80 w-80 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative flex flex-col gap-12">
           <SectionHeading
             eyebrow="Kader"
-            title={<>Unsere Spielerinnen <span className="text-scu-yellow">2025/26</span></>}
+            title={<>Unsere Spielerinnen <HighlightWord>2025/26</HighlightWord></>}
             description="Der Meisterkader der 3. Liga Nord – durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend."
           />
 
@@ -205,7 +206,7 @@ export default function SecondTeamPage() {
       {/* Trainerin */}
       <section className="py-20 lg:py-24 bg-white">
         <Container className="flex flex-col gap-10">
-          <SectionHeading eyebrow="Team hinter dem Team" title={<>Trainerin & <span className="text-scu-yellow">Staff</span></>} />
+          <SectionHeading eyebrow="Team hinter dem Team" title={<>Trainerin & <HighlightWord>Staff</HighlightWord></>} />
           <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
             {staff2.map((s) => (
               <article key={s.name} className="rounded-2xl overflow-hidden bg-scu-gray-100 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
@@ -274,8 +275,9 @@ export default function SecondTeamPage() {
       </section>
 
       {/* Ausblick */}
-      <section className="py-20 lg:py-24 bg-scu-gray-100">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-gold/[0.06] via-white to-scu-yellow/[0.06] overflow-hidden">
+        <div aria-hidden className="absolute -bottom-20 -left-10 h-80 w-80 rounded-full bg-scu-gold/15 blur-3xl" />
+        <Container className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5">
             <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)]">
               <Image src="/hero/hero-main.jpg" alt="Vorbereitung 2. Bundesliga 2026/27" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
@@ -289,7 +291,7 @@ export default function SecondTeamPage() {
           <div className="lg:col-span-7 flex flex-col gap-6">
             <SectionHeading
               eyebrow="Saison 2026/27"
-              title={<>Was die <span className="text-scu-yellow">2. Bundesliga</span> bringt</>}
+              title={<>Was die <HighlightWord>2. Bundesliga</HighlightWord> bringt</>}
             />
             <p className="text-scu-gray-500 text-lg leading-relaxed">
               Mit dem Aufstieg übernimmt unsere Zweite eine neue Rolle: bundesweiter Spielbetrieb, weitere Auswärtsfahrten und

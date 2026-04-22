@@ -39,8 +39,10 @@ const ctas = [
 
 export function CtaSection() {
   return (
-    <section className="py-20 lg:py-28 bg-scu-gray-100">
-      <Container>
+    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-gold/[0.06] via-white to-scu-yellow/[0.06] overflow-hidden">
+      <div aria-hidden className="absolute -top-16 -right-10 h-80 w-80 rounded-full bg-scu-yellow/15 blur-3xl" />
+      <div aria-hidden className="absolute -bottom-16 -left-10 h-80 w-80 rounded-full bg-scu-gold/15 blur-3xl" />
+      <Container className="relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
           {ctas.map((item, i) => {
             const Icon = item.icon;

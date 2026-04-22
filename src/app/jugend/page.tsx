@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Baby, Users, Trophy, Heart, Euro, CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -45,7 +45,7 @@ export default function JugendPage() {
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow="Altersgruppen"
-            title={<>Für jedes Alter die <span className="text-scu-yellow">passende Gruppe</span></>}
+            title={<>Für jedes Alter die <HighlightWord>passende Gruppe</HighlightWord></>}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {groups.map((g) => {
@@ -70,11 +70,12 @@ export default function JugendPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 lg:py-24 bg-scu-gray-100">
-        <Container className="grid lg:grid-cols-2 gap-12">
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -top-20 -right-10 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative grid lg:grid-cols-2 gap-12">
           <SectionHeading
             eyebrow="Das bekommst du bei uns"
-            title={<>Profi-Struktur für <span className="text-scu-yellow">unseren Nachwuchs</span></>}
+            title={<>Profi-Struktur für <HighlightWord>unseren Nachwuchs</HighlightWord></>}
             description="Wir heben Jugendvolleyball auf ein Niveau, das in einem Dorfverein einzigartig ist. Hinter jedem Training steht ein durchdachtes Konzept."
           />
           <ul className="grid sm:grid-cols-2 gap-3">

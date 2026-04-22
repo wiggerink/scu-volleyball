@@ -12,6 +12,36 @@ type Props = {
   className?: string;
 };
 
+/**
+ * HighlightWord — wraps a word or phrase inside a heading with a
+ * skewed yellow marker-pen effect. Use instead of
+ * <span className="text-scu-yellow"> for light-background headings.
+ *
+ * Usage:
+ *   <SectionHeading title={<>Gemeinsam an der <HighlightWord>Spitze</HighlightWord></>} />
+ */
+export function HighlightWord({
+  children,
+  tone = "dark",
+}: {
+  children: React.ReactNode;
+  /** "dark" = yellow bar under black text (light bg). "light" = solid yellow text (dark bg). */
+  tone?: "dark" | "light";
+}) {
+  if (tone === "light") {
+    return <span className="text-scu-yellow">{children}</span>;
+  }
+  return (
+    <span className="relative inline-block text-scu-black">
+      <span className="relative z-10">{children}</span>
+      <span
+        aria-hidden
+        className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
+      />
+    </span>
+  );
+}
+
 export function SectionHeading({
   eyebrow,
   title,

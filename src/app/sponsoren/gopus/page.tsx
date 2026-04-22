@@ -26,7 +26,7 @@ import {
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 
 const GOPUS_URL = "https://www.gopus.de";
 
@@ -284,7 +284,7 @@ export default function GopusSponsorPage() {
               title={
                 <>
                   Ein Dorfunternehmen, das{" "}
-                  <span className="text-scu-yellow">Konzerne digitalisiert.</span>
+                  <HighlightWord>Konzerne digitalisiert.</HighlightWord>
                 </>
               }
               description="Gegründet 1999 in Emlichheim – heute mit Projekten in ganz Deutschland, den Niederlanden und darüber hinaus. Was GOpus besonders macht? Die Haltung, dass gute IT leise funktioniert – und die Nähe zu einer Region, die Wort hält."
@@ -329,14 +329,15 @@ export default function GopusSponsorPage() {
       </section>
 
       {/* === Leistungen === */}
-      <section className="py-20 lg:py-28 bg-scu-gray-100">
-        <Container className="flex flex-col gap-12">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -top-20 -left-10 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative flex flex-col gap-12">
           <SectionHeading
             eyebrow="Leistungen"
             title={
               <>
                 Drei Säulen – ein{" "}
-                <span className="text-scu-yellow">Anspruch.</span>
+                <HighlightWord>Anspruch.</HighlightWord>
               </>
             }
             description="Vom Einzelworkshop bis zur vollständigen S/4HANA-Transformation. GOpus deckt die Module ab, die in einem produzierenden Unternehmen wirklich zählen: SD, MM, FI, PM, QM, PP, CRM, GTS."
@@ -349,7 +350,7 @@ export default function GopusSponsorPage() {
                   key={s.title}
                   className="group relative rounded-3xl bg-white border border-scu-gray-200 p-8 flex flex-col gap-5 hover:border-scu-yellow hover:shadow-[0_24px_60px_-20px_rgba(255,240,1,0.35)] hover:-translate-y-1 transition-all"
                 >
-                  <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow group-hover:bg-scu-yellow group-hover:text-scu-black transition">
+                  <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black shadow-[0_10px_24px_-8px_rgba(255,240,1,0.55)]">
                     <Icon className="size-6" />
                   </div>
                   <div>
@@ -374,7 +375,7 @@ export default function GopusSponsorPage() {
               title={
                 <>
                   Vier Lösungen, die{" "}
-                  <span className="text-scu-yellow">direkt einsetzbar</span> sind.
+                  <HighlightWord>direkt einsetzbar</HighlightWord> sind.
                 </>
               }
               description="Statt jedes Rad neu zu erfinden hat GOpus über die Jahre marktreife Add-ons gebaut. Plug-in-fertig, SAP-zertifiziert, compliance-ready – und durchgängig aus eigener Entwicklung."
@@ -417,11 +418,9 @@ export default function GopusSponsorPage() {
       </section>
 
       {/* === Kunden === */}
-      <section className="py-20 lg:py-28 bg-scu-gray-100 relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-white via-scu-gray-100 to-white"
-        />
+      <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-white via-scu-yellow/[0.05] to-white">
+        <div aria-hidden className="absolute -top-16 right-0 h-80 w-80 rounded-full bg-scu-gold/15 blur-3xl" />
+        <div aria-hidden className="absolute bottom-0 -left-20 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
         <Container className="relative flex flex-col gap-12">
           <SectionHeading
             align="center"
@@ -429,7 +428,7 @@ export default function GopusSponsorPage() {
             title={
               <>
                 Vertrauen von{" "}
-                <span className="text-scu-yellow">Weltmarken</span> und starken
+                <HighlightWord>Weltmarken</HighlightWord> und starken
                 Mittelständlern.
               </>
             }
@@ -468,7 +467,7 @@ export default function GopusSponsorPage() {
             title={
               <>
                 Vier Standorte.{" "}
-                <span className="text-scu-yellow">Eine Handschlag-Qualität.</span>
+                <HighlightWord>Eine Handschlag-Qualität.</HighlightWord>
               </>
             }
             description="Der Hauptsitz ist und bleibt Emlichheim. Dazu Lingen, Münster und Bogen – so ist GOpus dort, wo die Kunden sind."
@@ -564,7 +563,7 @@ export default function GopusSponsorPage() {
             title={
               <>
                 Warum GOpus den{" "}
-                <span className="text-scu-yellow">SCU Volleyball</span> trägt.
+                <HighlightWord>SCU Volleyball</HighlightWord> trägt.
               </>
             }
           />
@@ -598,8 +597,9 @@ export default function GopusSponsorPage() {
       </section>
 
       {/* === Kontakt === */}
-      <section id="kontakt" className="py-20 lg:py-28 bg-scu-gray-100">
-        <Container>
+      <section id="kontakt" className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -bottom-16 -right-16 h-80 w-80 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative">
           <div className="rounded-3xl bg-white border border-scu-gray-200 overflow-hidden shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)]">
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col gap-6">
@@ -608,7 +608,7 @@ export default function GopusSponsorPage() {
                   title={
                     <>
                       Gespräch{" "}
-                      <span className="text-scu-yellow">in Emlichheim</span>?
+                      <HighlightWord>in Emlichheim</HighlightWord>?
                     </>
                   }
                   description="Die schnellste Antwort gibt's direkt bei GOpus. Gerold Gülker und das Team freuen sich auf Ihre Anfrage – ob zu SAP-Projekten, den Add-on-Produkten oder einer Bewerbung."

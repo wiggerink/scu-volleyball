@@ -5,7 +5,7 @@ import { Radio, Ticket, CalendarDays, MapPin, Trophy } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { SportsTeamJsonLd } from "@/components/seo/json-ld";
 import { roster, staff } from "@/lib/roster";
 import { site } from "@/lib/site";
@@ -71,7 +71,7 @@ export default function FirstTeamPage() {
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow="Kader"
-            title={<>Unsere Spielerinnen <span className="text-scu-yellow">2025/26</span></>}
+            title={<>Unsere Spielerinnen <HighlightWord>2025/26</HighlightWord></>}
             description="Junge Talente aus der eigenen Jugend, erfahrene Leistungsträgerinnen und internationale Qualität vereint in einem Team."
           />
 
@@ -120,11 +120,12 @@ export default function FirstTeamPage() {
       </section>
 
       {/* Trainer & Staff */}
-      <section className="py-20 lg:py-24 bg-scu-gray-100">
-        <Container className="flex flex-col gap-10">
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -top-20 -right-16 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative flex flex-col gap-10">
           <SectionHeading
             eyebrow="Team hinter dem Team"
-            title={<>Trainer:innen & <span className="text-scu-yellow">Medizinisches Team</span></>}
+            title={<>Trainer:innen & <HighlightWord>Medizinisches Team</HighlightWord></>}
           />
           <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
             {staff.map((s) => (
@@ -147,7 +148,7 @@ export default function FirstTeamPage() {
         <Container className="flex flex-col gap-10">
           <SectionHeading
             eyebrow="Spielplan"
-            title={<>Nächste <span className="text-scu-yellow">Spiele</span></>}
+            title={<>Nächste <HighlightWord>Spiele</HighlightWord></>}
             description="Die wichtigsten Partien der Hinrunde in der 2. Bundesliga Pro. Vollständiger Spielplan auf volleyball-bundesliga.de."
           />
           <div className="overflow-hidden rounded-2xl border border-scu-gray-200">

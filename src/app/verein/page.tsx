@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Users, Target, Heart, Trophy, Flag, HeartHandshake } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function VereinPage() {
           <div className="lg:col-span-5">
             <SectionHeading
               eyebrow="Werte"
-              title={<>Was uns <span className="text-scu-yellow">ausmacht</span></>}
+              title={<>Was uns <HighlightWord>ausmacht</HighlightWord></>}
               description="Sechs Prinzipien, die Emlichheim zu einem besonderen Volleyball-Standort machen."
             />
           </div>
@@ -91,7 +91,7 @@ export default function VereinPage() {
       <section className="py-20 bg-white">
         <Container className="max-w-3xl text-center flex flex-col items-center gap-6">
           <h2 className="font-display text-3xl lg:text-4xl font-black">
-            Werde Teil der <span className="text-scu-yellow">SCU-Familie</span>.
+            Werde Teil der <HighlightWord>SCU-Familie</HighlightWord>.
           </h2>
           <p className="text-scu-gray-500 text-lg leading-relaxed">
             Ob als Spielerin, Trainer, Helferin, Fan oder Sponsor: Wir freuen uns über jeden, der Emlichheim zu dem macht, was es ist.

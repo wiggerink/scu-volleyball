@@ -6,7 +6,7 @@ import { ArrowRight, Users, Heart, Award, Baby } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 
 const pillars = [
   { icon: Baby, title: "Mini-Minis & Minis", text: "Koordination, Spielfreude und erste Ballkontakte ab dem Kindergartenalter." },
@@ -49,7 +49,7 @@ export function YouthSection() {
         <div className="lg:col-span-7 flex flex-col gap-8">
           <Badge variant="yellow" className="w-fit">Jugendförderung</Badge>
           <SectionHeading
-            title={<>Aus Emlichheim in die <span className="text-scu-yellow">Bundesliga</span>.</>}
+            title={<>Aus Emlichheim in die <HighlightWord>Bundesliga</HighlightWord>.</>}
             description="Unsere Identität ist Jugendarbeit. Viele unserer Bundesliga-Spielerinnen sind in der eigenen Jugend groß geworden. Diesen Weg machen wir möglich – mit einem der strukturiertesten Jugendkonzepte Norddeutschlands."
           />
 

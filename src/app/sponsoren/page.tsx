@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Eye, Users2, TrendingUp, Handshake, Megaphone, Heart } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { SponsorsSection } from "@/components/sections/sponsors-section";
 
@@ -85,20 +85,28 @@ export default function SponsorsPage() {
       </section>
 
       {/* Warum sponsern */}
-      <section className="py-20 lg:py-24 bg-white">
-        <Container>
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-white via-scu-yellow/[0.04] to-white overflow-hidden">
+        <div aria-hidden className="absolute -top-16 -right-20 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative">
           <SectionHeading
             eyebrow="Warum SCU?"
-            title={<>Drei Gründe für ein <span className="text-scu-yellow">Engagement</span></>}
+            title={<>Drei Gründe für ein <HighlightWord>Engagement</HighlightWord></>}
           />
           <div className="grid sm:grid-cols-3 gap-6 mt-12">
-            {reasons.map((r) => {
+            {reasons.map((r, i) => {
               const Icon = r.icon;
+              const isYellow = i % 2 === 0;
               return (
-                <div key={r.title} className="rounded-2xl bg-scu-gray-100 p-7">
-                  <Icon className="size-7 text-scu-yellow mb-4" />
-                  <div className="font-display text-xl font-black">{r.title}</div>
-                  <div className="text-sm text-scu-gray-500 mt-2">{r.text}</div>
+                <div
+                  key={r.title}
+                  className={`group relative overflow-hidden rounded-2xl bg-white border border-scu-gray-200 p-7 transition hover:-translate-y-1 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.15)] hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] ${isYellow ? "hover:border-scu-yellow" : "hover:border-scu-gold"}`}
+                >
+                  <span aria-hidden className={`absolute inset-x-0 top-0 h-1.5 ${isYellow ? "bg-scu-yellow" : "bg-scu-gold"}`} />
+                  <div className={`inline-flex size-12 items-center justify-center rounded-xl mb-4 ${isYellow ? "bg-scu-yellow text-scu-black" : "bg-scu-gold text-scu-black"} shadow-[0_10px_24px_-8px_rgba(255,240,1,0.55)]`}>
+                    <Icon className="size-6" />
+                  </div>
+                  <div className="font-display text-xl font-black text-scu-black">{r.title}</div>
+                  <div className="text-sm text-scu-gray-500 mt-2 leading-relaxed">{r.text}</div>
                 </div>
               );
             })}
@@ -107,24 +115,24 @@ export default function SponsorsPage() {
       </section>
 
       {/* Pakete */}
-      <section className="py-20 lg:py-24 bg-scu-gray-100">
-        <Container>
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <Container className="relative">
           <SectionHeading
             eyebrow="Pakete"
-            title={<>Passgenaues <span className="text-scu-yellow">Sponsoring</span></>}
+            title={<>Passgenaues <HighlightWord>Sponsoring</HighlightWord></>}
             description="Vier Ebenen, unzählige Kombinationsmöglichkeiten. Gerne erstellen wir Ihnen ein individuelles Angebot."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             {packages.map((p) => {
               const Icon = p.icon;
               return (
-                <div key={p.tier} className="rounded-2xl bg-white p-7 flex flex-col gap-4 border border-scu-gray-200">
-                  <div className={`inline-flex size-12 items-center justify-center rounded-xl ${p.color}`}>
+                <div key={p.tier} className="rounded-2xl bg-white p-7 flex flex-col gap-4 border border-scu-gray-200 hover:border-scu-yellow transition shadow-[0_10px_30px_-20px_rgba(0,0,0,0.15)]">
+                  <div className={`inline-flex size-12 items-center justify-center rounded-xl ${p.color} shadow-[0_10px_24px_-8px_rgba(0,0,0,0.25)]`}>
                     <Icon className="size-6" />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-[0.22em] font-bold text-scu-yellow">{p.tier}</div>
-                    <div className="font-display text-2xl font-black">{p.price}</div>
+                    <div className="text-xs uppercase tracking-[0.22em] font-bold text-scu-yellow-dark">{p.tier}</div>
+                    <div className="font-display text-2xl font-black text-scu-black">{p.price}</div>
                   </div>
                   <ul className="text-sm text-scu-gray-500 space-y-2">
                     {p.perks.map((perk) => (

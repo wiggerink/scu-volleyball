@@ -9,8 +9,10 @@ import { Button } from "@/components/ui/button";
 
 export function HighlightStory() {
   return (
-    <section className="relative bg-scu-gray-100 py-20 lg:py-28 overflow-hidden">
-      <div aria-hidden className="absolute inset-0 bg-grid-dark" />
+    <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05]">
+      <div aria-hidden className="absolute inset-0 bg-grid-dark opacity-40" />
+      <div aria-hidden className="absolute -top-24 -right-10 h-96 w-96 rounded-full bg-scu-yellow/15 blur-3xl" />
+      <div aria-hidden className="absolute -bottom-24 -left-10 h-96 w-96 rounded-full bg-scu-gold/15 blur-3xl" />
       <Container className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
