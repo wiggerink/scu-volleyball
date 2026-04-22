@@ -3,6 +3,8 @@ export type Sponsor = {
   logo: string;
   href: string;
   tier: "premium" | "gold" | "silber" | "partner";
+  /** Wenn gesetzt, hat der Sponsor ein eigenes Portrait unter /sponsoren/{profileSlug} */
+  profileSlug?: string;
 };
 
 export const sponsors: Sponsor[] = [
@@ -12,7 +14,7 @@ export const sponsors: Sponsor[] = [
 
   { name: "Harbour Energy",       tier: "gold",    logo: "/sponsors/harbour-energy.png",       href: "https://www.harbourenergy.com/" },
   { name: "Peters Gruppe",        tier: "gold",    logo: "/sponsors/peters-gruppe.png",        href: "https://peters-gruppe.com/" },
-  { name: "gopus",                tier: "gold",    logo: "/sponsors/gopus.png",                href: "https://www.gopus.de" },
+  { name: "gopus",                tier: "gold",    logo: "/sponsors/gopus.png",                href: "https://www.gopus.de", profileSlug: "gopus" },
   { name: "Sparkasse Nordhorn",   tier: "gold",    logo: "/sponsors/sparkasse-nordhorn.png",   href: "https://www.sparkasse-nordhorn.de/" },
   { name: "Grafschafter Volksbank",tier: "gold",   logo: "/sponsors/grafschafter-volksbank.png",href: "https://www.grafschafter-volksbank.de/" },
   { name: "Intersport Kamps",     tier: "gold",    logo: "/sponsors/intersport-kamps.png",     href: "https://www.intersport.de/haendlersuche/sportgeschaefte-niedersachsen/48455-bad-bentheim-sport-und-freizeit-kamps/" },

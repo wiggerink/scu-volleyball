@@ -90,41 +90,50 @@ export function SponsorsSection() {
               </div>
 
               <div className={cn("grid gap-3 lg:gap-4", group.columns)}>
-                {items.map((s, i) => (
-                  <motion.div
-                    key={s.name}
-                    initial={{ opacity: 0, scale: 0.94 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.45, delay: (i % 10) * 0.03 }}
-                  >
-                    <Link
-                      href={s.href}
-                      target="_blank"
-                      rel="nofollow noopener"
-                      aria-label={s.name}
-                      title={s.name}
-                      className={cn(
-                        "group relative block rounded-2xl border border-scu-gray-200 bg-white overflow-hidden transition-all",
-                        "hover:border-scu-yellow hover:shadow-[0_12px_30px_-10px_rgba(255,240,1,0.25)] hover:-translate-y-0.5",
-                        group.tier === "premium" && "border-scu-black/10 shadow-[0_8px_40px_-20px_rgba(0,0,0,0.2)]",
-                      )}
+                {items.map((s, i) => {
+                  const hasProfile = !!s.profileSlug;
+                  const href = hasProfile ? `/sponsoren/${s.profileSlug}` : s.href;
+                  return (
+                    <motion.div
+                      key={s.name}
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.45, delay: (i % 10) * 0.03 }}
                     >
-                      <div className={cn("relative flex items-center justify-center", group.tile, group.padded)}>
-                        <Image
-                          src={s.logo}
-                          alt={s.name}
-                          fill
-                          sizes="(min-width:1024px) 20vw, 40vw"
-                          className="object-contain p-4 transition duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="absolute inset-x-0 bottom-0 bg-scu-black/95 text-white text-center text-xs py-2 font-semibold tracking-wide translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        {s.name}
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={href}
+                        target={hasProfile ? undefined : "_blank"}
+                        rel={hasProfile ? undefined : "nofollow noopener"}
+                        aria-label={s.name}
+                        title={s.name}
+                        className={cn(
+                          "group relative block rounded-2xl border border-scu-gray-200 bg-white overflow-hidden transition-all",
+                          "hover:border-scu-yellow hover:shadow-[0_12px_30px_-10px_rgba(255,240,1,0.25)] hover:-translate-y-0.5",
+                          group.tier === "premium" && "border-scu-black/10 shadow-[0_8px_40px_-20px_rgba(0,0,0,0.2)]",
+                        )}
+                      >
+                        {hasProfile && (
+                          <span className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-scu-yellow text-scu-black text-[9px] font-black uppercase tracking-[0.18em] px-2 py-0.5 shadow-[0_4px_12px_-4px_rgba(255,240,1,0.6)]">
+                            Portrait
+                          </span>
+                        )}
+                        <div className={cn("relative flex items-center justify-center", group.tile, group.padded)}>
+                          <Image
+                            src={s.logo}
+                            alt={s.name}
+                            fill
+                            sizes="(min-width:1024px) 20vw, 40vw"
+                            className="object-contain p-4 transition duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                        <div className="absolute inset-x-0 bottom-0 bg-scu-black/95 text-white text-center text-xs py-2 font-semibold tracking-wide translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                          {hasProfile ? `${s.name} · Portrait ansehen` : s.name}
+                        </div>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           );
