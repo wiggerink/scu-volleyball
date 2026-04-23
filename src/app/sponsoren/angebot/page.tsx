@@ -3,15 +3,18 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   BadgeCheck,
+  BarChart3,
   Briefcase,
   Calendar,
   CheckCircle2,
+  Download,
   ExternalLink,
   FileText,
   Gauge,
   Globe,
   Image as ImageIcon,
   Link2,
+  LineChart,
   Mail,
   MessageSquare,
   Phone,
@@ -29,6 +32,7 @@ import { Button } from "@/components/ui/button";
 const CONTACT_EMAIL = "info@web-n-search.de";
 const CONTACT_SUBJECT = "Sponsoren-Portraitseite auf scuvolleyball.de";
 const EXAMPLE_HREF = "/sponsoren/gopus";
+const SAMPLE_REPORT_HREF = "/downloads/sponsoren-beispielreport.pdf";
 
 const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
   CONTACT_SUBJECT,
@@ -228,6 +232,15 @@ export default function AngebotPage() {
                   <Link href={EXAMPLE_HREF}>
                     Beispiel: GOpus <ExternalLink className="size-4" />
                   </Link>
+                </Button>
+                <Button asChild size="lg" variant="outlineLight">
+                  <a
+                    href={SAMPLE_REPORT_HREF}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Beispiel-Report (PDF) <Download className="size-4" />
+                  </a>
                 </Button>
               </div>
             </div>
@@ -507,6 +520,193 @@ export default function AngebotPage() {
                     );
                   })}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* === Beispiel-Report === */}
+      <section className="relative py-20 lg:py-28 bg-scu-black text-white overflow-hidden">
+        <div aria-hidden className="absolute inset-0 bg-grid opacity-15" />
+        <div
+          aria-hidden
+          className="absolute -top-24 -left-16 h-80 w-80 rounded-full bg-scu-yellow/20 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-scu-gold/15 blur-3xl"
+        />
+        <Container className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-6 flex flex-col gap-6">
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="yellow">Transparenz</Badge>
+                <Badge variant="light">Beispiel-Report</Badge>
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05]">
+                Was bringt eine Portraitseite{" "}
+                <span className="text-scu-yellow">wirklich?</span>
+              </h2>
+              <p className="text-base sm:text-lg text-white/80 leading-relaxed max-w-2xl">
+                Damit Sie sich ein realistisches Bild machen können, haben wir
+                einen{" "}
+                <strong className="text-white">
+                  kompletten Beispiel-Report
+                </strong>{" "}
+                erstellt – so, wie Sie ihn im Rahmen der Contentpflege einmal
+                pro Quartal bekommen könnten. Mit Traffic-Zahlen,
+                SEO-Rankings, Conversion-Funnel und konkreten Empfehlungen.
+              </p>
+
+              <ul className="grid sm:grid-cols-2 gap-3 pt-2">
+                {[
+                  { icon: BarChart3, label: "Traffic & Nutzerverhalten" },
+                  { icon: Search, label: "SEO-Rankings & Backlinks" },
+                  { icon: LineChart, label: "Conversion-Funnel & ROI" },
+                  { icon: TrendingUp, label: "Konkrete Empfehlungen" },
+                ].map((row) => {
+                  const Icon = row.icon;
+                  return (
+                    <li
+                      key={row.label}
+                      className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3"
+                    >
+                      <div className="inline-flex size-9 items-center justify-center rounded-full bg-scu-yellow text-scu-black">
+                        <Icon className="size-4" />
+                      </div>
+                      <span className="text-sm font-semibold text-white">
+                        {row.label}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="flex flex-wrap gap-3 pt-4">
+                <Button asChild size="lg" variant="primary">
+                  <a
+                    href={SAMPLE_REPORT_HREF}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Beispiel-Report laden <Download className="size-4" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outlineLight">
+                  <a href={mailtoHref}>
+                    So einen Report will ich auch{" "}
+                    <Mail className="size-4" />
+                  </a>
+                </Button>
+              </div>
+              <p className="text-xs text-white/50 max-w-md">
+                PDF, 5 Seiten · fiktive &bdquo;Muster GmbH &amp; Co. KG&ldquo;,
+                Q1 2026 · öffnet in neuem Tab.
+              </p>
+            </div>
+
+            {/* PDF preview mock */}
+            <div className="lg:col-span-6">
+              <div className="relative mx-auto max-w-md">
+                <a
+                  href={SAMPLE_REPORT_HREF}
+                  target="_blank"
+                  rel="noopener"
+                  className="group relative block rounded-3xl bg-white text-scu-black p-8 lg:p-10 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)] border border-white/10 overflow-hidden hover:-translate-y-1 transition-all"
+                >
+                  <div
+                    aria-hidden
+                    className="absolute inset-x-0 top-0 h-2 bg-scu-yellow"
+                  />
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-scu-gray-500">
+                        Sponsoren-Portrait
+                      </div>
+                      <div className="font-display text-xl font-black text-scu-black mt-1">
+                        Beispiel-Report
+                      </div>
+                      <div className="text-xs text-scu-gray-500 mt-0.5">
+                        Q1 2026 · Muster GmbH &amp; Co. KG
+                      </div>
+                    </div>
+                    <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow shrink-0">
+                      <FileText className="size-5" />
+                    </div>
+                  </div>
+
+                  {/* Mock KPI cards */}
+                  <div className="grid grid-cols-3 gap-2 mb-5">
+                    {[
+                      { label: "Views", value: "3.412", delta: "+18%" },
+                      { label: "Verweildauer", value: "2:47", delta: "+22%" },
+                      { label: "Backlink-Klicks", value: "284", delta: "+41%" },
+                    ].map((k) => (
+                      <div
+                        key={k.label}
+                        className="rounded-xl border border-scu-gray-200 p-3 relative overflow-hidden"
+                      >
+                        <div
+                          aria-hidden
+                          className="absolute inset-x-0 top-0 h-0.5 bg-scu-yellow"
+                        />
+                        <div className="text-[8px] uppercase tracking-[0.12em] font-bold text-scu-gray-500">
+                          {k.label}
+                        </div>
+                        <div className="font-display text-base font-black text-scu-black mt-1">
+                          {k.value}
+                        </div>
+                        <div className="text-[9px] font-bold text-green-600 mt-0.5">
+                          {k.delta}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Mock bar chart */}
+                  <div className="rounded-xl bg-scu-gray-100 p-4 mb-4">
+                    <div className="text-[9px] uppercase tracking-[0.14em] font-bold text-scu-gray-500 mb-3">
+                      Top Traffic-Quellen
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      {[
+                        { l: "Google organic", w: 88 },
+                        { l: "Direct", w: 52 },
+                        { l: "scuvolleyball.de", w: 41 },
+                        { l: "LinkedIn", w: 19 },
+                      ].map((row) => (
+                        <div key={row.l} className="flex items-center gap-2">
+                          <span className="text-[9px] text-scu-gray-500 w-24 shrink-0">
+                            {row.l}
+                          </span>
+                          <div
+                            className="h-2 rounded-full bg-scu-yellow"
+                            style={{ width: `${row.w}%` }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-3 border-t border-scu-gray-200">
+                    <div className="text-[10px] uppercase tracking-[0.18em] font-bold text-scu-gray-500">
+                      5 Seiten · PDF
+                    </div>
+                    <div className="inline-flex items-center gap-1 text-xs font-bold text-scu-black group-hover:text-scu-yellow-dark transition">
+                      Öffnen
+                      <Download className="size-3" />
+                    </div>
+                  </div>
+                </a>
+                <div
+                  aria-hidden
+                  className="absolute -bottom-6 -right-6 size-24 rounded-2xl bg-scu-yellow -rotate-[4deg] -z-10"
+                />
+                <div
+                  aria-hidden
+                  className="absolute -top-4 -left-4 size-20 rounded-2xl bg-scu-gold rotate-[6deg] -z-10"
+                />
               </div>
             </div>
           </div>
