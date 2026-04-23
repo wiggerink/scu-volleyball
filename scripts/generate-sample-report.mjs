@@ -575,7 +575,7 @@ function conversionPage() {
   h1("Klicks, Conversions & Recruiting");
 
   body(
-    "Von 3.412 Seitenaufrufen haben 284 Besucher:innen über den dofollow-Backlink direkt auf Ihre Website gewechselt - eine Click-Through-Rate von 8,3 %. Davon wurden 19 zu qualifizierten Leads (Kontaktformular, Angebotsanfrage, Bewerbung). Rechnerisch ergibt sich ein Cost-per-Lead von 13,03 Euro - deutlich unter dem Branchendurchschnitt für B2B-Mittelstand.",
+    "Von 3.412 Seitenaufrufen haben 284 Besucher:innen über den dofollow-Backlink direkt auf Ihre Website gewechselt - eine Click-Through-Rate von 8,3 %. Davon wurden 19 zu qualifizierten Leads (Kontaktformular, Angebotsanfrage, Bewerbung).",
   );
   doc.moveDown(0.8);
 
@@ -588,99 +588,12 @@ function conversionPage() {
     { label: "Website-Besuch",         value: 284,  display: "284",   color: COLOR.gold },
     { label: "Qualifizierter Lead",    value: 19,   display: "19",    color: COLOR.black },
   ], { max: 3412 });
-  doc.y = afterFunnel + 18;
+  doc.y = afterFunnel + 22;
   resetX();
-
-  h2("Ökonomische Einordnung");
-  const endY = table(doc.y + 4, {
-    columns: [
-      { key: "metric", title: "Kennzahl", width: 240 },
-      { key: "value", title: "Wert Q1 2026", width: 130, align: "right" },
-      { key: "note", title: "Einordnung", width: 129, align: "right" },
-    ],
-    rows: [
-      { metric: "Investition Q1 (anteilig)",       value: "247,50 Euro",    note: "1/4 von 790 + 99/a" },
-      { metric: "Qualifizierte Leads",             value: "19",             note: "via Backlink-Klick" },
-      { metric: "Cost-per-Lead",                   value: "13,03 Euro",     note: "B2B-Schnitt ca. 80" },
-      { metric: "Bewerbungen (Karriere-Seite)",    value: "6",              note: "3 Einladungen" },
-      { metric: "Angebotsanfragen",                value: "4",              note: "2 Auftraege" },
-      { metric: "Auftragsvolumen (dokumentiert)",  value: "ca. 41.200 Euro", note: "2 Projekte Q1" },
-      { metric: "ROI (konservativ, 1 Quartal)",    value: "Faktor 166",     note: "41.200 / 247,50" },
-    ],
-  });
-  doc.y = endY + 14;
-  resetX();
-  small(
-    "Hinweis: ROI-Angabe beruht auf dokumentierten Aufträgen, die laut Kundenangabe direkt auf den Portraitseiten-Kontakt zurückgehen. Für weitere Projekte ist die Kausalität nicht eindeutig zuordenbar und wurde konservativ nicht eingerechnet.",
-  );
-}
-
-// =============================================================================
-// PAGE 5 - SOCIAL + RECOMMENDATIONS + CONTACT
-// =============================================================================
-function recommendationsPage() {
-  doc.addPage();
-  eyebrow("Kapitel 4 - Social Signals");
-  h1("Verteilung in sozialen Kanälen");
-
-  body(
-    "Die Portraitseite wurde im Berichtszeitraum 37-mal auf Social-Media-Plattformen geteilt - am häufigsten auf LinkedIn (18) und Facebook (12). Auf Instagram wurden Inhalte aus dem Portrait als Story-Highlight mehrfach von SCU-Accounts verwendet.",
-  );
-  doc.moveDown(0.8);
-  const sY = doc.y + 4;
-  const afterS = barChart(sY, [
-    { label: "LinkedIn",  value: 18, color: COLOR.yellow },
-    { label: "Facebook",  value: 12, color: COLOR.yellowDark },
-    { label: "Instagram", value: 5,  color: COLOR.gold },
-    { label: "WhatsApp",  value: 2,  color: COLOR.gray300 },
-  ], { max: 20 });
-  doc.y = afterS + 22;
-  resetX();
-
-  eyebrow("Kapitel 5 - Empfehlungen für Q2");
-  h1("Handlungsempfehlungen");
-
-  const recs = [
-    {
-      t: "Case-Study-Erweiterung",
-      d: "Aufnahme eines konkreten Kundenprojekts mit Bildstrecke - stärkt Rankings für Long-Tail-Keywords wie 'Muster Projekt Referenz 2026'.",
-    },
-    {
-      t: "Karriere-Ausbau",
-      d: "Dedizierter Abschnitt 'Ausbildung 2026/27' mit direktem Mailto-Link - aktuell ist die Karriere-Rubrik der zweitstärkste Traffic-Treiber.",
-    },
-    {
-      t: "Zweiter interner Link",
-      d: "Platzierung einer kontextuellen Nennung aus dem nächsten Saisonbericht, um den Link-Equity-Fluss innerhalb der SCU-Domain zu stärken.",
-    },
-    {
-      t: "Open-Graph-Bild aktualisieren",
-      d: "Neues OG-Bild mit aktuellem Teamfoto erhöht erfahrungsgemäss die LinkedIn-CTR um 15 bis 25 %.",
-    },
-  ];
-  recs.forEach((r) => {
-    resetX();
-    const y0 = doc.y;
-    doc.save();
-    doc.circle(MARGIN + 5, y0 + 7, 4).fill(COLOR.yellow);
-    doc.restore();
-    doc
-      .fillColor(COLOR.black)
-      .font("Helvetica-Bold")
-      .fontSize(10.5)
-      .text(r.t, MARGIN + 16, y0, { width: CONTENT_W - 16 });
-    doc
-      .fillColor(COLOR.gray800)
-      .font("Helvetica")
-      .fontSize(9.5)
-      .text(r.d, MARGIN + 16, doc.y + 1, { width: CONTENT_W - 16, lineGap: 2 });
-    doc.moveDown(0.5);
-  });
-  doc.moveDown(0.3);
 
   // Contact block
   const cY = doc.y + 4;
-  const blockH = 120;
+  const blockH = 132;
   doc.save().roundedRect(MARGIN, cY, CONTENT_W, blockH, 12).fill(COLOR.black).restore();
   doc.save();
   doc.circle(PAGE_WIDTH - MARGIN - 20, cY + 20, 70).fillOpacity(0.22).fill(COLOR.yellow);
@@ -722,14 +635,14 @@ function recommendationsPage() {
       "Reports werden jedes Quartal automatisch erstellt und als PDF per E-Mail zugestellt. Auf Wunsch auch monatlich oder als Live-Dashboard (Looker Studio).",
       MARGIN + 190,
       cY + 92,
-      { width: CONTENT_W - 210, lineBreak: false, height: 22 },
+      { width: CONTENT_W - 210, height: 34, lineGap: 1 },
     );
   doc.fillOpacity(1);
 }
 
-// Footers (skip cover). We keep only the first 5 generated pages.
+// Footers (skip cover). We keep only the first 4 generated pages.
 function addFooters() {
-  const total = 5;
+  const total = 4;
   for (let i = 1; i < total; i++) {
     doc.switchToPage(i);
     // Temporarily push the bottom margin to 0 so text() at y=PAGE_HEIGHT-28
@@ -767,7 +680,6 @@ coverPage();
 trafficPage();
 seoPage();
 conversionPage();
-recommendationsPage();
 addFooters();
 
 doc.end();

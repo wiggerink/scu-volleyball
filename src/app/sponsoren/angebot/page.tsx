@@ -556,15 +556,15 @@ export default function AngebotPage() {
                 </strong>{" "}
                 erstellt – so, wie Sie ihn im Rahmen der Contentpflege einmal
                 pro Quartal bekommen könnten. Mit Traffic-Zahlen,
-                SEO-Rankings, Conversion-Funnel und konkreten Empfehlungen.
+                SEO-Rankings und Conversion-Funnel.
               </p>
 
               <ul className="grid sm:grid-cols-2 gap-3 pt-2">
                 {[
                   { icon: BarChart3, label: "Traffic & Nutzerverhalten" },
                   { icon: Search, label: "SEO-Rankings & Backlinks" },
-                  { icon: LineChart, label: "Conversion-Funnel & ROI" },
-                  { icon: TrendingUp, label: "Konkrete Empfehlungen" },
+                  { icon: LineChart, label: "Conversion-Funnel" },
+                  { icon: TrendingUp, label: "Quartalsweise automatisch" },
                 ].map((row) => {
                   const Icon = row.icon;
                   return (
@@ -601,7 +601,7 @@ export default function AngebotPage() {
                 </Button>
               </div>
               <p className="text-xs text-white/50 max-w-md">
-                PDF, 5 Seiten · fiktive &bdquo;Muster GmbH &amp; Co. KG&ldquo;,
+                PDF, 4 Seiten · fiktive &bdquo;Muster GmbH &amp; Co. KG&ldquo;,
                 Q1 2026 · öffnet in neuem Tab.
               </p>
             </div>
@@ -691,7 +691,7 @@ export default function AngebotPage() {
 
                   <div className="flex items-center justify-between pt-3 border-t border-scu-gray-200">
                     <div className="text-[10px] uppercase tracking-[0.18em] font-bold text-scu-gray-500">
-                      5 Seiten · PDF
+                      4 Seiten · PDF
                     </div>
                     <div className="inline-flex items-center gap-1 text-xs font-bold text-scu-black group-hover:text-scu-yellow-dark transition">
                       Öffnen
