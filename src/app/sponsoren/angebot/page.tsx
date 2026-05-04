@@ -41,7 +41,7 @@ const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
 export const metadata: Metadata = {
   title: "Sponsoren-Portrait auf scuvolleyball.de – Angebot für SCU-Partner",
   description:
-    "Eigene Portraitseite auf scuvolleyball.de für SCU-Sponsoren. Professionell getextet, SEO-optimiert, mit dofollow-Backlink. Einmalig 790 €, Contentpflege 99 €/Jahr.",
+    "Eigene Portraitseite auf scuvolleyball.de für SCU-Sponsoren. SEO-optimiert, mit dofollow-Backlink, inkl. Pflege & Hosting. 149 € pro Jahr.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/sponsoren/angebot" },
 };
@@ -56,7 +56,7 @@ const benefits = [
   {
     icon: FileText,
     title: "Ihre Geschichte – professionell erzählt",
-    text: "Statt eines Logos in der Sponsorenleiste bekommen Sie eine eigene Unterseite mit Fließtext, Fakten, Referenzen und Ihrer Haltung. Von einem Menschen recherchiert und geschrieben – nicht von einer Vorlage.",
+    text: "Statt eines Logos in der Sponsorenleiste bekommen Sie eine eigene Unterseite mit Fließtext, Fakten, Referenzen und Ihrer Haltung – auf Basis eines kurzen Briefing-Gesprächs.",
     tint: "gold", // scu-gold accent
   },
   {
@@ -106,7 +106,7 @@ const deliverables = [
   },
   {
     icon: Calendar,
-    label: "1 Jahr Hosting",
+    label: "Hosting & Pflege",
     text: "Inklusive – die Seite läuft dauerhaft auf scuvolleyball.de",
   },
   {
@@ -153,24 +153,20 @@ const faqs = [
     a: "Suchmaschinen bewerten Websites unter anderem danach, wie viele andere Seiten auf sie verlinken. Ein dofollow-Link gibt dabei volle SEO-Kraft weiter. Links von Agenturen oder Linkbörsen sind oft „nofollow“ und damit SEO-wertlos. Unsere Links sind bewusst dofollow – das ist der harte Kern des Angebots.",
   },
   {
-    q: "Was kostet die Contentpflege konkret?",
-    a: "99 € pro Jahr. Darin enthalten sind kleine inhaltliche Anpassungen (Texte aktualisieren, Logo tauschen, neue Referenzen ergänzen), Link-Monitoring und der laufende Betrieb. Größere Neugestaltungen werden separat kalkuliert.",
+    q: "Was ist im Jahrespreis enthalten?",
+    a: "Die komplette Erstellung Ihrer Portraitseite (Briefing, Text, Layout, Bildintegration), das SEO-Setup, der dofollow-Backlink, Hosting & Betrieb sowie kleinere inhaltliche Anpassungen während des Jahres (Texte aktualisieren, Logo tauschen, neue Referenzen ergänzen). Größere Neugestaltungen werden separat kalkuliert.",
   },
   {
-    q: "Muss ich die Pflege zwingend buchen?",
-    a: "Nein. Die Seite bleibt auch ohne Pflegevertrag 12 Monate online. Danach entscheiden Sie, ob Sie verlängern möchten oder nicht. Ohne Verlängerung wird die Seite deaktiviert – der Backlink geht dann verloren.",
+    q: "Gibt es eine Mindestlaufzeit?",
+    a: "Nein. Sie können jährlich kündigen – ohne Begründung, ohne Kündigungsfrist-Akrobatik. Wenn Sie nicht verlängern, wird die Portraitseite zum Jahresende deaktiviert; der Backlink geht dann verloren.",
   },
   {
     q: "Wie lange dauert es bis zum Go-Live?",
-    a: "Vom Briefing-Call bis zum Livegang typischerweise 2 Wochen. Wenn Sie Ihre Texte und Bilder zügig liefern, auch schneller.",
+    a: "Vom Briefing-Call bis zum Livegang typischerweise 2 Wochen. Wenn Sie Ihre Bilder und Wunschinhalte zügig liefern, auch schneller.",
   },
   {
     q: "Kann ich später noch Änderungen machen?",
-    a: "Ja – kleine Anpassungen sind in der Jahrespflege enthalten. Unabhängig davon dürfen Sie jederzeit Änderungswünsche melden; kleinere Dinge gehen meist schnell, größere werden offen kalkuliert.",
-  },
-  {
-    q: "Wer schreibt den Text?",
-    a: "Web & Search persönlich – basierend auf dem Briefing-Gespräch, Ihrer Website und einer kurzen Recherche. Kein Textbaukasten, keine KI-Platzhalter. Wenn Sie selbst einen Text liefern möchten, ist das natürlich auch möglich.",
+    a: "Ja – kleinere Anpassungen sind im Jahrespreis enthalten. Unabhängig davon dürfen Sie jederzeit Änderungswünsche melden; kleinere Dinge gehen meist schnell, größere werden offen kalkuliert.",
   },
   {
     q: "Was passiert, wenn die SCU-Website mal neu gestaltet wird?",
@@ -251,44 +247,32 @@ export default function AngebotPage() {
                 <div className="relative rounded-3xl bg-white p-8 lg:p-10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] border border-white/10">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.24em] font-bold text-scu-gray-500">
                     <Sparkles className="size-3 text-scu-yellow" />
-                    Komplettpaket
+                    Alles inklusive
                   </div>
                   <div className="mt-4 flex items-baseline gap-2">
                     <span className="font-display text-6xl lg:text-7xl font-black text-scu-black leading-none">
-                      790
+                      149
                     </span>
                     <span className="font-display text-3xl font-black text-scu-black">
                       €
                     </span>
-                  </div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-scu-gray-500 mt-2">
-                    einmalig · zzgl. MwSt.
-                  </div>
-
-                  <div className="my-6 h-px bg-scu-gray-200" />
-
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-display text-3xl font-black text-scu-black leading-none">
-                      99
-                    </span>
-                    <span className="font-display text-lg font-black text-scu-black">
-                      €
-                    </span>
-                    <span className="text-sm font-semibold text-scu-gray-500">
+                    <span className="text-base font-semibold text-scu-gray-500">
                       / Jahr
                     </span>
                   </div>
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-scu-gray-500 mt-2">
-                    Contentpflege · optional
+                    zzgl. MwSt. · jährlich kündbar
                   </div>
 
-                  <ul className="mt-6 flex flex-col gap-2.5">
+                  <div className="my-6 h-px bg-scu-gray-200" />
+
+                  <ul className="flex flex-col gap-2.5">
                     {[
                       "Eigene Unterseite inkl. Domain-Integration",
                       "Dofollow-Backlink auf Ihre Website",
                       "Redaktioneller Text (ca. 400–600 Wörter)",
-                      "1 Feedback-Runde inklusive",
-                      "12 Monate Hosting inklusive",
+                      "Erstellung, Hosting & Pflege inklusive",
+                      "Keine Setup-Gebühr, keine Mindestlaufzeit",
                     ].map((item) => (
                       <li
                         key={item}
@@ -406,7 +390,7 @@ export default function AngebotPage() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
               Was Sie für{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-scu-black">790 €</span>
+                <span className="relative z-10 text-scu-black">149 €/Jahr</span>
                 <span
                   aria-hidden
                   className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
@@ -954,7 +938,7 @@ export default function AngebotPage() {
                   <div className="mt-6 flex flex-wrap gap-2">
                     <Badge variant="yellow">Für SCU-Partner</Badge>
                     <Badge variant="light">Transparent</Badge>
-                    <Badge variant="light">Einmalig 790 €</Badge>
+                    <Badge variant="light">149 € / Jahr</Badge>
                   </div>
                 </div>
               </aside>
