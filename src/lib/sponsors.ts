@@ -27,7 +27,7 @@ export const sponsors: Sponsor[] = [
   { name: "A&S",                  tier: "silber",  logo: "/sponsors/aunds.png",                href: "http://www.aunds-gmbh.de/" },
   { name: "Ragano",               tier: "silber",  logo: "/sponsors/ragano.png",               href: "https://www.ragano.de/" },
   { name: "Steuermanufaktur",     tier: "silber",  logo: "/sponsors/steuermanufaktur.png",     href: "https://steuermanufaktur.team/" },
-  { name: "J.B. Küpers",          tier: "silber",  logo: "/sponsors/jb-kuepers.png",           href: "https://www.jbkuepers.de/" },
+  { name: "J.B. Küpers",          tier: "silber",  logo: "/sponsors/jb-kuepers.svg",           href: "https://www.jbkuepers.de/" },
   { name: "NVB",                  tier: "silber",  logo: "/sponsors/nvb.png",                  href: "https://www.nvb.de/" },
   { name: "Kwade & Sohn",         tier: "silber",  logo: "/sponsors/kwade.png",                href: "https://www.kwade-sohn.de/" },
 
