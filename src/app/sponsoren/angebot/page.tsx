@@ -41,7 +41,7 @@ const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
 export const metadata: Metadata = {
   title: "Sponsoren-Portrait auf scuvolleyball.de – Angebot für SCU-Partner",
   description:
-    "Eigene Portraitseite auf scuvolleyball.de für SCU-Sponsoren. SEO-optimiert, mit dofollow-Backlink, inkl. Pflege & Hosting. 149 € pro Jahr.",
+    "Eigene Portraitseite auf scuvolleyball.de für SCU-Sponsoren. SEO-optimiert, mit dofollow-Backlink, inkl. Pflege & Hosting. 199 € pro Jahr.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/sponsoren/angebot" },
 };
@@ -251,7 +251,7 @@ export default function AngebotPage() {
                   </div>
                   <div className="mt-4 flex items-baseline gap-2">
                     <span className="font-display text-6xl lg:text-7xl font-black text-scu-black leading-none">
-                      149
+                      199
                     </span>
                     <span className="font-display text-3xl font-black text-scu-black">
                       €
@@ -390,7 +390,7 @@ export default function AngebotPage() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.05] text-scu-black">
               Was Sie für{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-scu-black">149 €/Jahr</span>
+                <span className="relative z-10 text-scu-black">199 €/Jahr</span>
                 <span
                   aria-hidden
                   className="absolute inset-x-0 bottom-1 h-3 lg:h-4 bg-scu-yellow/70 -skew-x-6 -z-0"
@@ -938,7 +938,7 @@ export default function AngebotPage() {
                   <div className="mt-6 flex flex-wrap gap-2">
                     <Badge variant="yellow">Für SCU-Partner</Badge>
                     <Badge variant="light">Transparent</Badge>
-                    <Badge variant="light">149 € / Jahr</Badge>
+                    <Badge variant="light">199 € / Jahr</Badge>
                   </div>
                 </div>
               </aside>
