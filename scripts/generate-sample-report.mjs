@@ -16,6 +16,7 @@ const ROOT = path.resolve(__dirname, "..");
 
 const OUTPUT = path.join(ROOT, "public", "downloads", "sponsoren-beispielreport.pdf");
 const LOGO_WNS = path.join(ROOT, "public", "partners", "web-n-search.png");
+const LOGO_WNS_WHITE = path.join(ROOT, "public", "partners", "web-n-search-white.png");
 const LOGO_SCU = path.join(ROOT, "public", "logos", "scu-logo.png");
 
 // SCU design tokens
@@ -527,9 +528,9 @@ function conversionPage() {
   doc.circle(PAGE_WIDTH - MARGIN - 20, cY + 20, 70).fillOpacity(0.22).fill(COLOR.yellow);
   doc.restore();
 
-  if (fs.existsSync(LOGO_WNS)) {
+  if (fs.existsSync(LOGO_WNS_WHITE)) {
     try {
-      doc.image(LOGO_WNS, MARGIN + 20, cY + 24, { height: 44 });
+      doc.image(LOGO_WNS_WHITE, MARGIN + 20, cY + 24, { height: 44 });
     } catch {}
   }
   doc
