@@ -585,7 +585,7 @@ export default function AngebotPage() {
                 </Button>
               </div>
               <p className="text-xs text-white/50 max-w-md">
-                PDF, 4 Seiten · fiktive &bdquo;Muster GmbH &amp; Co. KG&ldquo;,
+                PDF, 3 Seiten · fiktive &bdquo;Muster GmbH &amp; Co. KG&ldquo;,
                 Q1 2026 · öffnet in neuem Tab.
               </p>
             </div>
@@ -675,7 +675,7 @@ export default function AngebotPage() {
 
                   <div className="flex items-center justify-between pt-3 border-t border-scu-gray-200">
                     <div className="text-[10px] uppercase tracking-[0.18em] font-bold text-scu-gray-500">
-                      4 Seiten · PDF
+                      3 Seiten · PDF
                     </div>
                     <div className="inline-flex items-center gap-1 text-xs font-bold text-scu-black group-hover:text-scu-yellow-dark transition">
                       Öffnen

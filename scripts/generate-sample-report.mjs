@@ -358,10 +358,10 @@ function coverPage() {
     accent: COLOR.yellow,
   });
   kpiCard(MARGIN + 3 * (cw + gap), kpiY, cw, 98, {
-    label: "Ranking-Keywords",
-    value: "27",
-    sub: "Top-100 bei Google",
-    delta: "+9 neu",
+    label: "Qualifizierte Leads",
+    value: "19",
+    sub: "via Kontakt/Bewerbung",
+    delta: "+6 vs. Q4",
     accent: COLOR.gold,
   });
 
@@ -373,7 +373,7 @@ function coverPage() {
     .font("Helvetica")
     .fontSize(11)
     .text(
-      "Dieser Beispiel-Report zeigt, wie ein typischer Quartalsbericht für eine Portraitseite auf scuvolleyball.de aussieht. Alle Zahlen sind anonymisiert und orientieren sich an realen Messwerten eines Gold-Partners nach sechs Monaten Laufzeit. Vergleichswerte stammen aus Google Search Console, Matomo Analytics und Ahrefs.",
+      "Dieser Beispiel-Report zeigt, wie ein typischer Quartalsbericht für eine Portraitseite auf scuvolleyball.de aussieht. Alle Zahlen sind anonymisiert und orientieren sich an realen Messwerten eines Gold-Partners nach sechs Monaten Laufzeit. Vergleichswerte stammen aus Matomo Analytics und der internen Klick-/Lead-Erfassung.",
       MARGIN,
       440,
       { width: CONTENT_W, lineGap: 3, align: "justify" },
@@ -495,83 +495,11 @@ function trafficPage() {
 }
 
 // =============================================================================
-// PAGE 3 - SEO
-// =============================================================================
-function seoPage() {
-  doc.addPage();
-  eyebrow("Kapitel 2 - SEO-Wirkung");
-  h1("Rankings & Backlink-Performance");
-  body(
-    "Die Portraitseite rankt nach drei Monaten bereits für 27 Keywords auf den ersten 100 Positionen bei Google. Der dofollow-Backlink auf Ihre Hauptdomain hat den gesamten Auftritt gestärkt - messbar an einem um 4 Punkte gestiegenen Ahrefs Domain-Rating Ihres eigenen Web-Auftritts.",
-  );
-  doc.moveDown(0.8);
-
-  h2("Top-8-Keywords - Position & Impressionen");
-  const tableY = doc.y + 4;
-  const endY = table(tableY, {
-    columns: [
-      { key: "kw", title: "Keyword", width: 220 },
-      { key: "pos", title: "Position", width: 60, align: "right" },
-      { key: "delta", title: "Chg. 90T", width: 65, align: "right" },
-      { key: "imp", title: "Impressionen", width: 90, align: "right" },
-      { key: "ctr", title: "CTR", width: 64, align: "right" },
-    ],
-    rows: [
-      { kw: "Muster GmbH Emlichheim",          pos: "1",  delta: "+4",   imp: "1.420", ctr: "38 %" },
-      { kw: "Muster Maschinenbau Grafschaft",  pos: "3",  delta: "+8",   imp: "682",   ctr: "17 %" },
-      { kw: "Karriere Muster GmbH",            pos: "4",  delta: "neu",  imp: "512",   ctr: "12 %" },
-      { kw: "Muster Ausbildung 2026",          pos: "6",  delta: "+11",  imp: "398",   ctr: "9,4 %" },
-      { kw: "Muster Kontakt Emlichheim",       pos: "8",  delta: "+3",   imp: "241",   ctr: "6,8 %" },
-      { kw: "Sponsor SCU Volleyball",          pos: "11", delta: "+7",   imp: "203",   ctr: "4,1 %" },
-      { kw: "Muster GmbH Referenzen",          pos: "14", delta: "neu",  imp: "176",   ctr: "3,2 %" },
-      { kw: "Mittelstand Grafschaft Bentheim", pos: "22", delta: "+18",  imp: "144",   ctr: "1,9 %" },
-    ],
-  });
-  doc.y = endY + 12;
-  resetX();
-  small(
-    'Quelle: Google Search Console - Berichtszeitraum 01.01.-31.03.2026. "neu" = Keyword war im Vorquartal nicht in den Top 100.',
-  );
-  doc.moveDown(0.8);
-
-  h2("Backlink-Wirkung auf Ihre Hauptdomain");
-  const cardY = doc.y + 4;
-  const gap = 10;
-  const cw = (CONTENT_W - gap * 2) / 3;
-  kpiCard(MARGIN, cardY, cw, 88, {
-    label: "Domain-Rating (Ahrefs)",
-    value: "34 -> 38",
-    sub: "Messung 01.01. vs. 31.03.",
-    delta: "+4 Punkte",
-    accent: COLOR.yellow,
-  });
-  kpiCard(MARGIN + cw + gap, cardY, cw, 88, {
-    label: "Ref. Domains",
-    value: "72 -> 81",
-    sub: "qualifizierte Verweisdomains",
-    delta: "+12,5 %",
-    accent: COLOR.gold,
-  });
-  kpiCard(MARGIN + 2 * (cw + gap), cardY, cw, 88, {
-    label: "URL-Rating Portrait",
-    value: "18",
-    sub: "scuvolleyball.de/sponsoren/...",
-    accent: COLOR.yellow,
-  });
-  doc.y = cardY + 88 + 14;
-  resetX();
-
-  body(
-    "Hinweis: Der dofollow-Backlink von scuvolleyball.de (DR 41) zählt zu den vier stärksten Verweislinks Ihrer Domain im Berichtszeitraum. Die Verbindung 'regionaler Bundesliga-Verein zu Mittelstand vor Ort' ist thematisch passend und wird von Google entsprechend gewichtet.",
-  );
-}
-
-// =============================================================================
-// PAGE 4 - CONVERSION
+// PAGE 3 - CONVERSION
 // =============================================================================
 function conversionPage() {
   doc.addPage();
-  eyebrow("Kapitel 3 - Wirkung aufs Geschäft");
+  eyebrow("Kapitel 2 - Wirkung aufs Geschäft");
   h1("Klicks, Conversions & Recruiting");
 
   body(
@@ -640,9 +568,9 @@ function conversionPage() {
   doc.fillOpacity(1);
 }
 
-// Footers (skip cover). We keep only the first 4 generated pages.
+// Footers (skip cover). We keep only the first 3 generated pages.
 function addFooters() {
-  const total = 4;
+  const total = 3;
   for (let i = 1; i < total; i++) {
     doc.switchToPage(i);
     // Temporarily push the bottom margin to 0 so text() at y=PAGE_HEIGHT-28
@@ -678,7 +606,6 @@ function addFooters() {
 // =============================================================================
 coverPage();
 trafficPage();
-seoPage();
 conversionPage();
 addFooters();
 
