@@ -104,7 +104,7 @@ export function Header() {
           </div>
 
           <button
-            className="lg:hidden inline-flex items-center justify-center rounded-full border border-white/20 bg-scu-black/40 backdrop-blur text-white size-11 shadow-sm hover:bg-scu-yellow hover:text-scu-black hover:border-scu-yellow transition"
+            className="lg:hidden inline-flex items-center justify-center border border-white/20 bg-scu-black/40 backdrop-blur text-white size-11 shadow-sm hover:bg-scu-yellow hover:text-scu-black hover:border-scu-yellow transition"
             aria-label="Menü öffnen"
             onClick={() => setMobileOpen(true)}
           >
@@ -120,7 +120,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+              className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -128,99 +128,131 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed inset-y-0 right-0 z-[70] w-full max-w-sm bg-scu-black text-white p-6 flex flex-col overflow-y-auto"
+              className="fixed inset-y-0 right-0 z-[70] w-full max-w-sm bg-scu-black text-white flex flex-col overflow-y-auto border-l-2 border-scu-yellow"
             >
-              <div className="flex items-center justify-between mb-8">
-                <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                  <div className="relative size-10">
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 group">
+                  <div className="relative size-10 shrink-0">
                     <Image src="/logos/scu-logo.png" alt="SCU" fill className="object-contain" />
                   </div>
-                  <span className="font-display font-black">SCU Volleyball</span>
+                  <div className="flex flex-col leading-tight">
+                    <span className="font-display font-black text-sm">SCU Volleyball</span>
+                    <span className="text-[9px] uppercase tracking-[0.22em] text-scu-yellow font-bold">2. Bundesliga Pro</span>
+                  </div>
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
                   aria-label="Menü schließen"
-                  className="rounded-full size-11 inline-flex items-center justify-center border border-white/15 hover:bg-white/10 transition"
+                  className="size-10 inline-flex items-center justify-center border border-white/15 text-white/80 hover:bg-scu-yellow hover:text-scu-black hover:border-scu-yellow transition"
                 >
                   <X className="size-5" />
                 </button>
               </div>
 
-              <nav className="flex flex-col gap-1.5">
-                {site.nav.map((item) => {
-                  const active = activeHref === item.href;
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={cn(
-                        "group relative rounded-2xl px-4 py-3 transition border",
-                        active
-                          ? "bg-scu-yellow text-scu-black border-scu-yellow"
-                          : "bg-white/[0.03] border-white/10 hover:bg-white/[0.07] hover:border-white/20",
-                      )}
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <span className="text-base font-display font-black tracking-tight">{item.label}</span>
-                          {item.badge && (
-                            <span
-                              className={cn(
-                                "inline-flex items-center rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em]",
-                                active ? "bg-scu-black text-scu-yellow" : "bg-scu-yellow text-scu-black",
-                              )}
-                            >
-                              {item.badge}
-                            </span>
+              {/* Navigation */}
+              <div className="flex-1 flex flex-col">
+                <div className="px-6 pt-6 pb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-white/40">
+                  Navigation
+                </div>
+                <nav className="flex flex-col">
+                  {site.nav.map((item) => {
+                    const active = activeHref === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={cn(
+                          "group relative flex items-center gap-3 px-6 py-4 border-b border-white/5 transition",
+                          active
+                            ? "bg-scu-yellow/[0.06] text-scu-yellow"
+                            : "text-white hover:bg-white/[0.04] hover:text-scu-yellow",
+                        )}
+                      >
+                        {/* Yellow accent bar — visible when active or on hover */}
+                        <span
+                          aria-hidden
+                          className={cn(
+                            "absolute left-0 top-0 bottom-0 w-1 bg-scu-yellow transition-all",
+                            active ? "opacity-100" : "opacity-0 group-hover:opacity-60",
+                          )}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="text-base font-display font-black tracking-tight">{item.label}</span>
+                            {item.badge && (
+                              <span className="inline-flex items-center bg-scu-yellow text-scu-black px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] leading-none">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          {item.description && (
+                            <div className={cn(
+                              "text-[11px] mt-0.5 leading-snug transition-colors",
+                              active ? "text-scu-yellow/70" : "text-white/45 group-hover:text-white/65",
+                            )}>
+                              {item.description}
+                            </div>
                           )}
                         </div>
                         <ArrowUpRight
                           className={cn(
-                            "size-4 transition-transform shrink-0",
-                            active ? "text-scu-black" : "text-white/40 group-hover:text-scu-yellow group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
+                            "size-4 shrink-0 transition-all",
+                            active
+                              ? "text-scu-yellow opacity-100"
+                              : "text-white/30 group-hover:text-scu-yellow group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
                           )}
                         />
-                      </div>
-                      {item.description && (
-                        <div className={cn(
-                          "text-[11px] mt-0.5 leading-snug",
-                          active ? "text-scu-black/70" : "text-white/55",
-                        )}>
-                          {item.description}
-                        </div>
-                      )}
-                    </Link>
-                  );
-                })}
-              </nav>
+                      </Link>
+                    );
+                  })}
+                </nav>
+              </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-3">
-                <Button asChild variant="primary" size="lg">
-                  <Link
-                    href={site.ticketsUrl}
-                    target="_blank"
-                    rel="noopener"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <Ticket className="size-4" /> Tickets sichern
-                  </Link>
-                </Button>
-                <Button asChild variant="outlineLight" size="lg">
-                  <Link href="/teams/1-mannschaft#live" onClick={() => setMobileOpen(false)}>
-                    <Radio className="size-4" /> Livestream
-                  </Link>
-                </Button>
+              {/* CTA + Contact */}
+              <div className="border-t border-white/10 bg-white/[0.02] px-6 py-6 flex flex-col gap-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/40 mb-1">
+                  Schnellzugriff
+                </div>
                 <Link
-                  href={`mailto:${site.contact.email}`}
-                  className="text-center text-sm text-white/60 hover:text-scu-yellow transition mt-2"
+                  href={site.ticketsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => setMobileOpen(false)}
+                  className="group inline-flex items-center justify-between gap-2 bg-scu-yellow text-scu-black px-5 py-3.5 font-display font-black text-sm tracking-tight hover:bg-white transition-all"
                 >
-                  {site.contact.email}
+                  <span className="inline-flex items-center gap-2.5">
+                    <Ticket className="size-4" />
+                    Tickets sichern
+                  </span>
+                  <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
-                <div className="flex items-center gap-4 pt-2 text-white/60 justify-center">
-                  <Link href={site.social.facebook} target="_blank" aria-label="Facebook" className="hover:text-scu-yellow transition"><FacebookIcon className="size-5" /></Link>
-                  <Link href={site.social.instagram} target="_blank" aria-label="Instagram" className="hover:text-scu-yellow transition"><InstagramIcon className="size-5" /></Link>
-                  <Link href={site.social.youtube} target="_blank" aria-label="YouTube" className="hover:text-scu-yellow transition"><YoutubeIcon className="size-5" /></Link>
+                <Link
+                  href="/teams/1-mannschaft#live"
+                  onClick={() => setMobileOpen(false)}
+                  className="group inline-flex items-center justify-between gap-2 border border-white/20 text-white px-5 py-3.5 font-display font-black text-sm tracking-tight hover:bg-white/10 hover:border-white/40 transition-all"
+                >
+                  <span className="inline-flex items-center gap-2.5">
+                    <Radio className="size-4 text-scu-yellow" />
+                    Livestream
+                  </span>
+                  <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+
+                <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-4">
+                  <Link
+                    href={`mailto:${site.contact.email}`}
+                    className="inline-flex items-center gap-2 text-xs text-white/60 hover:text-scu-yellow transition min-w-0"
+                  >
+                    <Mail className="size-3.5 shrink-0" />
+                    <span className="truncate">{site.contact.email}</span>
+                  </Link>
+                  <div className="flex items-center gap-3 text-white/55 shrink-0">
+                    <Link href={site.social.facebook} target="_blank" aria-label="Facebook" className="hover:text-scu-yellow transition"><FacebookIcon className="size-4" /></Link>
+                    <Link href={site.social.instagram} target="_blank" aria-label="Instagram" className="hover:text-scu-yellow transition"><InstagramIcon className="size-4" /></Link>
+                    <Link href={site.social.youtube} target="_blank" aria-label="YouTube" className="hover:text-scu-yellow transition"><YoutubeIcon className="size-4" /></Link>
+                  </div>
                 </div>
               </div>
             </motion.div>
