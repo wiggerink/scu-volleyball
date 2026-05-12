@@ -341,7 +341,7 @@ type MegaData = NonNullable<NavEntry["mega"]>;
 
 function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null }) {
   return (
-    <div className="relative w-[880px] xl:w-[960px] rounded-[28px] bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
+    <div className="relative w-[min(880px,calc(100vw-2rem))] xl:w-[960px] rounded-[28px] bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
       <div aria-hidden className="absolute -top-24 -left-24 size-64 rounded-full bg-scu-yellow/10 blur-3xl pointer-events-none" />
       <div aria-hidden className="absolute -bottom-32 -right-20 size-72 rounded-full bg-scu-yellow/5 blur-3xl pointer-events-none" />
 

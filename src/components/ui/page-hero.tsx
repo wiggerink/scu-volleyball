@@ -29,7 +29,7 @@ export function PageHero({ eyebrow, title, description, imageUrl, className, chi
       <div aria-hidden className="absolute inset-0 bg-grid opacity-20" />
       <div aria-hidden className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-scu-yellow/25 blur-3xl" />
 
-      <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-20 lg:pb-28">
+      <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 sm:pb-20 lg:pb-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,8 +37,8 @@ export function PageHero({ eyebrow, title, description, imageUrl, className, chi
           className="flex flex-col gap-5 max-w-3xl"
         >
           {eyebrow && <Badge variant="yellow" className="w-fit">{eyebrow}</Badge>}
-          <h1 className="font-display text-5xl lg:text-7xl font-black leading-[1]">{title}</h1>
-          {description && <p className="text-white/80 text-lg max-w-2xl leading-relaxed">{description}</p>}
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-black leading-[1]">{title}</h1>
+          {description && <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">{description}</p>}
           {children && <div className="pt-2">{children}</div>}
         </motion.div>
       </Container>

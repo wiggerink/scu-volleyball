@@ -31,13 +31,13 @@ export function Hero() {
         className="absolute -top-40 -right-40 h-[640px] w-[640px] rounded-full bg-scu-yellow/20 blur-[140px]"
       />
 
-      <Container className="relative pt-44 sm:pt-48 lg:pt-56 xl:pt-64 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div className="lg:col-span-7 flex flex-col gap-7">
+      <Container className="relative pt-32 sm:pt-40 lg:pt-56 xl:pt-64 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-7">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1 }}
-            className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-[84px] font-black leading-[0.95] tracking-tight"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] font-black leading-[0.95] tracking-tight"
           >
             Heimat.
             <br />
@@ -83,18 +83,18 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.4 }}
-            className="grid grid-cols-3 gap-4 pt-6 max-w-xl border-t border-white/10"
+            className="grid grid-cols-3 gap-2 sm:gap-4 pt-6 max-w-xl border-t border-white/10"
           >
             {[
               { k: "30+", v: "Jahre Bundesliga", icon: Trophy },
               { k: "15", v: "Mannschaften", icon: CalendarDays },
               { k: "120+", v: "Kinder & Jugend", icon: Trophy },
             ].map(({ k, v, icon: Icon }) => (
-              <div key={v} className="flex items-start gap-3 pt-6">
-                <Icon className="size-5 text-scu-yellow shrink-0 mt-1" />
-                <div>
-                  <dt className="font-display text-3xl font-black leading-none">{k}</dt>
-                  <dd className="text-[11px] uppercase tracking-[0.18em] text-white/55 mt-1.5">{v}</dd>
+              <div key={v} className="flex items-start gap-2 sm:gap-3 pt-6">
+                <Icon className="size-4 sm:size-5 text-scu-yellow shrink-0 mt-1" />
+                <div className="min-w-0">
+                  <dt className="font-display text-2xl sm:text-3xl font-black leading-none">{k}</dt>
+                  <dd className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/55 mt-1.5">{v}</dd>
                 </div>
               </div>
             ))}

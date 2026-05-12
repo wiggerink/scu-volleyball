@@ -72,7 +72,7 @@ export function BundesligaAktionBanner() {
               whileInView={{ opacity: 1, scale: 1, rotate: -1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-scu-yellow/15 via-scu-yellow/5 to-transparent p-8 lg:p-10 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]"
+              className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-scu-yellow/15 via-scu-yellow/5 to-transparent p-6 sm:p-8 lg:p-10 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]"
             >
               <div className="flex items-start justify-between">
                 <div className="inline-flex items-center gap-2">

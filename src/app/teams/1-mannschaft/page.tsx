@@ -42,13 +42,13 @@ export default function FirstTeamPage() {
           <Image src="/team/team-group.jpg" alt="" fill sizes="100vw" className="object-cover object-top opacity-40" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-scu-black/70 via-scu-black/50 to-scu-black" />
         </div>
-        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-20 lg:pb-28">
+        <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 sm:pb-20 lg:pb-28">
           <div className="flex flex-col gap-5 max-w-3xl">
             <Badge variant="yellow">2. Bundesliga Pro · Damen</Badge>
-            <h1 className="font-display text-5xl lg:text-7xl font-black leading-[1]">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-black leading-[1]">
               1. Damenmannschaft <span className="text-scu-yellow">2025/26</span>
             </h1>
-            <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
+            <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">
               Eigene Talente, internationale Verstärkung und ein eingespieltes Trainer-Team: Wir greifen in der neuen 2. Bundesliga Pro an.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
@@ -151,8 +151,8 @@ export default function FirstTeamPage() {
             title={<>Nächste <HighlightWord>Spiele</HighlightWord></>}
             description="Die wichtigsten Partien der Hinrunde in der 2. Bundesliga Pro. Vollständiger Spielplan auf volleyball-bundesliga.de."
           />
-          <div className="overflow-hidden rounded-2xl border border-scu-gray-200">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto rounded-2xl border border-scu-gray-200">
+            <table className="w-full min-w-[640px] text-sm">
               <thead className="bg-scu-black text-white">
                 <tr>
                   <th className="text-left px-5 py-3 font-semibold tracking-wide">Datum</th>

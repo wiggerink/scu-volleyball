@@ -167,7 +167,7 @@ export default function GopusSponsorPage() {
           className="absolute top-20 right-0 h-80 w-80 rounded-full bg-scu-gold/20 blur-3xl"
         />
 
-        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-16 lg:pb-24">
+        <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 lg:pb-24">
           {/* Breadcrumb */}
           <nav className="mb-8 text-xs text-white/50 tracking-[0.18em] uppercase font-semibold flex items-center gap-2">
             <Link href="/sponsoren" className="hover:text-scu-yellow transition">
@@ -184,7 +184,7 @@ export default function GopusSponsorPage() {
                 <Badge variant="light">SAP-Beratung seit 1999</Badge>
                 <Badge variant="light">Hauptsitz Emlichheim</Badge>
               </div>
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight">
                 Digitale Exzellenz
                 <br />
                 <span className="text-scu-yellow">direkt von nebenan.</span>

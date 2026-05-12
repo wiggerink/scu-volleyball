@@ -74,7 +74,7 @@ export default function SecondTeamPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-scu-black/80 via-scu-black/60 to-scu-black" />
           <div className="absolute -top-32 right-0 size-[480px] rounded-full bg-scu-yellow/15 blur-[120px]" />
         </div>
-        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-20 lg:pb-28">
+        <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 sm:pb-20 lg:pb-28">
           <Button asChild variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 mb-6 -ml-3">
             <Link href="/teams"><ArrowLeft className="size-4" /> Alle Mannschaften</Link>
           </Button>
@@ -90,7 +90,7 @@ export default function SecondTeamPage() {
             <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-black leading-[1] break-words hyphens-auto" lang="de">
               2.&nbsp;Damen <span className="text-scu-yellow">2026/27</span>
             </h1>
-            <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
+            <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">
               Aufsteiger in die 2. Bundesliga: Mit der Meisterschaft 2025/26 in der 3. Liga Nord schreibt unsere Zweite
               ein neues Kapitel – der SCU stellt erstmals zwei Damenteams im Bundesligabereich.
             </p>

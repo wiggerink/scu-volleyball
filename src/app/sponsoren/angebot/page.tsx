@@ -189,7 +189,7 @@ export default function AngebotPage() {
           className="absolute top-20 right-0 h-80 w-80 rounded-full bg-scu-gold/20 blur-3xl"
         />
 
-        <Container className="relative pt-44 sm:pt-48 lg:pt-56 pb-16 lg:pb-24">
+        <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 lg:pb-24">
           <nav className="mb-8 text-xs text-white/50 tracking-[0.18em] uppercase font-semibold flex items-center gap-2">
             <Link href="/sponsoren" className="hover:text-scu-yellow transition">
               Sponsoren
@@ -205,7 +205,7 @@ export default function AngebotPage() {
                 <Badge variant="light">SEO-optimiert</Badge>
                 <Badge variant="light">Dofollow-Backlink</Badge>
               </div>
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight">
                 Ihr Unternehmen
                 <br />
                 <span className="text-scu-yellow">im Portrait.</span>
@@ -244,7 +244,7 @@ export default function AngebotPage() {
             {/* Pricing sticker */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto lg:ml-auto w-full max-w-md">
-                <div className="relative rounded-3xl bg-white p-8 lg:p-10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] border border-white/10">
+                <div className="relative rounded-3xl bg-white p-6 sm:p-8 lg:p-10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] border border-white/10">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.24em] font-bold text-scu-gray-500">
                     <Sparkles className="size-3 text-scu-yellow" />
                     Alles inklusive
@@ -286,11 +286,11 @@ export default function AngebotPage() {
                 </div>
                 <div
                   aria-hidden
-                  className="absolute -top-4 -right-4 size-20 rounded-2xl bg-scu-yellow rotate-[8deg] -z-10"
+                  className="absolute -top-4 -right-4 size-20 rounded-2xl bg-scu-yellow rotate-[8deg] -z-10 hidden sm:block"
                 />
                 <div
                   aria-hidden
-                  className="absolute -bottom-6 -left-6 size-24 rounded-2xl bg-scu-gold -rotate-[6deg] -z-10"
+                  className="absolute -bottom-6 -left-6 size-24 rounded-2xl bg-scu-gold -rotate-[6deg] -z-10 hidden sm:block"
                 />
               </div>
             </div>
@@ -597,7 +597,7 @@ export default function AngebotPage() {
                   href={SAMPLE_REPORT_HREF}
                   target="_blank"
                   rel="noopener"
-                  className="group relative block rounded-3xl bg-white text-scu-black p-8 lg:p-10 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)] border border-white/10 overflow-hidden hover:-translate-y-1 transition-all"
+                  className="group relative block rounded-3xl bg-white text-scu-black p-5 sm:p-8 lg:p-10 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)] border border-white/10 overflow-hidden hover:-translate-y-1 transition-all"
                 >
                   <div
                     aria-hidden
@@ -685,11 +685,11 @@ export default function AngebotPage() {
                 </a>
                 <div
                   aria-hidden
-                  className="absolute -bottom-6 -right-6 size-24 rounded-2xl bg-scu-yellow -rotate-[4deg] -z-10"
+                  className="absolute -bottom-6 -right-6 size-24 rounded-2xl bg-scu-yellow -rotate-[4deg] -z-10 hidden sm:block"
                 />
                 <div
                   aria-hidden
-                  className="absolute -top-4 -left-4 size-20 rounded-2xl bg-scu-gold rotate-[6deg] -z-10"
+                  className="absolute -top-4 -left-4 size-20 rounded-2xl bg-scu-gold rotate-[6deg] -z-10 hidden sm:block"
                 />
               </div>
             </div>
