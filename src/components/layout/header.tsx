@@ -158,53 +158,111 @@ export function Header() {
                 <nav className="flex flex-col">
                   {site.nav.map((item) => {
                     const active = activeHref === item.href;
+                    const subItems = item.mega
+                      ? item.mega.columns.flatMap((col) =>
+                          col.items.map((it) => ({
+                            label: it.label,
+                            href: it.href,
+                            note: it.note,
+                            group: col.title,
+                            external: false,
+                          })),
+                        )
+                      : item.children
+                      ? item.children.map((c) => ({
+                          label: c.label,
+                          href: c.href,
+                          note: undefined,
+                          group: undefined,
+                          external: c.external,
+                        }))
+                      : [];
+
                     return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={cn(
-                          "group relative flex items-center gap-3 px-6 py-4 border-b border-white/5 transition",
-                          active
-                            ? "bg-scu-yellow/[0.06] text-scu-yellow"
-                            : "text-white hover:bg-white/[0.04] hover:text-scu-yellow",
-                        )}
-                      >
-                        {/* Yellow accent bar — visible when active or on hover */}
-                        <span
-                          aria-hidden
+                      <div key={item.href} className="border-b border-white/5">
+                        {/* Parent link */}
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileOpen(false)}
                           className={cn(
-                            "absolute left-0 top-0 bottom-0 w-1 bg-scu-yellow transition-all",
-                            active ? "opacity-100" : "opacity-0 group-hover:opacity-60",
+                            "group relative flex items-center gap-3 px-6 py-4 transition",
+                            active
+                              ? "bg-scu-yellow/[0.06] text-scu-yellow"
+                              : "text-white hover:bg-white/[0.04] hover:text-scu-yellow",
                           )}
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 min-w-0">
-                            <span className="text-base font-display font-black tracking-tight">{item.label}</span>
-                            {item.badge && (
-                              <span className="inline-flex items-center bg-scu-yellow text-scu-black px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] leading-none">
-                                {item.badge}
-                              </span>
+                        >
+                          <span
+                            aria-hidden
+                            className={cn(
+                              "absolute left-0 top-0 bottom-0 w-1 bg-scu-yellow transition-all",
+                              active ? "opacity-100" : "opacity-0 group-hover:opacity-60",
+                            )}
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className="text-base font-display font-black tracking-tight">{item.label}</span>
+                              {item.badge && (
+                                <span className="inline-flex items-center bg-scu-yellow text-scu-black px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] leading-none">
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            {item.description && (
+                              <div className={cn(
+                                "text-[11px] mt-0.5 leading-snug transition-colors",
+                                active ? "text-scu-yellow/70" : "text-white/45 group-hover:text-white/65",
+                              )}>
+                                {item.description}
+                              </div>
                             )}
                           </div>
-                          {item.description && (
-                            <div className={cn(
-                              "text-[11px] mt-0.5 leading-snug transition-colors",
-                              active ? "text-scu-yellow/70" : "text-white/45 group-hover:text-white/65",
-                            )}>
-                              {item.description}
-                            </div>
-                          )}
-                        </div>
-                        <ArrowUpRight
-                          className={cn(
-                            "size-4 shrink-0 transition-all",
-                            active
-                              ? "text-scu-yellow opacity-100"
-                              : "text-white/30 group-hover:text-scu-yellow group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
-                          )}
-                        />
-                      </Link>
+                          <ArrowUpRight
+                            className={cn(
+                              "size-4 shrink-0 transition-all",
+                              active
+                                ? "text-scu-yellow opacity-100"
+                                : "text-white/30 group-hover:text-scu-yellow group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
+                            )}
+                          />
+                        </Link>
+
+                        {/* Sub items (children or mega) */}
+                        {subItems.length > 0 && (
+                          <div className="pb-3 bg-white/[0.015]">
+                            {(() => {
+                              let lastGroup: string | undefined;
+                              return subItems.map((sub) => {
+                                const groupHeader =
+                                  sub.group && sub.group !== lastGroup ? sub.group : null;
+                                lastGroup = sub.group;
+                                return (
+                                  <React.Fragment key={`${item.href}-${sub.href}`}>
+                                    {groupHeader && (
+                                      <div className="px-6 pt-3 pb-1 text-[9px] font-bold uppercase tracking-[0.28em] text-scu-yellow/60">
+                                        {groupHeader}
+                                      </div>
+                                    )}
+                                    <Link
+                                      href={sub.href}
+                                      target={sub.external ? "_blank" : undefined}
+                                      rel={sub.external ? "noopener" : undefined}
+                                      onClick={() => setMobileOpen(false)}
+                                      className="group/sub flex items-center gap-3 pl-10 pr-6 py-2.5 text-sm text-white/75 hover:text-scu-yellow hover:bg-white/[0.04] transition"
+                                    >
+                                      <span aria-hidden className="size-1 rounded-full bg-white/30 group-hover/sub:bg-scu-yellow shrink-0 transition-colors" />
+                                      <span className="flex-1 min-w-0 truncate">{sub.label}</span>
+                                      {sub.note && (
+                                        <span className="text-[10px] text-white/35 uppercase tracking-[0.14em] shrink-0">{sub.note}</span>
+                                      )}
+                                      <ArrowUpRight className="size-3 text-white/25 shrink-0 group-hover/sub:text-scu-yellow transition-colors" />
+                                    </Link>
+                                  </React.Fragment>
+                                );
+                              });
+                            })()}
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </nav>
