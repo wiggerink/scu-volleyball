@@ -89,15 +89,6 @@ function body(text, opts = {}) {
     .fontSize(10)
     .text(text, { width: CONTENT_W, lineGap: 3, align: "justify", ...opts });
 }
-function small(text, opts = {}) {
-  resetX();
-  doc
-    .fillColor(opts.color ?? COLOR.gray500)
-    .font("Helvetica")
-    .fontSize(8)
-    .text(text, { width: CONTENT_W, ...opts });
-}
-
 // KPI card (absolute-positioned, does NOT mutate doc.x/doc.y text flow)
 function kpiCard(x, y, w, h, { label, value, sub, accent = COLOR.yellow, delta }) {
   doc.save();
@@ -204,58 +195,6 @@ function trendLine(x, y, w, h, series, { color = COLOR.yellowDark } = {}) {
   });
   doc.restore();
   resetX();
-}
-
-// Table
-function table(y, { columns, rows, headerFill = COLOR.black }) {
-  const x = MARGIN;
-  const w = CONTENT_W;
-  const rowH = 22;
-
-  doc.save();
-  doc.rect(x, y, w, rowH).fill(headerFill);
-  let cx = x;
-  columns.forEach((c) => {
-    doc
-      .fillColor(COLOR.white)
-      .font("Helvetica-Bold")
-      .fontSize(9)
-      .text(c.title, cx + 8, y + 7, {
-        width: c.width - 16,
-        align: c.align ?? "left",
-        lineBreak: false,
-      });
-    cx += c.width;
-  });
-  doc.restore();
-
-  rows.forEach((row, i) => {
-    const ry = y + rowH + i * rowH;
-    const zebra = i % 2 === 0 ? COLOR.gray100 : COLOR.white;
-    doc.save().rect(x, ry, w, rowH).fill(zebra).restore();
-    let rx = x;
-    columns.forEach((c) => {
-      const val = row[c.key] ?? "";
-      const isNum = c.align === "right";
-      doc
-        .fillColor(COLOR.gray800)
-        .font(isNum ? "Helvetica-Bold" : "Helvetica")
-        .fontSize(9)
-        .text(String(val), rx + 8, ry + 7, {
-          width: c.width - 16,
-          align: c.align ?? "left",
-          lineBreak: false,
-        });
-      rx += c.width;
-    });
-  });
-
-  doc.save();
-  doc.lineWidth(0.5).strokeColor(COLOR.gray200);
-  doc.rect(x, y, w, rowH + rows.length * rowH).stroke();
-  doc.restore();
-  resetX();
-  return y + rowH + rows.length * rowH;
 }
 
 // =============================================================================

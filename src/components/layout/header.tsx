@@ -23,9 +23,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  React.useEffect(() => {
+  // Menue bei Routenwechsel schliessen (z. B. Browser-Zurueck bei offenem Menue)
+  const [prevPathname, setPrevPathname] = React.useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <>
@@ -115,21 +118,24 @@ export function Header() {
 
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed inset-y-0 right-0 z-[70] w-full max-w-sm bg-scu-black text-white flex flex-col overflow-y-auto border-l-2 border-scu-yellow"
-            >
+          <motion.div
+            key="mobile-menu-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
+            onClick={() => setMobileOpen(false)}
+          />
+        )}
+        {mobileOpen && (
+          <motion.div
+            key="mobile-menu-panel"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 28, stiffness: 280 }}
+            className="fixed inset-y-0 right-0 z-[70] w-full max-w-sm bg-scu-black text-white flex flex-col overflow-y-auto border-l-2 border-scu-yellow"
+          >
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 group">
@@ -313,8 +319,7 @@ export function Header() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
@@ -388,6 +393,7 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
       <AnimatePresence>
         {hasMega && open && (
           <motion.div
+            key="mega-dropdown"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
@@ -400,6 +406,7 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
 
         {hasChildren && !hasMega && open && (
           <motion.div
+            key="children-dropdown"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
