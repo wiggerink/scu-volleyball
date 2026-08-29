@@ -44,15 +44,24 @@ function HeroBackdrop() {
   const isDesktop = React.useSyncExternalStore(subscribeViewport, isDesktopViewport, () => false);
   const videoSrc = isDesktop ? "/hero/hero-main.mp4" : "/hero/hero-main-mobile.mp4";
 
+  // Bei Quellenwechsel (Breakpoint) laedt das Video neu -> Foto solange wieder zeigen
+  const [prevSrc, setPrevSrc] = React.useState(videoSrc);
+  if (prevSrc !== videoSrc) {
+    setPrevSrc(videoSrc);
+    setVideoReady(false);
+  }
+
   return (
     <>
+      {/* Foto ausblenden, sobald das Video laeuft: beide halbtransparent uebereinander
+          ergaebe wegen des leicht anderen Video-Bildausschnitts einen Ghosting-Effekt */}
       <Image
         src="/hero/hero-main.jpg"
         alt="SCU Emlichheim Volleyball Damen 2. Bundesliga Pro – Saison-Shooting 2025/26"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[center_20%] opacity-60"
+        className={`object-cover object-[center_20%] transition-opacity duration-1000 ${videoReady ? "opacity-0" : "opacity-60"}`}
       />
       {showVideo && !videoFailed && (
         <video
@@ -71,7 +80,10 @@ function HeroBackdrop() {
             if (v) v.playbackRate = 0.75;
             setVideoReady(true);
           }}
-          onError={() => setVideoFailed(true)}
+          onError={() => {
+            setVideoFailed(true);
+            setVideoReady(false);
+          }}
           className={`absolute inset-0 h-full w-full object-cover object-[center_20%] transition-opacity duration-1000 ${videoReady ? "opacity-60" : "opacity-0"}`}
         />
       )}
