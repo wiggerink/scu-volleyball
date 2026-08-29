@@ -1,4 +1,5 @@
 "use client";
+import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -7,9 +8,31 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
 
-export function Hero() {
+/* Lebendiger Hero: das Teamfoto als subtiler Cinemagraph-Loop (KI-animiert).
+   Das statische Bild bleibt Basis-Layer und Fallback (reduced motion, Save-Data,
+   Ladefehler); das Video blendet erst ein, wenn es abspielbereit ist. */
+function subscribeMotionPref(onChange: () => void) {
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+
+function wantsVideo() {
+  type NetworkInformation = { saveData?: boolean };
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saveData = (navigator as Navigator & { connection?: NetworkInformation }).connection?.saveData === true;
+  return !reducedMotion && !saveData;
+}
+
+function HeroBackdrop() {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = React.useState(false);
+  const [videoFailed, setVideoFailed] = React.useState(false);
+  // Server-Snapshot false: SSR rendert nur das Bild, Video kommt erst clientseitig dazu
+  const showVideo = React.useSyncExternalStore(subscribeMotionPref, wantsVideo, () => false);
+
   return (
-    <section className="relative overflow-hidden bg-scu-black text-white clip-hero pb-32 lg:pb-44">
+    <>
       <Image
         src="/hero/hero-main.jpg"
         alt="SCU Emlichheim Volleyball Damen 2. Bundesliga Pro – Saison-Shooting 2025/26"
@@ -18,6 +41,34 @@ export function Hero() {
         sizes="100vw"
         className="object-cover object-[center_20%] opacity-60"
       />
+      {showVideo && !videoFailed && (
+        <video
+          ref={videoRef}
+          src="/hero/hero-main.mp4"
+          poster="/hero/hero-main.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden
+          onCanPlay={() => {
+            const v = videoRef.current;
+            if (v) v.playbackRate = 0.75;
+            setVideoReady(true);
+          }}
+          onError={() => setVideoFailed(true)}
+          className={`absolute inset-0 h-full w-full object-cover object-[center_20%] transition-opacity duration-1000 ${videoReady ? "opacity-60" : "opacity-0"}`}
+        />
+      )}
+    </>
+  );
+}
+
+export function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-scu-black text-white clip-hero pb-32 lg:pb-44">
+      <HeroBackdrop />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-scu-black/70 via-scu-black/50 to-scu-black/95" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-scu-black/90 via-scu-black/40 to-transparent" />
       <div aria-hidden className="absolute inset-0 bg-grid opacity-[0.25]" />
