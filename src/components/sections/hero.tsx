@@ -24,12 +24,25 @@ function wantsVideo() {
   return !reducedMotion && !saveData;
 }
 
+function subscribeViewport(onChange: () => void) {
+  const mq = window.matchMedia("(min-width: 768px)");
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+
+function isDesktopViewport() {
+  return window.matchMedia("(min-width: 768px)").matches;
+}
+
 function HeroBackdrop() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = React.useState(false);
   const [videoFailed, setVideoFailed] = React.useState(false);
   // Server-Snapshot false: SSR rendert nur das Bild, Video kommt erst clientseitig dazu
   const showVideo = React.useSyncExternalStore(subscribeMotionPref, wantsVideo, () => false);
+  // Desktop 1920px-Variante, Mobile spart mit 960px Bandbreite
+  const isDesktop = React.useSyncExternalStore(subscribeViewport, isDesktopViewport, () => false);
+  const videoSrc = isDesktop ? "/hero/hero-main.mp4" : "/hero/hero-main-mobile.mp4";
 
   return (
     <>
@@ -43,8 +56,9 @@ function HeroBackdrop() {
       />
       {showVideo && !videoFailed && (
         <video
+          key={videoSrc}
           ref={videoRef}
-          src="/hero/hero-main.mp4"
+          src={videoSrc}
           poster="/hero/hero-main.jpg"
           autoPlay
           muted
