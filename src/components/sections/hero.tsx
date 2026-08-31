@@ -187,7 +187,7 @@ export function Hero() {
           >
             <div className="relative h-full w-full rounded-2xl overflow-hidden">
               <Image
-                src="/hero/hero-meister.png"
+                src="/hero/hero-meister.jpg"
                 alt="SCU 2. Mannschaft – Meister 3. Liga Nord 2025/26"
                 fill
                 sizes="420px"
