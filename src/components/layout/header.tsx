@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // Nur ein Bereich gleichzeitig offen - sonst wird das Menue wieder so lang wie vorher
+  const [offenerBereich, setOffenerBereich] = React.useState<string | null>(null);
   const pathname = usePathname();
   const activeHref = React.useMemo(() => getActiveHref(pathname, site.nav), [pathname]);
 
@@ -74,12 +76,12 @@ export function Header() {
         {/* Main header */}
         <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3">
           <Link href="/" aria-label="SCU Emlichheim Volleyball - Startseite" className="group shrink-0">
-            <div className="relative size-16 sm:size-20 lg:size-24 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+            <div className="relative size-16 sm:size-20 lg:size-28 xl:size-32 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
               <Image
                 src="/logos/scu-logo.png"
                 alt="SCU Emlichheim Logo"
                 fill
-                sizes="96px"
+                sizes="128px"
                 className="object-contain group-hover:scale-105 transition-transform"
                 priority
               />
@@ -110,7 +112,11 @@ export function Header() {
           <button
             className="lg:hidden inline-flex items-center justify-center border border-white/20 bg-scu-black/40 backdrop-blur text-white size-11 shadow-sm hover:bg-scu-yellow hover:text-scu-black hover:border-scu-yellow transition"
             aria-label="Menü öffnen"
-            onClick={() => setMobileOpen(true)}
+            onClick={() => {
+              const aktiv = site.nav.find((i) => i.href === activeHref && (i.children || i.mega));
+              setOffenerBereich(aktiv?.href ?? null);
+              setMobileOpen(true);
+            }}
           >
             <Menu className="size-5" />
           </button>
@@ -187,55 +193,58 @@ export function Header() {
 
                     return (
                       <div key={item.href} className="border-b border-white/5">
-                        {/* Parent link */}
-                        <Link
-                          href={item.href}
-                          onClick={() => setMobileOpen(false)}
-                          className={cn(
-                            "group relative flex items-center gap-3 px-6 py-4 transition",
-                            active
-                              ? "bg-scu-yellow/[0.06] text-scu-yellow"
-                              : "text-white hover:bg-white/[0.04] hover:text-scu-yellow",
-                          )}
-                        >
-                          <span
-                            aria-hidden
+                        {/* Beschriftung fuehrt zur Seite, der Pfeil klappt nur auf -
+                            so bleibt beides mit einer Hand erreichbar. */}
+                        <div className="flex items-stretch">
+                          <Link
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
                             className={cn(
-                              "absolute left-0 top-0 bottom-0 w-1 bg-scu-yellow transition-all",
-                              active ? "opacity-100" : "opacity-0 group-hover:opacity-60",
+                              "group relative flex flex-1 min-w-0 items-center gap-3 px-6 py-3 transition",
+                              active
+                                ? "bg-scu-yellow/[0.06] text-scu-yellow"
+                                : "text-white hover:bg-white/[0.04] hover:text-scu-yellow",
                             )}
-                          />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 min-w-0">
+                          >
+                            <span
+                              aria-hidden
+                              className={cn(
+                                "absolute left-0 top-0 bottom-0 w-1 bg-scu-yellow transition-all",
+                                active ? "opacity-100" : "opacity-0 group-hover:opacity-60",
+                              )}
+                            />
+                            <span className="flex items-center gap-2 min-w-0">
                               <span className="text-base font-display font-black tracking-tight">{item.label}</span>
                               {item.badge && (
                                 <span className="inline-flex items-center bg-scu-yellow text-scu-black px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] leading-none">
                                   {item.badge}
                                 </span>
                               )}
-                            </div>
-                            {item.description && (
-                              <div className={cn(
-                                "text-[11px] mt-0.5 leading-snug transition-colors",
-                                active ? "text-scu-yellow/70" : "text-white/45 group-hover:text-white/65",
-                              )}>
-                                {item.description}
-                              </div>
-                            )}
-                          </div>
-                          <ArrowUpRight
-                            className={cn(
-                              "size-4 shrink-0 transition-all",
-                              active
-                                ? "text-scu-yellow opacity-100"
-                                : "text-white/30 group-hover:text-scu-yellow group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
-                            )}
-                          />
-                        </Link>
+                            </span>
+                          </Link>
+
+                          {subItems.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={() => setOffenerBereich((o) => (o === item.href ? null : item.href))}
+                              aria-expanded={offenerBereich === item.href}
+                              aria-controls={`untermenue-${item.href}`}
+                              aria-label={`${item.label} – Untermenü ${offenerBereich === item.href ? "schließen" : "öffnen"}`}
+                              className="shrink-0 px-5 text-white/40 hover:text-scu-yellow hover:bg-white/[0.04] transition"
+                            >
+                              <ChevronDown
+                                className={cn(
+                                  "size-4 transition-transform duration-200",
+                                  offenerBereich === item.href && "rotate-180",
+                                )}
+                              />
+                            </button>
+                          )}
+                        </div>
 
                         {/* Sub items (children or mega) */}
-                        {subItems.length > 0 && (
-                          <div className="pb-3 bg-white/[0.015]">
+                        {subItems.length > 0 && offenerBereich === item.href && (
+                          <div id={`untermenue-${item.href}`} className="pb-2 bg-white/[0.015]">
                             {(() => {
                               let lastGroup: string | undefined;
                               return subItems.map((sub) => {
@@ -254,7 +263,7 @@ export function Header() {
                                       target={sub.external ? "_blank" : undefined}
                                       rel={sub.external ? "noopener" : undefined}
                                       onClick={() => setMobileOpen(false)}
-                                      className="group/sub flex items-center gap-3 pl-10 pr-6 py-2.5 text-sm text-white/75 hover:text-scu-yellow hover:bg-white/[0.04] transition"
+                                      className="group/sub flex items-center gap-3 pl-10 pr-6 py-2 text-sm text-white/75 hover:text-scu-yellow hover:bg-white/[0.04] transition"
                                     >
                                       <span aria-hidden className="size-1 rounded-full bg-white/30 group-hover/sub:bg-scu-yellow shrink-0 transition-colors" />
                                       <span className="flex-1 min-w-0 truncate">{sub.label}</span>
