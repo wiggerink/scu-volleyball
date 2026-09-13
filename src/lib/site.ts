@@ -72,6 +72,7 @@ const nav: readonly NavEntry[] = [
   },
   { label: "Jugend", href: "/jugend", description: "120+ Kinder im Training" },
   { label: "News", href: "/news", description: "Spielberichte & Vereinsnews" },
+  { label: "Galerie", href: "/galerie", description: "Bilder aus der Saison 2026/27" },
   { label: "Verein", href: "/verein", description: "Geschichte, Vorstand, Halle" },
   { label: "Sponsoren", href: "/sponsoren", description: "Unsere Partner & Förderer" },
 ];

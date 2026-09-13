@@ -10,7 +10,7 @@ const linkGroups = [
     title: "Mannschaften",
     links: [
       { label: "1. Damen – Sparda 2. Liga Pro", href: "/teams/1-mannschaft" },
-      { label: "2. Damen – 3. Liga", href: "/teams/2-mannschaft" },
+      { label: "2. Damen – 2. Bundesliga", href: "/teams/2-mannschaft" },
       { label: "Alle Mannschaften", href: "/teams" },
       { label: "Jugendabteilung", href: "/jugend" },
     ],
@@ -22,6 +22,7 @@ const linkGroups = [
       { label: "Jugendförderring", href: "/jugend#foerderring" },
       { label: "Sponsoren", href: "/sponsoren" },
       { label: "News", href: "/news" },
+      { label: "Galerie", href: "/galerie" },
     ],
   },
   {

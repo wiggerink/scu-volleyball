@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
-import { SportsTeamJsonLd } from "@/components/seo/json-ld";
+import { MatchesJsonLd, SportsTeamJsonLd } from "@/components/seo/json-ld";
 import { management, roster, staff } from "@/lib/roster";
 import { schedule } from "@/lib/schedule";
 import { LigaTabelle } from "@/components/sections/liga-tabelle";
@@ -42,6 +42,7 @@ export default function FirstTeamPage() {
   return (
     <>
       <SportsTeamJsonLd />
+      <MatchesJsonLd />
 
       {/* Hero */}
       <section className="relative bg-scu-black text-white overflow-hidden">
@@ -272,7 +273,14 @@ export default function FirstTeamPage() {
               </tbody>
             </table>
           </div>
-          <div>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild variant="primary">
+              {/* webcal: öffnet direkt die Kalender-App; Browser, die es nicht kennen,
+                  laden die Datei herunter - beides führt zum Abo. */}
+              <Link href="webcal://scuvolleyball.de/spielplan.ics">
+                <CalendarDays className="size-4" /> Spielplan abonnieren
+              </Link>
+            </Button>
             <Button asChild variant="outline">
               <Link href="https://www.volleyball-bundesliga.de/" target="_blank" rel="noopener">
                 Spielplan & Tabelle bei der VBL

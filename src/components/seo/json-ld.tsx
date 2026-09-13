@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
 import { roster, staff } from "@/lib/roster";
+import { schedule } from "@/lib/schedule";
 
 export function OrganizationJsonLd() {
   const data = {
@@ -71,4 +72,53 @@ export function SportsTeamJsonLd() {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
+}
+
+/**
+ * Die Saisonspiele als SportsEvent.
+ *
+ * Damit kann Google "nächstes Spiel SCU Emlichheim" direkt beantworten und die
+ * Partien als Termin-Rich-Result ausspielen. Quelle sind dieselben Daten wie
+ * für die Spielplan-Tabelle, es kann also nichts auseinanderlaufen.
+ */
+export function MatchesJsonLd() {
+  const data = schedule.map((m) => ({
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    name: `${m.home} – ${m.away}`,
+    // Kalendertag plus Anwurfzeit in deutscher Ortszeit; der Offset wechselt
+    // mit der Sommerzeit, deshalb aus dem Datum abgeleitet.
+    startDate: `${m.date}T${m.time}:00${sommerzeit(m.date) ? "+02:00" : "+01:00"}`,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    sport: "Volleyball",
+    location: {
+      "@type": "Place",
+      name: m.venue,
+      address: { "@type": "PostalAddress", addressLocality: m.city, addressCountry: "DE" },
+    },
+    homeTeam: { "@type": "SportsTeam", name: m.home },
+    awayTeam: { "@type": "SportsTeam", name: m.away },
+    organizer: { "@type": "SportsOrganization", name: "Volleyball Bundesliga", url: "https://www.volleyball-bundesliga.de/" },
+    url: `${site.url}/teams/1-mannschaft#spielplan`,
+    ...(m.isHome ? { offers: { "@type": "Offer", url: site.ticketsUrl, availability: "https://schema.org/InStock" } } : {}),
+  }));
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+/** Mitteleuropäische Sommerzeit: letzter Sonntag im März bis letzter Sonntag im Oktober. */
+function sommerzeit(isoTag: string) {
+  const d = new Date(`${isoTag}T12:00:00Z`);
+  const jahr = d.getUTCFullYear();
+  const letzterSonntag = (monat: number) => {
+    const ende = new Date(Date.UTC(jahr, monat + 1, 0));
+    return new Date(Date.UTC(jahr, monat, ende.getUTCDate() - ende.getUTCDay()));
+  };
+  return d >= letzterSonntag(2) && d < letzterSonntag(9);
 }
