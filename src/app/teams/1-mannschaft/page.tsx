@@ -9,6 +9,7 @@ import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { SportsTeamJsonLd } from "@/components/seo/json-ld";
 import { management, roster, staff } from "@/lib/roster";
 import { schedule } from "@/lib/schedule";
+import { LigaTabelle } from "@/components/sections/liga-tabelle";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -205,6 +206,8 @@ export default function FirstTeamPage() {
           </div>
         </Container>
       </section>
+
+      <LigaTabelle />
 
       {/* Spielplan */}
       <section id="spielplan" className="py-20 lg:py-24 bg-white">
