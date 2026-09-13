@@ -113,8 +113,12 @@ export default function FirstTeamPage() {
             {sorted.map((p) => (
               <article
                 key={p.number}
-                className="group relative rounded-2xl overflow-hidden bg-scu-gray-100 border border-transparent hover:border-scu-yellow transition-all hover:shadow-[0_24px_50px_-20px_rgba(255,240,1,0.35)]"
+                className="group relative rounded-2xl overflow-hidden bg-scu-gray-100 border border-transparent hover:border-scu-yellow transition-all hover:shadow-[0_24px_50px_-20px_rgba(255,240,1,0.35)] focus-within:border-scu-yellow"
               >
+                {/* Ganze Karte klickbar, Linktext bleibt der Name */}
+                <Link href={`/teams/1-mannschaft/${p.slug}`} className="absolute inset-0 z-10">
+                  <span className="sr-only">{p.name} – Steckbrief</span>
+                </Link>
                 <div className="relative aspect-[3/4] bg-scu-gray-200">
                   <Image
                     src={p.image}
