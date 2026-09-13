@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutz",
-  description: "Datenschutzerklärung der SC Union Emlichheim Marketing GmbH – Betreiberin von scuvolleyball.de.",
+  description: "Datenschutzerklärung der SC UNION Emlichheim Marketing GmbH – Betreiberin von scuvolleyball.de.",
   alternates: { canonical: "/datenschutz" },
   robots: { index: false, follow: true },
 };
@@ -29,7 +29,7 @@ export default function DatenschutzPage() {
       >
         <LegalSection title="1. Verantwortliche Stelle">
           <p>
-            <strong>SC Union Emlichheim Marketing GmbH</strong><br />
+            <strong>SC UNION Emlichheim Marketing GmbH</strong><br />
             {site.address.street}<br />
             {site.address.postalCode} {site.address.city}<br />
             E-Mail: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>

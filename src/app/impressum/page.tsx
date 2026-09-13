@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Impressum",
-  description: "Impressum und Anbieterkennzeichnung der SC Union Emlichheim Marketing GmbH – Betreiberin von scuvolleyball.de.",
+  description: "Impressum und Anbieterkennzeichnung der SC UNION Emlichheim Marketing GmbH – Betreiberin von scuvolleyball.de.",
   alternates: { canonical: "/impressum" },
   robots: { index: false, follow: true },
 };
@@ -18,7 +18,7 @@ export default function ImpressumPage() {
       <LegalLayout>
         <LegalSection title="Anbieterin gemäß § 5 TMG">
           <p>
-            <strong>SC Union Emlichheim Marketing GmbH</strong><br />
+            <strong>SC UNION Emlichheim Marketing GmbH</strong><br />
             {site.address.street}<br />
             {site.address.postalCode} {site.address.city}<br />
             {site.address.country}
@@ -26,7 +26,11 @@ export default function ImpressumPage() {
         </LegalSection>
 
         <LegalSection title="Vertreten durch">
-          <p>Die Geschäftsführung der SC Union Emlichheim Marketing GmbH.</p>
+          <p>
+            Geschäftsführer:<br />
+            Tobias Stahl<br />
+            Thorben Helweg
+          </p>
         </LegalSection>
 
         <LegalSection title="Kontakt">
@@ -38,14 +42,13 @@ export default function ImpressumPage() {
         <LegalSection title="Registereintrag">
           <p>
             Eintragung im Handelsregister · Amtsgericht Osnabrück<br />
-            Registernummer: <em className="not-italic text-scu-gray-500">[wird ergänzt]</em>
+            Registernummer: HRB 131246
           </p>
         </LegalSection>
 
         <LegalSection title="Umsatzsteuer-ID">
           <p>
-            Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:{" "}
-            <em className="not-italic text-scu-gray-500">[wird ergänzt]</em>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: DE213652843
           </p>
         </LegalSection>
 
@@ -56,14 +59,14 @@ export default function ImpressumPage() {
             beim Amtsgericht Osnabrück.
           </p>
           <p>
-            Die SC Union Emlichheim Marketing GmbH ist die Betreiberin dieser Website und zuständig für Vermarktung,
+            Die SC UNION Emlichheim Marketing GmbH ist die Betreiberin dieser Website und zuständig für Vermarktung,
             Fanservices und Kommunikation rund um die 2. Bundesliga-Mannschaft.
           </p>
         </LegalSection>
 
         <LegalSection title="Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV">
           <p>
-            Geschäftsführung der SC Union Emlichheim Marketing GmbH<br />
+            Geschäftsführung der SC UNION Emlichheim Marketing GmbH<br />
             {site.address.street}, {site.address.postalCode} {site.address.city}
           </p>
         </LegalSection>
