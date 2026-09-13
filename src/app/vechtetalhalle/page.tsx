@@ -22,7 +22,7 @@ const spieltag = new Intl.DateTimeFormat("de-DE", {
 export const metadata: Metadata = {
   title: "Vechtetalhalle – Anfahrt & Heimspiele",
   description:
-    "Die Vechtetalhalle in Emlichheim: Adresse, Anfahrt und alle Heimspiele der 1. Damen in der Sparda 2. Liga Pro 2026/27.",
+    "Die Vechtetalhalle in Emlichheim: Adresse, Anfahrt und alle Heimspiele der 1. Damen in der Sparda 2. Liga Pro 2026/27. Jugendspiele auch in der angrenzenden Herbert-Taube-Halle.",
   alternates: { canonical: "/vechtetalhalle" },
 };
 
@@ -71,6 +71,7 @@ export default function VechtetalhallePage() {
             <p className="text-white/80 text-base sm:text-lg leading-relaxed">
               Hier spielen unsere Damen. {heimspiele.length} Heimspiele in der Sparda 2. Liga Pro,
               dazu der komplette Trainings- und Spielbetrieb von den Minis bis zur Bundesliga.
+              Ein Teil der Jugendspiele läuft in der angrenzenden Herbert-Taube-Halle.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
@@ -109,6 +110,18 @@ export default function VechtetalhallePage() {
                   In Apple Karten öffnen
                 </Link>
               </Button>
+            </div>
+
+            {/* Zweiter Spielort direkt nebenan - fuer Eltern die haeufigste Rueckfrage */}
+            <div className="rounded-2xl border-l-4 border-scu-yellow bg-scu-gray-100 p-5">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">
+                Zweiter Spielort
+              </div>
+              <p className="text-sm text-scu-black leading-relaxed">
+                Ein Teil der <strong>Jugendspiele</strong> findet in der direkt angrenzenden{" "}
+                <strong>Herbert-Taube-Halle</strong> statt – gleiches Gelände, gleiche Anfahrt.
+                Welche Halle für ein Spiel angesetzt ist, steht in der jeweiligen Ansetzung.
+              </p>
             </div>
           </div>
 
