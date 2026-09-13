@@ -32,5 +32,5 @@ export const roster2: PlayerLite[] = [
 ];
 
 export const staff2: StaffLite[] = [
-  { name: "Andrea Berg", role: "Trainerin" },
+  { name: "Andrea Büring", role: "Trainerin" },
 ];
