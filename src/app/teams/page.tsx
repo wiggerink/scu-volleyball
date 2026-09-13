@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Alle Mannschaften",
   description:
-    "15 Mannschaften beim SCU Emlichheim: von der Sparda 2. Liga Pro Damen über Oberliga & Bezirksliga bis Mini-Volleyball. Deine Mannschaft wartet auf dich.",
+    "14 Mannschaften beim SCU Emlichheim: von der Sparda 2. Liga Pro Damen über Oberliga & Bezirksliga bis Mini-Volleyball. Deine Mannschaft wartet auf dich.",
   alternates: { canonical: "/teams" },
 };
 

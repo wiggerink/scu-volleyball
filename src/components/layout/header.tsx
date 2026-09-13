@@ -8,6 +8,7 @@ import { Menu, X, ChevronDown, Ticket, Radio, ArrowUpRight, Mail } from "lucide-
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/social-icons";
 import { cn } from "@/lib/utils";
 import { site, type NavEntry } from "@/lib/site";
+import { teams } from "@/lib/teams";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
@@ -503,7 +504,7 @@ function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null 
           <div className="relative">
             <div className="inline-flex items-center gap-1.5 rounded-full bg-scu-yellow text-scu-black px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.22em] mb-4 shadow-[0_8px_24px_-8px_rgba(255,240,1,0.6)]">
               <span className="size-1.5 rounded-full bg-scu-black animate-pulse" />
-              15 Teams
+              {teams.length} Teams
             </div>
             <h3 className="font-display text-xl font-black leading-tight text-white">
               {mega.feature.title}

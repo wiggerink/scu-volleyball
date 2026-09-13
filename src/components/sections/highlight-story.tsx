@@ -62,7 +62,7 @@ export function HighlightStory() {
 
           <ul className="grid sm:grid-cols-2 gap-3 mt-2">
             {[
-              "14 Pro-Teams · 26 Spieltage · Playoff-Modus",
+              "13 Pro-Teams · Hin- und Rückrunde · Playoff-Modus",
               "Heimspiele in der Vechtetalhalle",
               "Eigene Talente aus der Jugend im Kader",
               `Saisonstart: ${seasonStart}`,

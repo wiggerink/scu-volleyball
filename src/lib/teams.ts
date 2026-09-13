@@ -30,7 +30,7 @@ export const teams: TeamEntry[] = [
     slug: "2-mannschaft",
     name: "2. Damen",
     short: "SCU II",
-    league: "2. Bundesliga (ab 26/27)",
+    league: "2. Bundesliga",
     tier: 2,
     gender: "Damen",
     description:

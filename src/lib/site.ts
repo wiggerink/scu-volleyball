@@ -37,7 +37,7 @@ const nav: readonly NavEntry[] = [
   {
     label: "Mannschaften",
     href: "/teams",
-    description: "Alle 15 Teams – Damen, Hobby & Jugend",
+    description: "Alle 14 Teams – Damen, Hobby & Jugend",
     mega: {
       columns: [
         {

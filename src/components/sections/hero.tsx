@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
 import { nextHomeMatch } from "@/lib/schedule";
+import { teams } from "@/lib/teams";
 
 /* Termin der Heimspiel-Karte: kurzes Format ("So, 20. Sept"), UTC-fix wie im Spielplan,
    damit der Kalendertag aus dem VBL-Export nicht je nach Serverzeitzone kippt. */
@@ -214,7 +215,7 @@ export function Hero() {
           >
             {[
               { k: "30+", v: "Jahre Bundesliga", icon: Trophy },
-              { k: "15", v: "Mannschaften", icon: CalendarDays },
+              { k: String(teams.length), v: "Mannschaften", icon: CalendarDays },
               { k: "120+", v: "Kinder & Jugend", icon: Trophy },
             ].map(({ k, v, icon: Icon }) => (
               <div key={v} className="flex items-start gap-2 sm:gap-3 pt-6">

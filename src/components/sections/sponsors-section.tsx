@@ -38,9 +38,13 @@ function SponsorTile({ sponsor }: { sponsor: Sponsor }) {
           </span>
         )}
       </div>
-      <div className="absolute inset-x-0 bottom-0 bg-scu-black/95 text-white text-center text-xs py-2 font-semibold tracking-wide translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-        {hasProfile ? `${sponsor.name} · Portrait ansehen` : sponsor.name}
-      </div>
+      {/* Ohne Logo traegt die Kachel den Namen schon gross in der Mitte -
+          der Balken wuerde ihn nur wiederholen. */}
+      {(sponsor.logo || hasProfile) && (
+        <div className="absolute inset-x-0 bottom-0 bg-scu-black/95 text-white text-center text-xs py-2 font-semibold tracking-wide translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          {hasProfile ? `${sponsor.name} · Portrait ansehen` : sponsor.name}
+        </div>
+      )}
     </>
   );
 

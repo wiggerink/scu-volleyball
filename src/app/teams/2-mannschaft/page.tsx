@@ -103,7 +103,7 @@ export default function SecondTeamPage() {
                 <Link href="#aufstieg"><Sparkles className="size-4" /> Aufstiegs-Story</Link>
               </Button>
               <Button asChild variant="ghost" size="lg" className="text-white hover:bg-white/10 hover:text-white">
-                <Link href="#abschluss"><CalendarDays className="size-4" /> Letztes Spiel</Link>
+                <Link href="#abschluss"><CalendarDays className="size-4" /> Rückblick</Link>
               </Button>
             </div>
           </div>
@@ -156,8 +156,8 @@ export default function SecondTeamPage() {
         <Container className="relative flex flex-col gap-12">
           <SectionHeading
             eyebrow="Kader"
-            title={<>Unsere Spielerinnen <HighlightWord>2025/26</HighlightWord></>}
-            description="Der Meisterkader der 3. Liga Nord – durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend."
+            title={<>Der Meisterkader <HighlightWord>2025/26</HighlightWord></>}
+            description="Die Mannschaft, die den Aufstieg geschafft hat – durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend. Der Kader für die 2. Bundesliga 2026/27 folgt."
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -197,7 +197,7 @@ export default function SecondTeamPage() {
           <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5">
             <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Fotos folgen</div>
             <p className="text-sm text-scu-black leading-relaxed">
-              Professionelle Team- und Einzelshoots für die Saison 2026/27 (2. Bundesliga) folgen nach der Sommerpause.
+              Team- und Einzelfotos der Zweiten für die Saison 2026/27 werden nachgereicht.
             </p>
           </div>
         </Container>
@@ -235,20 +235,20 @@ export default function SecondTeamPage() {
         <div aria-hidden className="absolute -bottom-32 -left-20 size-[420px] rounded-full bg-scu-yellow/10 blur-[120px]" />
         <Container className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 flex flex-col gap-5">
-            <Badge variant="yellow" className="w-fit">Letztes Saisonspiel</Badge>
+            <Badge variant="yellow" className="w-fit">Rückblick</Badge>
             <h2 className="font-display text-4xl lg:text-5xl font-black leading-[1.05]">
-              Komm zur <span className="text-scu-yellow">Meisterehrung</span> in die Vechtetalhalle.
+              So endete die <span className="text-scu-yellow">Meistersaison</span> in der Vechtetalhalle.
             </h2>
             <p className="text-white/75 text-lg leading-relaxed max-w-xl">
-              Das Team verabschiedet sich aus der 3. Liga Nord und feiert mit euch die Meisterschaft. Im Anschluss an
-              das Spiel: offizielle Ehrung, Pokalübergabe und Aufstiegsfeier mit Fans und Familien.
+              Mit dem letzten Heimspiel verabschiedete sich das Team aus der 3. Liga Nord. Im Anschluss standen
+              offizielle Ehrung, Pokalübergabe und Aufstiegsfeier mit Fans und Familien auf dem Programm.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
                 <Link href="/kontakt">Kontakt aufnehmen</Link>
               </Button>
               <Button asChild variant="outlineLight" size="lg">
-                <Link href="/teams/1-mannschaft">1. Bundesliga-Damen ansehen <ArrowRight className="size-4" /></Link>
+                <Link href="/teams/1-mannschaft">1. Damen ansehen <ArrowRight className="size-4" /></Link>
               </Button>
             </div>
           </div>
@@ -306,7 +306,7 @@ export default function SecondTeamPage() {
                 "Heimspiele weiterhin in der Vechtetalhalle",
                 "Talente aus der SCU-Jugend in tragenden Rollen",
                 "Trainerteam mit Erfahrung im Profibereich",
-                "Saisonstart: September 2026",
+                "Erste Saison im Bundesligabereich",
               ].map((item) => (
                 <li key={item} className="flex gap-3 items-start text-sm text-scu-black">
                   <TrendingUp className="size-4 text-scu-yellow shrink-0 mt-0.5" />
@@ -318,7 +318,7 @@ export default function SecondTeamPage() {
             <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5 mt-2">
               <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Hinweis</div>
               <p className="text-sm text-scu-black leading-relaxed">
-                Detaillierter Spielplan 2026/27 folgt nach Saisonabschluss und Sommerpause. Fragen zu Probetraining
+                Der Spielplan der 2. Bundesliga wird hier ergänzt, sobald er vorliegt. Fragen zu Probetraining
                 oder Mitgliedschaft? <Link href="/kontakt" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-dark">Direkt melden</Link>.
               </p>
             </div>

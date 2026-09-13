@@ -14,7 +14,7 @@ import { OrganizationJsonLd, SportsTeamJsonLd } from "@/components/seo/json-ld";
 export const metadata: Metadata = {
   title: "SCU Emlichheim Volleyball – Sparda 2. Liga Pro Damen 2026/27",
   description:
-    "SC Union Emlichheim – Dorfverein mit Bundesliga-Herz. 15 Mannschaften, 120+ Kinder in der Jugend, Sparda 2. Liga Pro Damen in der Vechtetalhalle. Tickets, Spielplan, Livestream.",
+    "SC Union Emlichheim – Dorfverein mit Bundesliga-Herz. 14 Mannschaften, 120+ Kinder in der Jugend, Sparda 2. Liga Pro Damen in der Vechtetalhalle. Tickets, Spielplan, Livestream.",
   alternates: { canonical: "/" },
 };
 

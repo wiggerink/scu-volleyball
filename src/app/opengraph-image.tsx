@@ -36,7 +36,7 @@ export default async function Image() {
             Sparda 2. Liga Pro · Damen
           </div>
           <div style={{ fontSize: 22, opacity: 0.7, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>
-            Saison 2025 / 26
+            Saison 2026 / 27
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export default async function Image() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div style={{ fontSize: 26, opacity: 0.8 }}>scuvolleyball.de</div>
           <div style={{ display: "flex", gap: 28, fontSize: 22, opacity: 0.8 }}>
-            <span>15 Mannschaften</span>
+            <span>14 Mannschaften</span>
             <span>·</span>
             <span>120+ Jugend</span>
             <span>·</span>
