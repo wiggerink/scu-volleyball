@@ -22,7 +22,7 @@ const spieltag = new Intl.DateTimeFormat("de-DE", {
 export const metadata: Metadata = {
   title: "Vechtetalhalle – Anfahrt & Heimspiele",
   description:
-    "Die Vechtetalhalle in Emlichheim: Adresse, Anfahrt und alle Heimspiele der 1. Damen in der Sparda 2. Liga Pro 2026/27. Jugendspiele auch in der angrenzenden Herbert-Taube-Halle.",
+    "Die Vechtetalhalle in Emlichheim: Adresse, Anfahrt und alle Heimspiele der 1. Damen in der Sparda 2. Liga Pro 2026/27. Jugendspiele auch in der Herbert-Taube-Halle nebenan – gleiche Adresse, gleicher Eingang.",
   alternates: { canonical: "/vechtetalhalle" },
 };
 
@@ -71,7 +71,7 @@ export default function VechtetalhallePage() {
             <p className="text-white/80 text-base sm:text-lg leading-relaxed">
               Hier spielen unsere Damen. {heimspiele.length} Heimspiele in der Sparda 2. Liga Pro,
               dazu der komplette Trainings- und Spielbetrieb von den Minis bis zur Bundesliga.
-              Ein Teil der Jugendspiele läuft in der angrenzenden Herbert-Taube-Halle.
+              Ein Teil der Jugendspiele läuft in der Herbert-Taube-Halle direkt nebenan – gleiche Adresse, gleicher Eingang.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
@@ -118,9 +118,9 @@ export default function VechtetalhallePage() {
                 Zweiter Spielort
               </div>
               <p className="text-sm text-scu-black leading-relaxed">
-                Ein Teil der <strong>Jugendspiele</strong> findet in der direkt angrenzenden{" "}
-                <strong>Herbert-Taube-Halle</strong> statt – gleiches Gelände, gleiche Anfahrt.
-                Welche Halle für ein Spiel angesetzt ist, steht in der jeweiligen Ansetzung.
+                Ein Teil der <strong>Jugendspiele</strong> findet in der{" "}
+                <strong>Herbert-Taube-Halle</strong> direkt nebenan statt – gleiche Adresse,
+                gleicher Eingang. Für die Anfahrt ändert sich also nichts.
               </p>
             </div>
           </div>

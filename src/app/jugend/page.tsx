@@ -62,8 +62,24 @@ export default function JugendPage() {
               );
             })}
           </div>
+          {/* Wo gespielt wird - fuer Eltern die haeufigste Rueckfrage */}
+          <div className="rounded-2xl border-l-4 border-scu-yellow bg-scu-gray-100 p-5">
+            <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">
+              Wo wird gespielt?
+            </div>
+            <p className="text-sm text-scu-black leading-relaxed">
+              Training und Spiele finden in der{" "}
+              <Link href="/vechtetalhalle" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-ink">
+                Vechtetalhalle
+              </Link>{" "}
+              statt, ein Teil der Jugendspiele in der Herbert-Taube-Halle direkt nebenan – gleiche
+              Adresse, gleicher Eingang.
+            </p>
+          </div>
+
           <div className="flex flex-wrap gap-3">
             <Button asChild><Link href="/kontakt">Schnuppertraining vereinbaren</Link></Button>
+            <Button asChild variant="outline"><Link href="/vechtetalhalle">Anfahrt zur Halle</Link></Button>
             <Button asChild variant="outline"><Link href="#foerderring">Förderring unterstützen</Link></Button>
           </div>
         </Container>

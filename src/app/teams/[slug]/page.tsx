@@ -167,6 +167,13 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
                 ? "Komm vorbei, bring Sportzeug und Hallenschuhe mit – die ersten Trainings sind immer kostenlos. Wir freuen uns auf dich."
                 : "Quereinsteigerinnen sind willkommen – egal ob mit Vereinserfahrung oder als Wiedereinsteigerin. Melde dich für ein Probetraining."}
             </p>
+            <p className="relative text-white/60 leading-relaxed text-sm">
+              Gespielt wird in der{" "}
+              <Link href="/vechtetalhalle" className="underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow">
+                Vechtetalhalle
+              </Link>
+              {isJugend ? " oder in der Herbert-Taube-Halle direkt nebenan – gleiche Adresse, gleicher Eingang." : " in Emlichheim."}
+            </p>
             <div className="relative flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary">
                 <Link href="/kontakt">Kontakt aufnehmen</Link>
