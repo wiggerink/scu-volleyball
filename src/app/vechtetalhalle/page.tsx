@@ -200,6 +200,7 @@ export default function VechtetalhallePage() {
               <li>Erwachsene ab 12 € · Jugendliche ab 6 €</li>
               <li>Kinder bis 12 Jahre frei</li>
               <li>Familien-Ticket und Dauerkarten verfügbar</li>
+              <li>Abendkasse am Spieltag – oder vorab online sichern</li>
             </ul>
             <Button asChild variant="primary" className="w-fit">
               <Link href={site.ticketsUrl} target="_blank" rel="noopener">Tickets online kaufen</Link>
