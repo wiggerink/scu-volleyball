@@ -41,11 +41,6 @@ export function HighlightStory() {
             <div className="text-xs uppercase tracking-[0.2em] font-bold opacity-90">Erstmals</div>
             <div className="font-display text-2xl font-black leading-none">2. Liga Pro</div>
           </div>
-          <div className="absolute -bottom-6 -left-4 rounded-2xl bg-white p-5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] hidden sm:block">
-            <div className="text-xs uppercase tracking-[0.2em] font-bold text-scu-black/60 flex items-center gap-1.5 before:content-[''] before:size-1.5 before:rounded-full before:bg-scu-yellow">Titelverteidigung</div>
-            <div className="font-display text-2xl font-black text-scu-black leading-none mt-1">Meister 2. Liga Nord</div>
-            <div className="text-xs text-scu-gray-500 mt-1">3:0 gegen VC Osnabrück · Saison 24/25</div>
-          </div>
         </motion.div>
 
         <motion.div
@@ -57,7 +52,7 @@ export function HighlightStory() {
         >
           <Badge variant="yellow" className="w-fit">Historisch</Badge>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.02] text-scu-black">
-            Emlichheim schreibt <span className="relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-3 after:bg-scu-yellow after:-z-10"><span className="relative">Volleyball-Geschichte</span></span>.
+            Emlichheim schreibt <span className="relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-3 after:bg-scu-yellow after:-z-10"><span className="relative">Volleyball-Geschichte.</span></span>
           </h2>
           <p className="text-scu-gray-500 text-lg leading-relaxed">
             Mit dem Aufstieg in die neu geschaffene <strong className="text-scu-black">2. Bundesliga Pro</strong> spielt
