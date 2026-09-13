@@ -125,10 +125,11 @@ export default async function SpielerinPage({
             </div>
 
             <div className="lg:col-span-5 relative">
-              {/* Grosse Rueckennummer als Grafik hinter dem Freisteller */}
+              {/* Grosse Rueckennummer als Grafik. Bewusst nach links oben versetzt statt
+                  mittig: zentriert verschwand sie fast komplett hinter der Spielerin. */}
               <div
                 aria-hidden
-                className="absolute inset-x-0 top-0 text-center font-display font-black leading-none text-white/[0.07] text-[13rem] lg:text-[18rem] select-none"
+                className="absolute left-0 -top-4 lg:-top-8 text-left font-display font-black leading-none text-white/[0.11] text-[9rem] lg:text-[14rem] select-none"
               >
                 {p.number}
               </div>
