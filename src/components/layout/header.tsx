@@ -89,7 +89,9 @@ export function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center">
-            {site.nav.map((item) => (
+            {site.nav
+              .filter((item) => item.href !== "/")
+              .map((item) => (
               <NavItem key={item.href} item={item} pathname={pathname} activeHref={activeHref} />
             ))}
           </nav>
@@ -373,7 +375,7 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
       <Link
         href={item.href}
         className={cn(
-          "relative inline-flex items-center gap-1.5 px-3 xl:px-4 py-2.5 text-[15px] xl:text-base font-semibold whitespace-nowrap transition group",
+          "relative inline-flex items-center gap-1.5 px-3 xl:px-4 py-2.5 text-base xl:text-[17px] font-semibold whitespace-nowrap transition group",
           active
             ? "text-scu-yellow"
             : "text-white/85 hover:text-scu-yellow",

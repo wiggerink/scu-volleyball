@@ -17,7 +17,7 @@ export type NavEntry = {
 };
 
 const nav: readonly NavEntry[] = [
-  { label: "Home", href: "/", description: "Aktuelles, Highlights & Stories aus Emlichheim" },
+  { label: "Start", href: "/", description: "Aktuelles, Highlights & Stories aus Emlichheim" },
   {
     label: "1. Mannschaft",
     href: "/teams/1-mannschaft",
