@@ -31,6 +31,7 @@ const linkGroups = [
       { label: "Tickets", href: site.ticketsUrl, external: true },
       { label: "Livestream", href: "/teams/1-mannschaft#live" },
       { label: "Spielplan", href: "/teams/1-mannschaft#spielplan" },
+      { label: "Vechtetalhalle", href: "/vechtetalhalle" },
       { label: "Kontakt", href: "/kontakt" },
     ],
   },
