@@ -5,6 +5,8 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { isMailConfigured } from "@/lib/mail";
+import { KontaktForm } from "@/components/forms/kontakt-form";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/social-icons";
 
 export const metadata: Metadata = {
@@ -23,6 +25,8 @@ const contacts = [
 ];
 
 export default function KontaktPage() {
+  const mailBereit = isMailConfigured();
+
   return (
     <>
       <PageHero
@@ -87,55 +91,26 @@ export default function KontaktPage() {
             </div>
           </div>
 
-          <form
-            className="rounded-3xl bg-scu-black text-white p-8 lg:p-10 flex flex-col gap-5"
-            action={`mailto:${site.contact.email}`}
-            method="post"
-            encType="text/plain"
-          >
-            <div>
+          {mailBereit ? (
+            <KontaktForm email={site.contact.email} />
+          ) : (
+            /* Ohne SMTP-Zugangsdaten kein Formular, das ins Leere laeuft -
+               stattdessen offen die Adresse zeigen. */
+            <div className="rounded-3xl bg-scu-black text-white p-8 lg:p-10 flex flex-col gap-5">
+              <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
+                <Mail className="size-6" />
+              </div>
               <h2 className="font-display text-3xl font-black leading-tight">Schreib uns</h2>
-              <p className="text-white/70 mt-2">Wir melden uns in der Regel innerhalb von 48 Stunden.</p>
+              <p className="text-white/70 leading-relaxed">
+                Am schnellsten erreichst du uns per E-Mail. Wir melden uns in der Regel innerhalb von 48 Stunden.
+              </p>
+              <Button asChild variant="primary" size="lg" className="w-fit">
+                <Link href={`mailto:${site.contact.email}`}>{site.contact.email}</Link>
+              </Button>
             </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <Field label="Name" name="name" />
-              <Field label="E-Mail" name="email" type="email" />
-            </div>
-            <Field label="Thema" name="topic" placeholder="Sponsoring, Probetraining, Presse …" />
-            <div>
-              <label className="block text-xs uppercase tracking-[0.22em] font-bold text-white/70 mb-2">Nachricht</label>
-              <textarea
-                name="message"
-                rows={6}
-                required
-                className="w-full rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/40 px-4 py-3 focus:border-scu-yellow outline-none resize-none"
-              />
-            </div>
-            <Button type="submit" variant="primary" size="lg" className="w-fit">
-              Nachricht senden
-            </Button>
-            <p className="text-xs text-white/50">
-              Durch das Absenden erklärst du dich mit unserer{" "}
-              <Link href="/datenschutz" className="underline">Datenschutzerklärung</Link> einverstanden.
-            </p>
-          </form>
+          )}
         </Container>
       </section>
     </>
-  );
-}
-
-function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
-  return (
-    <div>
-      <label className="block text-xs uppercase tracking-[0.22em] font-bold text-white/70 mb-2">{label}</label>
-      <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        required
-        className="w-full h-12 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/40 px-4 focus:border-scu-yellow outline-none"
-      />
-    </div>
   );
 }

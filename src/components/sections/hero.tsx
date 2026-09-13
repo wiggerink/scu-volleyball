@@ -187,6 +187,25 @@ export function Hero() {
             </Button>
           </motion.div>
 
+          {/* Naechstes Heimspiel fuer kleine Viewports: die Bildkarte rechts ist erst ab lg sichtbar,
+              auf dem Handy stand der Termin sonst nirgends. */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.35 }}
+            className="lg:hidden rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-4 max-w-xl"
+          >
+            <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-scu-yellow flex items-center gap-1.5 before:content-[''] before:size-2 before:rounded-full before:bg-scu-yellow">
+              Nächstes Heimspiel
+            </div>
+            <div className="font-display text-base font-black leading-tight mt-1.5">
+              {homeGame.home} vs. {homeGame.away}
+            </div>
+            <div className="text-xs text-white/65 mt-1">
+              {shortDate.format(new Date(`${homeGame.date}T00:00:00Z`))} · {homeGame.time} Uhr · {homeGame.venue}
+            </div>
+          </motion.div>
+
           <motion.dl
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
