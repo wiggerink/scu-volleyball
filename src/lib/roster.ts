@@ -36,9 +36,22 @@ export const roster: Player[] = [
 ];
 
 export const staff: Staff[] = [
-  { name: "Axel Büring",            role: "Cheftrainer",       image: "/team/Axel-Buering.jpg" },
-  { name: "Konstantin von Ditfurth",role: "Co-Trainer",        image: "/team/Konstantin-von-Ditfurth.jpg" },
-  { name: "Erik Heerkes",           role: "Co-Trainer",        image: "/team/Erik-Heerkes.jpg" },
-  { name: "Heike Schiphouwer",      role: "Physiotherapie",    image: "/team/Heike-Schiphower.jpg" },
-  { name: "Ilka Thesing",           role: "Physiotherapie",    image: "/team/Ilka-Thesing.jpg" },
+  { name: "Axel Büring",       role: "Cheftrainer",    image: "/team/2026-27/staff-axel-buering.jpg" },
+  { name: "Heike Schiphouwer", role: "Physiotherapie", image: "/team/2026-27/staff-heike-schiphouwer.jpg" },
+  { name: "Ilka Thesing",      role: "Physiotherapie", image: "/team/2026-27/staff-ilka-thesing.jpg" },
+];
+
+export type ManagementMember = {
+  name: string;
+  /** Ohne Funktion rendert die Karte nur den Namen. */
+  role?: string;
+  image: string;
+};
+
+/** Geschäftsführung der SC UNION Emlichheim Marketing GmbH (siehe Impressum) und Teammanagement. */
+export const management: ManagementMember[] = [
+  { name: "Thorben Helweg", role: "Geschäftsführer", image: "/team/2026-27/staff-thorben-helweg.jpg" },
+  { name: "Tobias Stahl",   role: "Geschäftsführer", image: "/team/2026-27/staff-tobias-stahl.jpg" },
+  // Funktion von Silke Reurink noch offen - die VBL fuehrt sie als Co-Trainerin
+  { name: "Silke Reurink",  image: "/team/2026-27/staff-silke-reurink.jpg" },
 ];

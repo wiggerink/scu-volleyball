@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { SportsTeamJsonLd } from "@/components/seo/json-ld";
-import { roster, staff } from "@/lib/roster";
+import { management, roster, staff } from "@/lib/roster";
 import { schedule } from "@/lib/schedule";
 import { site } from "@/lib/site";
 
@@ -170,6 +170,31 @@ export default function FirstTeamPage() {
                 <div className="p-4">
                   <div className="font-display text-base font-black leading-tight">{s.name}</div>
                   <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">{s.role}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Management */}
+      <section id="management" className="py-20 lg:py-24 bg-white">
+        <Container className="flex flex-col gap-10">
+          <SectionHeading
+            eyebrow="Management"
+            title={<>Geschäftsführung & <HighlightWord>Teammanagement</HighlightWord></>}
+          />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
+            {management.map((m) => (
+              <article key={m.name} className="rounded-2xl overflow-hidden bg-scu-gray-100 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
+                <div className="relative aspect-square">
+                  <Image src={m.image} alt={m.name} fill sizes="200px" className="object-cover object-top" />
+                </div>
+                <div className="p-4">
+                  <div className="font-display text-base font-black leading-tight">{m.name}</div>
+                  {m.role && (
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">{m.role}</div>
+                  )}
                 </div>
               </article>
             ))}
