@@ -7,15 +7,12 @@ import { ArrowRight, Play, Ticket, Trophy, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
-import { nextHomeMatch, seasonOpener } from "@/lib/schedule";
+import { nextHomeMatch } from "@/lib/schedule";
 
-/* Termine der Hero-Karte: kurzes Format ("So, 20. Sept"), UTC-fix wie im Spielplan,
+/* Termin der Heimspiel-Karte: kurzes Format ("So, 20. Sept"), UTC-fix wie im Spielplan,
    damit der Kalendertag aus dem VBL-Export nicht je nach Serverzeitzone kippt. */
 const shortDate = new Intl.DateTimeFormat("de-DE", {
   weekday: "short", day: "numeric", month: "short", timeZone: "UTC",
-});
-const longDate = new Intl.DateTimeFormat("de-DE", {
-  day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
 });
 
 /* Lebendiger Hero: das Teamfoto als subtiler Cinemagraph-Loop (KI-animiert).
@@ -84,8 +81,8 @@ function HeroBackdrop() {
       {/* Foto ausblenden, sobald das Video laeuft: beide halbtransparent uebereinander
           ergaebe wegen des leicht anderen Video-Bildausschnitts einen Ghosting-Effekt */}
       <Image
-        src="/hero/hero-main.jpg"
-        alt="Spielerinnen der 1. Damenmannschaft des SCU Emlichheim beim Saison-Shooting 2026/27 im Werk der Emsland Group"
+        src="/hero/hero-home.jpg"
+        alt="Spielball auf dem Hallenboden der Vechtetalhalle vor einem Heimspiel des SCU Emlichheim"
         fill
         priority
         sizes="100vw"
@@ -96,7 +93,7 @@ function HeroBackdrop() {
           key={videoSrc}
           ref={videoRef}
           src={videoSrc}
-          poster="/hero/hero-main.jpg"
+          poster="/hero/hero-home.jpg"
           autoPlay
           muted
           loop
@@ -221,16 +218,16 @@ export function Hero() {
           >
             <div className="relative h-full w-full rounded-2xl overflow-hidden">
               <Image
-                src="/hero/hero-meister.jpg"
-                alt="SCU 2. Mannschaft – Meister 3. Liga Nord 2025/26"
+                src="/hero/hero-spielszene.jpg"
+                alt="Angriff über das Netz bei einem Heimspiel des SCU Emlichheim in der Vechtetalhalle"
                 fill
                 sizes="420px"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-scu-black/70 to-transparent" />
-              <div className="absolute left-5 bottom-5 right-5">
-                <div className="text-xs font-semibold tracking-[0.22em] uppercase text-scu-yellow">Meister 2025/26</div>
-                <div className="font-display text-xl font-black mt-1">2. Mannschaft steigt auf in die 2. Bundesliga</div>
+              <div className="absolute inset-0 bg-gradient-to-b from-scu-black/75 to-transparent" />
+              <div className="absolute left-5 top-5 right-5">
+                <div className="text-xs font-semibold tracking-[0.22em] uppercase text-scu-yellow">Heimspiel</div>
+                <div className="font-display text-xl font-black mt-1">Sparda 2. Liga Pro in der Vechtetalhalle</div>
               </div>
             </div>
           </motion.div>
@@ -249,25 +246,6 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* Ticker */}
-      <div className="relative mt-16 lg:mt-24">
-        <div className="border-y border-white/10 bg-white/[0.03] backdrop-blur-sm py-3 mask-fade-x">
-          <div className="flex gap-14 whitespace-nowrap text-sm uppercase tracking-[0.22em] text-white/60 font-semibold animate-[marquee_50s_linear_infinite]">
-            {Array.from({ length: 2 }).map((_, idx) => (
-              <div key={idx} className="flex gap-14 shrink-0">
-                <span>🏐 Sparda 2. Liga Pro</span>
-                <span className="text-scu-yellow">· Damen ·</span>
-                <span>SC Union Emlichheim</span>
-                <span className="text-scu-yellow">· Seit 1994 Bundesliga ·</span>
-                <span>120+ Kinder im Training</span>
-                <span className="text-scu-yellow">· Vechtetalhalle ·</span>
-                <span>Saisonstart: {longDate.format(new Date(`${seasonOpener.date}T00:00:00Z`))}</span>
-                <span className="text-scu-yellow">·</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
