@@ -373,7 +373,7 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
       <Link
         href={item.href}
         className={cn(
-          "relative inline-flex items-center gap-1 px-2.5 xl:px-3 py-2 text-[12.5px] xl:text-[13px] font-semibold whitespace-nowrap transition group",
+          "relative inline-flex items-center gap-1.5 px-3 xl:px-4 py-2.5 text-[15px] xl:text-base font-semibold whitespace-nowrap transition group",
           active
             ? "text-scu-yellow"
             : "text-white/85 hover:text-scu-yellow",
