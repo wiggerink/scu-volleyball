@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Radio, Ticket, CalendarDays, MapPin, Trophy } from "lucide-react";
+import { Radio, Ticket, CalendarDays, MapPin, Trophy, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -110,31 +110,37 @@ export default function FirstTeamPage() {
             description="Junge Talente aus der eigenen Jugend, erfahrene Leistungsträgerinnen und internationale Qualität vereint in einem Team."
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {sorted.map((p) => (
               <article
                 key={p.number}
-                className="group relative rounded-2xl overflow-hidden bg-scu-gray-100 border border-transparent hover:border-scu-yellow transition-all hover:shadow-[0_24px_50px_-20px_rgba(255,240,1,0.35)] focus-within:border-scu-yellow"
+                className="group relative rounded-2xl overflow-hidden bg-scu-gray-100 ring-1 ring-transparent transition duration-300 ease-out hover:-translate-y-1.5 hover:ring-scu-yellow hover:shadow-[0_30px_60px_-24px_rgba(0,0,0,0.45)] focus-within:-translate-y-1.5 focus-within:ring-scu-yellow"
               >
                 {/* Ganze Karte klickbar, Linktext bleibt der Name */}
                 <Link href={`/teams/1-mannschaft/${p.slug}`} className="absolute inset-0 z-10">
                   <span className="sr-only">{p.name} – Steckbrief</span>
                 </Link>
-                <div className="relative aspect-[3/4] bg-scu-gray-200">
+                <div className="relative aspect-[3/4] bg-scu-gray-200 overflow-hidden">
                   <Image
                     src={p.image}
                     alt={p.name}
                     fill
-                    sizes="(min-width:1024px) 20vw, 50vw"
-                    className="object-cover"
+                    sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07] group-focus-within:scale-[1.07]"
                   />
-                  <div className="absolute top-3 left-3 bg-scu-yellow text-scu-black rounded-full size-10 flex items-center justify-center font-display font-black">
+                  <div className="absolute top-3 left-3 z-10 bg-scu-yellow text-scu-black rounded-full size-11 flex items-center justify-center font-display font-black text-lg transition-transform duration-300 group-hover:scale-110 group-focus-within:scale-110">
                     {p.number}
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black to-transparent text-white">
-                    <div className="font-display text-base sm:text-lg font-black leading-tight">{p.name}</div>
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black via-scu-black/75 to-transparent text-white transition-[padding] duration-300">
+                    <div className="font-display text-lg sm:text-xl font-black leading-tight">{p.name}</div>
                     <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">
                       {p.position}
+                    </div>
+                    {/* Faehrt erst beim Ueberfahren aus und macht sichtbar, dass die Karte verlinkt ist */}
+                    <div className="h-0 overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover:h-6 group-hover:opacity-100 group-focus-within:h-6 group-focus-within:opacity-100">
+                      <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em]">
+                        Steckbrief <ArrowRight className="size-3.5" />
+                      </span>
                     </div>
                   </div>
                 </div>
