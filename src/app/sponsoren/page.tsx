@@ -16,14 +16,14 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { v: "2.500+", k: "Zuschauer pro Heimspiel" },
+  { v: "300–700", k: "Zuschauer pro Heimspiel" },
   { v: "14",    k: "Mannschaften quer durchs Land" },
   { v: "30+",   k: "Jahre Bundesliga-Geschichte" },
   { v: "120+",  k: "Kinder & Jugendliche im Training" },
 ];
 
 const reasons = [
-  { icon: Eye,     title: "Reichweite", text: "Live-Streams, 2.500+ Zuschauer pro Heimspiel, lokale Medien & soziale Netzwerke." },
+  { icon: Eye,     title: "Reichweite", text: "Live-Streams, 300 bis 700 Zuschauer pro Heimspiel, lokale Medien & soziale Netzwerke." },
   { icon: Users2,  title: "Nähe",       text: "Direkter Zugang zu einer engagierten Community in Niedersachsen und der Grenzregion." },
   { icon: Heart,   title: "Verantwortung", text: "Ihre Marke wird mit Jugendförderung, Nachhaltigkeit und Tradition verbunden." },
 ];
