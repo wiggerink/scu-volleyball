@@ -126,7 +126,7 @@ export default function FirstTeamPage() {
                     alt={p.name}
                     fill
                     sizes="(min-width:1024px) 20vw, 50vw"
-                    className="object-cover transition duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0"
+                    className="object-cover"
                   />
                   <div className="absolute top-3 left-3 bg-scu-yellow text-scu-black rounded-full size-10 flex items-center justify-center font-display font-black">
                     {p.number}

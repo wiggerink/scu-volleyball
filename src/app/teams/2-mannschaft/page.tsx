@@ -173,7 +173,7 @@ export default function SecondTeamPage() {
                       alt={p.name}
                       fill
                       sizes="(min-width:1024px) 20vw, 50vw"
-                      className="object-cover transition duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0"
+                      className="object-cover"
                     />
                   ) : (
                     <>
