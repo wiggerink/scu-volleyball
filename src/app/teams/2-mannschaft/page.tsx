@@ -160,11 +160,11 @@ export default function SecondTeamPage() {
             description="Der Meisterkader der 3. Liga Nord – durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend."
           />
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {sortedRoster.map((p) => (
               <article
                 key={p.name}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-transparent hover:border-scu-yellow transition-all hover:shadow-[0_24px_50px_-20px_rgba(255,240,1,0.35)]"
+                className="group relative rounded-2xl overflow-hidden bg-white ring-1 ring-transparent transition duration-300 ease-out hover:-translate-y-1.5 hover:ring-scu-yellow hover:shadow-[0_30px_60px_-24px_rgba(0,0,0,0.45)] focus-within:-translate-y-1.5 focus-within:ring-scu-yellow"
               >
                 <div className="relative aspect-[3/4] bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center overflow-hidden">
                   {p.image ? (
@@ -172,20 +172,20 @@ export default function SecondTeamPage() {
                       src={p.image}
                       alt={p.name}
                       fill
-                      sizes="(min-width:1024px) 20vw, 50vw"
-                      className="object-cover"
+                      sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                     />
                   ) : (
                     <>
                       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,240,1,0.15),transparent_60%)]" />
-                      <span className="relative font-display text-5xl lg:text-6xl font-black text-white/90 group-hover:text-scu-yellow transition-colors">
+                      <span className="relative font-display text-5xl lg:text-6xl font-black text-white/90 transition duration-300 group-hover:text-scu-yellow group-hover:scale-110">
                         {getInitials(p.name)}
                       </span>
                     </>
                   )}
-                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black to-transparent text-white">
-                    <div className="font-display text-sm lg:text-base font-black leading-tight">{p.name}</div>
-                    <div className="text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black via-scu-black/75 to-transparent text-white">
+                    <div className="font-display text-lg sm:text-xl font-black leading-tight">{p.name}</div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">
                       {p.position}
                     </div>
                   </div>
