@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Ticket, CalendarDays, Navigation, Radio } from "lucide-react";
+import { MapPin, Ticket, CalendarDays, Navigation, Radio, Car, Accessibility } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -43,6 +43,10 @@ export default function VechtetalhallePage() {
       addressRegion: site.venue.region,
       addressCountry: "DE",
     },
+    amenityFeature: [
+      { "@type": "LocationFeatureSpecification", name: "Parkplatz", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Barrierefreier Zugang", value: true },
+    ],
   };
 
   return (
@@ -110,6 +114,19 @@ export default function VechtetalhallePage() {
                   In Apple Karten öffnen
                 </Link>
               </Button>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { icon: Car, titel: "Parken", text: "Parkmöglichkeiten direkt an der Halle." },
+                { icon: Accessibility, titel: "Barrierefrei", text: "Barrierefreier Zugang ist möglich." },
+              ].map(({ icon: Icon, titel, text }) => (
+                <div key={titel} className="rounded-2xl bg-scu-gray-100 p-5 flex flex-col gap-2">
+                  <Icon className="size-5 text-scu-yellow-ink" />
+                  <div className="font-display font-black text-scu-black">{titel}</div>
+                  <p className="text-sm text-scu-gray-500 leading-relaxed">{text}</p>
+                </div>
+              ))}
             </div>
 
             {/* Zweiter Spielort direkt nebenan - fuer Eltern die haeufigste Rueckfrage */}
