@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "SCU Emlichheim Volleyball – 2. Bundesliga Pro Damen";
+export const alt = "SCU Emlichheim Volleyball – Sparda 2. Liga Pro Damen";
 
 export default async function Image() {
   return new ImageResponse(
@@ -33,7 +33,7 @@ export default async function Image() {
               textTransform: "uppercase",
             }}
           >
-            2. Bundesliga Pro · Damen
+            Sparda 2. Liga Pro · Damen
           </div>
           <div style={{ fontSize: 22, opacity: 0.7, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>
             Saison 2025 / 26

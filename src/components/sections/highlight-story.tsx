@@ -6,6 +6,12 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { seasonOpener } from "@/lib/schedule";
+
+// Saisonstart aus dem Spielplan, damit die Angabe nicht jede Saison von Hand nachgezogen werden muss
+const seasonStart = new Intl.DateTimeFormat("de-DE", {
+  day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+}).format(new Date(`${seasonOpener.date}T00:00:00Z`));
 
 export function HighlightStory() {
   return (
@@ -23,8 +29,8 @@ export function HighlightStory() {
         >
           <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)]">
             <Image
-              src="/team/team-group.jpg"
-              alt="SCU Damen Bundesliga Team 2025/26 Saisonshooting"
+              src="/team/2026-27/story-emsland-group.jpg"
+              alt="Sechs Spielerinnen der 1. Damenmannschaft des SCU Emlichheim beim Saison-Shooting 2026/27 vor dem Werk der Emsland Group"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
               className="object-cover"
@@ -64,7 +70,7 @@ export function HighlightStory() {
               "14 Pro-Teams · 26 Spieltage · Playoff-Modus",
               "Heimspiele in der Vechtetalhalle",
               "Eigene Talente aus der Jugend im Kader",
-              "Saisonstart: 20. September 2025",
+              `Saisonstart: ${seasonStart}`,
             ].map((item) => (
               <li key={item} className="flex gap-3 items-start text-sm text-scu-black/80">
                 <div className="mt-1 size-2 rounded-full bg-scu-yellow shrink-0 ring-2 ring-scu-black/10" />

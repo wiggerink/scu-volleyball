@@ -9,7 +9,7 @@ const linkGroups = [
   {
     title: "Mannschaften",
     links: [
-      { label: "1. Damen – 2. Bundesliga Pro", href: "/teams/1-mannschaft" },
+      { label: "1. Damen – Sparda 2. Liga Pro", href: "/teams/1-mannschaft" },
       { label: "2. Damen – 3. Liga", href: "/teams/2-mannschaft" },
       { label: "Alle Mannschaften", href: "/teams" },
       { label: "Jugendabteilung", href: "/jugend" },
@@ -124,7 +124,7 @@ export function Footer() {
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-xs text-white/50">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span>© {new Date().getFullYear()} SC Union Emlichheim Marketing GmbH.</span>
+            <span>© {new Date().getFullYear()} SC UNION Emlichheim Marketing GmbH.</span>
             <span className="hidden md:inline text-white/20">·</span>
             <Link
               href="https://web-n-search.de"
@@ -141,7 +141,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5">
               <span className="size-1.5 rounded-full bg-scu-yellow animate-pulse" />
-              Offizieller Club der 2. Bundesliga Pro
+              Offizieller Club der Sparda 2. Liga Pro
             </span>
           </div>
         </div>

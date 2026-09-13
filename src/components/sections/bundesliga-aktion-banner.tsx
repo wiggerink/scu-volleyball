@@ -41,7 +41,7 @@ export function BundesligaAktionBanner() {
             </h2>
 
             <p className="text-white/75 text-lg leading-relaxed max-w-xl">
-              Zeig deiner Liga, dass du dabei bist. Alle Spiele der 2. Bundesliga Pro Damen werden live auf{" "}
+              Zeig deiner Liga, dass du dabei bist. Alle Spiele der Sparda 2. Liga Pro Damen werden live auf{" "}
               <strong className="text-white">Dyn Media</strong> übertragen – mit Kommentar, Statistiken und HD-Replays. Jede Stimme zählt.
             </p>
 

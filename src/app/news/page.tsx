@@ -10,7 +10,7 @@ import { newsItems } from "@/lib/news";
 export const metadata: Metadata = {
   title: "News & Spielberichte",
   description:
-    "Alle aktuellen News, Spielberichte und Geschichten aus dem SCU Emlichheim – von der 2. Bundesliga Pro bis zur Jugend.",
+    "Alle aktuellen News, Spielberichte und Geschichten aus dem SCU Emlichheim – von der Sparda 2. Liga Pro bis zur Jugend.",
   alternates: { canonical: "/news" },
 };
 

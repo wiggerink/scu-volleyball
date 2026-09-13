@@ -21,13 +21,13 @@ const display = Archivo_Black({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} – 2. Bundesliga Pro Damen`,
+    default: `${site.name} – Sparda 2. Liga Pro Damen`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
   keywords: [
     "SCU Emlichheim", "SC Union Emlichheim", "Volleyball Emlichheim",
-    "2. Bundesliga Pro Damen", "Volleyball Niedersachsen",
+    "Sparda 2. Liga Pro Damen", "2. Bundesliga Pro Damen", "Volleyball Niedersachsen",
     "Vechtetalhalle", "Grafschaft Bentheim Volleyball",
     "Jugendvolleyball", "Volleyball Bundesliga",
   ],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: site.name,
     description: site.description,
-    images: [{ url: "/hero/hero-main.jpg", width: 2048, height: 1365, alt: "SCU Emlichheim 2. Bundesliga Pro Team" }],
+    images: [{ url: "/hero/hero-main.jpg", width: 2048, height: 1365, alt: "SCU Emlichheim Sparda 2. Liga Pro Team" }],
   },
   twitter: {
     card: "summary_large_image",

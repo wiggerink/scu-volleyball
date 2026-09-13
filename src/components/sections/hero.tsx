@@ -7,6 +7,16 @@ import { ArrowRight, Play, Ticket, Trophy, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
+import { nextHomeMatch, seasonOpener } from "@/lib/schedule";
+
+/* Termine der Hero-Karte: kurzes Format ("So, 20. Sept"), UTC-fix wie im Spielplan,
+   damit der Kalendertag aus dem VBL-Export nicht je nach Serverzeitzone kippt. */
+const shortDate = new Intl.DateTimeFormat("de-DE", {
+  weekday: "short", day: "numeric", month: "short", timeZone: "UTC",
+});
+const longDate = new Intl.DateTimeFormat("de-DE", {
+  day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+});
 
 /* Lebendiger Hero: das Teamfoto als subtiler Cinemagraph-Loop (KI-animiert).
    Das statische Bild bleibt Basis-Layer und Fallback (reduced motion, Save-Data,
@@ -34,12 +44,30 @@ function isDesktopViewport() {
   return window.matchMedia("(min-width: 768px)").matches;
 }
 
+/* Besucher-Uhrzeit als externer Store: einmal pro Seitenaufruf eingefroren, damit
+   getSnapshot einen stabilen Wert liefert (sonst rendert React endlos neu). */
+let clientNow: number | null = null;
+const subscribeNothing = () => () => {};
+function getClientNow() {
+  clientNow ??= Date.now();
+  return clientNow;
+}
+function getServerNow(): number | null {
+  return null;
+}
+
+/* Cinemagraph pausiert: hero-main.mp4 ist aus dem 25/26-Hero-Foto animiert und zeigt
+   eine andere Szene als das neue Saisonbild - der Crossfade wuerde sichtbar umspringen.
+   Wieder auf true setzen, sobald ein Loop aus dem 26/27-Foto vorliegt. */
+const HERO_CINEMAGRAPH = false;
+
 function HeroBackdrop() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = React.useState(false);
   const [videoFailed, setVideoFailed] = React.useState(false);
   // Server-Snapshot false: SSR rendert nur das Bild, Video kommt erst clientseitig dazu
-  const showVideo = React.useSyncExternalStore(subscribeMotionPref, wantsVideo, () => false);
+  const prefersVideo = React.useSyncExternalStore(subscribeMotionPref, wantsVideo, () => false);
+  const showVideo = HERO_CINEMAGRAPH && prefersVideo;
   // Desktop 1920px-Variante, Mobile spart mit 960px Bandbreite
   const isDesktop = React.useSyncExternalStore(subscribeViewport, isDesktopViewport, () => false);
   const videoSrc = isDesktop ? "/hero/hero-main.mp4" : "/hero/hero-main-mobile.mp4";
@@ -57,7 +85,7 @@ function HeroBackdrop() {
           ergaebe wegen des leicht anderen Video-Bildausschnitts einen Ghosting-Effekt */}
       <Image
         src="/hero/hero-main.jpg"
-        alt="SCU Emlichheim Volleyball Damen 2. Bundesliga Pro – Saison-Shooting 2025/26"
+        alt="Spielerinnen der 1. Damenmannschaft des SCU Emlichheim beim Saison-Shooting 2026/27 im Werk der Emsland Group"
         fill
         priority
         sizes="100vw"
@@ -92,6 +120,12 @@ function HeroBackdrop() {
 }
 
 export function Hero() {
+  // Server-Snapshot null -> erster Render zeigt ueberall das erste Heimspiel der Saison,
+  // Markup stimmt also auf beiden Seiten. Nach der Hydration zaehlt die Uhr des Besuchers,
+  // damit die Karte auch dann stimmt, wenn seit dem letzten Deploy Spiele vorbei sind.
+  const now = React.useSyncExternalStore(subscribeNothing, getClientNow, getServerNow);
+  const homeGame = nextHomeMatch(now);
+
   return (
     <section className="relative overflow-hidden bg-scu-black text-white clip-hero pb-32 lg:pb-44">
       <HeroBackdrop />
@@ -129,8 +163,8 @@ export function Hero() {
             className="max-w-xl text-lg text-white/80 leading-relaxed"
           >
             Willkommen beim <strong className="text-white">SC Union Emlichheim</strong> – dem Dorf in der Grafschaft,
-            das seit über 30 Jahren Bundesliga-Volleyball atmet. 2025/26 greifen unsere Damen in der{" "}
-            <strong className="text-white">2. Bundesliga Pro</strong> an.
+            das seit über 30 Jahren Bundesliga-Volleyball atmet. 2026/27 greifen unsere Damen in der{" "}
+            <strong className="text-white">Sparda 2. Liga Pro</strong> an.
           </motion.p>
 
           <motion.div
@@ -146,7 +180,7 @@ export function Hero() {
             </Button>
             <Button asChild size="lg" variant="outlineLight">
               <Link href="/teams/1-mannschaft">
-                Kader 2025/26 <ArrowRight className="size-4" />
+                Kader 2026/27 <ArrowRight className="size-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
@@ -207,8 +241,10 @@ export function Hero() {
             className="absolute -left-4 -bottom-8 bg-white text-scu-black rounded-2xl p-4 shadow-2xl w-60"
           >
             <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-scu-black flex items-center gap-1.5 before:content-[''] before:size-2 before:rounded-full before:bg-scu-yellow">Nächstes Heimspiel</div>
-            <div className="font-display text-lg font-black leading-tight mt-1">SCU Emlichheim vs. BBSC Berlin</div>
-            <div className="text-xs text-scu-gray-500 mt-1">So, 21. Sept · 17:00 Uhr · Vechtetalhalle</div>
+            <div className="font-display text-lg font-black leading-tight mt-1">{homeGame.home} vs. {homeGame.away}</div>
+            <div className="text-xs text-scu-gray-500 mt-1">
+              {shortDate.format(new Date(`${homeGame.date}T00:00:00Z`))} · {homeGame.time} Uhr · {homeGame.venue}
+            </div>
           </motion.div>
         </div>
       </Container>
@@ -219,13 +255,13 @@ export function Hero() {
           <div className="flex gap-14 whitespace-nowrap text-sm uppercase tracking-[0.22em] text-white/60 font-semibold animate-[marquee_50s_linear_infinite]">
             {Array.from({ length: 2 }).map((_, idx) => (
               <div key={idx} className="flex gap-14 shrink-0">
-                <span>🏐 2. Bundesliga Pro</span>
+                <span>🏐 Sparda 2. Liga Pro</span>
                 <span className="text-scu-yellow">· Damen ·</span>
                 <span>SC Union Emlichheim</span>
                 <span className="text-scu-yellow">· Seit 1994 Bundesliga ·</span>
                 <span>120+ Kinder im Training</span>
                 <span className="text-scu-yellow">· Vechtetalhalle ·</span>
-                <span>Saisonstart: 20. September 2025</span>
+                <span>Saisonstart: {longDate.format(new Date(`${seasonOpener.date}T00:00:00Z`))}</span>
                 <span className="text-scu-yellow">·</span>
               </div>
             ))}

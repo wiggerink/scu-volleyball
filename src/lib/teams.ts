@@ -18,13 +18,13 @@ export const teams: TeamEntry[] = [
     slug: "1-mannschaft",
     name: "1. Damen",
     short: "SCU I",
-    league: "2. Bundesliga Pro",
+    league: "Sparda 2. Liga Pro",
     tier: 1,
     gender: "Damen",
     description:
       "Unser Aushängeschild – talentierte, in der eigenen Jugend ausgebildete Spielerinnen auf höchstem nationalen Niveau.",
     accent: "red",
-    image: "/team/team-group.jpg",
+    image: "/team/1-damen-2026-27.jpg",
   },
   {
     slug: "2-mannschaft",

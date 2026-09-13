@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const values = [
   { icon: Heart,   title: "Heimat",         text: "Verwurzelt in Emlichheim, getragen von einer ganzen Region." },
   { icon: Target,  title: "Jugendarbeit",   text: "120+ Kinder & Jugendliche in strukturierten Trainingsgruppen." },
-  { icon: Trophy,  title: "Spitzensport",   text: "2. Bundesliga Pro Damen. 30+ Jahre Bundesliga-Volleyball." },
+  { icon: Trophy,  title: "Spitzensport",   text: "Sparda 2. Liga Pro Damen. 30+ Jahre Bundesliga-Volleyball." },
   { icon: Users,   title: "Gemeinschaft",   text: "Über 400 aktive Mitglieder, ehrenamtlich getragen." },
   { icon: Flag,    title: "Nachhaltigkeit", text: "Wir bilden eigene Talente aus – bis zur Bundesliga." },
   { icon: HeartHandshake, title: "Partner", text: "Eingebettet in ein starkes regionales Sponsoren-Netzwerk." },

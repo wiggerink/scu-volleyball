@@ -21,7 +21,7 @@ const nav: readonly NavEntry[] = [
   {
     label: "1. Mannschaft",
     href: "/teams/1-mannschaft",
-    description: "2. Bundesliga Pro · Saison 2025/26",
+    description: "Sparda 2. Liga Pro · Saison 2026/27",
     children: [
       { label: "Team & Kader", href: "/teams/1-mannschaft" },
       { label: "Spielplan", href: "/teams/1-mannschaft#spielplan" },
@@ -85,11 +85,11 @@ export const site = {
   claim: "Volleyball. Heimat. Leidenschaft.",
   ticketsUrl,
   description:
-    "Der SC Union Emlichheim ist einer der traditionsreichsten Volleyballvereine Deutschlands. Unsere 1. Damenmannschaft spielt in der 2. Bundesliga Pro – getragen von einer der stärksten Jugendabteilungen der Region.",
+    "Der SC Union Emlichheim ist einer der traditionsreichsten Volleyballvereine Deutschlands. Unsere 1. Damenmannschaft spielt in der Sparda 2. Liga Pro – getragen von einer der stärksten Jugendabteilungen der Region.",
   url: "https://scuvolleyball.de",
   locale: "de_DE",
-  league: "2. Bundesliga Pro (Damen)",
-  season: "2025/26",
+  league: "Sparda 2. Liga Pro (Damen)",
+  season: "2026/27",
   venue: {
     name: "Vechtetalhalle",
     city: "Emlichheim",

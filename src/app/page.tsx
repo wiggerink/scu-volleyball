@@ -7,13 +7,14 @@ import { BundesligaAktionBanner } from "@/components/sections/bundesliga-aktion-
 import { TeamsOverview } from "@/components/sections/teams-overview";
 import { YouthSection } from "@/components/sections/youth-section";
 import { SponsorsSection } from "@/components/sections/sponsors-section";
+import { SponsorsBand } from "@/components/sections/sponsors-band";
 import { CtaSection } from "@/components/sections/cta-section";
 import { OrganizationJsonLd, SportsTeamJsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
-  title: "SCU Emlichheim Volleyball – 2. Bundesliga Pro Damen 2025/26",
+  title: "SCU Emlichheim Volleyball – Sparda 2. Liga Pro Damen 2026/27",
   description:
-    "SC Union Emlichheim – Dorfverein mit Bundesliga-Herz. 15 Mannschaften, 120+ Kinder in der Jugend, 2. Bundesliga Pro Damen in der Vechtetalhalle. Tickets, Spielplan, Livestream.",
+    "SC Union Emlichheim – Dorfverein mit Bundesliga-Herz. 15 Mannschaften, 120+ Kinder in der Jugend, Sparda 2. Liga Pro Damen in der Vechtetalhalle. Tickets, Spielplan, Livestream.",
   alternates: { canonical: "/" },
 };
 
@@ -23,6 +24,7 @@ export default function Home() {
       <OrganizationJsonLd />
       <SportsTeamJsonLd />
       <Hero />
+      <SponsorsBand />
       <FederationPartners />
       <HighlightStory />
       <BundesligaAktionBanner />

@@ -54,7 +54,7 @@ export function Header() {
                 <span className="relative inline-flex size-2 rounded-full bg-scu-yellow" />
               </span>
               <span className="text-[9px] sm:text-[10.5px] font-semibold tracking-[0.18em] sm:tracking-[0.22em] uppercase text-white/90 truncate">
-                Saison {site.season} · 2. Bundesliga Pro · Damen
+                Saison {site.season} · Sparda 2. Liga Pro · Damen
               </span>
             </div>
             <div className="hidden md:flex items-center gap-4 shrink-0">
@@ -144,7 +144,7 @@ export function Header() {
                   </div>
                   <div className="flex flex-col leading-tight">
                     <span className="font-display font-black text-sm">SCU Volleyball</span>
-                    <span className="text-[9px] uppercase tracking-[0.22em] text-scu-yellow font-bold">2. Bundesliga Pro</span>
+                    <span className="text-[9px] uppercase tracking-[0.22em] text-scu-yellow font-bold">Sparda 2. Liga Pro</span>
                   </div>
                 </Link>
                 <button

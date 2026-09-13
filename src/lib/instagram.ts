@@ -30,7 +30,7 @@ const FALLBACK_POSTS: InstagramPost[] = [
   {
     id: "fallback-3",
     caption:
-      "Unsere 1. Damen greifen in der 2. Bundesliga Pro an. Tickets, Spielplan und Livestream-Infos findet ihr in der Story!",
+      "Unsere 1. Damen greifen in der Sparda 2. Liga Pro an. Tickets, Spielplan und Livestream-Infos findet ihr in der Story!",
     mediaType: "IMAGE",
     mediaUrl: "/team/team-group.jpg",
     permalink: "https://www.instagram.com/scu.volleyball/",

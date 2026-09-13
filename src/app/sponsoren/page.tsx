@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Eye, Users2, TrendingUp, Handshake, Megaphone, Heart } from "lucide-react";
+import { Eye, Users2, Heart, Phone, Mail } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { SponsorsSection } from "@/components/sections/sponsors-section";
+import { sponsoringContact } from "@/lib/sponsors";
 
 export const metadata: Metadata = {
   title: "Sponsoring & Partner",
   description:
-    "Ihr Unternehmen in der 2. Bundesliga Pro: Sponsoring-Pakete für den SCU Emlichheim. Mit Reichweite in Niedersachsen, Nordrhein-Westfalen und den Niederlanden.",
+    "Ihr Unternehmen in der Sparda 2. Liga Pro: Sponsoring beim SCU Emlichheim – individuell und im direkten Gespräch. Mit Reichweite in Niedersachsen, Nordrhein-Westfalen und den Niederlanden.",
   alternates: { canonical: "/sponsoren" },
 };
 
@@ -19,37 +20,6 @@ const stats = [
   { v: "15",    k: "Mannschaften quer durchs Land" },
   { v: "30+",   k: "Jahre Bundesliga-Geschichte" },
   { v: "120+",  k: "Kinder & Jugendliche im Training" },
-];
-
-const packages = [
-  {
-    icon: Megaphone,
-    tier: "Premium",
-    color: "bg-scu-yellow text-scu-black",
-    price: "individuell",
-    perks: ["Bandenwerbung Spitzenplatz", "Trikot- oder Hosenplatzierung", "Präsenz auf allen Kommunikationskanälen", "VIP-Tickets & Hospitality", "Eigene Content-Formate (Reels, Videos)"],
-  },
-  {
-    icon: TrendingUp,
-    tier: "Gold",
-    color: "bg-scu-gold text-scu-black",
-    price: "ab 5.000 € p.a.",
-    perks: ["Bandenwerbung Premiumfläche", "Logo auf der Startseite", "Social-Media-Kooperation", "Tickets für Heimspiele", "Einladung zu Netzwerk-Events"],
-  },
-  {
-    icon: Handshake,
-    tier: "Silber",
-    color: "bg-scu-black text-white",
-    price: "ab 1.500 € p.a.",
-    perks: ["Bandenwerbung", "Logo auf der Partner-Seite", "Nennung im Hallenheft", "Tickets für Heimspiele"],
-  },
-  {
-    icon: Heart,
-    tier: "Partner",
-    color: "bg-scu-gray-800 text-white",
-    price: "individuell",
-    perks: ["Materialsponsoring", "Kooperationen mit der Jugend", "Lokale Aktionen & Events", "Individuelle Absprachen"],
-  },
 ];
 
 const reasons = [
@@ -63,11 +33,11 @@ export default function SponsorsPage() {
     <>
       <PageHero
         eyebrow="Sponsoring"
-        title={<>Ihre Marke in der <span className="text-scu-yellow">2. Bundesliga Pro</span>.</>}
+        title={<>Ihre Marke in der <span className="text-scu-yellow">Sparda 2. Liga Pro</span>.</>}
         description="Bundesliga-Volleyball in der Grafschaft: Eine Bühne mit hoher Sichtbarkeit, großer Glaubwürdigkeit und echter regionaler Verwurzelung – für Unternehmen, die mehr als Logos wollen."
         imageUrl="/team/team-group.jpg"
       >
-        <Button asChild variant="primary" size="lg"><Link href="/kontakt">Jetzt Partner werden</Link></Button>
+        <Button asChild variant="primary" size="lg"><Link href="#ansprechpartner">Jetzt Partner werden</Link></Button>
       </PageHero>
 
       {/* Zahlen */}
@@ -114,40 +84,51 @@ export default function SponsorsPage() {
         </Container>
       </section>
 
-      {/* Pakete */}
-      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+      {/* Ansprechpartner – Sponsoring läuft im direkten Gespräch, ohne öffentliche Pakete */}
+      <section id="ansprechpartner" className="relative py-20 lg:py-24 bg-scu-black text-white overflow-hidden">
+        <div aria-hidden className="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-scu-yellow/15 blur-3xl" />
         <Container className="relative">
-          <SectionHeading
-            eyebrow="Pakete"
-            title={<>Passgenaues <HighlightWord>Sponsoring</HighlightWord></>}
-            description="Vier Ebenen, unzählige Kombinationsmöglichkeiten. Gerne erstellen wir Ihnen ein individuelles Angebot."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
-            {packages.map((p) => {
-              const Icon = p.icon;
-              return (
-                <div key={p.tier} className="rounded-2xl bg-white p-7 flex flex-col gap-4 border border-scu-gray-200 hover:border-scu-yellow transition shadow-[0_10px_30px_-20px_rgba(0,0,0,0.15)]">
-                  <div className={`inline-flex size-12 items-center justify-center rounded-xl ${p.color} shadow-[0_10px_24px_-8px_rgba(0,0,0,0.25)]`}>
-                    <Icon className="size-6" />
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-[0.22em] font-bold text-scu-yellow-dark">{p.tier}</div>
-                    <div className="font-display text-2xl font-black text-scu-black">{p.price}</div>
-                  </div>
-                  <ul className="text-sm text-scu-gray-500 space-y-2">
-                    {p.perks.map((perk) => (
-                      <li key={perk} className="flex items-start gap-2">
-                        <span className="mt-1 size-1.5 rounded-full bg-scu-yellow shrink-0" />
-                        {perk}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild variant="dark" className="mt-auto w-full">
-                    <Link href="/kontakt">Anfragen</Link>
-                  </Button>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="flex flex-col gap-5">
+              <div className="text-[11px] uppercase tracking-[0.24em] font-bold text-scu-yellow">Ihr Ansprechpartner</div>
+              <h2 className="font-display text-4xl lg:text-5xl font-black leading-[1.02]">
+                Sponsoring ist bei uns <span className="text-scu-yellow">Chefsache</span>.
+              </h2>
+              <p className="text-white/75 text-lg leading-relaxed">
+                Kein Paket von der Stange: Jedes Engagement beim SCU wird individuell zugeschnitten – von der Bande
+                bis zum Trikot, von der Jugendförderung bis zum Content-Format. Rufen Sie einfach an oder schreiben
+                Sie eine E-Mail, alles Weitere besprechen wir persönlich.
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-white/[0.06] border border-white/10 backdrop-blur p-8 flex flex-col sm:flex-row items-center gap-7">
+              {sponsoringContact.photo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={sponsoringContact.photo}
+                  alt={sponsoringContact.name}
+                  className="size-28 rounded-2xl object-cover shrink-0 ring-2 ring-scu-yellow/60"
+                />
+              ) : (
+                <div className="size-28 rounded-2xl bg-scu-yellow text-scu-black flex items-center justify-center font-display text-4xl font-black shrink-0 ring-2 ring-scu-yellow/60">
+                  TH
                 </div>
-              );
-            })}
+              )}
+              <div className="flex flex-col gap-3 text-center sm:text-left min-w-0">
+                <div>
+                  <div className="font-display text-2xl font-black">{sponsoringContact.name}</div>
+                  <div className="text-sm text-white/60 mt-0.5">{sponsoringContact.role}</div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <a href={sponsoringContact.phoneHref} className="inline-flex items-center justify-center sm:justify-start gap-2.5 text-white hover:text-scu-yellow transition font-semibold">
+                    <Phone className="size-4 text-scu-yellow shrink-0" /> {sponsoringContact.phone}
+                  </a>
+                  <a href={`mailto:${sponsoringContact.email}`} className="inline-flex items-center justify-center sm:justify-start gap-2.5 text-white hover:text-scu-yellow transition font-semibold break-all">
+                    <Mail className="size-4 text-scu-yellow shrink-0" /> {sponsoringContact.email}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

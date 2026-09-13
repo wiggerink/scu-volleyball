@@ -8,22 +8,27 @@ import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { SportsTeamJsonLd } from "@/components/seo/json-ld";
 import { roster, staff } from "@/lib/roster";
+import { schedule } from "@/lib/schedule";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "1. Damen – 2. Bundesliga Pro · Saison 2025/26",
+  title: "1. Damen – Sparda 2. Liga Pro · Saison 2026/27",
   description:
-    "Der Kader der SCU Emlichheim 1. Damen in der 2. Bundesliga Pro: Spielerinnen, Trainer:innen, Spielplan, Tickets und Livestream der Vechtetalhalle.",
+    "Der Kader der SCU Emlichheim 1. Damen in der Sparda 2. Liga Pro 2026/27: Spielerinnen, Trainer:innen, Spielplan, Tickets und Livestream aus der Vechtetalhalle.",
   alternates: { canonical: "/teams/1-mannschaft" },
 };
 
-const upcoming = [
-  { date: "2025-09-21", time: "17:00", home: "SCU Emlichheim", away: "BBSC Berlin",       venue: "Vechtetalhalle",      type: "Heim"  },
-  { date: "2025-09-27", time: "19:30", home: "DSHS SnowTrex Köln", away: "SCU Emlichheim", venue: "Sportcenter Köln",    type: "Auswärts" },
-  { date: "2025-10-04", time: "17:00", home: "SCU Emlichheim", away: "NawaRo Straubing",    venue: "Vechtetalhalle",      type: "Heim" },
-  { date: "2025-10-11", time: "19:00", home: "VfL Oythe",       away: "SCU Emlichheim",     venue: "VfL-Halle Oythe",      type: "Auswärts" },
-  { date: "2025-10-18", time: "17:00", home: "SCU Emlichheim", away: "Rote Raben Vilsbiburg", venue: "Vechtetalhalle",    type: "Heim" },
-];
+// Datum in UTC formatieren: die ISO-Daten aus dem VBL-Export sind reine Kalendertage,
+// ohne feste Zeitzone würde der Server je nach Offset einen Tag danebenliegen.
+const matchDate = new Intl.DateTimeFormat("de-DE", {
+  weekday: "short",
+  day: "2-digit",
+  month: "short",
+  year: "2-digit",
+  timeZone: "UTC",
+});
+
+const teamPhoto = "/team/1-damen-2026-27.jpg";
 
 const positionOrder = ["Libera", "Libero", "Außenangriff", "Mittelblock", "Diagonalangriff", "Zuspiel"];
 
@@ -31,6 +36,7 @@ export default function FirstTeamPage() {
   const sorted = [...roster].sort(
     (a, b) => positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position) || a.number - b.number,
   );
+  const homeGames = schedule.filter((m) => m.isHome).length;
 
   return (
     <>
@@ -38,18 +44,26 @@ export default function FirstTeamPage() {
 
       {/* Hero */}
       <section className="relative bg-scu-black text-white overflow-hidden">
+        {/* Nur Farbstimmung: stark unscharfe, kleine Variante des Mannschaftsfotos */}
         <div aria-hidden className="absolute inset-0">
-          <Image src="/team/team-group.jpg" alt="" fill sizes="100vw" className="object-cover object-top opacity-40" priority />
-          <div className="absolute inset-0 bg-gradient-to-b from-scu-black/70 via-scu-black/50 to-scu-black" />
+          <Image
+            src={teamPhoto}
+            alt=""
+            fill
+            sizes="640px"
+            className="object-cover object-center scale-125 blur-3xl opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-scu-black/90 via-scu-black/80 to-scu-black" />
+          <div aria-hidden className="absolute -top-32 right-0 size-[480px] rounded-full bg-scu-yellow/15 blur-[120px]" />
         </div>
-        <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 sm:pb-20 lg:pb-28">
+        <Container className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-20 lg:pb-24">
           <div className="flex flex-col gap-5 max-w-3xl">
-            <Badge variant="yellow">2. Bundesliga Pro · Damen</Badge>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-black leading-[1]">
-              1. Damenmannschaft <span className="text-scu-yellow">2025/26</span>
+            <Badge variant="yellow">Sparda 2. Liga Pro · Damen</Badge>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] break-words" lang="de">
+              1.&nbsp;Damenmann&shy;schaft <span className="text-scu-yellow">2026/27</span>
             </h1>
             <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">
-              Eigene Talente, internationale Verstärkung und ein eingespieltes Trainer-Team: Wir greifen in der neuen 2. Bundesliga Pro an.
+              Eigene Talente, internationale Verstärkung und ein eingespieltes Trainer-Team: In der Saison 2026/27 greifen wir in der Sparda 2. Liga Pro an.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
@@ -63,6 +77,26 @@ export default function FirstTeamPage() {
               </Button>
             </div>
           </div>
+
+          {/* Mannschaftsfoto bewusst als eigenständiges Bild statt als Hintergrund */}
+          <figure className="relative mt-12 lg:mt-16">
+            <div aria-hidden className="absolute -inset-x-4 -bottom-6 top-10 rounded-[32px] bg-scu-yellow/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/15 shadow-[0_40px_90px_-35px_rgba(0,0,0,0.9)]">
+              <Image
+                src={teamPhoto}
+                alt="Die 1. Damenmannschaft des SCU Emlichheim in der Saison 2026/27 mit Trainer- und Betreuerteam vor dem Werk der Emsland Group"
+                width={2048}
+                height={1478}
+                sizes="(min-width:1280px) 1216px, 100vw"
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+            <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-xs text-white/55">
+              <span>Unsere 1. Damenmannschaft der Saison 2026/27 mit Trainer- und Betreuerteam</span>
+              <span>Foto: Hinnerk Schröer</span>
+            </figcaption>
+          </figure>
         </Container>
       </section>
 
@@ -71,7 +105,7 @@ export default function FirstTeamPage() {
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow="Kader"
-            title={<>Unsere Spielerinnen <HighlightWord>2025/26</HighlightWord></>}
+            title={<>Unsere Spielerinnen <HighlightWord>2026/27</HighlightWord></>}
             description="Junge Talente aus der eigenen Jugend, erfahrene Leistungsträgerinnen und internationale Qualität vereint in einem Team."
           />
 
@@ -148,42 +182,52 @@ export default function FirstTeamPage() {
         <Container className="flex flex-col gap-10">
           <SectionHeading
             eyebrow="Spielplan"
-            title={<>Nächste <HighlightWord>Spiele</HighlightWord></>}
-            description="Die wichtigsten Partien der Hinrunde in der 2. Bundesliga Pro. Vollständiger Spielplan auf volleyball-bundesliga.de."
+            title={<>Alle Spiele der <HighlightWord>Saison 2026/27</HighlightWord></>}
+            description={`${schedule.length} Partien in der Sparda 2. Liga Pro, davon ${homeGames} Heimspiele in der Vechtetalhalle. Quelle: offizieller VBL-Spielplan, Stand 13. September 2026.`}
           />
           <div className="overflow-x-auto rounded-2xl border border-scu-gray-200">
-            <table className="w-full min-w-[640px] text-sm">
+            <table className="w-full min-w-[680px] text-sm">
+              <caption className="sr-only">
+                Spielplan der 1. Damenmannschaft des SCU Emlichheim in der Saison 2026/27
+              </caption>
               <thead className="bg-scu-black text-white">
                 <tr>
-                  <th className="text-left px-5 py-3 font-semibold tracking-wide">Datum</th>
-                  <th className="text-left px-5 py-3 font-semibold tracking-wide">Begegnung</th>
-                  <th className="text-left px-5 py-3 font-semibold tracking-wide hidden md:table-cell">Halle</th>
-                  <th className="text-right px-5 py-3 font-semibold tracking-wide">Typ</th>
+                  <th scope="col" className="text-left px-5 py-3 font-semibold tracking-wide">Datum</th>
+                  <th scope="col" className="text-left px-5 py-3 font-semibold tracking-wide">Begegnung</th>
+                  <th scope="col" className="text-left px-5 py-3 font-semibold tracking-wide hidden md:table-cell">Halle</th>
+                  <th scope="col" className="text-right px-5 py-3 font-semibold tracking-wide">Typ</th>
                 </tr>
               </thead>
               <tbody>
-                {upcoming.map((m, i) => (
-                  <tr key={i} className="border-t border-scu-gray-200 hover:bg-scu-gray-100/70">
-                    <td className="px-5 py-4">
+                {schedule.map((m) => (
+                  <tr
+                    key={`${m.date}-${m.matchday}`}
+                    className={`border-t border-scu-gray-200 hover:bg-scu-gray-100/70 ${m.isHome ? "bg-scu-yellow/[0.05]" : ""}`}
+                  >
+                    <td className="px-5 py-4 whitespace-nowrap">
                       <div className="font-semibold text-scu-black">
-                        {new Date(m.date).toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "2-digit" })}
+                        {matchDate.format(new Date(`${m.date}T00:00:00Z`))}
                       </div>
-                      <div className="text-xs text-scu-gray-500">{m.time} Uhr</div>
+                      <div className="text-xs text-scu-gray-500">{m.time} Uhr · {m.matchday}. Spieltag</div>
                     </td>
                     <td className="px-5 py-4">
                       <div className="font-display font-black">
-                        <span className={m.home.includes("SCU") ? "text-scu-yellow" : ""}>{m.home}</span>
+                        <span className={m.isHome ? "text-scu-yellow" : ""}>{m.home}</span>
                         <span className="text-scu-gray-500 mx-2">vs.</span>
-                        <span className={m.away.includes("SCU") ? "text-scu-yellow" : ""}>{m.away}</span>
+                        <span className={m.isHome ? "" : "text-scu-yellow"}>{m.away}</span>
                       </div>
                     </td>
                     <td className="px-5 py-4 text-scu-gray-500 hidden md:table-cell">
-                      <div className="inline-flex items-center gap-1.5">
-                        <MapPin className="size-3.5" /> {m.venue}
+                      <div className="inline-flex items-start gap-1.5">
+                        <MapPin className="size-3.5 shrink-0 mt-0.5" />
+                        <span>
+                          {m.venue}
+                          <span className="block text-xs text-scu-gray-500/80">{m.city}</span>
+                        </span>
                       </div>
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <Badge variant={m.type === "Heim" ? "yellow" : "outline"}>{m.type}</Badge>
+                      <Badge variant={m.isHome ? "yellow" : "outline"}>{m.isHome ? "Heim" : "Auswärts"}</Badge>
                     </td>
                   </tr>
                 ))}
@@ -193,7 +237,7 @@ export default function FirstTeamPage() {
           <div>
             <Button asChild variant="outline">
               <Link href="https://www.volleyball-bundesliga.de/" target="_blank" rel="noopener">
-                Vollständiger Spielplan bei der VBL
+                Spielplan & Tabelle bei der VBL
               </Link>
             </Button>
           </div>
@@ -227,7 +271,7 @@ export default function FirstTeamPage() {
             </div>
             <h2 className="relative font-display text-3xl lg:text-4xl font-black leading-tight">Livestream & TV</h2>
             <p className="relative text-white/90 leading-relaxed">
-              Alle Spiele der 2. Bundesliga Pro werden live auf VBL-TV und Sporttotal gestreamt. Mit Kommentar, Statistiken und Replays in HD-Qualität.
+              Alle Spiele der Sparda 2. Liga Pro werden live auf VBL-TV und Sporttotal gestreamt. Mit Kommentar, Statistiken und Replays in HD-Qualität.
             </p>
             <div className="relative flex flex-wrap gap-3">
               <Button asChild size="lg" variant="dark" className="bg-white text-scu-black hover:bg-scu-gray-100">
