@@ -41,10 +41,10 @@ export const roster2: PlayerLite[] = [
   { name: "Janine van der Zwaan" },
 ];
 
-/** Trainerteam laut DVV-Mannschaftsmeldung. */
+/**
+ * Die DVV-Meldung führt vier Personen als Trainer, das ist aber die
+ * Lizenzmeldung. Betreut wird die Mannschaft von Andrea Büring.
+ */
 export const staff2: StaffLite[] = [
-  { name: "Andrea Büring",  role: "Trainerin" },
-  { name: "Axel Büring",    role: "Trainer" },
-  { name: "Michael Lehmann", role: "Trainer" },
-  { name: "Claudia Volkers", role: "Trainerin" },
+  { name: "Andrea Büring", role: "Trainerin" },
 ];

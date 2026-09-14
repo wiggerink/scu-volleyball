@@ -154,7 +154,7 @@ export default function SecondTeamPage() {
       {/* Trainerin */}
       <section className="py-20 lg:py-24 bg-white">
         <Container className="flex flex-col gap-10">
-          <SectionHeading eyebrow="Team hinter dem Team" title={<>Trainerin & <HighlightWord>Staff</HighlightWord></>} />
+          <SectionHeading eyebrow="Team hinter dem Team" title={<>Unsere <HighlightWord>Trainerin</HighlightWord></>} />
           <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
             {staff2.map((s) => (
               <article key={s.name} className="rounded-2xl overflow-hidden bg-scu-gray-100 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
