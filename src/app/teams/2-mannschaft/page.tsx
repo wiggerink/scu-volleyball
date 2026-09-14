@@ -145,7 +145,7 @@ export default function SecondTeamPage() {
           <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5">
             <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Fotos folgen</div>
             <p className="text-sm text-scu-black leading-relaxed">
-              Team- und Einzelfotos der Zweiten für die Saison 2026/27 werden nachgereicht.
+              Von vier Spielerinnen liegt noch kein Einzelfoto vor – die Karten tragen so lange die Initialen.
             </p>
           </div>
         </Container>
