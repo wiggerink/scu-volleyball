@@ -9,7 +9,13 @@ import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { roster2, staff2 } from "@/lib/roster-2";
 import { schedule2, schedule2Liga } from "@/lib/schedule-2";
 
-const positionOrder2 = ["Libera", "Zuspiel", "Angriff", "Mittelblock", "Diagonalangriff", "Universal"];
+const positionOrder2 = ["Libera", "Außenangriff", "Mittelblock", "Diagonalangriff", "Zuspiel"];
+
+/** Spielerinnen, die der DVV ohne Position fuehrt, stehen am Ende. */
+function positionsRang(position?: string) {
+  const i = position ? positionOrder2.indexOf(position) : -1;
+  return i === -1 ? positionOrder2.length : i;
+}
 
 function getInitials(name: string) {
   return name
@@ -40,7 +46,10 @@ export default function SecondTeamPage() {
   const heimspiele2 = schedule2.filter((m) => m.isHome).length;
   const gegner2 = new Set(schedule2.map((m) => (m.isHome ? m.away : m.home))).size;
   const sortedRoster = [...roster2].sort(
-    (a, b) => positionOrder2.indexOf(a.position) - positionOrder2.indexOf(b.position) || a.name.localeCompare(b.name, "de"),
+    (a, b) =>
+      positionsRang(a.position) - positionsRang(b.position) ||
+      (a.number ?? 99) - (b.number ?? 99) ||
+      a.name.localeCompare(b.name, "de"),
   );
 
   return (
@@ -89,7 +98,7 @@ export default function SecondTeamPage() {
           <SectionHeading
             eyebrow="Kader"
             title={<>Unsere Spielerinnen <HighlightWord>2026/27</HighlightWord></>}
-            description="Durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend. Der aktualisierte Kader für die Saison 2026/27 folgt."
+            description="Durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend. Kader laut offizieller DVV-Mannschaftsmeldung, Stand 14. September 2026."
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -99,6 +108,11 @@ export default function SecondTeamPage() {
                 className="group relative rounded-2xl overflow-hidden bg-white ring-1 ring-transparent transition duration-300 ease-out hover:-translate-y-1.5 hover:ring-scu-yellow hover:shadow-[0_30px_60px_-24px_rgba(0,0,0,0.45)] focus-within:-translate-y-1.5 focus-within:ring-scu-yellow"
               >
                 <div className="relative aspect-[3/4] bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center overflow-hidden">
+                  {p.number !== undefined && (
+                    <div className="absolute top-3 left-3 z-10 bg-scu-yellow text-scu-black rounded-full size-11 flex items-center justify-center font-display font-black text-lg transition-transform duration-300 group-hover:scale-110">
+                      {p.number}
+                    </div>
+                  )}
                   {p.image ? (
                     <Image
                       src={p.image}
@@ -117,9 +131,11 @@ export default function SecondTeamPage() {
                   )}
                   <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black via-scu-black/75 to-transparent text-white">
                     <div className="font-display text-lg sm:text-xl font-black leading-tight">{p.name}</div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">
-                      {p.position}
-                    </div>
+                    {p.position && (
+                      <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">
+                        {p.position}
+                      </div>
+                    )}
                   </div>
                 </div>
               </article>
