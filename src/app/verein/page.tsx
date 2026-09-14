@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Users, Target, Heart, Trophy, Flag, HeartHandshake } from "lucide-react";
+import { Users, Target, Heart, Trophy, Flag, HeartHandshake, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
@@ -85,6 +85,38 @@ export default function VereinPage() {
               </li>
             ))}
           </ol>
+        </Container>
+      </section>
+
+      {/* Verhaeltnis zum Stammverein - steht sonst nur im Impressum */}
+      <section className="py-20 lg:py-24 bg-scu-gray-100">
+        <Container className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <SectionHeading
+            eyebrow="Struktur"
+            title={<>Teil des <HighlightWord>SC Union Emlichheim</HighlightWord></>}
+          />
+          <div className="flex flex-col gap-5">
+            <p className="text-scu-gray-500 text-lg leading-relaxed">
+              Unser Stammverein ist der <strong className="text-scu-black">SC Union Emlichheim e. V.</strong> Bei ihm
+              liegt der sportliche Spielbetrieb aller Mannschaften – von den Minis bis zur Bundesliga.
+            </p>
+            <p className="text-scu-gray-500 leading-relaxed">
+              Aus der Volleyball-Abteilung heraus ist die{" "}
+              <strong className="text-scu-black">SC UNION Emlichheim Marketing GmbH</strong> ausgegliedert. Sie
+              verantwortet Vermarktung, Fanservices und diese Website. Wer mehr über den Gesamtverein und seine
+              übrigen Abteilungen wissen will, findet das beim Stammverein.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Button asChild variant="outline">
+                <Link href="https://www.scu-emlichheim.de/" target="_blank" rel="noopener">
+                  Zum SC Union Emlichheim <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="ghost">
+                <Link href="/impressum">Impressum &amp; Rechtliches</Link>
+              </Button>
+            </div>
+          </div>
         </Container>
       </section>
 

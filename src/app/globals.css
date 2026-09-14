@@ -72,8 +72,22 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Abstand fuer den festen Header, wenn eine Sprungmarke angesteuert wird */
   scroll-padding-top: 96px;
+}
+
+/* Sanftes Scrollen bewusst NICHT global auf <html>:
+   "scroll-behavior: smooth" bricht dort die Scroll-Wiederherstellung des App
+   Routers. Nach einem Seitenwechsel blieb die alte Scrollposition stehen - der
+   Besucher landete mitten in der neuen Seite und sah den Hero gar nicht.
+   Die Regel unten greift nur bei echter Fragment-Navigation (direkter Aufruf
+   einer Adresse mit #marke, Vor/Zurueck im Verlauf). Die Sprungmarken-Buttons
+   innerhalb einer Seite springen hart - sie landen dank scroll-padding-top
+   trotzdem korrekt unter dem Header. */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(:target) {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
