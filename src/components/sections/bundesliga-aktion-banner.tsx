@@ -3,6 +3,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play, Tv } from "lucide-react";
 import { Container } from "@/components/ui/container";
+import { schedule } from "@/lib/schedule";
+
+// Aus dem offiziellen Spielplan abgeleitet, damit die Zahlen nicht veralten:
+// jeder Gegner plus wir selbst ergeben die Ligagroesse.
+const ligaTeams = new Set(schedule.map((m) => (m.isHome ? m.away : m.home))).size + 1;
+const spieleProTeam = schedule.length;
 
 export function BundesligaAktionBanner() {
   return (
@@ -37,7 +43,7 @@ export function BundesligaAktionBanner() {
             </div>
 
             <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.02]">
-              Unterstütze die <span className="relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-3 after:bg-scu-yellow/80 after:-z-10"><span className="relative">2. Bundesliga</span></span> live im Stream.
+              Unterstütze die <span className="relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-3 after:bg-scu-yellow/80 after:-z-10"><span className="relative">2. Liga Pro</span></span> live im Stream.
             </h2>
 
             <p className="text-white/75 text-lg leading-relaxed max-w-xl">
@@ -90,13 +96,13 @@ export function BundesligaAktionBanner() {
               </div>
 
               <p className="mt-6 text-sm text-white/70 leading-relaxed">
-                Die offizielle Fan-Aktion der 2. Bundesliga Volleyball Nord. Jedes Spiel – jeder Aufschlag – jeder Punkt.
+                Die offizielle Fan-Aktion der Sparda 2. Liga Pro. Jedes Spiel – jeder Aufschlag – jeder Punkt.
               </p>
 
               <div className="mt-6 flex items-center gap-4 pt-4 border-t border-white/10 text-[11px] uppercase tracking-[0.18em] text-white/60 font-semibold">
-                <span>14 Teams</span>
+                <span>{ligaTeams} Teams</span>
                 <span className="text-white/20">·</span>
-                <span>26 Spieltage</span>
+                <span>{spieleProTeam} Spiele</span>
                 <span className="text-white/20">·</span>
                 <span>HD-Stream</span>
               </div>
