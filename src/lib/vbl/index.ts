@@ -1,9 +1,16 @@
 import "server-only";
-import { API_BASIS, CACHE_SEKUNDEN, apiKey, istKonfiguriert } from "./config";
+import {
+  API_BASIS,
+  CACHE_SEKUNDEN,
+  EIGENES_TEAM,
+  LIGA_UUID,
+  TEAM_UUID,
+  apiKey,
+} from "./config";
 
-export { WETTBEWERBE, EIGENER_WETTBEWERB, EIGENES_TEAM, istKonfiguriert } from "./config";
+export { EIGENES_TEAM, istKonfiguriert } from "./config";
 
-/** Eine Zeile der Ligatabelle, unabhaengig davon, woher sie kommt. */
+/** Eine Zeile der Ligatabelle. */
 export type TabellenZeile = {
   platz: number;
   team: string;
@@ -13,41 +20,42 @@ export type TabellenZeile = {
   punkte: number;
   saetzeFuer: number;
   saetzeGegen: number;
-  /** true fuer die eigene Mannschaft – die Tabelle hebt die Zeile hervor. */
+  /** true für die eigene Mannschaft – die Tabelle hebt die Zeile hervor. */
   eigen: boolean;
 };
 
 /** Ein gespieltes Spiel mit Ergebnis. */
 export type Ergebnis = {
   date: string;
+  time: string;
   home: string;
   away: string;
-  satzHeim: number;
-  satzGast: number;
-  /** Satzergebnisse als "25:21" usw., soweit geliefert. */
-  saetze?: string[];
+  /** Sätze aus Sicht der Heimmannschaft, z. B. "3:1" */
+  saetze: string;
+  /** Ballpunkte gesamt, z. B. "98:85" */
+  ballpunkte: string;
+  einzelsaetze: string[];
+  isHome: boolean;
+  gewonnen: boolean;
+  zuschauer: number | null;
 };
-
-type Abfrage = { pfad: string; suche?: Record<string, string> };
 
 /**
  * Eine Abfrage gegen die VBL-Schnittstelle.
  *
- * Gibt `null` zurueck, wenn kein Schluessel gesetzt ist oder die Abfrage
+ * Gibt `null` zurück, wenn kein Schlüssel gesetzt ist oder die Abfrage
  * scheitert – die Seite soll dadurch nie kaputtgehen, sondern den Abschnitt
  * einfach weglassen. Fehler landen im Serverlog.
  */
-async function hole<T>({ pfad, suche }: Abfrage): Promise<T | null> {
+async function hole<T>(pfad: string): Promise<T | null> {
   const key = apiKey();
   if (!key) return null;
 
-  const url = new URL(`${API_BASIS}${pfad}`);
-  for (const [k, v] of Object.entries(suche ?? {})) url.searchParams.set(k, v);
-
   try {
-    const res = await fetch(url, {
-      headers: { "X-Api-Key": key, Accept: "application/json" },
-      next: { revalidate: CACHE_SEKUNDEN },
+    const res = await fetch(`${API_BASIS}${pfad}`, {
+      // Die API kennt nur hal+json; mit application/json antwortet sie mit 406.
+      headers: { "X-Api-Key": key, Accept: "application/hal+json" },
+      next: { revalidate: CACHE_SEKUNDEN, tags: ["vbl"] },
     });
     if (!res.ok) {
       console.error(`VBL-Abfrage ${pfad} fehlgeschlagen: ${res.status} ${res.statusText}`);
@@ -60,25 +68,80 @@ async function hole<T>({ pfad, suche }: Abfrage): Promise<T | null> {
   }
 }
 
-/**
- * Tabelle der eigenen Liga.
- *
- * NOCH NICHT ANGESCHLOSSEN: Sobald der Schluessel da ist und feststeht, ob die
- * XML-Schnittstelle oder die REST-API v2 genutzt wird, wird hier die Abfrage
- * eingesetzt und das Ergebnis auf TabellenZeile gemappt. Bis dahin liefert die
- * Funktion null, und die Seite blendet den Tabellenabschnitt aus.
- */
+type RankingRow = {
+  teamName: string;
+  rank: number;
+  matchesPlayed: number;
+  points: number;
+  wins: number;
+  losses: number;
+  setWins: number;
+  setLosses: number;
+};
+
+/** Tabelle der Sparda 2. Liga Pro. */
 export async function ligaTabelle(): Promise<TabellenZeile[] | null> {
-  if (!istKonfiguriert()) return null;
-  // Fuer die REST-API v2 waere es:
-  //   const daten = await hole<...>({ pfad: `/leagues/${LEAGUE_UUID}/rankings` });
-  // Die League-UUID fehlt noch, siehe config.ts.
-  void hole;
-  return null;
+  const daten = await hole<{ content?: RankingRow[] }>(`/leagues/${LIGA_UUID}/rankings?size=50`);
+  const zeilen = daten?.content;
+  if (!zeilen?.length) return null;
+
+  return zeilen
+    .map((z) => ({
+      platz: z.rank,
+      team: z.teamName,
+      spiele: z.matchesPlayed,
+      siege: z.wins,
+      niederlagen: z.losses,
+      punkte: z.points,
+      saetzeFuer: z.setWins,
+      saetzeGegen: z.setLosses,
+      eigen: z.teamName.includes(EIGENES_TEAM),
+    }))
+    .sort((a, b) => a.platz - b.platz);
 }
 
-/** Gespielte Partien der eigenen Mannschaft. Noch nicht angeschlossen, siehe ligaTabelle. */
+type MatchRow = {
+  date: string;
+  time: string;
+  host: string;
+  spectators: number | null;
+  _embedded?: { team1?: { uuid: string; name: string }; team2?: { uuid: string; name: string } };
+  results: null | {
+    winner: string;
+    setPoints: string;
+    ballPoints: string;
+    sets?: { ballPoints: string }[];
+  };
+};
+
+/**
+ * Bereits gespielte Partien der eigenen Mannschaft, neueste zuerst.
+ * Vor dem ersten Spieltag liefert die Funktion null, der Abschnitt entfällt dann.
+ */
 export async function ergebnisse(): Promise<Ergebnis[] | null> {
-  if (!istKonfiguriert()) return null;
-  return null;
+  const daten = await hole<{ content?: MatchRow[] }>(
+    `/league-matches?for-team=${TEAM_UUID}&size=60`,
+  );
+  const spiele = daten?.content?.filter((m) => m.results);
+  if (!spiele?.length) return null;
+
+  return spiele
+    .map((m) => {
+      const heim = m._embedded?.team1;
+      const gast = m._embedded?.team2;
+      const wirSindHeim = heim?.uuid === TEAM_UUID;
+      return {
+        date: m.date,
+        time: m.time,
+        home: heim?.name ?? "",
+        away: gast?.name ?? "",
+        saetze: m.results!.setPoints,
+        ballpunkte: m.results!.ballPoints,
+        einzelsaetze: (m.results!.sets ?? []).map((s) => s.ballPoints),
+        isHome: wirSindHeim,
+        gewonnen: m.results!.winner === TEAM_UUID,
+        zuschauer: m.spectators || null,
+      };
+    })
+    .sort((a, b) => b.date.localeCompare(a.date));
 }
