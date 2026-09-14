@@ -10,6 +10,7 @@ import { MatchesJsonLd, SportsTeamJsonLd } from "@/components/seo/json-ld";
 import { management, roster, staff } from "@/lib/roster";
 import { schedule } from "@/lib/schedule";
 import { LigaTabelle } from "@/components/sections/liga-tabelle";
+import { Ergebnisse } from "@/components/sections/ergebnisse";
 import { site } from "@/lib/site";
 import { Ticketpreise } from "@/components/sections/ticketpreise";
 
@@ -229,6 +230,8 @@ export default function FirstTeamPage() {
           </div>
         </Container>
       </section>
+
+      <Ergebnisse />
 
       <LigaTabelle />
 
