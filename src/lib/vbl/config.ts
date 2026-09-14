@@ -1,10 +1,13 @@
 /**
  * Zugang zur VBL-REST-API (SAMS).
  *
- * Der Schlüssel gilt für beide Schnittstellen des Verbands: die REST-API mit
- * den festen Daten (Saisons, Ligen, Spielpläne, Tabellen) und den Distributor
- * für Live-Daten einzelner Spiele. Er liegt in VBL_API_KEY und gehört niemals
- * in den Quelltext.
+ * Genutzt wird nur die REST-API mit den festen Daten: Saisons, Ligen,
+ * Spielpläne, Tabellen, Ergebnisse. Der Schlüssel gilt daneben auch für den
+ * Distributor, über den Live-Daten einzelner Spiele laufen – ein Live-Ticker
+ * ist aber bewusst nicht vorgesehen (Entscheidung Jörg, 14.09.2026), deshalb
+ * muss dafür auch keine Return-Domain beim Verband hinterlegt werden.
+ *
+ * Der Schlüssel liegt in VBL_API_KEY und gehört niemals in den Quelltext.
  *
  * Wichtig: Die API antwortet in application/hal+json. Mit Accept:
  * application/json quittiert sie jede Anfrage mit 406.
