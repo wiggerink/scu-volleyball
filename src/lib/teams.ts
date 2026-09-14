@@ -30,11 +30,11 @@ export const teams: TeamEntry[] = [
     slug: "2-mannschaft",
     name: "2. Damen",
     short: "SCU II",
-    league: "2. Bundesliga",
+    league: "3. Liga West",
     tier: 2,
     gender: "Damen",
     description:
-      "Aufsteiger 2026/27 – nach der Meisterschaft in der 3. Liga Nord 2025/26 erstmals in der 2. Bundesliga.",
+      "Der Unterbau der Ersten – durchlässig nach oben und Sprungbrett für Talente aus der eigenen Jugend.",
     accent: "black",
     image: "/team/groups/2-mannschaft.jpg",
   },

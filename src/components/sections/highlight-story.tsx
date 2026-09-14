@@ -55,8 +55,9 @@ export function HighlightStory() {
             Emlichheim schreibt <span className="relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-3 after:bg-scu-yellow after:-z-10"><span className="relative">Volleyball-Geschichte.</span></span>
           </h2>
           <p className="text-scu-gray-500 text-lg leading-relaxed">
-            Mit dem Aufstieg in die neu geschaffene <strong className="text-scu-black">2. Bundesliga Pro</strong> spielt
-            der SCU 2025/26 in einer der stärksten Damen-Ligen Europas. Ein Meilenstein für den Dorfverein mit 4.000
+            Mit dem Meistertitel in der 2. Bundesliga und dem Aufstieg in die{" "}
+            <strong className="text-scu-black">Sparda 2. Liga Pro</strong> spielt der SCU 2026/27 in einer der
+            stärksten Damen-Ligen Europas. Ein Meilenstein für den Dorfverein mit 4.000
             Einwohnern – und ein Beweis dafür, dass nachhaltige Jugendarbeit an die Spitze führt.
           </p>
 

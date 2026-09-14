@@ -32,7 +32,7 @@ const nav: readonly NavEntry[] = [
   {
     label: "2. Mannschaft",
     href: "/teams/2-mannschaft",
-    description: "Aufsteiger 2. Bundesliga · Saison 2026/27",
+    description: "3. Liga West · Saison 2026/27",
   },
   {
     label: "Mannschaften",

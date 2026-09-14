@@ -27,8 +27,7 @@ const milestones = [
   { year: "2013", title: "Gründung Jugendförderring",                text: "Struktureller Rahmen für nachhaltige Nachwuchsförderung." },
   { year: "2021", title: "Athletikkonzept mit Sporthochschule Köln", text: "Profi-Standards in Trainingssteuerung & Prävention." },
   { year: "2024", title: "Meister der 2. Bundesliga Nord",           text: "3:0-Sieg über VC Osnabrück – Titelverteidigung perfekt." },
-  { year: "2025", title: "Aufstieg in die 2. Bundesliga Pro",        text: "Historischer Schritt in eine der stärksten Ligen Europas." },
-  { year: "2026", title: "Zwei Teams im Bundesligabereich",          text: "Die Zweite wird Meister der 3. Liga Nord und steigt in die 2. Bundesliga auf." },
+  { year: "2026", title: "Meister der 2. Bundesliga",                text: "Aufstieg der 1. Damen in die Sparda 2. Liga Pro." },
 ];
 
 export default function VereinPage() {
