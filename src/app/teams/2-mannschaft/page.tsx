@@ -281,6 +281,19 @@ Die Zweite spielt überregional von Bremen bis Aachen – und bleibt dabei das, 
               </tbody>
             </table>
           </div>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild variant="primary">
+              {/* webcal: oeffnet direkt die Kalender-App */}
+              <Link href="webcal://scuvolleyball.de/spielplan-2-damen.ics">
+                <CalendarDays className="size-4" /> Spielplan abonnieren
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="https://www.dvv-ligen.de/cms/home/dritte_liga_frauen/dritte_liga_west/tabelle_spiele.xhtml?LeaguePresenter.matchSeriesId=116009519" target="_blank" rel="noopener">
+                Tabelle beim DVV
+              </Link>
+            </Button>
+          </div>
         </Container>
       </section>
 

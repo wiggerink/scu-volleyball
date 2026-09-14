@@ -1,4 +1,5 @@
-import { schedule, scheduleUpdated, type Match } from "./schedule";
+import { schedule, scheduleUpdated } from "./schedule";
+import { schedule2, schedule2Liga, schedule2Updated } from "./schedule-2";
 import { site } from "./site";
 
 /**
@@ -58,35 +59,74 @@ function lokal(date: string, time: string, plusMinuten = 0) {
   );
 }
 
-function event(m: Match, stamp: string) {
+/** Gemeinsame Form beider Spielpläne, soweit der Kalender sie braucht. */
+type IcsSpiel = {
+  date: string;
+  time: string;
+  home: string;
+  away: string;
+  venue: string;
+  /** Ort der Halle, sofern die Quelle ihn liefert. */
+  city?: string;
+  /** Spieltagsnummer, sofern die Quelle sie liefert. */
+  matchday?: number;
+  isHome: boolean;
+};
+
+type Kalender = {
+  spiele: IcsSpiel[];
+  /** Anzeigename in der Kalender-App */
+  name: string;
+  liga: string;
+  /** Seite, auf die ein Termin verlinkt */
+  seite: string;
+  /** Präfix der Termin-Kennung, damit sich die beiden Kalender nicht überschreiben */
+  kennung: string;
+  /** Datenstand als ISO-Tag */
+  stand: string;
+};
+
+/** Kennungen sollen stabil und frei von Leerzeichen und Umlauten sein. */
+function kuerzel(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function event(m: IcsSpiel, k: Kalender, stamp: string) {
   const heim = m.isHome ? "Heimspiel" : "Auswärtsspiel";
+  const beschreibung = [heim, m.matchday && `${m.matchday}. Spieltag`, k.liga]
+    .filter(Boolean)
+    .join(" · ");
   return [
     "BEGIN:VEVENT",
-    `UID:${m.date}-${m.matchday}@scuvolleyball.de`,
+    `UID:${k.kennung}-${m.date}-${m.matchday ?? kuerzel(m.home)}@scuvolleyball.de`,
     `DTSTAMP:${stamp}`,
     `DTSTART;TZID=Europe/Berlin:${lokal(m.date, m.time)}`,
     `DTEND;TZID=Europe/Berlin:${lokal(m.date, m.time, DAUER_MINUTEN)}`,
     `SUMMARY:${escape(`${m.home} – ${m.away}`)}`,
-    `LOCATION:${escape(`${m.venue}, ${m.city}`)}`,
-    `DESCRIPTION:${escape(`${heim} · ${m.matchday}. Spieltag · Sparda 2. Liga Pro`)}`,
-    `URL:${site.url}/teams/1-mannschaft#spielplan`,
+    `LOCATION:${escape(m.city ? `${m.venue}, ${m.city}` : m.venue)}`,
+    `DESCRIPTION:${escape(beschreibung)}`,
+    `URL:${site.url}${k.seite}`,
     "END:VEVENT",
   ];
 }
 
-export function spielplanAlsIcs() {
+function baueIcs(k: Kalender) {
   // Fester Zeitstempel aus dem Datenstand: ein wechselnder Wert bei jedem Abruf
   // liesse Kalender-Apps glauben, alle Termine hätten sich geändert.
-  const stamp = `${scheduleUpdated.replace(/-/g, "")}T000000Z`;
+  const stamp = `${k.stand.replace(/-/g, "")}T000000Z`;
 
   const zeilen = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//SCU Emlichheim//Spielplan 1. Damen//DE",
+    `PRODID:-//SCU Emlichheim//${k.name}//DE`,
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
-    "X-WR-CALNAME:SCU Emlichheim – 1. Damen",
-    "X-WR-CALDESC:Spielplan der 1. Damen in der Sparda 2. Liga Pro",
+    `X-WR-CALNAME:${k.name}`,
+    `X-WR-CALDESC:${k.liga}, Saison 2026/27`,
     "X-WR-TIMEZONE:Europe/Berlin",
     // Ohne VTIMEZONE interpretieren manche Kalender die Zeiten als UTC und
     // zeigen die Spiele im Winter eine, im Sommer zwei Stunden zu früh.
@@ -107,9 +147,33 @@ export function spielplanAlsIcs() {
     "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU",
     "END:STANDARD",
     "END:VTIMEZONE",
-    ...schedule.flatMap((m) => event(m, stamp)),
+    ...k.spiele.flatMap((m) => event(m, k, stamp)),
     "END:VCALENDAR",
   ];
 
   return zeilen.map(fold).join("\r\n") + "\r\n";
+}
+
+/** Spielplan der 1. Damen, Sparda 2. Liga Pro. */
+export function spielplanAlsIcs() {
+  return baueIcs({
+    spiele: schedule,
+    name: "SCU Emlichheim – 1. Damen",
+    liga: "Sparda 2. Liga Pro",
+    seite: "/teams/1-mannschaft#spielplan",
+    kennung: "1damen",
+    stand: scheduleUpdated,
+  });
+}
+
+/** Spielplan der 2. Damen, 3. Liga West. */
+export function spielplan2AlsIcs() {
+  return baueIcs({
+    spiele: schedule2,
+    name: "SCU Emlichheim – 2. Damen",
+    liga: schedule2Liga,
+    seite: "/teams/2-mannschaft#spielplan",
+    kennung: "2damen",
+    stand: schedule2Updated,
+  });
 }
