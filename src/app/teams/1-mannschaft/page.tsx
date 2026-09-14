@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Radio, Ticket, CalendarDays, MapPin, Trophy, ArrowRight } from "lucide-react";
+import { Radio, Ticket, CalendarDays, MapPin, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { management, roster, staff } from "@/lib/roster";
 import { schedule } from "@/lib/schedule";
 import { LigaTabelle } from "@/components/sections/liga-tabelle";
 import { site } from "@/lib/site";
+import { Ticketpreise } from "@/components/sections/ticketpreise";
 
 export const metadata: Metadata = {
   title: "1. Damen – Sparda 2. Liga Pro · Saison 2026/27",
@@ -30,6 +31,17 @@ const matchDate = new Intl.DateTimeFormat("de-DE", {
 });
 
 const teamPhoto = "/team/1-damen-2026-27.jpg";
+
+/** Platzhalter, solange von einer Person noch kein Foto vorliegt. */
+function initialen(name: string) {
+  return name
+    .split(/\s+/)
+    .filter((teil) => teil && teil[0] === teil[0].toUpperCase())
+    .map((teil) => teil[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
 
 const positionOrder = ["Libera", "Libero", "Außenangriff", "Mittelblock", "Diagonalangriff", "Zuspiel"];
 
@@ -176,8 +188,12 @@ export default function FirstTeamPage() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
             {staff.map((s) => (
               <article key={s.name} className="rounded-2xl overflow-hidden bg-white shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
-                <div className="relative aspect-square">
-                  <Image src={s.image} alt={s.name} fill sizes="200px" className="object-cover object-top" />
+                <div className="relative aspect-square bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center">
+                  {s.image ? (
+                    <Image src={s.image} alt={s.name} fill sizes="200px" className="object-cover object-top" />
+                  ) : (
+                    <span className="font-display text-3xl font-black text-white/90">{initialen(s.name)}</span>
+                  )}
                 </div>
                 <div className="p-4">
                   <div className="font-display text-base font-black leading-tight">{s.name}</div>
@@ -299,13 +315,9 @@ export default function FirstTeamPage() {
             </div>
             <h2 className="font-display text-3xl lg:text-4xl font-black leading-tight">Heimspiel-Tickets</h2>
             <p className="text-white/70 leading-relaxed">
-              Erlebe Spitzen-Volleyball hautnah in der Vechtetalhalle. Tickets an der Abendkasse und online. Dauerkarten für die gesamte Hinrunde.
+              Erlebe Spitzen-Volleyball hautnah in der Vechtetalhalle. Tickets an der Abendkasse und online.
             </p>
-            <ul className="text-sm text-white/80 space-y-2">
-              <li className="flex gap-2"><Trophy className="size-4 text-scu-yellow shrink-0 mt-0.5" /> Erwachsene ab 12 € · Jugendliche ab 6 €</li>
-              <li className="flex gap-2"><Trophy className="size-4 text-scu-yellow shrink-0 mt-0.5" /> Kinder bis 12 Jahre frei</li>
-              <li className="flex gap-2"><Trophy className="size-4 text-scu-yellow shrink-0 mt-0.5" /> Familien-Ticket & Dauerkarten verfügbar</li>
-            </ul>
+            <Ticketpreise />
             <Button asChild size="lg" variant="primary" className="w-fit">
               <Link href={site.ticketsUrl} target="_blank" rel="noopener">Tickets online kaufen</Link>
             </Button>

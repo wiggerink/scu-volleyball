@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { schedule } from "@/lib/schedule";
 import { site } from "@/lib/site";
+import { Ticketpreise } from "@/components/sections/ticketpreise";
 
 const adresse = `${site.address.street}, ${site.address.postalCode} ${site.address.city}`;
 const kartenSuche = encodeURIComponent(`${site.venue.name}, ${adresse}`);
@@ -196,12 +197,8 @@ export default function VechtetalhallePage() {
               <Ticket className="size-6" />
             </div>
             <h2 className="font-display text-3xl font-black leading-tight">Tickets</h2>
-            <ul className="text-sm text-white/80 space-y-2">
-              <li>Erwachsene ab 12 € · Jugendliche ab 6 €</li>
-              <li>Kinder bis 12 Jahre frei</li>
-              <li>Familien-Ticket und Dauerkarten verfügbar</li>
-              <li>Abendkasse am Spieltag – oder vorab online sichern</li>
-            </ul>
+            <Ticketpreise />
+            <p className="text-sm text-white/70">Abendkasse am Spieltag – oder vorab online sichern.</p>
             <Button asChild variant="primary" className="w-fit">
               <Link href={site.ticketsUrl} target="_blank" rel="noopener">Tickets online kaufen</Link>
             </Button>

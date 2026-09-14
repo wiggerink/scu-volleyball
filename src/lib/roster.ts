@@ -29,7 +29,8 @@ export type Player = {
 export type Staff = {
   name: string;
   role: string;
-  image: string;
+  /** Fehlt das Foto, rendert die Karte die Initialen. */
+  image?: string;
 };
 
 /**
@@ -57,6 +58,8 @@ export const staff: Staff[] = [
   { name: "Axel Büring",       role: "Cheftrainer",    image: "/team/2026-27/staff-axel-buering.jpg" },
   { name: "Heike Schiphouwer", role: "Physiotherapie", image: "/team/2026-27/staff-heike-schiphouwer.jpg" },
   { name: "Ilka Thesing",      role: "Physiotherapie", image: "/team/2026-27/staff-ilka-thesing.jpg" },
+  // Foto ist angefragt, bis dahin traegt die Karte die Initialen
+  { name: "Marvin Dinter",     role: "Athletiktrainer" },
 ];
 
 export type ManagementMember = {
@@ -70,6 +73,5 @@ export type ManagementMember = {
 export const management: ManagementMember[] = [
   { name: "Thorben Helweg", role: "Geschäftsführer", image: "/team/2026-27/staff-thorben-helweg.jpg" },
   { name: "Tobias Stahl",   role: "Geschäftsführer", image: "/team/2026-27/staff-tobias-stahl.jpg" },
-  // Funktion von Silke Reurink noch offen - die VBL fuehrt sie als Co-Trainerin
-  { name: "Silke Reurink",  image: "/team/2026-27/staff-silke-reurink.jpg" },
+  { name: "Silke Reurink",  role: "Teammanagerin", image: "/team/2026-27/staff-silke-reurink.jpg" },
 ];
