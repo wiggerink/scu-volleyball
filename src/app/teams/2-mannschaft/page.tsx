@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { roster2, staff2 } from "@/lib/roster-2";
+import { schedule2, schedule2Liga } from "@/lib/schedule-2";
 
 const positionOrder2 = ["Libera", "Zuspiel", "Angriff", "Mittelblock", "Diagonalangriff", "Universal"];
 
@@ -60,7 +61,16 @@ const milestones = [
   },
 ];
 
+const spieltag2 = new Intl.DateTimeFormat("de-DE", {
+  weekday: "short",
+  day: "2-digit",
+  month: "short",
+  year: "2-digit",
+  timeZone: "UTC",
+});
+
 export default function SecondTeamPage() {
+  const heimspiele2 = schedule2.filter((m) => m.isHome).length;
   const sortedRoster = [...roster2].sort(
     (a, b) => positionOrder2.indexOf(a.position) - positionOrder2.indexOf(b.position) || a.name.localeCompare(b.name, "de"),
   );
@@ -316,12 +326,68 @@ export default function SecondTeamPage() {
             </ul>
 
             <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5 mt-2">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Hinweis</div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Mitspielen?</div>
               <p className="text-sm text-scu-black leading-relaxed">
-                Der Spielplan der 2. Bundesliga wird hier ergänzt, sobald er vorliegt. Fragen zu Probetraining
-                oder Mitgliedschaft? <Link href="/kontakt" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-dark">Direkt melden</Link>.
+                Fragen zu Probetraining oder Mitgliedschaft?{" "}
+                <Link href="/kontakt" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-dark">Direkt melden</Link>.
               </p>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Spielplan */}
+      <section id="spielplan" className="py-20 lg:py-24 bg-white scroll-mt-28">
+        <Container className="flex flex-col gap-10">
+          <SectionHeading
+            eyebrow="Spielplan"
+            title={<>Alle Spiele der <HighlightWord>Saison 2026/27</HighlightWord></>}
+            description={`${schedule2.length} Partien in der ${schedule2Liga}, davon ${heimspiele2} Heimspiele in der Vechtetalhalle. Quelle: offizieller DVV-Spielplan, Stand 14. September 2026.`}
+          />
+          <div className="overflow-x-auto rounded-2xl border border-scu-gray-200">
+            <table className="w-full min-w-[640px] text-sm">
+              <caption className="sr-only">
+                Spielplan der 2. Damenmannschaft des SCU Emlichheim in der Saison 2026/27
+              </caption>
+              <thead className="bg-scu-black text-white">
+                <tr>
+                  <th scope="col" className="text-left px-5 py-3 font-semibold tracking-wide">Datum</th>
+                  <th scope="col" className="text-left px-5 py-3 font-semibold tracking-wide">Begegnung</th>
+                  <th scope="col" className="text-left px-5 py-3 font-semibold tracking-wide hidden md:table-cell">Halle</th>
+                  <th scope="col" className="text-right px-5 py-3 font-semibold tracking-wide">Typ</th>
+                </tr>
+              </thead>
+              <tbody>
+                {schedule2.map((m) => (
+                  <tr
+                    key={`${m.date}-${m.home}`}
+                    className={`border-t border-scu-gray-200 hover:bg-scu-gray-100/70 ${m.isHome ? "bg-scu-yellow/[0.05]" : ""}`}
+                  >
+                    <td className="px-5 py-4 whitespace-nowrap">
+                      <div className="font-semibold text-scu-black">
+                        {spieltag2.format(new Date(`${m.date}T00:00:00Z`))}
+                      </div>
+                      <div className="text-xs text-scu-gray-500">{m.time} Uhr</div>
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="font-display font-black">
+                        <span className={m.isHome ? "text-scu-yellow" : ""}>{m.home}</span>
+                        <span className="text-scu-gray-500 mx-2">vs.</span>
+                        <span className={m.isHome ? "" : "text-scu-yellow"}>{m.away}</span>
+                      </div>
+                    </td>
+                    <td className="px-5 py-4 text-scu-gray-500 hidden md:table-cell">
+                      <div className="inline-flex items-center gap-1.5">
+                        <MapPin className="size-3.5 shrink-0" /> {m.venue}
+                      </div>
+                    </td>
+                    <td className="px-5 py-4 text-right">
+                      <Badge variant={m.isHome ? "yellow" : "outline"}>{m.isHome ? "Heim" : "Auswärts"}</Badge>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </Container>
       </section>
