@@ -41,7 +41,7 @@ export function YouthSection() {
             </div>
           </motion.div>
           <div className="absolute -top-4 -right-4 rounded-2xl bg-scu-yellow text-scu-black p-4 shadow-xl rotate-[4deg] hidden sm:block">
-            <div className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-90">Seit 1994</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-90">Seit 1989</div>
             <div className="font-display text-xl font-black">Bundesliga</div>
           </div>
         </div>

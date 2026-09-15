@@ -56,7 +56,7 @@ export default async function Image() {
             <span>·</span>
             <span>120+ Jugend</span>
             <span>·</span>
-            <span>30+ Jahre Bundesliga</span>
+            <span>35+ Jahre Bundesliga</span>
           </div>
         </div>
       </div>

@@ -161,7 +161,7 @@ export function Hero() {
             className="max-w-xl text-lg text-white/80 leading-relaxed"
           >
             Willkommen beim <strong className="text-white">SC Union Emlichheim</strong> – dem Dorf in der Grafschaft,
-            das seit über 30 Jahren Bundesliga-Volleyball atmet. 2026/27 greifen unsere Damen in der{" "}
+            das seit 1989/90 Bundesliga-Volleyball atmet. 2026/27 greifen unsere Damen in der{" "}
             <strong className="text-white">Sparda 2. Liga Pro</strong> an.
           </motion.p>
 
@@ -214,7 +214,7 @@ export function Hero() {
             className="grid grid-cols-3 gap-2 sm:gap-4 pt-6 max-w-xl border-t border-white/10"
           >
             {[
-              { k: "30+", v: "Jahre Bundesliga", icon: Trophy },
+              { k: "35+", v: "Jahre Bundesliga", icon: Trophy },
               { k: String(teams.length), v: "Mannschaften", icon: CalendarDays },
               { k: "120+", v: "Kinder & Jugend", icon: Trophy },
             ].map(({ k, v, icon: Icon }) => (

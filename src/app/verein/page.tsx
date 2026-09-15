@@ -16,18 +16,32 @@ export const metadata: Metadata = {
 const values = [
   { icon: Heart,   title: "Heimat",         text: "Verwurzelt in Emlichheim, getragen von einer ganzen Region." },
   { icon: Target,  title: "Jugendarbeit",   text: "120+ Kinder & Jugendliche in strukturierten Trainingsgruppen." },
-  { icon: Trophy,  title: "Spitzensport",   text: "Sparda 2. Liga Pro Damen. 30+ Jahre Bundesliga-Volleyball." },
+  { icon: Trophy,  title: "Spitzensport",   text: "Sparda 2. Liga Pro Damen. 35+ Jahre Bundesliga-Volleyball." },
   { icon: Users,   title: "Gemeinschaft",   text: "Über 400 aktive Mitglieder, ehrenamtlich getragen." },
   { icon: Flag,    title: "Nachhaltigkeit", text: "Wir bilden eigene Talente aus – bis zur Bundesliga." },
   { icon: HeartHandshake, title: "Partner", text: "Eingebettet in ein starkes regionales Sponsoren-Netzwerk." },
 ];
 
+/**
+ * Eckdaten laut Verein (Stand 15.09.2026).
+ * Die Kurzform im Jahres-Kreis nimmt die ersten beiden Ziffern ab Stelle 3,
+ * das funktioniert für "1989/90" wie für "2000".
+ */
 const milestones = [
-  { year: "1994", title: "Erster Aufstieg in die Bundesliga",        text: "Der SCU spielt erstmals Volleyball auf höchstem Niveau." },
-  { year: "2013", title: "Gründung Jugendförderring",                text: "Struktureller Rahmen für nachhaltige Nachwuchsförderung." },
-  { year: "2021", title: "Athletikkonzept mit Sporthochschule Köln", text: "Profi-Standards in Trainingssteuerung & Prävention." },
-  { year: "2024", title: "Meister der 2. Bundesliga Nord",           text: "3:0-Sieg über VC Osnabrück – Titelverteidigung perfekt." },
-  { year: "2026", title: "Meister der 2. Bundesliga",                text: "Aufstieg der 1. Damen in die Sparda 2. Liga Pro." },
+  { year: "1989/90", title: "Beginn Bundesliga-Volleyball",        text: "Emlichheim spielt erstmals Volleyball auf Bundesliga-Niveau." },
+  { year: "1998/99", title: "1. Bundesliga",                       text: "Erste Saison im Oberhaus des deutschen Volleyballs." },
+  { year: "1999/00", title: "2. Bundesliga",                       text: "" },
+  { year: "2000",    title: "Gründung der Spielbetriebsgesellschaft", text: "Der Spielbetrieb der Bundesliga-Mannschaft wird ausgegliedert – der Grundstein der heutigen Struktur." },
+  { year: "2000/01", title: "1. Bundesliga",                       text: "Zurück im Oberhaus." },
+  { year: "2001",    title: "Gründung Jugendförderring",           text: "Struktureller Rahmen für nachhaltige Nachwuchsförderung." },
+  { year: "2001/02", title: "1. Bundesliga",                       text: "" },
+  { year: "2002/03", title: "2. Bundesliga",                       text: "" },
+  { year: "2003/04", title: "1. Bundesliga",                       text: "" },
+  { year: "2004/05", title: "2. Bundesliga",                       text: "" },
+  { year: "2015",    title: "25 Jahre Bundesliga",                 text: "Ein Vierteljahrhundert Bundesliga-Volleyball im Dorf – gefeiert mit einer großen Jubiläumsfeier." },
+  { year: "2024/25", title: "Meister der 2. Bundesliga Nord",      text: "" },
+  { year: "2025/26", title: "Meister der 2. Bundesliga Nord",      text: "Titelverteidigung – und diesmal mit dem Aufstieg." },
+  { year: "2026/27", title: "Sparda 2. Liga Pro",                  text: "Erste Saison in einer der stärksten Damen-Ligen Europas." },
 ];
 
 export default function VereinPage() {
@@ -35,8 +49,8 @@ export default function VereinPage() {
     <>
       <PageHero
         eyebrow="Über uns"
-        title={<>30 Jahre Bundesliga. <span className="text-scu-yellow">Eine Heimat.</span></>}
-        description="Der SC Union Emlichheim ist eine der außergewöhnlichsten Volleyball-Geschichten Deutschlands: Ein 4.000-Einwohner-Dorf trägt seit über drei Jahrzehnten hochklassigen Bundesliga-Volleyball."
+        title={<>35 Jahre Bundesliga. <span className="text-scu-yellow">Eine Heimat.</span></>}
+        description="Der SC Union Emlichheim ist eine der außergewöhnlichsten Volleyball-Geschichten Deutschlands: Ein 4.000-Einwohner-Dorf trägt seit 1989/90 hochklassigen Bundesliga-Volleyball."
         imageUrl="/team/team-group.jpg"
       />
 
@@ -77,11 +91,11 @@ export default function VereinPage() {
             {milestones.map((m) => (
               <li key={m.year} className="ml-8 relative">
                 <span className="absolute -left-[42px] top-1 inline-flex items-center justify-center size-10 rounded-full bg-scu-yellow text-scu-black font-display font-black text-xs shadow-[0_0_0_6px_rgba(255,240,1,0.2)]">
-                  {m.year.slice(-2)}
+                  {m.year.slice(2, 4)}
                 </span>
                 <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-scu-yellow">{m.year}</div>
                 <div className="font-display text-2xl font-black mt-1.5">{m.title}</div>
-                <p className="text-white/70 mt-2 max-w-2xl">{m.text}</p>
+                {m.text && <p className="text-white/70 mt-2 max-w-2xl">{m.text}</p>}
               </li>
             ))}
           </ol>
