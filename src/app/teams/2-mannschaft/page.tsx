@@ -45,6 +45,7 @@ const spieltag2 = new Intl.DateTimeFormat("de-DE", {
 export default function SecondTeamPage() {
   const heimspiele2 = schedule2.filter((m) => m.isHome).length;
   const gegner2 = new Set(schedule2.map((m) => (m.isHome ? m.away : m.home))).size;
+  const ohneFoto2 = roster2.filter((p) => !p.image).length;
   const sortedRoster = [...roster2].sort(
     (a, b) =>
       positionsRang(a.position) - positionsRang(b.position) ||
@@ -145,7 +146,7 @@ export default function SecondTeamPage() {
           <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5">
             <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Fotos folgen</div>
             <p className="text-sm text-scu-black leading-relaxed">
-              Von vier Spielerinnen liegt noch kein Einzelfoto vor – die Karten tragen so lange die Initialen.
+              Von {ohneFoto2} Spielerinnen liegt noch kein Einzelfoto vor – die Karten tragen so lange die Initialen.
             </p>
           </div>
         </Container>

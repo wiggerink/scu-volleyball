@@ -16,13 +16,15 @@ export type StaffLite = {
 /**
  * Kader der 2. Damen, Saison 2026/27 – 3. Liga West.
  * Porträts aus dem Media Day, Zuordnung über die am Trikot abgelesene Nummer.
- * Quelle: dvv-ligen.de, Mannschaftsseite SC Union Emlichheim II
+ * Quelle: dvv-ligen.de, Mannschaftsseite SC Union Emlichheim II, ergänzt um
+ * Angaben des Vereins (Anna Börgeling, Positionen ohne DVV-Meldung)
  * (Wettbewerb 116009519, Team 116009552), abgerufen am 14.09.2026.
  * Positionsbezeichnungen an die der 1. Mannschaft angeglichen
  * (Libero -> Libera, Diagonal -> Diagonalangriff).
  */
 export const roster2: PlayerLite[] = [
-  { name: "Mareen van Münster",   number: 1,  position: "Außenangriff" , image: "/team/2026-27/zweite/01-mareen-van-muenster.jpg" },
+  // Foto zurueckgestellt: auf der Aufnahme wurde das falsche Trikot getragen
+  { name: "Mareen van Münster",   number: 1,  position: "Außenangriff" },
   { name: "Caja Peters",          number: 2,  position: "Diagonalangriff" , image: "/team/2026-27/zweite/02-caja-peters.jpg" },
   { name: "Majela Dasler",        number: 3,  position: "Außenangriff" , image: "/team/2026-27/zweite/03-majela-dasler.jpg" },
   { name: "Saskia Boukamp",       number: 4,  position: "Außenangriff" , image: "/team/2026-27/zweite/04-saskia-boukamp.jpg" },
@@ -36,10 +38,11 @@ export const roster2: PlayerLite[] = [
   { name: "Pia Jörissen",         number: 13, position: "Libera" , image: "/team/2026-27/zweite/13-pia-joerissen.jpg" },
   { name: "Anna Meyerink",        number: 14, position: "Libera" , image: "/team/2026-27/zweite/14-anna-meyerink.jpg" },
   { name: "Rebecca Harms-Ensink", number: 15, position: "Mittelblock" , image: "/team/2026-27/zweite/15-rebecca-harms-ensink.jpg" },
+  { name: "Anna Börgeling",       number: 16, position: "Mittelblock" },
   { name: "Alicia Vennegeerts",   number: 17, position: "Diagonalangriff" },
-  // Vom DVV ohne Nummer und Position gemeldet
-  { name: "Kira Gosink" },
-  { name: "Janine van der Zwaan" },
+  // Ohne gemeldete Rueckennummer
+  { name: "Kira Gosink",          position: "Mittelblock" },
+  { name: "Janine van der Zwaan", position: "Zuspiel" },
 ];
 
 /**
