@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
+import { IbanKopieren } from "@/components/foerderring/iban-kopieren";
 
 export const metadata: Metadata = {
   title: "Förderring Jugendvolleyball Emlichheim e.V.",
@@ -14,6 +15,14 @@ export const metadata: Metadata = {
 };
 
 const JFR_MAIL = "jfr@scu-emlichheim.de";
+const IBAN = "DE18 2806 9956 4812 7418 00";
+
+// Belegte Eckdaten – Gründungsjahr aus der Vereinschronik
+const eckdaten = [
+  { wert: "2001", label: "gegründet" },
+  { wert: "120+", label: "Kinder & Jugendliche" },
+  { wert: "e.V.", label: "gemeinnützig anerkannt" },
+];
 
 const mitgliedschaften = [
   { icon: Heart, label: "Einzelpersonen", text: "Für alle, die den Nachwuchs in Emlichheim unterstützen wollen." },
@@ -51,6 +60,27 @@ export default function FoerderringPage() {
         description="Der Förderring Jugendvolleyball Emlichheim e.V. ist ein eingetragener, gemeinnütziger Verein. Er macht möglich, was ein Dorfverein aus eigener Kraft nicht stemmen könnte – für über 120 Kinder und Jugendliche."
         imageUrl="/team/groups/minis.jpg"
       />
+
+      {/* Eckdaten: schafft Vertrauen, bevor es ums Geld geht */}
+      <section className="py-10 lg:py-12 bg-scu-gray-100">
+        <Container>
+          <dl className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl">
+            {eckdaten.map((e) => (
+              <div key={e.label}>
+                <dt className="sr-only">{e.label}</dt>
+                <dd>
+                  <span className="block font-display text-3xl sm:text-4xl font-black text-scu-black leading-none">
+                    {e.wert}
+                  </span>
+                  <span className="block text-[11px] sm:text-xs uppercase tracking-[0.18em] text-scu-gray-500 font-bold mt-2">
+                    {e.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </section>
 
       {/* Wofuer das Geld verwendet wird */}
       <section className="py-16 lg:py-24 bg-white">
@@ -128,14 +158,21 @@ export default function FoerderringPage() {
                 </div>
                 <div>
                   <dt className="text-white/50 text-xs uppercase tracking-[0.18em]">IBAN</dt>
-                  <dd className="font-mono text-white tracking-tight">DE18 2806 9956 4812 7418 00</dd>
+                  <dd className="flex flex-wrap items-center gap-2 mt-0.5">
+                    <span className="font-mono text-white tracking-tight">{IBAN}</span>
+                    <IbanKopieren iban={IBAN} />
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-white/50 text-xs uppercase tracking-[0.18em]">Verwendungszweck</dt>
                   <dd className="text-white">Nachwuchsförderung</dd>
                 </div>
               </dl>
-              <p className="text-xs text-white/50 mt-5 leading-relaxed">
+              <p className="text-sm text-white/70 mt-5 leading-relaxed">
+                Lieber ohne Mitgliedschaft unterstützen? Eine Überweisung oder ein Dauerauftrag mit
+                dem Verwendungszweck „Nachwuchsförderung“ hilft genauso.
+              </p>
+              <p className="text-xs text-white/50 mt-4 leading-relaxed">
                 Der Förderring ist als gemeinnützig anerkannt. Spendenbescheinigungen stellen wir auf
                 Wunsch aus.
               </p>
@@ -148,11 +185,12 @@ export default function FoerderringPage() {
       <section className="py-16 bg-white">
         <Container className="max-w-3xl text-center flex flex-col items-center gap-5">
           <h2 className="font-display text-3xl font-black">
-            Wofür der Förderring <HighlightWord>arbeitet</HighlightWord>
+            Das ist die <HighlightWord>Jugendabteilung</HighlightWord>
           </h2>
           <p className="text-scu-gray-500 leading-relaxed">
             Über 120 Kinder und Jugendliche trainieren jede Woche beim SCU – von den ersten
-            Ballkontakten bis zum Sprungbrett in die Bundesliga.
+            Ballkontakten mit vier Jahren bis zum Sprungbrett in die Bundesliga. Genau dort landet,
+            was der Förderring einsammelt.
           </p>
           <Button asChild variant="outline">
             <Link href="/jugend">
