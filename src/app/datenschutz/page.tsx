@@ -23,7 +23,7 @@ export default function DatenschutzPage() {
         intro={
           <>
             Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich
-            auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TTDSG, BDSG).
+            auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TDDDG, BDSG).
           </>
         }
       >
@@ -42,9 +42,12 @@ export default function DatenschutzPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="3. Cookies">
+        <LegalSection title="3. Cookies und Speicher im Browser">
           <p>
-            Wir setzen auf unserer Website nur technisch notwendige Cookies ein, die für den reibungslosen Betrieb erforderlich sind. Analyse- oder Marketing-Cookies werden ausschließlich mit Ihrer ausdrücklichen Einwilligung verwendet.
+            Unsere Website setzt keine Cookies und legt auch sonst keine Informationen in Ihrem Browser ab (etwa im Local Storage). Wir setzen keine Analyse-, Tracking- oder Marketingdienste ein. Eine Einwilligung nach § 25 TDDDG ist daher nicht erforderlich, und es gibt kein Cookie-Banner.
+          </p>
+          <p>
+            Alle Inhalte – einschließlich der Schriftarten – werden von unserem eigenen Server ausgeliefert. Beim Aufruf unserer Seiten wird Ihr Browser nicht mit Servern Dritter wie Google oder Meta verbunden.
           </p>
         </LegalSection>
 
@@ -54,13 +57,28 @@ export default function DatenschutzPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="5. Instagram-Integration">
+        <LegalSection title="5. Beiträge aus unserem Instagram-Kanal">
           <p>
-            Auf unserer Startseite zeigen wir aktuelle Beiträge unseres Instagram-Kanals an. Die Daten werden ausschließlich serverseitig über die offizielle Instagram Graph API (Meta Platforms Ireland Ltd.) abgerufen. Es werden keine Cookies von Meta auf Ihrem Gerät gesetzt, solange Sie nicht auf einen Beitrag klicken.
+            Auf unserer Startseite und auf der News-Seite zeigen wir aktuelle Beiträge unseres Instagram-Kanals an. Die Beiträge – Texte, Bilder und Kennzahlen wie „Gefällt mir“-Angaben und Follower – ruft ausschließlich unser Server über die offizielle Graph API der Meta Platforms Ireland Ltd. ab und speichert sie vorübergehend zwischen. Auch die Bilder werden über unseren Server ausgeliefert.
+          </p>
+          <p>
+            Beim Aufruf unserer Seiten werden deshalb keine Daten von Ihnen an Meta übermittelt. Erst wenn Sie auf einen Beitrag oder auf „Folgen“ klicken, gelangen Sie zu Instagram; dort gelten die Datenschutzbestimmungen von Meta.
           </p>
         </LegalSection>
 
-        <LegalSection title="6. Ihre Rechte">
+        <LegalSection title="6. Kontaktaufnahme">
+          <p>
+            Wenn Sie uns per E-Mail oder über das Kontaktformular schreiben, verarbeiten wir Ihre Angaben (Name, E-Mail-Adresse, Thema und Nachricht), um Ihre Anfrage zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage mit einem Vertrag zusammenhängt, andernfalls Art. 6 Abs. 1 lit. f DSGVO. Nachrichten aus dem Kontaktformular werden per E-Mail an uns weitergeleitet und nicht in einer Datenbank auf der Website gespeichert.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="7. Links zu externen Angeboten">
+          <p>
+            Unsere Website enthält Links zu externen Angeboten, etwa zu Instagram, Facebook und YouTube, zum Ticketshop von Reservix, zu VBL-TV und zu Google Maps. Diese Inhalte sind nicht eingebettet; eine Verbindung zum jeweiligen Anbieter entsteht erst, wenn Sie einen Link anklicken. Für die Verarbeitung Ihrer Daten dort ist der jeweilige Anbieter verantwortlich.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="8. Ihre Rechte">
           <p>
             Sie haben jederzeit das Recht auf:
           </p>
@@ -77,10 +95,11 @@ export default function DatenschutzPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="7. Kontakt zum Datenschutz">
+        <LegalSection title="9. Kontakt zum Datenschutz">
           <p>
             Für Fragen zum Datenschutz wenden Sie sich bitte an: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
           </p>
+          <p className="text-sm">Stand: September 2026</p>
         </LegalSection>
       </LegalLayout>
     </>
