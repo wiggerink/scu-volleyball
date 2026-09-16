@@ -58,7 +58,7 @@ export default function SecondTeamPage() {
       {/* Hero */}
       <section className="relative bg-scu-black text-white overflow-hidden">
         <div aria-hidden className="absolute inset-0">
-          <Image src="/team/team-group.jpg" alt="" fill sizes="100vw" className="object-cover object-top opacity-30" priority />
+          <Image src="/team/groups/2-mannschaft.jpg" alt="" fill sizes="100vw" className="object-cover opacity-30" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-scu-black/80 via-scu-black/60 to-scu-black" />
           <div className="absolute -top-32 right-0 size-[480px] rounded-full bg-scu-yellow/15 blur-[120px]" />
         </div>
