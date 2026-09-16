@@ -87,19 +87,28 @@ export default function VereinPage() {
             eyebrow="Meilensteine"
             title={<>Unsere <span className="text-scu-yellow">Geschichte</span></>}
           />
-          <ol className="relative mt-14 border-l border-white/10 ml-0 sm:ml-4 space-y-8 sm:space-y-10">
+          {/* Zweispaltig ab sm: Jahr links, Ereignis rechts. Einspaltig wuerde der
+              Zeitstrahl auf breiten Schirmen als schmale Saeule mit viel Leerraum
+              danebenstehen und ueber 1.500 px hoch werden. */}
+          <ol className="relative mt-12 sm:mt-14 border-l border-white/10 ml-0 sm:ml-4 space-y-7 sm:space-y-6">
             {milestones.map((m) => (
-              <li key={m.year} className="ml-5 sm:ml-8 relative">
+              <li
+                key={m.year}
+                className="relative ml-5 sm:ml-10 sm:grid sm:grid-cols-[7rem_1fr] sm:gap-x-8 sm:items-baseline"
+              >
                 <span
                   aria-hidden
-                  className="absolute -left-[25px] top-[7px] size-2.5 rounded-full bg-scu-yellow shadow-[0_0_0_4px_rgba(255,240,1,0.2)] sm:hidden"
+                  className="absolute -left-[25px] sm:-left-[45px] top-[7px] size-2.5 rounded-full bg-scu-yellow shadow-[0_0_0_4px_rgba(255,240,1,0.2)]"
                 />
-                <span className="absolute -left-[42px] top-1 hidden sm:inline-flex items-center justify-center size-10 rounded-full bg-scu-yellow text-scu-black font-display font-black text-xs shadow-[0_0_0_6px_rgba(255,240,1,0.2)]">
-                  {m.year.slice(2, 4)}
-                </span>
-                <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-scu-yellow">{m.year}</div>
-                <div className="font-display text-xl sm:text-2xl font-black mt-1 sm:mt-1.5 leading-tight">{m.title}</div>
-                {m.text && <p className="text-white/70 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">{m.text}</p>}
+                <div className="font-display font-black text-scu-yellow text-sm sm:text-base tabular-nums">
+                  {m.year}
+                </div>
+                <div className="mt-1 sm:mt-0">
+                  <div className="font-display text-xl sm:text-2xl font-black leading-tight">{m.title}</div>
+                  {m.text && (
+                    <p className="text-white/70 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">{m.text}</p>
+                  )}
+                </div>
               </li>
             ))}
           </ol>
