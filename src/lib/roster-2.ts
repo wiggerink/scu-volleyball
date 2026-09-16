@@ -1,8 +1,8 @@
 export type PlayerLite = {
   name: string;
-  /** Fehlt bei Spielerinnen, die der DVV ohne Position führt. */
+  /** Optional – nicht jede Meldung führt eine Position. */
   position?: string;
-  /** Fehlt bei Spielerinnen ohne gemeldete Rückennummer. */
+  /** Optional – nicht jede Meldung führt eine Rückennummer. */
   number?: number;
   image?: string;
 };
@@ -16,9 +16,10 @@ export type StaffLite = {
 /**
  * Kader der 2. Damen, Saison 2026/27 – 3. Liga West.
  * Porträts aus dem Media Day, Zuordnung über die am Trikot abgelesene Nummer.
- * Quelle: dvv-ligen.de, Mannschaftsseite SC Union Emlichheim II, ergänzt um
- * Angaben des Vereins (Anna Börgeling, Positionen ohne DVV-Meldung)
- * (Wettbewerb 116009519, Team 116009552), abgerufen am 14.09.2026.
+ * Quelle: dvv-ligen.de, Mannschaftsseite SC Union Emlichheim II
+ * (Wettbewerb 116009519, Team 116009552), abgerufen am 14.09.2026, ergänzt um
+ * Angaben des Vereins (Anna Börgeling). Die DVV-Meldung führt zusätzlich
+ * Aushilfsspielerinnen, die hier bewusst nicht stehen.
  * Positionsbezeichnungen an die der 1. Mannschaft angeglichen
  * (Libero -> Libera, Diagonal -> Diagonalangriff).
  */
@@ -34,15 +35,10 @@ export const roster2: PlayerLite[] = [
   { name: "Lea Plass",            number: 8,  position: "Zuspiel" , image: "/team/2026-27/zweite/08-lea-plass.jpg" },
   { name: "Dana Volkers",         number: 10, position: "Außenangriff" , image: "/team/2026-27/zweite/10-dana-volkers.jpg" },
   { name: "Anouk Wemmenhove",     number: 11, position: "Zuspiel" , image: "/team/2026-27/zweite/11-anouk-wemmenhove.jpg" },
-  { name: "Johanna Thewes",       number: 12, position: "Außenangriff" },
   { name: "Pia Jörissen",         number: 13, position: "Libera" , image: "/team/2026-27/zweite/13-pia-joerissen.jpg" },
   { name: "Anna Meyerink",        number: 14, position: "Libera" , image: "/team/2026-27/zweite/14-anna-meyerink.jpg" },
   { name: "Rebecca Harms-Ensink", number: 15, position: "Mittelblock" , image: "/team/2026-27/zweite/15-rebecca-harms-ensink.jpg" },
   { name: "Anna Börgeling",       number: 16, position: "Mittelblock" },
-  { name: "Alicia Vennegeerts",   number: 17, position: "Diagonalangriff" },
-  // Ohne gemeldete Rueckennummer
-  { name: "Kira Gosink",          position: "Mittelblock" },
-  { name: "Janine van der Zwaan", position: "Zuspiel" },
 ];
 
 /**
