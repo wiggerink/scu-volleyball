@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/lib/site";
+import { Umami } from "@/components/analytics/umami";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Umami />
       </body>
     </html>
   );

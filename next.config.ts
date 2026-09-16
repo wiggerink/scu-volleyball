@@ -16,6 +16,20 @@ const nextConfig: NextConfig = {
    * Vereinsnummerierung mit. Die alten Adressen bleiben gültig, damit
    * bestehende Links und Suchtreffer nicht ins Leere laufen.
    */
+  /**
+   * Umami über die eigene Domain: der Browser lädt /stats/script.js und
+   * sendet an /stats/api/send, der Server reicht beides an Umami weiter.
+   * Ohne Umami-Konfiguration gibt es die Pfade nicht.
+   */
+  async rewrites() {
+    if (!process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID) return [];
+    const skript = process.env.UMAMI_SCRIPT_URL ?? "https://cloud.umami.is/script.js";
+    const api = (process.env.UMAMI_API_URL ?? "https://gateway.umami.is").replace(/\/$/, "");
+    return [
+      { source: "/stats/script.js", destination: skript },
+      { source: "/stats/api/send", destination: `${api}/api/send` },
+    ];
+  },
   async redirects() {
     return [
       { source: "/teams/u14", destination: "/teams/8-mannschaft", permanent: true },
