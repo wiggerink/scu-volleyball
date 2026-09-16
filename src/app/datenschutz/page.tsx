@@ -44,10 +44,10 @@ export default function DatenschutzPage() {
 
         <LegalSection title="3. Cookies und Speicher im Browser">
           <p>
-            Unsere Website setzt keine Cookies und legt auch sonst keine Informationen in Ihrem Browser ab (etwa im Local Storage). Wir setzen keine Analyse-, Tracking- oder Marketingdienste ein. Eine Einwilligung nach § 25 TDDDG ist daher nicht erforderlich, und es gibt kein Cookie-Banner.
+            Unsere Website setzt keine Cookies und legt auch sonst keine Informationen in Ihrem Browser ab (etwa im Local Storage). Wir setzen keine Tracking- oder Marketingdienste ein. Für die Besucherstatistik nutzen wir das cookielose Werkzeug Umami (siehe Abschnitt 6). Ein Cookie-Banner gibt es deshalb nicht.
           </p>
           <p>
-            Alle Inhalte – einschließlich der Schriftarten – werden von unserem eigenen Server ausgeliefert. Beim Aufruf unserer Seiten wird Ihr Browser nicht mit Servern Dritter wie Google oder Meta verbunden.
+            Alle Inhalte – einschließlich der Schriftarten – werden von unserem eigenen Server ausgeliefert. Beim Aufruf unserer Seiten wird Ihr Browser nicht mit Servern Dritter wie Google, Meta oder Umami verbunden.
           </p>
         </LegalSection>
 
@@ -66,19 +66,34 @@ export default function DatenschutzPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="6. Kontaktaufnahme">
+        <LegalSection title="6. Besucherstatistik mit Umami">
+          <p>
+            Um zu verstehen, welche Seiten gelesen werden, nutzen wir die Webanalyse Umami Cloud. Umami arbeitet ohne Cookies und ohne geräteübergreifende Profile.
+          </p>
+          <p>
+            Beim Aufruf einer Seite übermittelt Ihr Browser folgende Angaben an unseren Server: die aufgerufene Adresse und den Seitentitel, die zuvor besuchte Seite (Referrer), Bildschirmgröße und Spracheinstellung. Unser Server leitet diese Angaben zusammen mit den technischen Verbindungsdaten an Umami weiter. Umami leitet daraus Browser, Betriebssystem, Gerätetyp sowie Land, Region und Stadt ab und fasst Seitenaufrufe zu Besuchen zusammen. Die IP-Adresse wird dabei nach Angaben des Anbieters nicht gespeichert; eine Zuordnung der Statistik zu einzelnen Personen ist nicht möglich.
+          </p>
+          <p>
+            Das Umami-Skript liest lediglich einen Eintrag „umami.disabled“ im lokalen Speicher Ihres Browsers aus, mit dem Sie die Zählung für sich abschalten können; es schreibt selbst nichts. Ist in Ihrem Browser „Do Not Track“ aktiviert, wird Ihr Besuch nicht erfasst. Gezählt wird nur auf scuvolleyball.de.
+          </p>
+          <p>
+            Rechtsgrundlage ist unser berechtigtes Interesse an einer datensparsamen Reichweitenmessung (Art. 6 Abs. 1 lit. f DSGVO). Anbieter von Umami Cloud ist die Umami Software, Inc., USA.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="7. Kontaktaufnahme">
           <p>
             Wenn Sie uns per E-Mail oder über das Kontaktformular schreiben, verarbeiten wir Ihre Angaben (Name, E-Mail-Adresse, Thema und Nachricht), um Ihre Anfrage zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage mit einem Vertrag zusammenhängt, andernfalls Art. 6 Abs. 1 lit. f DSGVO. Nachrichten aus dem Kontaktformular werden per E-Mail an uns weitergeleitet und nicht in einer Datenbank auf der Website gespeichert.
           </p>
         </LegalSection>
 
-        <LegalSection title="7. Links zu externen Angeboten">
+        <LegalSection title="8. Links zu externen Angeboten">
           <p>
             Unsere Website enthält Links zu externen Angeboten, etwa zu Instagram, Facebook und YouTube, zum Ticketshop von Reservix, zu VBL-TV und zu Google Maps. Diese Inhalte sind nicht eingebettet; eine Verbindung zum jeweiligen Anbieter entsteht erst, wenn Sie einen Link anklicken. Für die Verarbeitung Ihrer Daten dort ist der jeweilige Anbieter verantwortlich.
           </p>
         </LegalSection>
 
-        <LegalSection title="8. Ihre Rechte">
+        <LegalSection title="9. Ihre Rechte">
           <p>
             Sie haben jederzeit das Recht auf:
           </p>
@@ -95,7 +110,7 @@ export default function DatenschutzPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="9. Kontakt zum Datenschutz">
+        <LegalSection title="10. Kontakt zum Datenschutz">
           <p>
             Für Fragen zum Datenschutz wenden Sie sich bitte an: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
           </p>

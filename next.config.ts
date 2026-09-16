@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { UMAMI_API_URL, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "./src/lib/umami";
 
 const nextConfig: NextConfig = {
   images: {
@@ -19,15 +20,12 @@ const nextConfig: NextConfig = {
   /**
    * Umami über die eigene Domain: der Browser lädt /stats/script.js und
    * sendet an /stats/api/send, der Server reicht beides an Umami weiter.
-   * Ohne Umami-Konfiguration gibt es die Pfade nicht.
    */
   async rewrites() {
-    if (!process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID) return [];
-    const skript = process.env.UMAMI_SCRIPT_URL ?? "https://cloud.umami.is/script.js";
-    const api = (process.env.UMAMI_API_URL ?? "https://gateway.umami.is").replace(/\/$/, "");
+    if (!UMAMI_WEBSITE_ID) return [];
     return [
-      { source: "/stats/script.js", destination: skript },
-      { source: "/stats/api/send", destination: `${api}/api/send` },
+      { source: "/stats/script.js", destination: UMAMI_SCRIPT_URL },
+      { source: "/stats/api/send", destination: `${UMAMI_API_URL}/api/send` },
     ];
   },
   async redirects() {

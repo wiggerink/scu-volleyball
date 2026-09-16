@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { site } from "@/lib/site";
+import { UMAMI_WEBSITE_ID } from "@/lib/umami";
 
 /**
  * Besucherstatistik mit Umami - ohne Cookies und ohne Einwilligungsbanner.
@@ -8,11 +9,11 @@ import { site } from "@/lib/site";
  * serverseitig an Umami weitergereicht (siehe rewrites in next.config.ts).
  * Der Browser der Besucher nimmt dadurch keinen Kontakt zu Umami auf.
  *
- * Aktiv nur, wenn NEXT_PUBLIC_UMAMI_WEBSITE_ID gesetzt ist, und nur auf der
- * echten Domain - Vorschau-Deployments und localhost werden nicht gezählt.
+ * Gezählt wird nur auf der echten Domain - Vorschau-Deployments und
+ * localhost werden nicht erfasst.
  */
 export function Umami() {
-  const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+  const websiteId = UMAMI_WEBSITE_ID;
   if (!websiteId) return null;
 
   const host = new URL(site.url).hostname;
