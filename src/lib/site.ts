@@ -81,7 +81,6 @@ const nav: readonly NavEntry[] = [
       },
     },
   },
-  { label: "News", href: "/news", description: "Spielberichte & Vereinsnews" },
   {
     label: "Verein",
     href: "/verein",
@@ -124,6 +123,7 @@ const nav: readonly NavEntry[] = [
       },
     },
   },
+  { label: "News", href: "/news", description: "Spielberichte & Vereinsnews" },
   { label: "Sponsoren", href: "/sponsoren", description: "Unsere Partner & F\u00f6rderer" },
 ];
 
