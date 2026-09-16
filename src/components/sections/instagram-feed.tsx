@@ -19,6 +19,8 @@ function formatRelative(iso: string) {
 
 export async function InstagramFeed() {
   const posts = await fetchInstagramPosts(6);
+  // Ohne echte Beiträge kein Abschnitt - keine Platzhalter, die wie echte aussehen
+  if (!posts.length) return null;
 
   return (
     <section id="instagram" className="py-20 lg:py-28 bg-gradient-to-b from-white via-scu-gray-100/40 to-white relative overflow-hidden">
@@ -70,7 +72,6 @@ export async function InstagramFeed() {
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 33vw, 50vw"
                   className="object-cover group-hover:scale-105 transition duration-500"
-                  unoptimized={src.startsWith("http")}
                 />
                 <div className="absolute top-2 right-2 flex gap-1.5">
                   {isVideo && (
@@ -103,7 +104,7 @@ export async function InstagramFeed() {
         </div>
 
         <p className="text-xs text-scu-gray-500 text-center">
-          Beiträge werden direkt aus dem offiziellen Instagram-Kanal geladen. Keine Cookies werden auf deinem Gerät gesetzt.
+          Beiträge aus dem offiziellen Instagram-Kanal. Die Bilder werden über unseren Server ausgeliefert – dein Browser nimmt dafür keinen Kontakt zu Instagram auf.
         </p>
       </Container>
     </section>

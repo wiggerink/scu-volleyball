@@ -27,6 +27,8 @@ function formatCount(n?: number) {
 
 export async function FacebookFeed() {
   const posts = await fetchFacebookPosts(6);
+  // Ohne echte Beiträge kein Abschnitt - keine Platzhalter, die wie echte aussehen
+  if (!posts.length) return null;
 
   return (
     <section
@@ -198,7 +200,6 @@ function PostCard({ post, priority }: { post: FacebookPost; priority?: boolean }
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             priority={priority}
             className="object-cover group-hover:scale-[1.03] transition duration-700"
-            unoptimized={post.picture.startsWith("http")}
           />
           <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-scu-black/70 backdrop-blur text-white text-[10px] font-bold uppercase tracking-[0.18em] px-2.5 py-1">
             <FacebookIcon className="size-3" />
