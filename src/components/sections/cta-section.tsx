@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { Spielfeldlinien } from "@/components/ui/aktions-box";
 
 const ctas = [
   {
@@ -61,7 +60,6 @@ export function CtaSection() {
                     : "bg-white border border-scu-gray-200 hover:shadow-[0_30px_80px_-24px_rgba(0,0,0,0.22)]",
                 )}
               >
-                {item.hervorgehoben && <Spielfeldlinien className="text-scu-black/[0.09]" />}
                 <div className="relative p-7 lg:p-8 flex flex-col gap-5 h-full">
                   <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow">
                     <Icon className="size-6" />
