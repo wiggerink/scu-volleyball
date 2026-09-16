@@ -136,19 +136,9 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
               <Clock className="size-6" />
             </div>
             <h3 className="font-display text-2xl font-black text-scu-black leading-tight">Trainingszeiten</h3>
-            {team.trainingTimes && team.trainingTimes.length > 0 ? (
-              <ul className="flex flex-col gap-2">
-                {team.trainingTimes.map((t) => (
-                  <li key={t} className="text-scu-black bg-scu-gray-100 rounded-xl px-4 py-3 text-sm font-medium">
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-scu-gray-500 leading-relaxed">
-                Aktuelle Trainingszeiten erfragst du am besten direkt bei der Geschäftsstelle – wir vermitteln dir den passenden Ansprechpartner.
-              </p>
-            )}
+            <p className="text-sm text-scu-gray-500 leading-relaxed">
+              Aktuelle Trainingszeiten erfragst du am besten direkt bei der Geschäftsstelle – wir vermitteln dir den passenden Ansprechpartner.
+            </p>
             <p className="text-xs text-scu-gray-500 italic mt-2">
               Trainingsort: Vechtetalhalle, Emlichheim. Probetraining jederzeit möglich.
             </p>

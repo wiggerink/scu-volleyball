@@ -82,7 +82,7 @@ const nav: readonly NavEntry[] = [
       feature: {
         badge: `${teams.length} Teams`,
         title: "Alle Mannschaften auf einen Blick",
-        text: "\u00dcbersicht, Trainingszeiten und Kontakt je Team.",
+        text: "\u00dcbersicht, Liga und Kontakt je Team.",
         cta: { label: "Alle Teams", href: "/teams" },
       },
     },

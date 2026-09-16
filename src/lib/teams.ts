@@ -8,7 +8,6 @@ export type TeamEntry = {
   description: string;
   accent: "red" | "black" | "gold";
   image?: string;
-  trainingTimes?: string[];
   trainerName?: string;
   highlights?: string[];
 };
@@ -54,7 +53,6 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Erfahrung trifft Nachwuchs – Oberliga-Volleyball auf hohem Niveau und enges Bindeglied zur 2. Mannschaft.",
     accent: "gold",
-    trainingTimes: ["Dienstag 20:00 – 22:00 Uhr", "Donnerstag 20:00 – 22:00 Uhr"],
   },
   {
     slug: "4-mannschaft",
@@ -66,7 +64,6 @@ export const teams: TeamEntry[] = [
     description: "Ambitionierter Volleyball mit Spaß am Wettkampf – Landesliga-Niveau mit jungem Kader.",
     accent: "black",
     image: "/team/groups/4-mannschaft.jpg",
-    trainingTimes: ["Montag 19:30 – 21:30 Uhr", "Mittwoch 20:00 – 22:00 Uhr"],
   },
   {
     slug: "5-mannschaft",
@@ -77,7 +74,6 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Volleyball für alle Leistungsstufen – von Einsteigerinnen bis Erfahrenen, mit großer Trainingsbeteiligung.",
     accent: "black",
-    trainingTimes: ["Dienstag 19:30 – 21:30 Uhr"],
   },
   {
     slug: "6-mannschaft",
@@ -89,7 +85,6 @@ export const teams: TeamEntry[] = [
     description: "Teamgeist und Spaß am Sport stehen im Vordergrund – Bezirksklasse mit familiärer Atmosphäre.",
     accent: "black",
     image: "/team/groups/6-mannschaft.jpg",
-    trainingTimes: ["Mittwoch 19:00 – 21:00 Uhr"],
   },
   {
     slug: "7-mannschaft",
@@ -101,7 +96,6 @@ export const teams: TeamEntry[] = [
     description: "Breitensport-Team mit großer Leidenschaft – ideal für ambitionierte Hobbyspielerinnen.",
     accent: "black",
     image: "/team/groups/7-mannschaft.jpg",
-    trainingTimes: ["Donnerstag 19:00 – 21:00 Uhr"],
   },
   {
     slug: "8-mannschaft",
@@ -112,7 +106,6 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Unser Bundesliga-Unterbau von morgen – strukturierte Talentförderung mit professionellem Trainerteam.",
     accent: "red",
-    trainingTimes: ["Dienstag 17:30 – 19:30 Uhr", "Freitag 17:00 – 19:00 Uhr"],
   },
   {
     slug: "9-mannschaft",
@@ -123,7 +116,6 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Talente auf ihrem Weg in die großen Mannschaften – mit Spielfreude und ersten Wettkampferfahrungen.",
     accent: "red",
-    trainingTimes: ["Montag 17:00 – 18:30 Uhr", "Donnerstag 17:00 – 18:30 Uhr"],
   },
   {
     slug: "10-mannschaft",
@@ -159,9 +151,7 @@ export const teams: TeamEntry[] = [
     description: "Erste Ballkontakte, erste Erfolge, erster Vereinssport – spielerischer Einstieg ins Volleyball.",
     accent: "gold",
     image: "/team/groups/minis.jpg",
-    trainingTimes: ["Mittwoch 16:30 – 17:45 Uhr"],
   },
-  // Stehen nicht in der Ligaübersicht des Vereins – Rückmeldung dazu steht aus.
   {
     slug: "mini-minis",
     name: "Mini-Minis",
@@ -172,7 +162,6 @@ export const teams: TeamEntry[] = [
     description: "Koordination & Spielfreude für unsere Jüngsten – die ersten Schritte mit dem Ball.",
     accent: "gold",
     image: "/team/groups/minis.jpg",
-    trainingTimes: ["Freitag 16:00 – 17:00 Uhr"],
   },
   {
     slug: "hobbyliga",
