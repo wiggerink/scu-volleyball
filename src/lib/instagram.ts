@@ -12,7 +12,7 @@ const FALLBACK_POSTS: InstagramPost[] = [
   {
     id: "fallback-1",
     caption:
-      "Historischer Moment: Der SCU steht als Meister der 3. Liga Nord 2025/26 fest – Aufstieg in die 2. Bundesliga! 🏐🏆 #SCUVolleyball",
+      "Historischer Moment: Unsere 1. Damen stehen als Meister der 2. Bundesliga Nord 2025/26 fest – Aufstieg in die Sparda 2. Liga Pro! 🏐🏆 #SCUVolleyball",
     mediaType: "IMAGE",
     mediaUrl: "/team/team-group.jpg",
     permalink: "https://www.instagram.com/scu.volleyball/",

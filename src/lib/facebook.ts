@@ -13,8 +13,8 @@ const FALLBACK_POSTS: FacebookPost[] = [
   {
     id: "fallback-1",
     message:
-      "🏆 GESCHICHTE GESCHRIEBEN! Unsere 2. Mannschaft ist Meister der 3. Liga Nord 2025/26 und steigt zur neuen Saison in die 2. Bundesliga auf! Was für ein unglaublicher Moment für den ganzen Verein. Danke an die Spielerinnen, das Trainerteam und euch alle, die uns die ganze Saison begleitet habt. 🧡🖤 #SCUVolleyball #Aufstieg",
-    picture: "/team/groups/2-mannschaft.jpg",
+      "🏆 GESCHICHTE GESCHRIEBEN! Unsere 1. Damen sind Meister der 2. Bundesliga Nord 2025/26 und spielen ab sofort in der Sparda 2. Liga Pro! Was für ein Moment für den ganzen Verein. Danke an die Spielerinnen, das Trainerteam und euch alle, die uns die ganze Saison begleitet habt. 🧡🖤 #SCUVolleyball #Aufstieg",
+    picture: "/team/1-damen-2026-27.jpg",
     permalinkUrl: "https://www.facebook.com/scuvolleyball.emlichheim",
     createdTime: new Date(Date.now() - 86400000 * 1).toISOString(),
     reactions: 342,

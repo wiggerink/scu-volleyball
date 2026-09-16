@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, MapPin, Trophy, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, CalendarDays, MapPin, TrendingUp, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -304,12 +304,13 @@ Die Zweite spielt überregional von Bremen bis Aachen – und bleibt dabei das, 
           <div aria-hidden className="absolute -top-20 -right-20 size-80 rounded-full bg-white/15 blur-3xl" />
           <div className="relative grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <Trophy className="size-10 text-white/90 mb-4" />
+              <Users className="size-10 text-white/90 mb-4" />
               <h2 className="font-display text-3xl lg:text-4xl font-black leading-tight">
-                Werde Teil der Aufstiegs-Saison.
+                Sei bei den 2. Damen dabei.
               </h2>
               <p className="text-white/85 mt-3 leading-relaxed">
-                Sponsoring, Tickets, Mitgliedschaft – sprich uns an und sei dabei, wenn der SCU mit zwei Damenteams in der Bundesliga antritt.
+                Sponsoring, Mitgliedschaft oder einfach ein Platz auf der Tribüne – sprich uns an
+                und begleite die Mannschaft durch die Saison in der {schedule2Liga}.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">
