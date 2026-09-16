@@ -75,7 +75,11 @@ function SponsorTile({ sponsor }: { sponsor: Sponsor }) {
   );
 }
 
-export function SponsorsSection() {
+/**
+ * @param partnerButton Verweis auf die Sponsorenseite. Auf der Sponsorenseite
+ *   selbst aus, dort würde er nur auf sich selbst zeigen.
+ */
+export function SponsorsSection({ partnerButton = true }: { partnerButton?: boolean }) {
   return (
     <section id="sponsoren" className="relative py-20 lg:py-28 bg-white overflow-hidden">
       <div aria-hidden className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-scu-gray-100 to-transparent" />
@@ -86,11 +90,13 @@ export function SponsorsSection() {
             title={<>Gemeinsam an der <HighlightWord>Spitze</HighlightWord></>}
             description="Ohne das Engagement starker Unternehmen aus der Grafschaft Bentheim und dem Emsland wäre Bundesliga-Volleyball in Emlichheim nicht möglich. Ein herzliches Dankeschön an alle Partner und Förderer."
           />
-          <Button asChild variant="outline" className="w-fit">
-            <Link href="/sponsoren">
-              Partner werden <ArrowRight className="size-4" />
-            </Link>
-          </Button>
+          {partnerButton && (
+            <Button asChild variant="outline" className="w-fit">
+              <Link href="/sponsoren">
+                Partner werden <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+          )}
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 lg:gap-4">

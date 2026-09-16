@@ -137,7 +137,7 @@ export default function SponsorsPage() {
         </Container>
       </section>
 
-      <SponsorsSection />
+      <SponsorsSection partnerButton={false} />
     </>
   );
 }
