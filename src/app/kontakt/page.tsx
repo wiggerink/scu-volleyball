@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Building2, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Building2, ArrowRight, Newspaper, Receipt, Heart, Clapperboard, MonitorPlay } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { Button } from "@/components/ui/button";
@@ -12,17 +13,51 @@ import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/social
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Kontakt zum SC Union Emlichheim – Abteilung Volleyball. Geschäftsstelle, Anfragen für Sponsoring, Tickets, Jugend & Presse.",
+    "Kontakt zum SC Union Emlichheim – Abteilung Volleyball: Geschäftsführung, Teammanagement, Presse, Buchhaltung, Förderring, Spieltagsregie und Livestream.",
   alternates: { canonical: "/kontakt" },
 };
 
-const contacts = [
-  { role: "Allgemein & News",   name: "Geschäftsstelle", email: site.contact.email },
-  { role: "Sponsoring",         name: "Sponsoring-Team", email: site.contact.email },
-  { role: "Jugend",             name: "Jugendleitung",   email: site.contact.email },
-  { role: "Tickets",            name: "Ticketing",       email: site.contact.email },
-  { role: "Presse",             name: "Pressestelle",    email: site.contact.email },
+/** Postfächer laut Mailserver (Stand 16.09.2026). */
+const personen = [
+  {
+    name: "Thorben Helweg",
+    rolle: "Geschäftsführer · Sponsoring",
+    email: "t.helweg@scuvolleyball.de",
+    bild: "/team/2026-27/staff-thorben-helweg-avatar.jpg",
+  },
+  {
+    name: "Tobias Stahl",
+    rolle: "Geschäftsführer",
+    email: "t.stahl@scuvolleyball.de",
+    bild: "/team/2026-27/staff-tobias-stahl-avatar.jpg",
+  },
+  {
+    name: "Silke Reurink",
+    rolle: "Teammanagerin · 1. Damenmannschaft",
+    email: "s.reurink@scuvolleyball.de",
+    bild: "/team/2026-27/staff-silke-reurink-avatar.jpg",
+  },
 ];
+
+const postfaecher = [
+  { icon: Newspaper, bereich: "Allgemein, News & Presse", email: "news@scuvolleyball.de" },
+  { icon: Receipt, bereich: "Buchhaltung", email: "buchhaltung@scuvolleyball.de" },
+  { icon: Heart, bereich: "Förderring Jugendvolleyball", email: "jfr@scuvolleyball.de" },
+  { icon: Clapperboard, bereich: "Spieltagsregie", email: "regie@scuvolleyball.de" },
+  // Schreibweise so wie das Postfach auf dem Mailserver angelegt ist
+  { icon: MonitorPlay, bereich: "Livestream", email: "steaming@scuvolleyball.de" },
+];
+
+/** Mailadresse, die auf schmalen Bildschirmen nur vor dem @ umbricht - nie mitten im Wort. */
+function MailAdresse({ email }: { email: string }) {
+  const [lokal, domain] = email.split("@");
+  return (
+    <>
+      {lokal}
+      <wbr />@{domain}
+    </>
+  );
+}
 
 export default function KontaktPage() {
   const mailBereit = isMailConfigured();
@@ -73,42 +108,88 @@ export default function KontaktPage() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-scu-gray-100 p-8">
-              <h3 className="font-display text-xl font-black mb-4">Ansprechpartner:innen</h3>
-              <ul className="divide-y divide-scu-gray-200">
-                {contacts.map((c) => (
-                  <li key={c.role} className="py-3 flex items-center justify-between gap-4">
-                    <div>
-                      <div className="text-xs uppercase tracking-[0.18em] font-bold text-scu-yellow">{c.role}</div>
-                      <div className="font-semibold">{c.name}</div>
-                    </div>
-                    <Link href={`mailto:${c.email}`} className="text-sm font-semibold text-scu-black hover:text-scu-yellow inline-flex items-center gap-1">
-                      E-Mail <ArrowRight className="size-3.5" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="rounded-3xl bg-scu-gray-100 p-6 sm:p-8 flex flex-col gap-8">
+              <div>
+                <h3 className="font-display text-xl font-black">Ansprechpartner:innen</h3>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {personen.map((p) => (
+                    <li key={p.email}>
+                      <a
+                        href={`mailto:${p.email}`}
+                        className="group flex items-center gap-4 rounded-2xl bg-white p-3 pr-4 ring-1 ring-scu-gray-200 transition hover:ring-scu-black"
+                      >
+                        <Image
+                          src={p.bild}
+                          alt=""
+                          width={56}
+                          height={56}
+                          className="size-14 shrink-0 rounded-xl object-cover"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <div className="font-display font-black leading-tight text-scu-black">{p.name}</div>
+                          <div className="text-xs text-scu-gray-500 mt-0.5">{p.rolle}</div>
+                          <div className="mt-1 flex items-center gap-1.5 text-sm font-semibold text-scu-black">
+                            <Mail className="size-3.5 shrink-0" />
+                            <span className="underline decoration-scu-gray-300 decoration-2 underline-offset-4 transition group-hover:decoration-scu-black">
+                              <MailAdresse email={p.email} />
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-display text-xl font-black">Postfächer nach Bereich</h3>
+                <ul className="mt-4 divide-y divide-scu-gray-200 rounded-2xl bg-white ring-1 ring-scu-gray-200 overflow-hidden">
+                  {postfaecher.map(({ icon: Icon, bereich, email }) => (
+                    <li key={email}>
+                      <a
+                        href={`mailto:${email}`}
+                        className="group flex items-center gap-4 px-4 py-3.5 transition hover:bg-scu-gray-100"
+                      >
+                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-scu-black text-scu-yellow">
+                          <Icon className="size-4.5" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-xs font-bold uppercase tracking-[0.16em] text-scu-gray-500">{bereich}</span>
+                          <span className="block text-sm font-semibold text-scu-black">
+                            <MailAdresse email={email} />
+                          </span>
+                        </span>
+                        <ArrowRight className="size-4 shrink-0 text-scu-gray-300 transition group-hover:translate-x-0.5 group-hover:text-scu-black" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
-          {mailBereit ? (
-            <KontaktForm email={site.contact.email} />
-          ) : (
-            /* Ohne SMTP-Zugangsdaten kein Formular, das ins Leere laeuft -
-               stattdessen offen die Adresse zeigen. */
-            <div className="rounded-3xl bg-scu-black text-white p-8 lg:p-10 flex flex-col gap-5">
-              <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
-                <Mail className="size-6" />
+          {/* Eigene Höhe statt über die ganze Spalte gestreckt; läuft beim Scrollen
+              neben der längeren Ansprechpartner-Liste mit */}
+          <div className="self-start lg:sticky lg:top-32">
+            {mailBereit ? (
+              <KontaktForm email={site.contact.email} />
+            ) : (
+              /* Ohne SMTP-Zugangsdaten kein Formular, das ins Leere laeuft -
+                 stattdessen offen die Adresse zeigen. */
+              <div className="rounded-3xl bg-scu-black text-white p-8 lg:p-10 flex flex-col gap-5">
+                <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
+                  <Mail className="size-6" />
+                </div>
+                <h2 className="font-display text-3xl font-black leading-tight">Schreib uns</h2>
+                <p className="text-white/70 leading-relaxed">
+                  Am schnellsten erreichst du uns per E-Mail. Wir melden uns in der Regel innerhalb von 48 Stunden.
+                </p>
+                <Button asChild variant="primary" size="lg" className="w-fit">
+                  <Link href={`mailto:${site.contact.email}`}>{site.contact.email}</Link>
+                </Button>
               </div>
-              <h2 className="font-display text-3xl font-black leading-tight">Schreib uns</h2>
-              <p className="text-white/70 leading-relaxed">
-                Am schnellsten erreichst du uns per E-Mail. Wir melden uns in der Regel innerhalb von 48 Stunden.
-              </p>
-              <Button asChild variant="primary" size="lg" className="w-fit">
-                <Link href={`mailto:${site.contact.email}`}>{site.contact.email}</Link>
-              </Button>
-            </div>
-          )}
+            )}
+          </div>
         </Container>
       </section>
     </>
