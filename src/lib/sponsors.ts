@@ -26,6 +26,7 @@ export const sponsors: Sponsor[] = [
   { name: "Holthuis Gabelstapler",  logo: "/sponsors/holthuis.png",             href: "http://www.holthuis-gabelstapler.de/" },
   { name: "Intersport Kamps",         logo: "/sponsors/intersport-kamps.png",      href: "https://www.intersport.de/haendlersuche/sportgeschaefte-niedersachsen/48455-bad-bentheim-sport-und-freizeit-kamps/" },
   { name: "J.B. Küpers",              logo: "/sponsors/jb-kuepers.svg",            href: "https://www.jbkuepers.de/" },
+  { name: "Klimakontor Wolters",      logo: "/sponsors/klimakontor-wolters.png",   href: "https://www.kk-wolters.de/" },
   { name: "Kwade & Sohn",             logo: "/sponsors/kwade.png",                 href: "https://www.kwade-sohn.de/" },
   // moelle.de leitet auf solidus.com um - Zieladresse noch klaeren
   { name: "Moelle",                 logo: "/sponsors/moelle.webp" },
@@ -37,7 +38,6 @@ export const sponsors: Sponsor[] = [
   { name: "Stahl Baumeisterhaus",     logo: "/sponsors/stahl-baumeisterhaus.jpg",  href: "https://www.stahl-baumeisterhaus.de/" },
   { name: "Steuermanufaktur",         logo: "/sponsors/steuermanufaktur.png",      href: "https://steuermanufaktur.team/" },
   { name: "van Lohuizen Pallets",     logo: "/sponsors/van-lohuizen.jpg",          href: "http://www.vanlohuizenpallets.com/" },
-  { name: "Wolters Klimakontor" },
 ];
 
 /** Ansprechpartner für Sponsoring-Anfragen (kein öffentlicher Paket-Ausweis). */
