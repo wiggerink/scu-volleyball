@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const groups = [
   { slug: "mini-minis", icon: Baby,   title: "Mini-Minis",      age: "4 – 6 Jahre",   text: "Erste Bewegungserfahrungen mit Ball & Koordination. Spielerischer Einstieg in den Volleyballsport." },
   { slug: "minis",      icon: Users,  title: "Minis",           age: "6 – 10 Jahre",  text: "Kleinfeld-Volleyball: erste Turniere, erste Techniken, erste Erfolge im Team." },
-  { slug: "u13",        icon: Users,  title: "U13",             age: "11 – 13 Jahre", text: "Leistungsorientiertes Training in der Jugendkreisliga. Der Start in die Talentförderung." },
+  { slug: "u13",        icon: Users,  title: "U13",             age: "11 – 13 Jahre", text: "Leistungsorientiertes Training in der U13 Kreisliga. Der Start in die Talentförderung." },
   { slug: "u14",        icon: Users,  title: "U14 / U16 / U18", age: "13 – 18 Jahre", text: "Strukturiertes Athletik- & Techniktraining. Eigene Talente auf dem Weg in die Bundesliga." },
 ];
 
