@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Clock, Trophy, Users, Sparkles } from "lucide-react";
+import { ArrowLeft, Users, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { teams } from "@/lib/teams";
-import { Spielfeldlinien } from "@/components/ui/aktions-box";
 
 const DEDICATED = ["1-mannschaft", "2-mannschaft"];
 
@@ -34,7 +33,6 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
   if (DEDICATED.includes(team.slug)) notFound();
 
   const heroImage = team.image ?? "/team/team-group.jpg";
-  const isJugend = team.gender === "Jugend";
 
   return (
     <>
@@ -124,58 +122,6 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
                 ))}
               </ul>
             )}
-          </div>
-        </Container>
-      </section>
-
-      {/* Training & Kontakt */}
-      <section className="relative py-16 lg:py-20 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
-        <div aria-hidden className="absolute -top-16 -right-10 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
-        <Container className="relative grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-3xl bg-white border border-scu-gray-200 p-7 lg:p-8 flex flex-col gap-4">
-            <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
-              <Clock className="size-6" />
-            </div>
-            <h3 className="font-display text-2xl font-black text-scu-black leading-tight">Trainingszeiten</h3>
-            <p className="text-sm text-scu-gray-500 leading-relaxed">
-              Trainingszeiten werden in Kürze bekanntgegeben.
-            </p>
-            <p className="text-xs text-scu-gray-500 italic mt-2">
-              Trainingsort: Vechtetalhalle, Emlichheim. Probetraining jederzeit möglich.
-            </p>
-          </div>
-
-          {/* Hauptaktion der Seite: gelb wie die Aktionsboxen der beiden Damenmannschaften */}
-          <div className="rounded-3xl bg-scu-yellow text-scu-black p-7 lg:p-8 flex flex-col gap-4 relative overflow-hidden [&_a]:focus-visible:ring-scu-black [&_a]:focus-visible:ring-offset-scu-yellow">
-            <Spielfeldlinien className="text-scu-black/[0.09]" />
-            <div className="relative inline-flex size-12 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow">
-              {isJugend ? <Users className="size-6" /> : <Trophy className="size-6" />}
-            </div>
-            <h3 className="relative font-display text-2xl font-black leading-tight">
-              {isJugend ? "Schnuppertraining" : "Mitspielen?"}
-            </h3>
-            <p className="relative text-scu-black/75 leading-relaxed text-sm">
-              {isJugend
-                ? "Komm vorbei, bring Sportzeug und Hallenschuhe mit – die ersten Trainings sind immer kostenlos. Wir freuen uns auf dich."
-                : "Quereinsteigerinnen sind willkommen – egal ob mit Vereinserfahrung oder als Wiedereinsteigerin. Melde dich für ein Probetraining."}
-            </p>
-            <p className="relative text-scu-black/75 leading-relaxed text-sm">
-              Gespielt wird in der{" "}
-              <Link href="/vechtetalhalle" className="font-semibold text-scu-black underline decoration-scu-black decoration-2 underline-offset-4 hover:decoration-scu-black/40">
-                Vechtetalhalle
-              </Link>
-              {isJugend ? " oder in der Herbert-Taube-Halle direkt nebenan – gleiche Adresse, gleicher Eingang." : " in Emlichheim."}
-            </p>
-            <div className="relative flex flex-wrap gap-3 pt-2">
-              <Button asChild variant="dark">
-                <Link href="/kontakt">Kontakt aufnehmen</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/teams">
-                  Andere Teams <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </Container>
       </section>
