@@ -25,11 +25,13 @@ export function YouthSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative aspect-[4/5] rounded-3xl overflow-hidden"
+            // Quadratisch: das Mannschaftsfoto ist Querformat, im Hochformat würden
+            // die Kinder am Rand abgeschnitten
+            className="relative aspect-square rounded-3xl overflow-hidden"
           >
             <Image
-              src="/team/groups/u13.jpg"
-              alt="SCU U13 – Jugendvolleyball beim SCU Emlichheim"
+              src="/team/groups/10-11-mannschaft.jpg"
+              alt="Die U13-Mannschaften des SCU Emlichheim mit ihren Trainerinnen, Saison 2026/27"
               fill
               sizes="(min-width:1024px) 40vw, 100vw"
               className="object-cover"
