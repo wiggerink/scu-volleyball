@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { teams } from "@/lib/teams";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -52,7 +53,7 @@ export default async function Image() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div style={{ fontSize: 26, opacity: 0.8 }}>scuvolleyball.de</div>
           <div style={{ display: "flex", gap: 28, fontSize: 22, opacity: 0.8 }}>
-            <span>14 Mannschaften</span>
+            <span>{teams.length} Mannschaften</span>
             <span>·</span>
             <span>120+ Jugend</span>
             <span>·</span>
