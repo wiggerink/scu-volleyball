@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Heart, Users, Trophy, Euro, Mail, ArrowRight } from "lucide-react";
+import { Heart, Users, Trophy, Mail, ArrowRight, Download } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { Button } from "@/components/ui/button";
@@ -91,21 +91,28 @@ export default function FoerderringPage() {
               ))}
             </div>
             <p className="text-white/70 leading-relaxed">
-              Zu den Beiträgen und zum Aufnahmeantrag beraten wir dich gern persönlich – schreib uns
-              einfach eine kurze Mail.
+              Die Höhe des Jahresbeitrags bestimmst du selbst. Formular herunterladen, ausfüllen und
+              an den Förderring schicken – auf Wunsch gibt es am Jahresende eine
+              Spendenbescheinigung.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="primary" size="lg">
-                <Link href={`mailto:${JFR_MAIL}?subject=Mitgliedschaft%20im%20F%C3%B6rderring`}>
-                  <Euro className="size-4" /> Mitglied werden
+                <Link href="/downloads/foerderring-mitgliedschaft.pdf" target="_blank" rel="noopener">
+                  <Download className="size-4" /> Beitrittsformular (PDF)
                 </Link>
               </Button>
               <Button asChild variant="outlineLight" size="lg">
-                <Link href={`mailto:${JFR_MAIL}`}>
-                  <Mail className="size-4" /> {JFR_MAIL}
+                <Link href={`mailto:${JFR_MAIL}?subject=Mitgliedschaft%20im%20F%C3%B6rderring`}>
+                  <Mail className="size-4" /> Erst mal nachfragen
                 </Link>
               </Button>
             </div>
+            <p className="text-sm text-white/55">
+              Kontakt:{" "}
+              <Link href={`mailto:${JFR_MAIL}`} className="underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow">
+                {JFR_MAIL}
+              </Link>
+            </p>
           </div>
 
           <div className="lg:col-span-5">

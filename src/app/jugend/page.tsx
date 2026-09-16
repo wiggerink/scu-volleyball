@@ -124,7 +124,9 @@ export default function JugendPage() {
               <Link href="/foerderring"><Euro className="size-4" /> Förderring unterstützen</Link>
             </Button>
             <Button asChild variant="outlineLight" size="lg">
-              <Link href="mailto:jfr@scu-emlichheim.de">jfr@scu-emlichheim.de</Link>
+              <Link href="/downloads/foerderring-mitgliedschaft.pdf" target="_blank" rel="noopener">
+                Beitrittsformular
+              </Link>
             </Button>
           </div>
         </Container>
