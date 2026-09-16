@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { teams } from "@/lib/teams";
-import { newsItems } from "@/lib/news";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -13,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/news",
     "/verein",
     "/jugend",
+    "/foerderring",
+    "/vechtetalhalle",
+    "/galerie",
     "/sponsoren",
     "/kontakt",
     "/impressum",
@@ -35,12 +37,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     }));
 
-  const newsEntries: MetadataRoute.Sitemap = newsItems.map((n) => ({
-    url: `${base}/news/${n.slug}`,
-    lastModified: new Date(n.date),
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
-  return [...staticEntries, ...teamEntries, ...newsEntries];
+  return [...staticEntries, ...teamEntries];
 }

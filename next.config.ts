@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/teams/u14", destination: "/teams/8-mannschaft", permanent: true },
       { source: "/teams/u13", destination: "/teams/9-mannschaft", permanent: true },
+      // Die früheren Beispielartikel gibt es nicht mehr - die News kommen aus Instagram
+      { source: "/news/:slug", destination: "/news", permanent: true },
     ];
   },
 };
