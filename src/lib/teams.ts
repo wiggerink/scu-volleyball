@@ -16,8 +16,8 @@ export type TeamEntry = {
  * Mannschaften der Saison 2026/27.
  * Struktur und Ligen nach der Vereinsübersicht vom 16.09.2026: die Nummerierung
  * läuft durch bis in den Jugendbereich, die 8. bis 11. sind Jugendmannschaften.
- * Teams ohne `image` warten noch auf ihr Mannschaftsfoto – die Karten zeigen
- * so lange die Initialen.
+ * Bei 3., 5., 8. und 9. steht noch das Foto der Vorsaison, bis die neuen
+ * Mannschaftsfotos kommen.
  */
 export const teams: TeamEntry[] = [
   {
@@ -53,6 +53,8 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Erfahrung trifft Nachwuchs – Oberliga-Volleyball auf hohem Niveau und enges Bindeglied zur 2. Mannschaft.",
     accent: "gold",
+    // Foto der Vorsaison, bis das aktuelle Mannschaftsfoto vorliegt
+    image: "/team/groups/3-mannschaft.jpg",
   },
   {
     slug: "4-mannschaft",
@@ -74,6 +76,8 @@ export const teams: TeamEntry[] = [
     gender: "Damen",
     description: "Volleyball für alle Leistungsstufen – von Einsteigerinnen bis Erfahrenen, mit großer Trainingsbeteiligung.",
     accent: "black",
+    // Foto der Vorsaison, bis das aktuelle Mannschaftsfoto vorliegt
+    image: "/team/groups/5-mannschaft.jpg",
   },
   {
     slug: "6-mannschaft",
@@ -106,6 +110,8 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Unser Bundesliga-Unterbau von morgen – strukturierte Talentförderung mit professionellem Trainerteam.",
     accent: "red",
+    // Foto der Vorsaison, bis das aktuelle Mannschaftsfoto vorliegt
+    image: "/team/groups/u14.jpg",
   },
   {
     slug: "9-mannschaft",
@@ -116,6 +122,8 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Talente auf ihrem Weg in die großen Mannschaften – mit Spielfreude und ersten Wettkampferfahrungen.",
     accent: "red",
+    // Foto der Vorsaison, bis das aktuelle Mannschaftsfoto vorliegt
+    image: "/team/groups/u13.jpg",
   },
   {
     slug: "10-mannschaft",
