@@ -161,7 +161,7 @@ export const site = {
     phone: "",
   },
   social: {
-    facebook: "https://www.facebook.com/scuvolleyball.emlichheim",
+    facebook: "https://www.facebook.com/profile.php?id=100063696664282",
     instagram: "https://www.instagram.com/scu.volleyball/",
     youtube: "https://www.youtube.com/channel/UChNRe-7g8dTibAkk4f1AcKw",
   },

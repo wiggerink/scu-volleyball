@@ -44,7 +44,7 @@ export async function FacebookFeed() {
       <Container className="relative flex flex-col gap-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <SectionHeading
-            eyebrow="@scuvolleyball.emlichheim"
+            eyebrow="Facebook"
             title={
               <>
                 Direkt aus der{" "}
@@ -96,23 +96,12 @@ export async function FacebookFeed() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <div className="font-display text-xl sm:text-2xl font-black">SCU Emlichheim Volleyball</div>
+                <div className="font-display text-xl sm:text-2xl font-black">SCU Volleyball Emlichheim</div>
                 <span className="inline-flex items-center gap-1 rounded-full bg-scu-yellow/20 text-scu-black text-[10px] font-bold uppercase tracking-[0.18em] px-2 py-0.5">
                   Offiziell
                 </span>
               </div>
-              <div className="text-sm text-scu-gray-500 mt-0.5">@scuvolleyball.emlichheim · Sportverein</div>
-              <div className="flex flex-wrap gap-5 text-sm text-scu-gray-500 mt-3">
-                <span>
-                  <strong className="text-scu-black font-bold">{posts.length}</strong> Beiträge
-                </span>
-                <span>
-                  <strong className="text-scu-black font-bold">3.2k</strong> Gefällt mir
-                </span>
-                <span>
-                  <strong className="text-scu-black font-bold">3.4k</strong> Abonnenten
-                </span>
-              </div>
+              <div className="text-sm text-scu-gray-500 mt-0.5">Facebook-Seite · Sportverein</div>
             </div>
           </div>
         </div>
