@@ -50,5 +50,5 @@ export const roster2: PlayerLite[] = [
  * Lizenzmeldung. Betreut wird die Mannschaft von Andrea Büring.
  */
 export const staff2: StaffLite[] = [
-  { name: "Andrea Büring", role: "Trainerin" },
+  { name: "Andrea Büring", role: "Trainerin", image: "/team/2026-27/zweite/staff-andrea-buering.jpg" },
 ];

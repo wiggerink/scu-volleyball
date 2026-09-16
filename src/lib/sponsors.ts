@@ -47,8 +47,9 @@ export const sponsoringContact = {
   phone: "0176 43348764",
   phoneHref: "tel:+4917643348764",
   email: "t.helweg@scuvolleyball.de",
-  /** Foto wird nachgeliefert – bis dahin rendert die Karte ein Initialen-Avatar. */
-  photo: undefined as string | undefined,
+  /** Quadratischer Kopf-Ausschnitt - das Portraet im Hochformat waere im
+   *  kleinen Avatar der Karte vor allem Hallenwand. */
+  photo: "/team/2026-27/staff-thorben-helweg-avatar.jpg" as string | undefined,
 };
 
 export type FederationPartner = {

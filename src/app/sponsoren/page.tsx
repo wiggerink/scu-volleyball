@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, Users2, Heart, Phone, Mail } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
@@ -103,12 +104,15 @@ export default function SponsorsPage() {
 
             <div className="rounded-3xl bg-white/[0.06] border border-white/10 backdrop-blur p-8 flex flex-col sm:flex-row items-center gap-7">
               {sponsoringContact.photo ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={sponsoringContact.photo}
-                  alt={sponsoringContact.name}
-                  className="size-28 rounded-2xl object-cover shrink-0 ring-2 ring-scu-yellow/60"
-                />
+                <div className="relative size-28 shrink-0 overflow-hidden rounded-2xl ring-2 ring-scu-yellow/60">
+                  <Image
+                    src={sponsoringContact.photo}
+                    alt={sponsoringContact.name}
+                    fill
+                    sizes="112px"
+                    className="object-cover"
+                  />
+                </div>
               ) : (
                 <div className="size-28 rounded-2xl bg-scu-yellow text-scu-black flex items-center justify-center font-display text-4xl font-black shrink-0 ring-2 ring-scu-yellow/60">
                   TH
