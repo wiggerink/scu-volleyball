@@ -54,18 +54,24 @@ const nav: readonly NavEntry[] = [
           title: "Damenteams",
           items: [
             { label: "3. Damen", href: "/teams/3-mannschaft", note: "Oberliga" },
-            { label: "4. Damen", href: "/teams/4-mannschaft", note: "Bezirksliga" },
+            { label: "4. Damen", href: "/teams/4-mannschaft", note: "Landesliga" },
             { label: "5. Damen", href: "/teams/5-mannschaft", note: "Bezirksklasse" },
-            { label: "6. Damen", href: "/teams/6-mannschaft", note: "Kreisliga" },
-            { label: "7. Damen", href: "/teams/7-mannschaft", note: "Kreisklasse A" },
-            { label: "8. Damen", href: "/teams/8-mannschaft", note: "Kreisklasse" },
+            { label: "6. Damen", href: "/teams/6-mannschaft", note: "Bezirksklasse" },
+            { label: "7. Damen", href: "/teams/7-mannschaft", note: "Kreisklasse B" },
           ],
         },
         {
-          title: "Jugend & Hobby",
+          title: "Jugend",
           items: [
-            { label: "U14", href: "/teams/u14", note: "Jugendliga" },
-            { label: "U13", href: "/teams/u13", note: "Jugendkreisliga" },
+            { label: "8. Mannschaft", href: "/teams/8-mannschaft", note: "U14 Kreisliga" },
+            { label: "9. Mannschaft", href: "/teams/9-mannschaft", note: "U13 Kreisliga" },
+            { label: "10. Mannschaft", href: "/teams/10-mannschaft", note: "U13 Kreisliga" },
+            { label: "11. Mannschaft", href: "/teams/11-mannschaft", note: "U13 Kreisliga" },
+          ],
+        },
+        {
+          title: "Minis & Hobby",
+          items: [
             { label: "Minis", href: "/teams/minis", note: "Mini-Volleyball" },
             { label: "Mini-Minis", href: "/teams/mini-minis", note: "Ball-Schule" },
             { label: "Hobbyliga", href: "/teams/hobbyliga", note: "Hobbyliga Grafschaft" },

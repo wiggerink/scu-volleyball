@@ -32,7 +32,7 @@ export default function TeamsPage() {
         <Container className="flex flex-col gap-14">
           <div>
             <h2 className="font-display text-3xl lg:text-4xl font-black mb-2">Damen</h2>
-            <p className="text-scu-gray-500 mb-8">Acht Damenteams von der Bundesliga bis zur Kreisklasse.</p>
+            <p className="text-scu-gray-500 mb-8">{senior.length} Damenteams von der Bundesliga bis zur Kreisklasse.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {senior.map((t) => (
                 <Link
@@ -114,7 +114,7 @@ export default function TeamsPage() {
               {youth.map((t) => (
                 <Link
                   key={t.slug}
-                  href={`/jugend#${t.slug}`}
+                  href={`/teams/${t.slug}`}
                   className="group relative block rounded-2xl overflow-hidden border border-scu-gray-200 hover:border-scu-black hover:-translate-y-0.5 transition-all bg-white"
                 >
                   {t.image && (

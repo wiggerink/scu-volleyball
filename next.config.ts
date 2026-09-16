@@ -11,6 +11,17 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.fbcdn.net" },
     ],
   },
+  /**
+   * Die Jugendmannschaften laufen seit der Saison 2026/27 in der
+   * Vereinsnummerierung mit. Die alten Adressen bleiben gültig, damit
+   * bestehende Links und Suchtreffer nicht ins Leere laufen.
+   */
+  async redirects() {
+    return [
+      { source: "/teams/u14", destination: "/teams/8-mannschaft", permanent: true },
+      { source: "/teams/u13", destination: "/teams/9-mannschaft", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
