@@ -82,7 +82,7 @@ export function YouthSection() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/jugend#foerderring">Förderring unterstützen</Link>
+              <Link href="/foerderring">Förderring unterstützen</Link>
             </Button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Baby, Users, Trophy, Heart, Euro, CheckCircle2 } from "lucide-react";
+import { Baby, Users, Euro, CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
@@ -108,54 +108,24 @@ export default function JugendPage() {
       {/* Förderring */}
       <section id="foerderring" className="py-20 lg:py-24 bg-scu-black text-white relative overflow-hidden scroll-mt-28">
         <div aria-hidden className="absolute -top-40 right-0 size-[500px] rounded-full bg-scu-yellow/20 blur-3xl" />
-        <Container className="relative grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <Badge variant="yellow" className="w-fit">Förderring e.V.</Badge>
-            <h2 className="font-display text-4xl lg:text-5xl font-black leading-[1.05]">
-              Werde Förder-Mitglied und <span className="text-scu-yellow">investiere in die Zukunft</span>.
-            </h2>
-            <p className="text-white/75 text-lg leading-relaxed">
-              Der <strong>Förderring Jugendvolleyball Emlichheim e.V.</strong> ist ein eingetragener, gemeinnütziger Verein. Er macht Trainingsmaterial, zusätzliche Trainer, Auswärtsfahrten, Turniere und das Athletikkonzept für 120+ Kinder möglich. Jeder Euro fließt direkt in den Nachwuchs.
-            </p>
-            <div className="grid sm:grid-cols-3 gap-4 pt-4">
-              {[
-                { icon: Heart,  label: "Einzelperson", price: "ab 24 €", sub: "pro Jahr" },
-                { icon: Users,  label: "Familie",      price: "ab 48 €", sub: "pro Jahr" },
-                { icon: Trophy, label: "Unternehmen",  price: "ab 250 €", sub: "pro Jahr" },
-              ].map((tier) => {
-                const Icon = tier.icon;
-                return (
-                  <div key={tier.label} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                    <Icon className="size-5 text-scu-yellow mb-3" />
-                    <div className="text-xs uppercase tracking-[0.22em] font-bold text-white/60">{tier.label}</div>
-                    <div className="font-display text-2xl font-black mt-1">{tier.price}</div>
-                    <div className="text-xs text-white/60">{tier.sub}</div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Button asChild variant="primary" size="lg">
-                <Link href="/kontakt"><Euro className="size-4" /> Mitglied werden</Link>
-              </Button>
-              <Button asChild variant="outlineLight" size="lg">
-                <Link href="/verein">Mehr zum Verein</Link>
-              </Button>
-            </div>
-          </div>
-          <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
-              <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-scu-yellow">Spendenkonto</div>
-              <div className="font-display text-2xl font-black mt-1">Förderring Jugendvolleyball Emlichheim e.V.</div>
-              <div className="mt-4 text-sm text-white/70 space-y-1">
-                <div><strong className="text-white">Grafschafter Volksbank</strong></div>
-                <div>IBAN folgt auf Anfrage</div>
-                <div>Verwendungszweck: „Nachwuchsförderung“</div>
-              </div>
-              <p className="text-xs text-white/50 mt-4">
-                Der Förderring ist als gemeinnützig anerkannt. Spendenbescheinigungen stellen wir auf Wunsch aus.
-              </p>
-            </div>
+        <Container className="relative max-w-3xl flex flex-col items-start gap-6">
+          <Badge variant="yellow" className="w-fit">Förderring e.V.</Badge>
+          <h2 className="font-display text-4xl lg:text-5xl font-black leading-[1.05]">
+            Der <span className="text-scu-yellow">Förderring</span> macht es möglich.
+          </h2>
+          <p className="text-white/75 text-lg leading-relaxed">
+            Der <strong>Förderring Jugendvolleyball Emlichheim e.V.</strong> ist ein eingetragener,
+            gemeinnütziger Verein. Er finanziert zusätzliche Trainer:innen, Material,
+            Auswärtsfahrten und Turniere für über 120 Kinder – alles, was über den normalen
+            Trainingsbetrieb hinausgeht.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild variant="primary" size="lg">
+              <Link href="/foerderring"><Euro className="size-4" /> Förderring unterstützen</Link>
+            </Button>
+            <Button asChild variant="outlineLight" size="lg">
+              <Link href="mailto:jfr@scu-emlichheim.de">jfr@scu-emlichheim.de</Link>
+            </Button>
           </div>
         </Container>
       </section>

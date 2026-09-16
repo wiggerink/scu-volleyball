@@ -158,7 +158,8 @@ export default function VereinPage() {
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button asChild size="lg"><Link href="/kontakt">Kontakt</Link></Button>
-            <Button asChild size="lg" variant="outline"><Link href="/jugend">Jugend & Förderring</Link></Button>
+            <Button asChild size="lg" variant="outline"><Link href="/jugend">Jugend</Link></Button>
+            <Button asChild size="lg" variant="outline"><Link href="/foerderring">Förderring</Link></Button>
           </div>
         </Container>
       </section>

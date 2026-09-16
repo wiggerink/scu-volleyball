@@ -19,7 +19,7 @@ const linkGroups = [
     title: "Verein",
     links: [
       { label: "Über uns", href: "/verein" },
-      { label: "Jugendförderring", href: "/jugend#foerderring" },
+      { label: "Förderring", href: "/foerderring" },
       { label: "Sponsoren", href: "/sponsoren" },
       { label: "News", href: "/news" },
       { label: "Galerie", href: "/galerie" },

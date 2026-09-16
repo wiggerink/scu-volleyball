@@ -22,7 +22,7 @@ const ctas = [
     label: "Förderring",
     title: "Jugend fördern",
     text: "Wir sind ein Nachwuchs-Verein. Der Förderring macht Trainer, Material und Reisen für 120+ Kinder möglich.",
-    href: "/jugend#foerderring",
+    href: "/foerderring",
     cta: "Mitglied werden",
     color: "bg-scu-black",
   },
