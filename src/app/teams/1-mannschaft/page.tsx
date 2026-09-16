@@ -15,9 +15,9 @@ import { site } from "@/lib/site";
 import { Ticketpreise } from "@/components/sections/ticketpreise";
 
 export const metadata: Metadata = {
-  title: "1. Damen – Sparda 2. Liga Pro · Saison 2026/27",
+  title: "1. Damenmannschaft – Sparda 2. Liga Pro · Saison 2026/27",
   description:
-    "Der Kader der SCU Emlichheim 1. Damen in der Sparda 2. Liga Pro 2026/27: Spielerinnen, Trainer:innen, Spielplan, Tickets und Livestream aus der Vechtetalhalle.",
+    "Die 1. Damenmannschaft des SCU Emlichheim in der Sparda 2. Liga Pro 2026/27: Spielerinnen, Trainer:innen, Spielplan, Tickets und Livestream aus der Vechtetalhalle.",
   alternates: { canonical: "/teams/1-mannschaft" },
 };
 
@@ -73,7 +73,7 @@ export default function FirstTeamPage() {
         </div>
         <Container className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-20 lg:pb-24">
           <div className="flex flex-col gap-5 max-w-3xl">
-            <Badge variant="yellow">Sparda 2. Liga Pro · Damen</Badge>
+            <Badge variant="yellow" className="self-start">Sparda 2. Liga Pro · Damen</Badge>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] break-words" lang="de">
               1.&nbsp;Damenmann&shy;schaft <span className="text-scu-yellow">2026/27</span>
             </h1>

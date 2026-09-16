@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, MapPin, TrendingUp, Users } from "lucide-react";
+import { CalendarDays, MapPin, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,28 +9,17 @@ import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { roster2, staff2 } from "@/lib/roster-2";
 import { schedule2, schedule2Liga } from "@/lib/schedule-2";
 
-const positionOrder2 = ["Libera", "Außenangriff", "Mittelblock", "Diagonalangriff", "Zuspiel"];
-
-/** Spielerinnen, die der DVV ohne Position fuehrt, stehen am Ende. */
-function positionsRang(position?: string) {
-  const i = position ? positionOrder2.indexOf(position) : -1;
-  return i === -1 ? positionOrder2.length : i;
-}
-
-function getInitials(name: string) {
-  return name
-    .split(/\s+/)
-    .filter((p) => p && p[0].toUpperCase() === p[0])
-    .map((p) => p[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
+/*
+ * Aufbau wie die Seite der 1. Damenmannschaft, aber ohne Steckbriefe:
+ * es gibt keine Einzelseiten, und für Größe, Jahrgang und Nation fehlen die Daten.
+ * Ergebnisse und Tabelle fehlen ebenfalls - dafür bräuchte es einen eigenen
+ * Schlüssel für die DVV-Schnittstelle.
+ */
 
 export const metadata: Metadata = {
-  title: "2. Damen – 3. Liga West · Saison 2026/27",
+  title: "2. Damenmannschaft – 3. Liga West · Saison 2026/27",
   description:
-    "Die 2. Damen des SCU Emlichheim in der 3. Liga West: Kader, Trainerin und der komplette Spielplan der Saison 2026/27.",
+    "Die 2. Damenmannschaft des SCU Emlichheim in der 3. Liga West: Kader, Trainerin, Spielplan und Heimspiele in der Vechtetalhalle, Saison 2026/27.",
   alternates: { canonical: "/teams/2-mannschaft" },
 };
 
@@ -42,11 +31,31 @@ const spieltag2 = new Intl.DateTimeFormat("de-DE", {
   timeZone: "UTC",
 });
 
+const teamPhoto = "/team/2-damen-2026-27.jpg";
+
+const positionOrder2 = ["Libera", "Außenangriff", "Mittelblock", "Diagonalangriff", "Zuspiel"];
+
+/** Spielerinnen ohne gemeldete Position stehen am Ende. */
+function positionsRang(position?: string) {
+  const i = position ? positionOrder2.indexOf(position) : -1;
+  return i === -1 ? positionOrder2.length : i;
+}
+
+/** Platzhalter, solange von einer Person noch kein Foto vorliegt. */
+function initialen(name: string) {
+  return name
+    .split(/\s+/)
+    .filter((teil) => teil && teil[0] === teil[0].toUpperCase())
+    .map((teil) => teil[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 export default function SecondTeamPage() {
   const heimspiele2 = schedule2.filter((m) => m.isHome).length;
-  const gegner2 = new Set(schedule2.map((m) => (m.isHome ? m.away : m.home))).size;
   const ohneFoto2 = roster2.filter((p) => !p.image).length;
-  const sortedRoster = [...roster2].sort(
+  const sorted = [...roster2].sort(
     (a, b) =>
       positionsRang(a.position) - positionsRang(b.position) ||
       (a.number ?? 99) - (b.number ?? 99) ||
@@ -57,29 +66,28 @@ export default function SecondTeamPage() {
     <>
       {/* Hero */}
       <section className="relative bg-scu-black text-white overflow-hidden">
+        {/* Nur Farbstimmung: stark unscharfe, kleine Variante des Mannschaftsfotos */}
         <div aria-hidden className="absolute inset-0">
-          <Image src="/team/groups/2-mannschaft.jpg" alt="" fill sizes="100vw" className="object-cover opacity-30" priority />
-          <div className="absolute inset-0 bg-gradient-to-b from-scu-black/80 via-scu-black/60 to-scu-black" />
-          <div className="absolute -top-32 right-0 size-[480px] rounded-full bg-scu-yellow/15 blur-[120px]" />
+          <Image
+            src={teamPhoto}
+            alt=""
+            fill
+            sizes="640px"
+            className="object-cover object-center scale-125 blur-3xl opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-scu-black/90 via-scu-black/80 to-scu-black" />
+          <div aria-hidden className="absolute -top-32 right-0 size-[480px] rounded-full bg-scu-yellow/15 blur-[120px]" />
         </div>
-        <Container className="relative pt-32 sm:pt-40 lg:pt-56 pb-16 sm:pb-20 lg:pb-28">
-          <Button asChild variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 mb-6 -ml-3">
-            <Link href="/teams"><ArrowLeft className="size-4" /> Alle Mannschaften</Link>
-          </Button>
-
+        <Container className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-20 lg:pb-24">
           <div className="flex flex-col gap-5 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="yellow">3. Liga West · Damen</Badge>
-            </div>
-
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-black leading-[1] break-words hyphens-auto" lang="de">
-              2.&nbsp;Damen <span className="text-scu-yellow">2026/27</span>
+            <Badge variant="yellow" className="self-start">{schedule2Liga} · Damen</Badge>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] break-words" lang="de">
+              2.&nbsp;Damenmann&shy;schaft <span className="text-scu-yellow">2026/27</span>
             </h1>
             <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">
-              Der Unterbau unserer Ersten: durchlässig nach oben, Sprungbrett für Talente aus der eigenen Jugend
-              und seit Jahren fest in der dritten Liga verankert.
+              Der Unterbau unserer Ersten: durchlässig nach oben, Sprungbrett für Talente aus der eigenen Jugend –
+              und auch in der Saison 2026/27 in der {schedule2Liga} am Start.
             </p>
-
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="primary" size="lg">
                 <Link href="#kader"><Users className="size-4" /> Zum Kader</Link>
@@ -89,46 +97,60 @@ export default function SecondTeamPage() {
               </Button>
             </div>
           </div>
+
+          {/* Mannschaftsfoto bewusst als eigenständiges Bild statt als Hintergrund */}
+          <figure className="relative mt-12 lg:mt-16">
+            <div aria-hidden className="absolute -inset-x-4 -bottom-6 top-10 rounded-[32px] bg-scu-yellow/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/15 shadow-[0_40px_90px_-35px_rgba(0,0,0,0.9)]">
+              <Image
+                src={teamPhoto}
+                alt="Die 2. Damenmannschaft des SCU Emlichheim in der Saison 2026/27 mit Trainerin Andrea Büring"
+                width={2048}
+                height={1365}
+                sizes="(min-width:1280px) 1216px, 100vw"
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+            <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-xs text-white/55">
+              <span>Unsere 2. Damenmannschaft der Saison 2026/27 mit Trainerin Andrea Büring</span>
+              <span>Foto: Jens Ballmann</span>
+            </figcaption>
+          </figure>
         </Container>
       </section>
 
       {/* Kader */}
-      <section id="kader" className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
-        <div aria-hidden className="absolute -top-24 -right-10 h-80 w-80 rounded-full bg-scu-yellow/15 blur-3xl" />
-        <Container className="relative flex flex-col gap-12">
+      <section id="kader" className="py-20 lg:py-28 bg-white">
+        <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow="Kader"
             title={<>Unsere Spielerinnen <HighlightWord>2026/27</HighlightWord></>}
             description="Durchlässig zur Ersten, verstärkt durch Talente aus der eigenen Jugend. Kader laut offizieller DVV-Mannschaftsmeldung, Stand 14. September 2026."
           />
 
+          {/* Keine Steckbriefe: die Karten sind bewusst nicht verlinkt und ohne Hover-Effekt */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-            {sortedRoster.map((p) => (
-              <article
-                key={p.name}
-                className="group relative rounded-2xl overflow-hidden bg-white ring-1 ring-transparent transition duration-300 ease-out hover:-translate-y-1.5 hover:ring-scu-yellow hover:shadow-[0_30px_60px_-24px_rgba(0,0,0,0.45)] focus-within:-translate-y-1.5 focus-within:ring-scu-yellow"
-              >
+            {sorted.map((p) => (
+              <article key={p.name} className="relative rounded-2xl overflow-hidden bg-scu-gray-100">
                 <div className="relative aspect-[3/4] bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center overflow-hidden">
-                  {p.number !== undefined && (
-                    <div className="absolute top-3 left-3 z-10 bg-scu-yellow text-scu-black rounded-full size-11 flex items-center justify-center font-display font-black text-lg transition-transform duration-300 group-hover:scale-110">
-                      {p.number}
-                    </div>
-                  )}
                   {p.image ? (
                     <Image
                       src={p.image}
                       alt={p.name}
                       fill
                       sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+                      className="object-cover"
                     />
                   ) : (
-                    <>
-                      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,240,1,0.15),transparent_60%)]" />
-                      <span className="relative font-display text-5xl lg:text-6xl font-black text-white/90 transition duration-300 group-hover:text-scu-yellow group-hover:scale-110">
-                        {getInitials(p.name)}
-                      </span>
-                    </>
+                    <span className="font-display text-5xl lg:text-6xl font-black text-white/90">
+                      {initialen(p.name)}
+                    </span>
+                  )}
+                  {p.number !== undefined && (
+                    <div className="absolute top-3 left-3 z-10 bg-scu-yellow text-scu-black rounded-full size-11 flex items-center justify-center font-display font-black text-lg">
+                      {p.number}
+                    </div>
                   )}
                   <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-scu-black via-scu-black/75 to-transparent text-white">
                     <div className="font-display text-lg sm:text-xl font-black leading-tight">{p.name}</div>
@@ -143,35 +165,35 @@ export default function SecondTeamPage() {
             ))}
           </div>
 
-          <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5">
-            <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Fotos folgen</div>
-            <p className="text-sm text-scu-black leading-relaxed">
+          {ohneFoto2 > 0 && (
+            <p className="text-sm text-scu-gray-500">
               Von {ohneFoto2} Spielerinnen liegt noch kein Einzelfoto vor – die Karten tragen so lange die Initialen.
             </p>
-          </div>
+          )}
         </Container>
       </section>
 
       {/* Trainerin */}
-      <section className="py-20 lg:py-24 bg-white">
-        <Container className="flex flex-col gap-10">
-          <SectionHeading eyebrow="Team hinter dem Team" title={<>Unsere <HighlightWord>Trainerin</HighlightWord></>} />
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
+        <div aria-hidden className="absolute -top-20 -right-16 h-72 w-72 rounded-full bg-scu-yellow/15 blur-3xl" />
+        <Container className="relative flex flex-col gap-10">
+          <SectionHeading
+            eyebrow="Team hinter dem Team"
+            title={<>Unsere <HighlightWord>Trainerin</HighlightWord></>}
+          />
           <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
             {staff2.map((s) => (
-              <article key={s.name} className="rounded-2xl overflow-hidden bg-scu-gray-100 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
+              <article key={s.name} className="rounded-2xl overflow-hidden bg-white shadow-[0_6px_20px_-12px_rgba(0,0,0,0.15)]">
                 <div className="relative aspect-square bg-gradient-to-br from-scu-black via-scu-gray-800 to-scu-black flex items-center justify-center">
                   {s.image ? (
                     <Image src={s.image} alt={s.name} fill sizes="200px" className="object-cover object-top" />
                   ) : (
-                    <>
-                      <Users aria-hidden className="absolute size-10 text-white/15" />
-                      <span className="relative font-display text-3xl font-black text-white/90">{getInitials(s.name)}</span>
-                    </>
+                    <span className="font-display text-3xl font-black text-white/90">{initialen(s.name)}</span>
                   )}
                 </div>
                 <div className="p-4">
                   <div className="font-display text-base font-black leading-tight">{s.name}</div>
-                  <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow-dark font-bold mt-1">{s.role}</div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-scu-yellow font-bold mt-1">{s.role}</div>
                 </div>
               </article>
             ))}
@@ -179,58 +201,8 @@ export default function SecondTeamPage() {
         </Container>
       </section>
 
-      {/* Ausblick */}
-      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-scu-gold/[0.06] via-white to-scu-yellow/[0.06] overflow-hidden">
-        <div aria-hidden className="absolute -bottom-20 -left-10 h-80 w-80 rounded-full bg-scu-gold/15 blur-3xl" />
-        <Container className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)]">
-              <Image src="/hero/vechtetalhalle.jpg" alt="Die Vechtetalhalle in Emlichheim" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-scu-black/95 via-scu-black/40 to-transparent">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-scu-yellow font-bold">Vechtetalhalle</div>
-                <div className="font-display text-2xl font-black text-white">Heimstätte aller SCU-Teams</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <SectionHeading
-              eyebrow="Saison 2026/27"
-              title={<>Was die <HighlightWord>3. Liga West</HighlightWord> bringt</>}
-            />
-            <p className="text-scu-gray-500 text-lg leading-relaxed">
-Die Zweite spielt überregional von Bremen bis Aachen – und bleibt dabei das, was sie ausmacht:
-              durchlässig zur Ersten und ein Sprungbrett für junge Talente aus der eigenen Jugend. Wer hier überzeugt,
-              trainiert schnell eine Etage höher mit.
-            </p>
-
-            <ul className="grid sm:grid-cols-2 gap-4">
-              {[
-                `Überregionaler Spielbetrieb mit ${gegner2 + 1} Teams`,
-                `${schedule2.length} Spiele, davon ${heimspiele2} in der Vechtetalhalle`,
-                "Direkte Durchlässigkeit zum Kader der Ersten",
-                "Talente aus der SCU-Jugend in tragenden Rollen",
-              ].map((item) => (
-                <li key={item} className="flex gap-3 items-start text-sm text-scu-black">
-                  <TrendingUp className="size-4 text-scu-yellow shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="rounded-2xl border-l-4 border-scu-yellow bg-white p-5 mt-2">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-scu-gray-500 font-bold mb-1">Mitspielen?</div>
-              <p className="text-sm text-scu-black leading-relaxed">
-                Fragen zu Probetraining oder Mitgliedschaft?{" "}
-                <Link href="/kontakt" className="font-semibold underline decoration-scu-yellow decoration-2 underline-offset-4 hover:text-scu-yellow-dark">Direkt melden</Link>.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Spielplan */}
-      <section id="spielplan" className="py-20 lg:py-24 bg-white scroll-mt-28">
+      <section id="spielplan" className="py-20 lg:py-24 bg-white">
         <Container className="flex flex-col gap-10">
           <SectionHeading
             eyebrow="Spielplan"
@@ -238,7 +210,7 @@ Die Zweite spielt überregional von Bremen bis Aachen – und bleibt dabei das, 
             description={`${schedule2.length} Partien in der ${schedule2Liga}, davon ${heimspiele2} Heimspiele in der Vechtetalhalle. Quelle: offizieller DVV-Spielplan, Stand 14. September 2026.`}
           />
           <div className="overflow-x-auto rounded-2xl border border-scu-gray-200">
-            <table className="w-full min-w-[640px] text-sm">
+            <table className="w-full min-w-[680px] text-sm">
               <caption className="sr-only">
                 Spielplan der 2. Damenmannschaft des SCU Emlichheim in der Saison 2026/27
               </caption>
@@ -270,8 +242,9 @@ Die Zweite spielt überregional von Bremen bis Aachen – und bleibt dabei das, 
                       </div>
                     </td>
                     <td className="px-5 py-4 text-scu-gray-500 hidden md:table-cell">
-                      <div className="inline-flex items-center gap-1.5">
-                        <MapPin className="size-3.5 shrink-0" /> {m.venue}
+                      <div className="inline-flex items-start gap-1.5">
+                        <MapPin className="size-3.5 shrink-0 mt-0.5" />
+                        <span>{m.venue}</span>
                       </div>
                     </td>
                     <td className="px-5 py-4 text-right">
@@ -284,36 +257,51 @@ Die Zweite spielt überregional von Bremen bis Aachen – und bleibt dabei das, 
           </div>
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="primary">
-              {/* webcal: oeffnet direkt die Kalender-App */}
+              {/* webcal: öffnet direkt die Kalender-App */}
               <Link href="webcal://scuvolleyball.de/spielplan-2-damen.ics">
                 <CalendarDays className="size-4" /> Spielplan abonnieren
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="https://www.dvv-ligen.de/cms/home/dritte_liga_frauen/dritte_liga_west/tabelle_spiele.xhtml?LeaguePresenter.matchSeriesId=116009519" target="_blank" rel="noopener">
-                Tabelle beim DVV
+              <Link
+                href="https://www.dvv-ligen.de/cms/home/dritte_liga_frauen/dritte_liga_west/tabelle_spiele.xhtml?LeaguePresenter.matchSeriesId=116009519"
+                target="_blank"
+                rel="noopener"
+              >
+                Spielplan & Tabelle beim DVV
               </Link>
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-white">
-        <Container className="rounded-3xl bg-gradient-to-br from-scu-yellow via-scu-yellow-dark to-scu-black p-10 lg:p-16 text-white relative overflow-hidden">
-          <div aria-hidden className="absolute -top-20 -right-20 size-80 rounded-full bg-white/15 blur-3xl" />
-          <div className="relative grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <Users className="size-10 text-white/90 mb-4" />
-              <h2 className="font-display text-3xl lg:text-4xl font-black leading-tight">
-                Sei bei den 2. Damen dabei.
-              </h2>
-              <p className="text-white/85 mt-3 leading-relaxed">
-                Sponsoring, Mitgliedschaft oder einfach ein Platz auf der Tribüne – sprich uns an
-                und begleite die Mannschaft durch die Saison in der {schedule2Liga}.
-              </p>
+      {/* Heimspiele & Mitmachen - an der Stelle von "Tickets & Live" der Ersten */}
+      <section className="py-20 lg:py-28 bg-scu-black text-white">
+        <Container className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-10 flex flex-col gap-5">
+            <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
+              <MapPin className="size-6" />
             </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
+            <h2 className="font-display text-3xl lg:text-4xl font-black leading-tight">Heimspiele</h2>
+            <p className="text-white/70 leading-relaxed">
+              Alle {heimspiele2} Heimspiele der Saison trägt die 2. Damenmannschaft in der Vechtetalhalle in
+              Emlichheim aus. Adresse und Anfahrt findest du auf der Seite zur Halle.
+            </p>
+            <Button asChild size="lg" variant="primary" className="w-fit">
+              <Link href="/vechtetalhalle">Zur Vechtetalhalle</Link>
+            </Button>
+          </div>
+          <div className="rounded-3xl bg-gradient-to-br from-scu-yellow via-scu-yellow-dark to-scu-black p-8 lg:p-10 flex flex-col gap-5 relative overflow-hidden">
+            <div aria-hidden className="absolute -top-20 -right-20 size-80 rounded-full bg-white/10 blur-3xl" />
+            <div className="relative inline-flex size-12 items-center justify-center rounded-2xl bg-white text-scu-yellow">
+              <Users className="size-6" />
+            </div>
+            <h2 className="relative font-display text-3xl lg:text-4xl font-black leading-tight">Sei dabei</h2>
+            <p className="relative text-white/90 leading-relaxed">
+              Sponsoring, Mitgliedschaft oder einfach ein Platz auf der Tribüne – sprich uns an und begleite die
+              2. Damenmannschaft durch die Saison in der {schedule2Liga}.
+            </p>
+            <div className="relative flex flex-wrap gap-3">
               <Button asChild size="lg" variant="dark" className="bg-white text-scu-black hover:bg-scu-gray-100">
                 <Link href="/sponsoren">Sponsoring</Link>
               </Button>
