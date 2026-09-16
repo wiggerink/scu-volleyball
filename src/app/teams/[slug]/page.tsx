@@ -138,7 +138,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
             </div>
             <h3 className="font-display text-2xl font-black text-scu-black leading-tight">Trainingszeiten</h3>
             <p className="text-sm text-scu-gray-500 leading-relaxed">
-              Aktuelle Trainingszeiten erfragst du am besten direkt bei der Geschäftsstelle – wir vermitteln dir den passenden Ansprechpartner.
+              Trainingszeiten werden in Kürze bekanntgegeben.
             </p>
             <p className="text-xs text-scu-gray-500 italic mt-2">
               Trainingsort: Vechtetalhalle, Emlichheim. Probetraining jederzeit möglich.
