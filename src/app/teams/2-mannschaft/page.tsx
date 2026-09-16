@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { HighlightWord, SectionHeading } from "@/components/ui/section-heading";
 import { roster2, staff2 } from "@/lib/roster-2";
 import { schedule2, schedule2Liga } from "@/lib/schedule-2";
+import { AktionsBox } from "@/components/ui/aktions-box";
 
 /*
  * Aufbau wie die Seite der 1. Damenmannschaft, aber ohne Steckbriefe:
@@ -278,38 +279,33 @@ export default function SecondTeamPage() {
       {/* Heimspiele & Mitmachen - an der Stelle von "Tickets & Live" der Ersten */}
       <section className="py-20 lg:py-28 bg-scu-black text-white">
         <Container className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-10 flex flex-col gap-5">
-            <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
-              <MapPin className="size-6" />
-            </div>
-            <h2 className="font-display text-3xl lg:text-4xl font-black leading-tight">Heimspiele</h2>
-            <p className="text-white/70 leading-relaxed">
-              Alle {heimspiele2} Heimspiele der Saison trägt die 2. Damenmannschaft in der Vechtetalhalle in
-              Emlichheim aus. Adresse und Anfahrt findest du auf der Seite zur Halle.
-            </p>
-            <Button asChild size="lg" variant="primary" className="w-fit">
-              <Link href="/vechtetalhalle">Zur Vechtetalhalle</Link>
-            </Button>
-          </div>
-          <div className="rounded-3xl bg-gradient-to-br from-scu-yellow via-scu-yellow-dark to-scu-black p-8 lg:p-10 flex flex-col gap-5 relative overflow-hidden">
-            <div aria-hidden className="absolute -top-20 -right-20 size-80 rounded-full bg-white/10 blur-3xl" />
-            <div className="relative inline-flex size-12 items-center justify-center rounded-2xl bg-white text-scu-yellow">
-              <Users className="size-6" />
-            </div>
-            <h2 className="relative font-display text-3xl lg:text-4xl font-black leading-tight">Sei dabei</h2>
-            <p className="relative text-white/90 leading-relaxed">
-              Sponsoring, Mitgliedschaft oder einfach ein Platz auf der Tribüne – sprich uns an und begleite die
-              2. Damenmannschaft durch die Saison in der {schedule2Liga}.
-            </p>
-            <div className="relative flex flex-wrap gap-3">
-              <Button asChild size="lg" variant="dark" className="bg-white text-scu-black hover:bg-scu-gray-100">
-                <Link href="/sponsoren">Sponsoring</Link>
+          <AktionsBox
+            ton="dunkel"
+            icon={MapPin}
+            titel="Heimspiele"
+            text={`Alle ${heimspiele2} Heimspiele der Saison trägt die 2. Damenmannschaft in der Vechtetalhalle in Emlichheim aus. Adresse und Anfahrt findest du auf der Seite zur Halle.`}
+            aktionen={
+              <Button asChild size="lg" variant="primary">
+                <Link href="/vechtetalhalle">Zur Vechtetalhalle</Link>
               </Button>
-              <Button asChild size="lg" variant="outlineLight">
-                <Link href="/kontakt">Kontakt</Link>
-              </Button>
-            </div>
-          </div>
+            }
+          />
+          <AktionsBox
+            ton="gelb"
+            icon={Users}
+            titel={<>Sei bei der 2.&nbsp;Damen&shy;mannschaft dabei</>}
+            text={`Sponsoring, Mitgliedschaft oder einfach ein Platz auf der Tribüne – sprich uns an und begleite die Mannschaft durch die Saison in der ${schedule2Liga}.`}
+            aktionen={
+              <>
+                <Button asChild size="lg" variant="dark">
+                  <Link href="/sponsoren">Sponsoring</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/kontakt">Kontakt</Link>
+                </Button>
+              </>
+            }
+          />
         </Container>
       </section>
     </>

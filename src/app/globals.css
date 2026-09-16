@@ -67,8 +67,13 @@
   }
 }
 
-* {
-  border-color: var(--border);
+/* Im Base-Layer, nicht lose: ungeschichtete Regeln schlagen jede Tailwind-Klasse.
+   Vorher war dadurch jede Rahmenfarbe (border-scu-black, border-white/10 …)
+   wirkungslos und alle Rahmen hellgrau. */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 }
 
 html {

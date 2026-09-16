@@ -13,6 +13,7 @@ import { LigaTabelle } from "@/components/sections/liga-tabelle";
 import { Ergebnisse } from "@/components/sections/ergebnisse";
 import { site } from "@/lib/site";
 import { Ticketpreise } from "@/components/sections/ticketpreise";
+import { AktionsBox } from "@/components/ui/aktions-box";
 
 export const metadata: Metadata = {
   title: "1. Damenmannschaft – Sparda 2. Liga Pro · Saison 2026/27",
@@ -312,37 +313,35 @@ export default function FirstTeamPage() {
       {/* Tickets & Live */}
       <section id="tickets" className="py-20 lg:py-28 bg-scu-black text-white">
         <Container className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div id="live" className="rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-10 flex flex-col gap-5">
-            <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-yellow text-scu-black">
-              <Ticket className="size-6" />
-            </div>
-            <h2 className="font-display text-3xl lg:text-4xl font-black leading-tight">Heimspiel-Tickets</h2>
-            <p className="text-white/70 leading-relaxed">
-              Erlebe Spitzen-Volleyball hautnah in der Vechtetalhalle. Tickets an der Abendkasse und online.
-            </p>
-            <Ticketpreise />
-            <Button asChild size="lg" variant="primary" className="w-fit">
-              <Link href={site.ticketsUrl} target="_blank" rel="noopener">Tickets online kaufen</Link>
-            </Button>
-          </div>
-          <div className="rounded-3xl bg-gradient-to-br from-scu-yellow via-scu-yellow-dark to-scu-black p-8 lg:p-10 flex flex-col gap-5 relative overflow-hidden">
-            <div aria-hidden className="absolute -top-20 -right-20 size-80 rounded-full bg-white/10 blur-3xl" />
-            <div className="relative inline-flex size-12 items-center justify-center rounded-2xl bg-white text-scu-yellow">
-              <Radio className="size-6" />
-            </div>
-            <h2 className="relative font-display text-3xl lg:text-4xl font-black leading-tight">Livestream & TV</h2>
-            <p className="relative text-white/90 leading-relaxed">
-              Alle Spiele der Sparda 2. Liga Pro werden live auf VBL-TV und Sporttotal gestreamt. Mit Kommentar, Statistiken und Replays in HD-Qualität.
-            </p>
-            <div className="relative flex flex-wrap gap-3">
-              <Button asChild size="lg" variant="dark" className="bg-white text-scu-black hover:bg-scu-gray-100">
-                <Link href="https://www.volleyball-bundesliga.de/" target="_blank" rel="noopener">VBL-TV öffnen</Link>
+          <AktionsBox
+            ton="dunkel"
+            icon={Ticket}
+            titel="Heimspiel-Tickets"
+            text="Erlebe Spitzen-Volleyball hautnah in der Vechtetalhalle. Tickets an der Abendkasse und online."
+            extra={<Ticketpreise />}
+            aktionen={
+              <Button asChild size="lg" variant="primary">
+                <Link href={site.ticketsUrl} target="_blank" rel="noopener">Tickets online kaufen</Link>
               </Button>
-              <Button asChild size="lg" variant="outlineLight">
-                <Link href={site.social.youtube} target="_blank" rel="noopener">YouTube-Kanal</Link>
-              </Button>
-            </div>
-          </div>
+            }
+          />
+          <AktionsBox
+            id="live"
+            ton="gelb"
+            icon={Radio}
+            titel="Livestream & TV"
+            text="Alle Spiele der Sparda 2. Liga Pro werden live auf VBL-TV und Sporttotal gestreamt. Mit Kommentar, Statistiken und Replays in HD-Qualität."
+            aktionen={
+              <>
+                <Button asChild size="lg" variant="dark">
+                  <Link href="https://www.volleyball-bundesliga.de/" target="_blank" rel="noopener">VBL-TV öffnen</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href={site.social.youtube} target="_blank" rel="noopener">YouTube-Kanal</Link>
+                </Button>
+              </>
+            }
+          />
         </Container>
       </section>
     </>

@@ -5,6 +5,8 @@ import { Ticket, Heart, Megaphone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
+import { Spielfeldlinien } from "@/components/ui/aktions-box";
 
 const ctas = [
   {
@@ -15,7 +17,8 @@ const ctas = [
     href: site.ticketsUrl,
     external: true,
     cta: "Jetzt Tickets sichern",
-    color: "bg-scu-yellow",
+    // Die Hauptaktion des Abschnitts - einzige gelbe Karte
+    hervorgehoben: true,
   },
   {
     icon: Heart,
@@ -24,7 +27,6 @@ const ctas = [
     text: "Wir sind ein Nachwuchs-Verein. Der Förderring macht Trainer, Material und Reisen für 120+ Kinder möglich.",
     href: "/foerderring",
     cta: "Mitglied werden",
-    color: "bg-scu-black",
   },
   {
     icon: Megaphone,
@@ -33,7 +35,6 @@ const ctas = [
     text: "Ihr Unternehmen in der Sparda 2. Liga Pro – individuell zugeschnitten, im direkten Gespräch mit der Geschäftsführung.",
     href: "/sponsoren#ansprechpartner",
     cta: "Gespräch anfragen",
-    color: "bg-scu-gold",
   },
 ];
 
@@ -53,20 +54,34 @@ export function CtaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: i * 0.08 }}
-                className="relative group rounded-3xl overflow-hidden bg-white border border-scu-gray-200 hover:border-transparent hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.25)] transition-all"
+                className={cn(
+                  "relative rounded-3xl overflow-hidden transition-shadow",
+                  item.hervorgehoben
+                    ? "bg-scu-yellow text-scu-black hover:shadow-[0_30px_80px_-24px_rgba(160,130,0,0.55)] [&_a]:focus-visible:ring-scu-black [&_a]:focus-visible:ring-offset-scu-yellow"
+                    : "bg-white border border-scu-gray-200 hover:shadow-[0_30px_80px_-24px_rgba(0,0,0,0.22)]",
+                )}
               >
-                <div className={`absolute inset-x-0 top-0 h-1.5 ${item.color}`} />
-                <div className="p-7 lg:p-8 flex flex-col gap-5 h-full">
-                  <div className={`inline-flex size-12 items-center justify-center rounded-2xl ${item.color} ${item.color === "bg-scu-gold" ? "text-scu-black" : "text-white"}`}>
+                {item.hervorgehoben && <Spielfeldlinien className="text-scu-black/[0.09]" />}
+                <div className="relative p-7 lg:p-8 flex flex-col gap-5 h-full">
+                  <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-scu-black text-scu-yellow">
                     <Icon className="size-6" />
                   </div>
                   <div>
-                    <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-scu-yellow">{item.label}</div>
+                    <div
+                      className={cn(
+                        "text-[11px] uppercase tracking-[0.22em] font-bold",
+                        item.hervorgehoben ? "text-scu-black/60" : "text-scu-gray-500",
+                      )}
+                    >
+                      {item.label}
+                    </div>
                     <h3 className="font-display text-2xl lg:text-3xl font-black mt-1 leading-tight text-scu-black">
                       {item.title}
                     </h3>
                   </div>
-                  <p className="text-scu-gray-500 leading-relaxed flex-1">{item.text}</p>
+                  <p className={cn("leading-relaxed flex-1", item.hervorgehoben ? "text-scu-black/75" : "text-scu-gray-500")}>
+                    {item.text}
+                  </p>
                   <Button asChild variant="dark" size="md" className="w-fit">
                     <Link
                       href={item.href}
