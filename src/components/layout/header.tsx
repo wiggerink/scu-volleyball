@@ -8,7 +8,6 @@ import { Menu, X, ChevronDown, Ticket, Radio, ArrowUpRight, Mail } from "lucide-
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/social-icons";
 import { cn } from "@/lib/utils";
 import { site, type NavEntry } from "@/lib/site";
-import { teams } from "@/lib/teams";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
@@ -16,6 +15,10 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   // Nur ein Bereich gleichzeitig offen - sonst wird das Menue wieder so lang wie vorher
   const [offenerBereich, setOffenerBereich] = React.useState<string | null>(null);
+  // Welcher Menuepunkt gerade aufgeklappt ist. Der Zustand liegt hier oben,
+  // weil das breite Megamenue an der ganzen Leiste haengt: unter einem einzelnen
+  // Menuepunkt weit rechts wuerde ein 1000px-Panel aus dem Bild laufen.
+  const [offenerPunkt, setOffenerPunkt] = React.useState<string | null>(null);
   const pathname = usePathname();
   const activeHref = React.useMemo(() => getActiveHref(pathname, site.nav), [pathname]);
 
@@ -32,6 +35,10 @@ export function Header() {
     setPrevPathname(pathname);
     setMobileOpen(false);
   }
+
+  // Die Startseite steckt nur im mobilen Menue - oben genuegt das Logo.
+  const sichtbareNav = site.nav.filter((item) => item.href !== "/");
+  const offenesMega = sichtbareNav.find((item) => item.href === offenerPunkt && item.mega) ?? null;
 
   return (
     <>
@@ -74,8 +81,16 @@ export function Header() {
         </div>
 
         {/* Main header */}
-        <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3">
-          <Link href="/" aria-label="SCU Emlichheim Volleyball - Startseite" className="group shrink-0">
+        <header
+          className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3"
+          onMouseLeave={() => setOffenerPunkt(null)}
+        >
+          <Link
+            href="/"
+            aria-label="SCU Emlichheim Volleyball - Startseite"
+            className="group shrink-0"
+            onMouseEnter={() => setOffenerPunkt(null)}
+          >
             <div className="relative size-16 sm:size-20 lg:size-28 xl:size-32 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
               <Image
                 src="/logos/scu-logo.png"
@@ -89,14 +104,35 @@ export function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center">
-            {site.nav
-              .filter((item) => item.href !== "/")
-              .map((item) => (
-              <NavItem key={item.href} item={item} pathname={pathname} activeHref={activeHref} />
+            {sichtbareNav.map((item) => (
+              <NavItem
+                key={item.href}
+                item={item}
+                activeHref={activeHref}
+                offen={offenerPunkt === item.href}
+                onHover={setOffenerPunkt}
+              />
             ))}
           </nav>
 
-          <div className="hidden xl:flex items-center gap-2 shrink-0">
+          {/* Megamenue: mittig unter dem Header, damit es in jeder Breite
+              vollstaendig im Bild bleibt. */}
+          <AnimatePresence>
+            {offenesMega && (
+              <motion.div
+                key={offenesMega.href}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.18 }}
+                className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
+              >
+                <MegaMenu mega={offenesMega.mega!} pathname={pathname} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="hidden xl:flex items-center gap-2 shrink-0" onMouseEnter={() => setOffenerPunkt(null)}>
             <Button asChild variant="outlineLight" size="sm">
               <Link href={site.ticketsUrl} target="_blank" rel="noopener">
                 <Ticket className="size-3.5" />
@@ -180,7 +216,7 @@ export function Header() {
                             href: it.href,
                             note: it.note,
                             group: col.title,
-                            external: false,
+                            external: it.external ?? false,
                           })),
                         )
                       : item.children
@@ -343,12 +379,34 @@ function matchesHref(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(href + "/");
 }
 
+/**
+ * Alle internen Ziele eines Menuepunkts - eigenes und die des Untermenues.
+ * Dadurch bleibt der Punkt markiert, wenn man auf einer Unterseite steht, die
+ * nur im Megamenue steht (z. B. "Verein" auf /foerderring).
+ */
+function navZiele(item: NavEntry) {
+  const ziele = [item.href];
+  const unter = item.mega
+    ? item.mega.columns.flatMap((c) => c.items)
+    : item.children ?? [];
+  for (const u of unter) {
+    if (u.external) continue;
+    ziele.push(u.href.split("#")[0]);
+  }
+  return ziele.filter(Boolean);
+}
+
 function getActiveHref(pathname: string | null, nav: readonly NavEntry[]) {
   if (!pathname) return null;
   let best: string | null = null;
+  let bestLaenge = -1;
   for (const item of nav) {
-    if (matchesHref(pathname, item.href)) {
-      if (best === null || item.href.length > best.length) best = item.href;
+    for (const ziel of navZiele(item)) {
+      // Das genaueste Ziel gewinnt: /teams/1-mannschaft schlaegt /teams.
+      if (matchesHref(pathname, ziel) && ziel.length > bestLaenge) {
+        best = item.href;
+        bestLaenge = ziel.length;
+      }
     }
   }
   return best;
@@ -359,19 +417,24 @@ function isActive(pathname: string | null, href: string) {
   return matchesHref(pathname, href);
 }
 
-function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: string | null; activeHref: string | null }) {
+function NavItem({
+  item,
+  activeHref,
+  offen,
+  onHover,
+}: {
+  item: NavEntry;
+  activeHref: string | null;
+  offen: boolean;
+  onHover: (href: string | null) => void;
+}) {
   const hasChildren = !!item.children;
   const hasMega = !!item.mega;
-  const [open, setOpen] = React.useState(false);
   const active = activeHref === item.href;
   const badge = item.badge;
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative" onMouseEnter={() => onHover(item.href)}>
       <Link
         href={item.href}
         className={cn(
@@ -403,20 +466,7 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
       </Link>
 
       <AnimatePresence>
-        {hasMega && open && (
-          <motion.div
-            key="mega-dropdown"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.18 }}
-            className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
-          >
-            <MegaMenu mega={item.mega!} pathname={pathname} />
-          </motion.div>
-        )}
-
-        {hasChildren && !hasMega && open && (
+        {hasChildren && !hasMega && offen && (
           <motion.div
             key="children-dropdown"
             initial={{ opacity: 0, y: 10 }}
@@ -449,14 +499,24 @@ function NavItem({ item, pathname, activeHref }: { item: NavEntry; pathname: str
 type MegaData = NonNullable<NavEntry["mega"]>;
 
 function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null }) {
+  // Drei Spalten brauchen mehr Platz als zwei, sonst brechen die Beschriftungen um.
+  const breit = mega.columns.length >= 3;
+
   return (
-    <div className="relative w-[min(880px,calc(100vw-2rem))] xl:w-[960px] rounded-[28px] bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10">
+    <div
+      className={cn(
+        "relative rounded-[28px] bg-scu-black/95 backdrop-blur-2xl shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85)] overflow-hidden ring-1 ring-white/10",
+        breit
+          ? "w-[min(960px,calc(100vw-2rem))] xl:w-[1060px]"
+          : "w-[min(880px,calc(100vw-2rem))] xl:w-[960px]",
+      )}
+    >
       <div aria-hidden className="absolute -top-24 -left-24 size-64 rounded-full bg-scu-yellow/10 blur-3xl pointer-events-none" />
       <div aria-hidden className="absolute -bottom-32 -right-20 size-72 rounded-full bg-scu-yellow/5 blur-3xl pointer-events-none" />
 
       <div className="relative grid grid-cols-12">
         {/* Columns */}
-        <div className="col-span-8 grid grid-cols-2 gap-x-6 p-8">
+        <div className={cn("grid gap-x-6 p-8", breit ? "col-span-9 grid-cols-3" : "col-span-8 grid-cols-2")}>
           {mega.columns.map((col) => (
             <div key={col.title}>
               <div className="text-[10px] font-black tracking-[0.28em] uppercase text-scu-yellow/90 mb-4 px-3 flex items-center gap-2">
@@ -470,6 +530,7 @@ function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null 
                     <li key={it.href}>
                       <Link
                         href={it.href}
+                        {...(it.external ? { target: "_blank", rel: "noopener" } : {})}
                         className="group/sub relative flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all hover:bg-white/[0.04]"
                       >
                         <span
@@ -509,14 +570,16 @@ function MegaMenu({ mega, pathname }: { mega: MegaData; pathname: string | null 
         </div>
 
         {/* Feature */}
-        <div className="col-span-4 relative bg-gradient-to-br from-scu-yellow/15 via-scu-yellow/5 to-transparent p-7 flex flex-col justify-between gap-6">
+        <div className={cn(breit ? "col-span-3" : "col-span-4", "relative bg-gradient-to-br from-scu-yellow/15 via-scu-yellow/5 to-transparent p-7 flex flex-col justify-between gap-6")}>
           <div aria-hidden className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent" />
           <div aria-hidden className="absolute top-0 right-0 size-32 rounded-full bg-scu-yellow/20 blur-2xl pointer-events-none" />
           <div className="relative">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-scu-yellow text-scu-black px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.22em] mb-4 shadow-[0_8px_24px_-8px_rgba(255,240,1,0.6)]">
-              <span className="size-1.5 rounded-full bg-scu-black animate-pulse" />
-              {teams.length} Teams
-            </div>
+            {mega.feature.badge && (
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-scu-yellow text-scu-black px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.22em] mb-4 shadow-[0_8px_24px_-8px_rgba(255,240,1,0.6)]">
+                <span className="size-1.5 rounded-full bg-scu-black animate-pulse" />
+                {mega.feature.badge}
+              </div>
+            )}
             <h3 className="font-display text-xl font-black leading-tight text-white">
               {mega.feature.title}
             </h3>

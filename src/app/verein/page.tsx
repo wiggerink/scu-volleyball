@@ -81,7 +81,7 @@ export default function VereinPage() {
         </Container>
       </section>
 
-      <section className="py-20 lg:py-24 bg-scu-black text-white">
+      <section id="geschichte" className="py-20 lg:py-24 bg-scu-black text-white scroll-mt-28">
         <Container>
           <SectionHeading
             tone="light"

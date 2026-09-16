@@ -41,7 +41,7 @@ export default function JugendPage() {
       />
 
       {/* Gruppen */}
-      <section className="py-20 lg:py-24 bg-white">
+      <section id="altersgruppen" className="py-20 lg:py-24 bg-white scroll-mt-28">
         <Container className="flex flex-col gap-12">
           <SectionHeading
             eyebrow="Altersgruppen"
