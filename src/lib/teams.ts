@@ -16,7 +16,7 @@ export type TeamEntry = {
  * Mannschaften der Saison 2026/27.
  * Struktur und Ligen nach der Vereinsübersicht vom 16.09.2026: die Nummerierung
  * läuft durch bis in den Jugendbereich, die 8. bis 11. sind Jugendmannschaften.
- * Bei 3., 5., 8. und 9. steht noch das Foto der Vorsaison, bis die neuen
+ * Bei 3. und 5. steht noch das Foto der Vorsaison, bis die neuen
  * Mannschaftsfotos kommen.
  */
 export const teams: TeamEntry[] = [
@@ -110,8 +110,7 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Unser Bundesliga-Unterbau von morgen – strukturierte Talentförderung mit professionellem Trainerteam.",
     accent: "red",
-    // Foto der Vorsaison, bis das aktuelle Mannschaftsfoto vorliegt
-    image: "/team/groups/u14.jpg",
+    image: "/team/groups/8-mannschaft.jpg",
   },
   {
     slug: "9-mannschaft",
@@ -122,8 +121,7 @@ export const teams: TeamEntry[] = [
     gender: "Jugend",
     description: "Talente auf ihrem Weg in die großen Mannschaften – mit Spielfreude und ersten Wettkampferfahrungen.",
     accent: "red",
-    // Foto der Vorsaison, bis das aktuelle Mannschaftsfoto vorliegt
-    image: "/team/groups/u13.jpg",
+    image: "/team/groups/9-mannschaft.jpg",
   },
   {
     slug: "10-mannschaft",
