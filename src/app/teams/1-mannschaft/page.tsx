@@ -302,7 +302,7 @@ export default function FirstTeamPage() {
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="https://www.volleyball-bundesliga.de/" target="_blank" rel="noopener">
+              <Link href="https://www.volleyball-bundesliga.de/cms/home/2_bundesliga_frauen/2_bundesliga_frauen_pro/tabellespielplan/tabelle.xhtml" target="_blank" rel="noopener">
                 Spielplan & Tabelle bei der VBL
               </Link>
             </Button>
