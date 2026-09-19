@@ -73,7 +73,7 @@ export function InstagramProfilStreifen({ profil }: { profil: InstagramProfil | 
         href={site.social.instagram}
         target="_blank"
         rel="noopener"
-        className="inline-flex items-center gap-2 rounded-lg bg-[#0095F6] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#1877F2]"
+        className="inline-flex items-center gap-2 rounded-lg bg-[#006FC4] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#005FA8]"
       >
         Folgen
         <ArrowUpRight className="size-4" />
@@ -103,9 +103,10 @@ export function InstagramBeitrag({ post, username, profilbild, textZeilen = 2, p
       href={post.permalink}
       target="_blank"
       rel="noopener"
-      aria-label={`Beitrag auf Instagram ansehen: ${vorschau.slice(0, 80) || zeitAngabe(post.timestamp)}`}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-scu-gray-200 transition hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.3)] hover:ring-scu-gray-300"
     >
+      {/* Kein aria-label am Link: der zugängliche Name soll den sichtbaren Text enthalten */}
+      <span className="sr-only">Beitrag auf Instagram ansehen: </span>
       {/* Kopfzeile wie im Feed */}
       <div className="flex items-center gap-2.5 px-3 py-2.5">
         <ProfilRing bild={profilbild} groesse={34} alt="" />

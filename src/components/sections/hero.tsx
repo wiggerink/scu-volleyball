@@ -196,7 +196,8 @@ export function Hero() {
             </div>
           </div>
 
-          <dl
+          {/* Liste statt <dl>: dt/dd dürfen nicht in verschachtelten divs stehen */}
+          <ul
             style={{ "--hero-delay": "0.24s" } as React.CSSProperties}
             className="hero-rise grid grid-cols-3 gap-2 sm:gap-4 pt-6 max-w-xl border-t border-white/10"
           >
@@ -205,15 +206,15 @@ export function Hero() {
               { k: String(teams.length), v: "Mannschaften", icon: CalendarDays },
               { k: "120+", v: "Kinder & Jugend", icon: Trophy },
             ].map(({ k, v, icon: Icon }) => (
-              <div key={v} className="flex items-start gap-2 sm:gap-3 pt-6">
+              <li key={v} className="flex items-start gap-2 sm:gap-3 pt-6">
                 <Icon className="size-4 sm:size-5 text-scu-yellow shrink-0 mt-1" />
                 <div className="min-w-0">
-                  <dt className="font-display text-2xl sm:text-3xl font-black leading-none">{k}</dt>
-                  <dd className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/55 mt-1.5">{v}</dd>
+                  <div className="font-display text-2xl sm:text-3xl font-black leading-none">{k}</div>
+                  <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/70 mt-1.5">{v}</div>
                 </div>
-              </div>
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
 
         <div className="lg:col-span-5 relative hidden lg:block">

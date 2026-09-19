@@ -310,7 +310,7 @@ export default function AngebotPage() {
         />
         <Container className="relative flex flex-col gap-14">
           <div className="flex flex-col gap-4 max-w-3xl">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-ink">
               <span className="h-px w-8 bg-current" />
               Warum eine Portraitseite
             </span>
@@ -383,7 +383,7 @@ export default function AngebotPage() {
       <section className="relative py-20 lg:py-28 bg-gradient-to-b from-scu-yellow/[0.06] via-white to-scu-gold/[0.05] overflow-hidden">
         <Container className="relative flex flex-col gap-14">
           <div className="flex flex-col gap-4 max-w-3xl">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-ink">
               <span className="h-px w-8 bg-current" />
               Leistungsumfang
             </span>
@@ -641,7 +641,7 @@ export default function AngebotPage() {
                         <div className="font-display text-base font-black text-scu-black mt-1">
                           {k.value}
                         </div>
-                        <div className="text-[9px] font-bold text-green-600 mt-0.5">
+                        <div className="text-[9px] font-bold text-green-800 mt-0.5">
                           {k.delta}
                         </div>
                       </div>
@@ -677,7 +677,7 @@ export default function AngebotPage() {
                     <div className="text-[10px] uppercase tracking-[0.18em] font-bold text-scu-gray-500">
                       3 Seiten · PDF
                     </div>
-                    <div className="inline-flex items-center gap-1 text-xs font-bold text-scu-black group-hover:text-scu-yellow-dark transition">
+                    <div className="inline-flex items-center gap-1 text-xs font-bold text-scu-black group-hover:text-scu-yellow-ink transition">
                       Öffnen
                       <Download className="size-3" />
                     </div>
@@ -709,7 +709,7 @@ export default function AngebotPage() {
         />
         <Container className="relative flex flex-col gap-14">
           <div className="flex flex-col gap-4 max-w-3xl">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-ink">
               <span className="h-px w-8 bg-current" />
               So läuft&apos;s ab
             </span>
@@ -750,7 +750,7 @@ export default function AngebotPage() {
                   <div className="relative flex items-center justify-between">
                     <span
                       className={`font-display text-5xl font-black leading-none ${
-                        isYellow ? "text-scu-yellow" : "text-scu-gold"
+                        isYellow ? "text-scu-yellow" : "text-[#966900]"
                       }`}
                     >
                       {step.k}
@@ -788,7 +788,7 @@ export default function AngebotPage() {
         />
         <Container className="relative max-w-4xl">
           <div className="flex flex-col gap-4 items-center text-center max-w-3xl mx-auto">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-ink">
               <span className="h-px w-8 bg-current" />
               Häufige Fragen
               <span className="h-px w-8 bg-current" />
@@ -851,7 +851,7 @@ export default function AngebotPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col gap-6">
                 <div className="flex flex-col gap-4 max-w-2xl">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-dark">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-scu-yellow-ink">
                     <span className="h-px w-8 bg-current" />
                     Kontakt aufnehmen
                   </span>

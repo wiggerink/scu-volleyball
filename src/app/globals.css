@@ -4,13 +4,13 @@
   --color-scu-yellow: #FFF001;
   --color-scu-yellow-dark: #d6ca00;
   --color-scu-yellow-light: #fff84d;
-  --color-scu-yellow-ink: #a08200;
+  --color-scu-yellow-ink: #806800; /* 5,4:1 auf Weiß, 4,9:1 auf Grau-100 (WCAG AA) */
   --color-scu-black: #0a0a0a;
   --color-scu-gray-950: #0f1113;
   --color-scu-gray-900: #16181c;
   --color-scu-gray-800: #1f2227;
   --color-scu-gray-700: #2a2e35;
-  --color-scu-gray-500: #6b7280;
+  --color-scu-gray-500: #5f6673; /* auch auf Grau-100 mindestens 4,5:1 */
   --color-scu-gray-300: #cbd0d6;
   --color-scu-gray-200: #e4e7ec;
   --color-scu-gray-100: #f2f4f7;
@@ -178,19 +178,21 @@ h1, h2, h3, h4, h5, h6 {
   color: #0a0a0a;
 }
 
-/* Auto-darken yellow text on light surfaces for readability (brand-safe olive gold).
-   Scoped to <section> so body/layout bg-white does not leak into dark hero sections. */
-section.bg-white .text-scu-yellow,
-section.bg-scu-gray-100 .text-scu-yellow,
-section.bg-scu-gray-200 .text-scu-yellow,
-section[class*="from-white"] .text-scu-yellow {
+/* Gelbe Schrift auf hellen Flächen automatisch abdunkeln (WCAG AA, 4,5:1).
+   Auf <section> begrenzt, damit das weiße <body> nicht in dunkle Heros durchschlägt.
+   Erfasst auch Abschnitte mit hellem Verlauf (from-white / via-white) - dort stand
+   vorher reines Gelb auf weißen Karten, Kontrast 1,2:1. */
+:is(
+  section.bg-white,
+  section.bg-scu-gray-100,
+  section.bg-scu-gray-200,
+  section[class*="from-white"],
+  section[class*="via-white"]
+) .text-scu-yellow {
   color: var(--color-scu-yellow-ink);
 }
 
-/* Solid headings — crisp, readable, friendly.
-   Previously used a muddy black-to-gold gradient that felt dark on light
-   surfaces. Now pure brand black on light and pure white on dark. Highlights
-   (yellow spans, HighlightWord component) handle the accent job. */
+/* Solid headings — crisp, readable, friendly. */
 .heading-gradient {
   color: var(--color-scu-black);
 }
@@ -198,14 +200,25 @@ section[class*="from-white"] .text-scu-yellow {
   color: #ffffff;
 }
 
-/* Keep bright yellow on dark cards/panels nested inside a light section. */
-section.bg-white .bg-scu-black .text-scu-yellow,
-section.bg-white .bg-scu-gray-900 .text-scu-yellow,
-section.bg-white .bg-gradient-to-br .text-scu-yellow,
-section.bg-scu-gray-100 .bg-scu-black .text-scu-yellow,
-section.bg-scu-gray-100 .bg-scu-gray-900 .text-scu-yellow,
-section.bg-scu-gray-100 .bg-gradient-to-br .text-scu-yellow,
-section[class*="from-white"] .bg-scu-black .text-scu-yellow {
+/* Auf dunklen Karten, Panels und Foto-Überlagerungen innerhalb heller Abschnitte
+   bleibt das Gelb hell. */
+:is(
+  section.bg-white,
+  section.bg-scu-gray-100,
+  section.bg-scu-gray-200,
+  section[class*="from-white"],
+  section[class*="via-white"]
+) :is(.bg-scu-black, .bg-scu-gray-900, .bg-gradient-to-br, [class*="from-scu-black"]) .text-scu-yellow {
+  color: var(--color-scu-yellow);
+}
+/* ... auch wenn dunkler Grund und gelbe Schrift am selben Element hängen (Button "dark"). */
+:is(
+  section.bg-white,
+  section.bg-scu-gray-100,
+  section.bg-scu-gray-200,
+  section[class*="from-white"],
+  section[class*="via-white"]
+) :is(.bg-scu-black, .bg-scu-gray-900).text-scu-yellow {
   color: var(--color-scu-yellow);
 }
 

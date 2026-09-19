@@ -99,9 +99,9 @@ export function Footer() {
           <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-10">
             {linkGroups.map((group) => (
               <div key={group.title}>
-                <h3 className="font-display text-sm uppercase tracking-[0.2em] text-scu-yellow font-black mb-4">
+                <h2 className="font-display text-sm uppercase tracking-[0.2em] text-scu-yellow font-black mb-4">
                   {group.title}
-                </h3>
+                </h2>
                 <ul className="flex flex-col gap-2.5 text-sm text-white/70">
                   {group.links.map((link) => {
                     const external = "external" in link && link.external;
