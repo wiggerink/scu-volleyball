@@ -888,6 +888,7 @@ export default function AngebotPage() {
                     href="https://web-n-search.de"
                     target="_blank"
                     rel="noopener"
+                    data-umami-event="angebot-web-n-search"
                     className="flex items-start gap-3 rounded-xl bg-scu-gray-100 hover:bg-scu-yellow/20 transition px-4 py-3"
                   >
                     <Globe className="size-4 text-scu-yellow shrink-0 mt-0.5" />

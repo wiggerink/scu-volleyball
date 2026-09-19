@@ -132,6 +132,9 @@ export function Footer() {
               href="https://web-n-search.de"
               target="_blank"
               rel="noopener"
+              // Umami zählt Klicks auf ausgehende Links nicht von selbst - dieses
+              // Attribut meldet den Klick als Ereignis "footer-web-n-search"
+              data-umami-event="footer-web-n-search"
               className="group inline-flex items-center gap-1.5 text-white/60 hover:text-scu-yellow transition"
             >
               <span>Gebaut mit</span>
