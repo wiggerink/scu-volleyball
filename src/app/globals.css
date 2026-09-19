@@ -113,6 +113,35 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
 }
 
+/* Einblendungen im Hero - reines CSS, damit sie mit dem ersten Bild starten.
+   Vorher liefen sie über Framer Motion: der Server lieferte die Elemente mit
+   opacity 0 aus, sichtbar wurden sie erst nach Laden und Start des JavaScripts.
+   Auf dem Handy kostete das rund 1,7 s beim Largest Contentful Paint.
+   Ohne "to": die Animation endet auf den normalen Werten des Elements.
+   Bei reduzierter Bewegung gibt es keine Animation, alles steht sofort da. */
+@keyframes hero-rise {
+  from { opacity: 0; translate: 0 28px; }
+}
+/* Für Überschrift und Absatz: startet sichtbar statt bei opacity 0.
+   Chrome wertet Elemente, die unsichtbar starten, nicht als Largest Contentful
+   Paint - dann zählt ersatzweise ein Bild, das unter Mobilfunk-Drosselung viel
+   später fertig ist. So ist der Text mit dem ersten Bild da und zählt selbst. */
+@keyframes hero-rise-text {
+  from { opacity: 0.2; translate: 0 28px; }
+}
+@keyframes hero-pop {
+  from { opacity: 0; scale: 0.9; rotate: -4deg; }
+}
+@keyframes hero-glow {
+  from { opacity: 0; scale: 1.2; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise { animation: hero-rise 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) var(--hero-delay, 0s) both; }
+  .hero-rise-text { animation: hero-rise-text 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) var(--hero-delay, 0s) both; }
+  .hero-pop { animation: hero-pop 1s ease-out var(--hero-delay, 0s) both; }
+  .hero-glow { animation: hero-glow 1.4s ease-out both; }
+}
+
 /* Utility: diagonal clip hero */
 .clip-hero {
   clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);

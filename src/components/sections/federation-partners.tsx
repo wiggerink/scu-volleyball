@@ -37,6 +37,8 @@ export function FederationPartners() {
                       alt={p.name}
                       width={200}
                       height={96}
+                      // ohne sizes lieferte Next die 640px-Variante für ein ~170px breites Logo
+                      sizes="200px"
                       className="max-h-20 md:max-h-24 w-auto object-contain filter grayscale-0 transition group-hover:scale-105"
                     />
                   </div>

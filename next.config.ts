@@ -3,6 +3,8 @@ import { UMAMI_API_URL, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "./src/lib/uma
 
 const nextConfig: NextConfig = {
   images: {
+    // 50 nur für das abgedunkelte Hero-Hintergrundbild, sonst Standard 75
+    qualities: [50, 75],
     // Kein 3840px-Rendering: grosse Erstoptimierungen liefen auf Vercel in Timeouts
     // (kaputte Bilder direkt nach jedem Deploy, bis der Bild-Cache warm war)
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],

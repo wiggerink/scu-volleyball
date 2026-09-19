@@ -2,7 +2,6 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Play, Ticket, Trophy, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -86,6 +85,8 @@ function HeroBackdrop() {
         alt="Spielball auf dem Hallenboden der Vechtetalhalle vor einem Heimspiel des SCU Emlichheim"
         fill
         priority
+        // liegt mit 60 % Deckkraft unter zwei Verläufen - stärkere Kompression fällt nicht auf
+        quality={50}
         sizes="100vw"
         className={`object-cover object-[center_20%] transition-opacity duration-1000 ${videoReady ? "opacity-0" : "opacity-60"}`}
       />
@@ -132,44 +133,34 @@ export function Hero() {
       <div aria-hidden className="absolute inset-0 bg-grid opacity-[0.25]" />
 
       {/* Accent */}
-      <motion.div
+      <div
         aria-hidden
-        initial={{ opacity: 0, scale: 1.2 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, ease: "easeOut" }}
-        className="absolute -top-40 -right-40 h-[640px] w-[640px] rounded-full bg-scu-yellow/20 blur-[140px]"
+        className="hero-glow absolute -top-40 -right-40 h-[640px] w-[640px] rounded-full bg-scu-yellow/20 blur-[140px]"
       />
 
       <Container className="relative pt-32 sm:pt-40 lg:pt-56 xl:pt-64 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-7">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] font-black leading-[0.95] tracking-tight"
+          <h1
+            className="hero-rise-text font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] font-black leading-[0.95] tracking-tight"
           >
             Heimat.
             <br />
             Leidenschaft.
             <span className="block text-scu-yellow">Volleyball.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.2 }}
-            className="max-w-xl text-lg text-white/80 leading-relaxed"
+          <p
+            style={{ "--hero-delay": "0.06s" } as React.CSSProperties}
+            className="hero-rise-text max-w-xl text-lg text-white/80 leading-relaxed"
           >
             Willkommen beim <strong className="text-white">SC Union Emlichheim</strong> – dem Dorf in der Grafschaft,
             das seit 1989/90 Bundesliga-Volleyball atmet. 2026/27 greifen unsere Damen in der{" "}
             <strong className="text-white">Sparda 2. Liga Pro</strong> an.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.3 }}
-            className="flex flex-wrap gap-3"
+          <div
+            style={{ "--hero-delay": "0.12s" } as React.CSSProperties}
+            className="hero-rise flex flex-wrap gap-3"
           >
             <Button asChild size="lg" variant="primary">
               <Link href={site.ticketsUrl} target="_blank" rel="noopener">
@@ -186,15 +177,13 @@ export function Hero() {
                 <Play className="size-4" /> Livestream
               </Link>
             </Button>
-          </motion.div>
+          </div>
 
           {/* Naechstes Heimspiel fuer kleine Viewports: die Bildkarte rechts ist erst ab lg sichtbar,
               auf dem Handy stand der Termin sonst nirgends. */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.35 }}
-            className="lg:hidden rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-4 max-w-xl"
+          <div
+            style={{ "--hero-delay": "0.18s" } as React.CSSProperties}
+            className="hero-rise lg:hidden rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-4 max-w-xl"
           >
             <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-scu-yellow flex items-center gap-1.5 before:content-[''] before:size-2 before:rounded-full before:bg-scu-yellow">
               Nächstes Heimspiel
@@ -205,13 +194,11 @@ export function Hero() {
             <div className="text-xs text-white/65 mt-1">
               {shortDate.format(new Date(`${homeGame.date}T00:00:00Z`))} · {homeGame.time} Uhr · {homeGame.venue}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.dl
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.4 }}
-            className="grid grid-cols-3 gap-2 sm:gap-4 pt-6 max-w-xl border-t border-white/10"
+          <dl
+            style={{ "--hero-delay": "0.24s" } as React.CSSProperties}
+            className="hero-rise grid grid-cols-3 gap-2 sm:gap-4 pt-6 max-w-xl border-t border-white/10"
           >
             {[
               { k: "35+", v: "Jahre Bundesliga", icon: Trophy },
@@ -226,15 +213,13 @@ export function Hero() {
                 </div>
               </div>
             ))}
-          </motion.dl>
+          </dl>
         </div>
 
         <div className="lg:col-span-5 relative hidden lg:block">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: -4 }}
-            animate={{ opacity: 1, scale: 1, rotate: -3 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="relative ml-auto w-[420px] aspect-[3/4] rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-white p-1.5"
+          <div
+            style={{ "--hero-delay": "0.3s" } as React.CSSProperties}
+            className="hero-pop -rotate-3 relative ml-auto w-[420px] aspect-[3/4] rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-white p-1.5"
           >
             <div className="relative h-full w-full rounded-2xl overflow-hidden">
               <Image
@@ -250,19 +235,17 @@ export function Hero() {
                 <div className="font-display text-xl font-black mt-1">Sparda 2. Liga Pro in der Vechtetalhalle</div>
               </div>
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
-            className="absolute -left-4 -bottom-8 bg-white text-scu-black rounded-2xl p-4 shadow-2xl w-60"
+          </div>
+          <div
+            style={{ "--hero-delay": "0.7s" } as React.CSSProperties}
+            className="hero-rise absolute -left-4 -bottom-8 bg-white text-scu-black rounded-2xl p-4 shadow-2xl w-60"
           >
             <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-scu-black flex items-center gap-1.5 before:content-[''] before:size-2 before:rounded-full before:bg-scu-yellow">Nächstes Heimspiel</div>
             <div className="font-display text-lg font-black leading-tight mt-1">{homeGame.home} vs. {homeGame.away}</div>
             <div className="text-xs text-scu-gray-500 mt-1">
               {shortDate.format(new Date(`${homeGame.date}T00:00:00Z`))} · {homeGame.time} Uhr · {homeGame.venue}
             </div>
-          </motion.div>
+          </div>
         </div>
       </Container>
 
